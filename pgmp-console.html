@@ -352,6 +352,1296 @@ var BLOCKS = [
     ]
   },
   {
+    id:"ST3", domain:"strategic", name:"Environmental Scanning & Portfolio Fit",
+    refs:["standard","swot","stakeholdermap"],
+    material:[
+      "Initial program assessment validates that a proposed program deserves portfolio-level attention before it proceeds — programs begun without this assessment often surface weak justification or conflicting priorities later.",
+      "PESTLE and SWOT analyses evaluate strategic context; stakeholder salience mapping identifies influence, legitimacy, and urgency; organizational capability assessments test readiness — these are complementary techniques, not substitutes for one another.",
+      "When alignment is uncertain at initial assessment, the correct response is to pause and reassess — not to proceed to detailed planning on the assumption that alignment will sort itself out.",
+      "Portfolio-level scoring compares a proposed program against other organizational initiatives competing for the same resources — strategic fit combined with reasonable return outweighs either high return with weak fit or process factors like timing and sponsor enthusiasm."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A regional utility is considering a \"Smart Grid Modernization Program.\" Before planning begins, the sponsor commissions a report covering political, economic, social, technological, legal, and environmental drivers relevant to the initiative. What technique does this describe, and what stage of Domain I work does it belong to?",
+        options:[
+          "A benefits realization plan, developed during program delivery",
+          "A PESTLE analysis, performed as part of the initial program assessment to evaluate strategic context before program approval",
+          "A stakeholder engagement plan, developed after charter approval",
+          "A risk register, maintained throughout program execution"
+        ],
+        a:1,
+        why:"PESTLE (political, economic, social, technological, legal, environmental) analysis is exactly this kind of environmental-context scan, and it belongs to the initial program assessment — before approval, not after.",
+        refs:["swot","standard"]
+      },
+      {
+        type:"single",
+        stem:"An organizational capability assessment for a proposed \"AI Customer Service Program\" reveals that the IT department lacks staff experienced in the required technology, and hiring would take approximately 14 months. The program's timeline assumes a 6-month rollout. What should this finding trigger?",
+        options:[
+          "Proceeding with the original 6-month timeline and addressing staffing issues as they arise during execution",
+          "Pausing to reassess the program's readiness and timeline assumptions before requesting charter approval, since the capability gap directly undermines the current plan",
+          "Immediately hiring contractors without evaluating cost or quality implications",
+          "Removing the AI component from scope without further analysis"
+        ],
+        a:1,
+        why:"When initial assessment surfaces a genuine readiness gap like this, the correct response is to pause and reassess — not push forward hoping the gap resolves itself, and not react with an unanalyzed shortcut.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A proposed program's initial assessment reveals strong strategic alignment and stakeholder support, but the assessment did not include a risk scan. A team member argues this is fine because risks can be identified later during planning. Is this correct?",
+        options:[
+          "Yes, risk identification is exclusively a planning-phase activity",
+          "No — an initial risk scan during assessment helps determine the probability of successful benefit delivery and should inform the go/no-go recommendation itself, not just later planning",
+          "Yes, as long as the business case doesn't mention risk",
+          "No, but only for programs with an unusually large budget"
+        ],
+        a:1,
+        why:"Initial assessment includes a preliminary risk scan specifically because early risk visibility shapes whether the program should proceed at all — deferring it entirely to planning skips input the assessment needs.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Four proposed programs are being compared for limited organizational funding this cycle. Program A has the most enthusiastic sponsor. Program B was proposed first. Program C has the highest projected NPV but weak strategic fit. Program D has moderate NPV and strong strategic fit with the organization's five-year plan. Per PMI's initial-assessment logic, which should rank highest?",
+        options:[
+          "Program A, because sponsor enthusiasm indicates organizational commitment",
+          "Program B, because it was proposed first and deserves priority",
+          "Program C, because financial return should always be the deciding factor",
+          "Program D, because strategic fit combined with reasonable financial return outweighs either high return with weak fit or process factors like timing and sponsor tone"
+        ],
+        a:3,
+        why:"Portfolio-level prioritization weighs strategic fit alongside financial return — a high-NPV program with weak strategic alignment is a weaker candidate than one with solid fit and reasonable return; sponsor enthusiasm and submission order aren't valid criteria.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder salience mapping exercise during initial assessment identifies a regulatory agency as having high power and high legitimacy, but currently low urgency regarding the proposed program. What does this suggest for the program's initial assessment report?",
+        options:[
+          "The regulatory agency can be excluded from further consideration since urgency is low",
+          "The regulatory agency should be flagged as a stakeholder likely to become more engaged as the program becomes more concrete, and its expectations should be documented even though immediate engagement isn't urgent",
+          "The program should be delayed until the regulatory agency's urgency increases",
+          "Salience mapping is only relevant for external stakeholders, not regulators"
+        ],
+        a:1,
+        why:"Salience mapping tracks power, legitimacy, AND urgency precisely because low current urgency doesn't mean low future relevance — a high-power, high-legitimacy stakeholder deserves documentation and monitoring even before they're vocal.",
+        refs:["stakeholdermap"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO outputs are typical artifacts of the initial program assessment, per Domain I?",
+        options:[
+          "The detailed program schedule baseline",
+          "A preliminary risk register capturing early strategic and operational risks",
+          "An initial stakeholder map showing influence, interest, and engagement approach",
+          "The final benefits sustainment plan"
+        ],
+        a:[1,2],
+        why:"A preliminary risk register and an initial stakeholder map are both initial-assessment artifacts; a detailed schedule baseline and a final sustainment plan both belong to much later stages of the program.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager conducting initial assessment for a \"National Broadband Expansion Program\" documents strong political support and clear technological readiness, but notes that public sentiment in several regions is skeptical of the initiative due to past infrastructure project failures. How should this social factor be treated?",
+        options:[
+          "Ignored, since political and technological factors are more important",
+          "Documented as part of the PESTLE assessment and factored into the program's risk and stakeholder planning, since social sentiment can materially affect program success",
+          "Addressed only if it becomes a formal complaint",
+          "Delegated entirely to the communications department with no program-level tracking"
+        ],
+        a:1,
+        why:"Social factors are one of PESTLE's six dimensions precisely because sentiment and public trust affect program viability — surfacing it early lets it inform risk and stakeholder planning rather than becoming a surprise later.",
+        refs:["swot"]
+      },
+      {
+        type:"single",
+        stem:"During initial assessment, a program's projected benefits appear strong, but the assessment reveals the organization has three other initiatives with overlapping objectives already underway. What should this prompt the program manager to do?",
+        options:[
+          "Proceed unchanged, since the new program's own benefits are strong regardless of overlap",
+          "Investigate whether the new program duplicates existing efforts or could be better achieved through integration with one of the existing initiatives, before recommending it proceed independently",
+          "Recommend canceling all three existing initiatives in favor of the new one",
+          "Note the overlap in a footnote and continue without further analysis"
+        ],
+        a:1,
+        why:"Initial assessment should catch this kind of redundancy early — proceeding independently despite clear overlap wastes resources that integration or coordination could capture instead, which is exactly the synergy logic assessment exists to surface.",
+        refs:["standard"]
+      },
+      {
+        type:"case",
+        stem:"A pharmaceutical company is assessing a proposed \"Global Clinical Trials Acceleration Program.\"",
+        scenario:"Initial assessment finds: strong strategic alignment with the company's five-year growth plan; a preliminary risk scan identifying significant regulatory variance across target countries; and an organizational capability assessment showing the company has never before coordinated trials across more than two countries simultaneously.",
+        subs:[
+          {
+            stem:"What does the capability assessment finding most directly indicate?",
+            options:[
+              "The program should be canceled immediately due to lack of experience",
+              "A genuine readiness gap that should be addressed in program planning — through partnerships, phased rollout, or capability building — rather than ignored",
+              "The finding is irrelevant since strategic alignment is strong",
+              "The capability assessment should be redone using a different methodology"
+            ],
+            a:1
+          },
+          {
+            stem:"Given the regulatory variance risk identified in the preliminary scan, what is the most appropriate next step?",
+            options:[
+              "Proceed with planning without further regulatory analysis, since scope hasn't been finalized",
+              "Carry the regulatory risk forward into the program's business case and risk management strategy so it's tracked and addressed as the program is defined",
+              "Assume regulatory risk is a project-level concern for later, not relevant to Domain I",
+              "Cancel the international scope and focus only on the company's home country"
+            ],
+            a:1
+          }
+        ],
+        why:"Both findings from initial assessment are meant to inform — not be discarded from — the program's business case, risk strategy, and planning; a readiness gap or regulatory risk identified early should be carried forward and addressed, not ignored or used as grounds for automatic cancellation.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is asked why the initial program assessment for a new logistics optimization program took six weeks, when the sponsor expected it to take one week. What is the most defensible justification?",
+        options:[
+          "Thoroughness in assessing strategic drivers, readiness, risks, and stakeholder positions reduces the likelihood of chartering a program that later proves misaligned or infeasible — the time invested protects the much larger investment that follows",
+          "Six weeks is excessive for any assessment and indicates poor program management",
+          "The assessment should always take exactly as long as the sponsor initially expects",
+          "Longer assessments are inherently better regardless of what they produce"
+        ],
+        a:0,
+        why:"Initial assessment exists to prevent exactly the kind of costly misalignment that shows up much later — time spent here is proportional to the risk of skipping it, not an arbitrary inefficiency.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Which of the following best distinguishes a SWOT analysis from a PESTLE analysis in the context of initial program assessment?",
+        options:[
+          "They are identical techniques with different names",
+          "SWOT examines internal strengths/weaknesses alongside external opportunities/threats specific to the initiative; PESTLE scans broader macro-environmental factors (political, economic, social, technological, legal, environmental) that may affect it",
+          "PESTLE is used only for governmental programs",
+          "SWOT is performed only after program charter approval"
+        ],
+        a:1,
+        why:"SWOT and PESTLE serve complementary but distinct purposes — SWOT is initiative-focused (internal + external factors specific to it), while PESTLE is a broader environmental scan; conflating them misses what each is actually built to catch.",
+        refs:["swot"]
+      },
+      {
+        type:"single",
+        stem:"An initial program assessment for a proposed program concludes with a \"proceed with caution\" recommendation, flagging moderate strategic alignment and a significant unresolved funding question. The sponsor wants to proceed directly to charter development. What should the program manager recommend instead?",
+        options:[
+          "Proceed directly to charter development as the sponsor requests, since sponsors have final authority",
+          "Resolve or substantially clarify the flagged funding question before charter development, since an unresolved funding question at this stage threatens the charter's credibility and the program's viability",
+          "Proceed to charter development but omit the funding question from the charter",
+          "Cancel the program entirely due to the flagged concerns"
+        ],
+        a:1,
+        why:"A \"proceed with caution\" assessment isn't a green light to skip past open questions — significant unresolved items like funding should be addressed before the charter is built on an incomplete foundation, even under sponsor pressure to move quickly.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Stakeholder salience mapping during initial assessment classifies a mid-level operations manager as low power, low legitimacy, but high urgency about a proposed program (they are vocal and anxious about how the program will affect their team). How should this stakeholder be treated?",
+        options:[
+          "Ignored, since power and legitimacy are both low",
+          "Documented and monitored — high urgency alone can still create disruptive noise or resistance even without formal power or legitimacy, so their concerns are worth understanding even if they don't drive engagement priority",
+          "Treated identically to a high-power, high-legitimacy stakeholder",
+          "Escalated immediately to the executive sponsor"
+        ],
+        a:1,
+        why:"Salience mapping's point is nuance — a stakeholder low on two dimensions but high on the third isn't irrelevant, just differently relevant; understanding their concern helps manage disruption risk without over-elevating their formal priority.",
+        refs:["stakeholdermap"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO statements correctly describe how initial program assessment should treat identified risks and readiness gaps?",
+        options:[
+          "They should be resolved completely before the assessment can be considered done",
+          "They should be documented and carried forward to inform the business case, charter, and subsequent risk management — not simply set aside",
+          "They should automatically disqualify a program from proceeding",
+          "A readiness gap found during assessment doesn't automatically kill the program, but it should shape the program's approach, timeline, or resourcing strategy going forward"
+        ],
+        a:[1,3],
+        why:"Assessment isn't expected to resolve every risk or gap on the spot, nor does finding one automatically disqualify the program — the right move is documenting and carrying findings forward so they shape what comes next.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager presents an initial assessment showing strong alignment across all dimensions and no material risks or readiness gaps. A skeptical board member asks whether this unusually clean result might itself be a red flag. What is the most appropriate response?",
+        options:[
+          "Dismiss the concern, since a clean assessment should always be taken at face value",
+          "Acknowledge the concern is reasonable, and confirm the assessment methodology was applied rigorously (PESTLE/SWOT, capability assessment, risk scan, salience mapping) rather than superficially, since optimistic bias can produce an overly favorable picture",
+          "Refuse to answer, since questioning a completed assessment is inappropriate",
+          "Redo the entire assessment using a completely different team regardless of the original methodology's rigor"
+        ],
+        a:1,
+        why:"Optimistic bias is a real risk in forecasting — a clean result deserves a rigor check (was every technique actually applied, or was the process superficial?) rather than blind acceptance or a wholesale redo without cause.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"ST4", domain:"strategic", name:"Roadmap & Financial Framework",
+    refs:["standard","npv","governance"],
+    material:[
+      "A program roadmap is a high-level, strategic view of milestones and benefit sequencing built from goals, historical information, and available resources — it communicates intent and secures sponsor validation, not task-level detail.",
+      "Rough-order-of-magnitude (ROM) estimates and scenario sequencing at the roadmap stage compare delivery pathways and produce cost/schedule envelopes for strategic discussion — not committed baselines.",
+      "A program's financial framework (funding model, NPV/IRR/payback, CapEx vs. OpEx segmentation, funding tranches tied to gates) sets the financial architecture before program approval — distinct from a detailed project budget developed later.",
+      "When the environment shifts, the roadmap and financial framework are revisited and revalidated with governance — not silently adjusted or left stale."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A roadmap for a proposed \"Digital Payments Modernization Program\" shows three possible delivery pathways: Pathway A (fastest, highest risk, higher cost), Pathway B (moderate speed, moderate risk and cost), and Pathway C (slowest, lowest risk, lowest cost). This comparison exercise is an example of which roadmap-stage technique?",
+        options:[
+          "Earned value management",
+          "Scenario sequencing, used to compare risk and reward across possible delivery pathways before committing to one",
+          "A detailed work breakdown structure",
+          "A stakeholder engagement plan"
+        ],
+        a:1,
+        why:"Scenario sequencing models multiple delivery pathways to compare risk and reward at the roadmap stage — this is a strategic comparison tool, not a detailed execution artifact like a WBS or EVM tracking.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A roadmap includes a rough-order-of-magnitude (ROM) cost estimate of $40-60M for a proposed program. A finance director asks why the estimate has such a wide range instead of a precise figure. What is the correct explanation?",
+        options:[
+          "The program manager did not do sufficient analysis",
+          "A ROM estimate is intentionally a wide-range figure appropriate for strategic-level discussion at the roadmap stage — precision comes later once components and detailed scope are defined",
+          "ROM estimates should always be replaced with exact figures before roadmap approval",
+          "The range reflects a calculation error that should be corrected"
+        ],
+        a:1,
+        why:"ROM estimates exist precisely to support strategic discussion with appropriate uncertainty — collapsing them to false precision at the roadmap stage would misrepresent how much is actually known yet.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A roadmap identifies a gating decision at the end of Year 1: continue to Year 2 funding only if a pilot region shows at least 15% adoption. What is the purpose of embedding this kind of gate directly into the roadmap?",
+        options:[
+          "To give the program manager unilateral authority to continue or stop without governance involvement",
+          "To communicate to governance and stakeholders, at the strategic level, where a real go/no-go decision point exists and what evidence will inform it",
+          "To eliminate the need for any further governance review after Year 1",
+          "Gating decisions don't belong on a roadmap; they belong only in the risk register"
+        ],
+        a:1,
+        why:"A roadmap's gating milestones exist to make go/no-go decision points visible at the strategic level — they don't remove governance from the decision, they signal when governance will need to make one.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's financial framework proposes funding an initiative primarily through internal operating budgets rather than a dedicated capital appropriation. What is this decision an example of?",
+        options:[
+          "Cost segmentation between CapEx and OpEx",
+          "Funding model design — identifying and selecting among potential funding sources (internal capital, operational budgets, grants, external partnerships)",
+          "Earned value management",
+          "A change control decision"
+        ],
+        a:1,
+        why:"Choosing which funding source(s) to draw from — operating budget vs. capital appropriation vs. external partnership — is funding model design, a distinct financial-framework activity from cost segmentation (which is about classifying costs, not sourcing funds).",
+        refs:["standard","npv"]
+      },
+      {
+        type:"single",
+        stem:"A financial framework separates a program's projected costs into CapEx (capital expenditure, e.g., new infrastructure) and OpEx (operating expenditure, e.g., ongoing licensing fees) categories. Why does this distinction matter at the strategic-alignment stage?",
+        options:[
+          "It has no real strategic significance; it's purely an accounting formality",
+          "CapEx and OpEx are typically funded, approved, and governed differently within an organization, so the distinction shapes how the program's funding model and approval pathway are structured",
+          "Only CapEx needs to be tracked; OpEx can be ignored in the financial framework",
+          "The distinction is only relevant after the program has been chartered"
+        ],
+        a:1,
+        why:"CapEx and OpEx often flow through different budget authorities and approval processes in an organization — getting this segmentation right at the financial-framework stage shapes the funding model and governance path, not just the accounting.",
+        refs:["npv"]
+      },
+      {
+        type:"single",
+        stem:"A proposed program's financial framework reports an NPV of $12M and an IRR of 14%, compared to the organization's typical hurdle rate of 10%. A board member asks what this means in plain terms. What is the correct interpretation?",
+        options:[
+          "The program will definitely be profitable regardless of any assumptions changing",
+          "The program's projected returns, discounted to present value, exceed its costs by $12M, and its estimated rate of return (14%) clears the organization's minimum acceptable threshold (10%) — making it a financially attractive candidate, based on current assumptions",
+          "NPV and IRR are interchangeable terms for the same calculation",
+          "The program should be automatically approved because both figures are positive"
+        ],
+        a:1,
+        why:"NPV and IRR are the two headline financial-framework figures, and the correct read is \"attractive under current assumptions clearing the hurdle rate\" — not an automatic approval or an assumption-free guarantee.",
+        refs:["npv"]
+      },
+      {
+        type:"single",
+        stem:"Midway through developing a program's financial framework, a significant currency devaluation in the program's primary market shifts cost assumptions substantially. What should happen to the roadmap and financial framework?",
+        options:[
+          "Nothing; the roadmap and financial framework, once drafted, shouldn't be revisited until the program charter is approved",
+          "Both should be revisited and revalidated with governance to reflect the changed environment, since strategic alignment and financial viability are continuously assessed, not fixed at first draft",
+          "Only the financial framework needs updating; the roadmap is unaffected by currency changes",
+          "The program should be automatically canceled due to the currency shift"
+        ],
+        a:1,
+        why:"Strategic alignment — including the roadmap and financial framework that support it — is continuously reassessed as the environment changes, not locked in after a first draft or only revisited at fixed milestones.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A roadmap for a \"Smart City Transit Program\" shows Phase 1 (sensor network), Phase 2 (data platform), and Phase 3 (AI-based routing), with each phase's milestone tied to a specific benefit. A stakeholder asks why Phase 3 wasn't scheduled first, since AI routing is the most exciting capability. What is the best response?",
+        options:[
+          "Reorder the roadmap to start with Phase 3 to satisfy stakeholder enthusiasm",
+          "Explain that the roadmap sequences phases based on dependency and benefit logic — AI routing (Phase 3) depends on the data platform (Phase 2), which depends on the sensor network (Phase 1) — not on which capability generates the most excitement",
+          "Remove Phase 3 from the roadmap entirely since it's causing confusion",
+          "Avoid explaining the sequencing and simply proceed as planned"
+        ],
+        a:1,
+        why:"Roadmap sequencing follows dependency and benefit logic, not stakeholder enthusiasm — explaining the \"why\" behind the order is exactly the kind of strategic communication a roadmap exists to support.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate reasons to revise a program's roadmap before the program management plan is finalized?",
+        options:[
+          "A key milestone dependency turns out to be technically infeasible as originally sequenced",
+          "A stakeholder personally dislikes the visual layout of the roadmap document",
+          "New information from a deeper feasibility assessment changes the realistic timeline for a phase",
+          "The program manager wants to make the roadmap look busier to impress the sponsor"
+        ],
+        a:[0,2],
+        why:"Legitimate roadmap revisions come from substantive findings — infeasible sequencing or new feasibility information — not cosmetic preferences or impression management.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's financial framework proposes three funding tranches: 30% released at charter approval, 40% released after Phase 1 milestone achievement, and 30% released after Phase 2 milestone achievement. What is the primary purpose of structuring funding this way rather than releasing the full budget upfront?",
+        options:[
+          "It makes the accounting simpler for the finance department",
+          "It ties continued funding to demonstrated progress at governance gates, reducing the organization's exposure if the program's assumptions don't hold up as it proceeds",
+          "Tranches are required by law for all programs",
+          "It allows the program manager to spend funds without any governance oversight between tranches"
+        ],
+        a:1,
+        why:"Gated funding tranches are a risk-management tool — the organization limits its exposure by releasing funding progressively, tied to real evidence at each stage, not simply for administrative convenience.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A roadmap is criticized by a new steering committee member for \"not showing enough detail to manage the program day-to-day.\" What is the most accurate response to this criticism?",
+        options:[
+          "Agree, and immediately expand the roadmap into a fully detailed project schedule",
+          "Explain that the roadmap is intentionally a strategic communication tool for milestones and sequencing — day-to-day management detail belongs in component-level schedules and plans, not the roadmap itself",
+          "Remove the roadmap from use entirely since it doesn't satisfy this need",
+          "Ignore the feedback without response"
+        ],
+        a:1,
+        why:"The roadmap and detailed execution schedules serve different purposes at different altitudes — conflating them undermines the strategic communication tool the roadmap is meant to be.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's ROM estimate at the roadmap stage was $50M. Two years into delivery, actual costs are trending toward $58M. A board member calls this a \"failure of the original estimate.\" Is this framing accurate?",
+        options:[
+          "Yes, any variance from a ROM estimate indicates the original work was done poorly",
+          "Not necessarily — a ROM estimate is a wide-range, strategic-level figure meant to support early discussion, not a precise, committed budget; meaningful variance analysis should compare actuals against the program's later, more detailed budget baseline",
+          "Yes, but only if the variance exceeds 50%",
+          "No, because ROM estimates are never expected to relate to actual costs at all"
+        ],
+        a:1,
+        why:"A ROM estimate's job is early-stage strategic framing, not precision — judging program cost performance against it as if it were a committed baseline misunderstands what a ROM estimate is for.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"During roadmap development, a program manager identifies that Component B's planned start date depends on Component A delivering a specific capability, but Component A's team is unaware their work is a dependency for anything else. What should the program manager do?",
+        options:[
+          "Assume Component A's team will figure out the dependency on their own eventually",
+          "Explicitly document the dependency in the roadmap and communicate it to both component teams, since undocumented dependencies are a common source of program-level schedule risk",
+          "Remove Component B from the roadmap to avoid the dependency issue",
+          "Wait until Component A's work is complete to raise the issue"
+        ],
+        a:1,
+        why:"Making dependencies visible and communicated is core to roadmap value — an undocumented dependency is exactly the kind of gap that causes downstream schedule surprises if left implicit.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks the program manager to skip developing a formal financial framework and instead rely on a verbal estimate of \"somewhere around $30-40M\" to move faster toward charter approval. What is the risk of agreeing to this shortcut?",
+        options:[
+          "There is no meaningful risk; verbal estimates are just as reliable as documented frameworks",
+          "Without a documented financial framework (funding model, cost segmentation, NPV/IRR), governance lacks the structured basis it needs to evaluate and approve the investment credibly, and the program lacks a clear funding and gating structure going forward",
+          "The program manager should always defer entirely to whatever the sponsor requests without raising concerns",
+          "This shortcut is standard practice and recommended by PMI"
+        ],
+        a:1,
+        why:"A financial framework isn't paperwork for its own sake — it gives governance a credible basis for the approval decision and establishes the funding/gating structure the program will run on; skipping it trades speed for exactly the rigor that stage exists to provide.",
+        refs:["standard","npv"]
+      },
+      {
+        type:"single",
+        stem:"Comparing two proposed programs: Program X has a detailed, milestone-gated roadmap with a documented financial framework; Program Y has only a one-paragraph cost estimate and no phased milestones, though its sponsor insists \"everyone knows what needs to happen.\" From a governance perspective, which program is better positioned for approval, and why?",
+        options:[
+          "Program Y, because its sponsor's confidence substitutes for formal planning",
+          "Program X, because a documented roadmap and financial framework give governance a concrete, evaluable basis for authorization — informal shared understanding isn't a substitute for that structure, no matter how confident the sponsor is",
+          "Both are equally well-positioned since roadmaps and financial frameworks are optional",
+          "Program Y, because minimal documentation means faster approval"
+        ],
+        a:1,
+        why:"Governance needs documented, evaluable artifacts to authorize responsibly — sponsor confidence or informal shared understanding, however genuine, isn't a substitute for the roadmap and financial framework that structure a credible approval decision.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"ST5", domain:"strategic", name:"Business Case & Benefits Quantification",
+    refs:["bizcase","benefitsreg","governance"],
+    material:[
+      "The business case is the single most important governance artifact in Domain I — it proves anticipated benefits outweigh costs and risks, and it remains a living reference throughout the program's life, not a one-time document.",
+      "Business case validation uses options analysis (comparing do-nothing, outsourced, hybrid, etc.), feasibility assessment, sensitivity/scenario analysis, and readiness assessment together — each covers a different question, and skipping one leaves a gap.",
+      "Benefits quantification blends techniques — cost-benefit analysis (NPV/ROI/payback), benefit dependency mapping, value breakdown structures, and KPIs — chosen based on what's being measured, not interchangeably.",
+      "When the business environment changes materially, the correct response is to update the business case and reseek governance approval — not to quietly adjust budgets or proceed on the original assumptions."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A business case for a proposed \"Rural Broadband Expansion Program\" compares four options: do nothing, build owned infrastructure, partner with an existing provider, or a hybrid approach. What is this comparison technique called, and what question does it answer?",
+        options:[
+          "Sensitivity analysis — testing how benefit assumptions change under different conditions",
+          "Options analysis — comparing viable alternative approaches (including doing nothing) to determine the most justified path forward",
+          "Feasibility assessment — evaluating technical and operational readiness",
+          "Readiness assessment — gauging resource capacity and governance maturity"
+        ],
+        a:1,
+        why:"Comparing distinct viable alternatives, including a do-nothing baseline, is options analysis — a different question from sensitivity testing (which varies assumptions) or feasibility/readiness assessment (which test capability, not alternatives).",
+        refs:["bizcase"]
+      },
+      {
+        type:"single",
+        stem:"A business case's sensitivity analysis shows that the program's projected ROI drops from 16% to 4% if raw material costs increase by just 8%. What does this finding most directly indicate?",
+        options:[
+          "The business case is invalid and should be discarded",
+          "The program's financial viability is highly sensitive to a specific assumption (material costs), which governance should weigh explicitly when deciding whether to approve, and which risk management should track closely if the program proceeds",
+          "Sensitivity analysis results should never be shared with governance",
+          "The 8% cost increase is guaranteed to happen"
+        ],
+        a:1,
+        why:"Sensitivity analysis exists to surface exactly this kind of fragility — the finding isn't a verdict on the business case's validity, it's information governance needs to make an informed approval decision and risk management needs to track.",
+        refs:["bizcase"]
+      },
+      {
+        type:"single",
+        stem:"A readiness assessment within a business case evaluates the organization's resource capacity, governance maturity, and stakeholder engagement level. A finance-focused board member asks why \"governance maturity\" is relevant to a business case, since it isn't a financial metric. What is the best response?",
+        options:[
+          "It isn't relevant, and should be removed from the business case",
+          "Governance maturity affects whether the organization can actually execute and oversee the program successfully — a financially attractive program with inadequate governance capacity to manage it is a real feasibility risk, not just a financial one",
+          "Governance maturity is only relevant for government programs",
+          "Readiness assessment should be replaced entirely with a financial-only analysis"
+        ],
+        a:1,
+        why:"Readiness assessment is deliberately broader than financial viability — a program can look great on paper and still be a poor bet if the organization lacks the governance capacity to actually run it well.",
+        refs:["bizcase"]
+      },
+      {
+        type:"single",
+        stem:"Eighteen months after a program's business case was approved, a major shift in market demand significantly changes the assumptions behind the program's projected benefits. The program manager considers three options: (1) proceed unchanged since the business case was already approved, (2) quietly adjust internal targets without formally updating documentation, or (3) formally update the business case and reseek governance approval. Which is correct?",
+        options:[
+          "Option 1 — approved business cases shouldn't be revisited",
+          "Option 2 — informal adjustment is faster and avoids bureaucracy",
+          "Option 3 — a material environmental change should trigger a formal business case update and governance re-approval, since the original justification may no longer hold",
+          "All three options are equally acceptable"
+        ],
+        a:2,
+        why:"PMI's logic here is explicit: when the business environment changes materially, update the business case and reseek governance approval — proceeding unchanged or adjusting quietly both bypass the oversight a changed foundation actually requires.",
+        refs:["bizcase","governance"]
+      },
+      {
+        type:"single",
+        stem:"A benefits quantification effort for a \"Warehouse Automation Program\" uses a Benefit Dependency Map (BDM) to show that new sensor hardware (an output) enables real-time inventory visibility (a capability), which in turn enables a 15% reduction in stockouts (the actual benefit). What does this technique make explicit that a simple benefits list would not?",
+        options:[
+          "The exact dollar cost of the sensor hardware",
+          "The causal chain connecting outputs to intermediate capabilities to the ultimate benefit — showing what has to happen before the benefit can actually materialize",
+          "The names of stakeholders responsible for each benefit",
+          "The program's overall schedule baseline"
+        ],
+        a:1,
+        why:"A Benefit Dependency Map's value is making the causal chain visible — a flat benefits list might state the 15% reduction target without showing what capability has to exist first for that benefit to be achievable at all.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A Value Breakdown Structure (VBS) for a proposed program categorizes expected value into financial, operational, customer, and societal dimensions. A stakeholder asks why a societal category is included if the program is a commercial initiative. What is the best response?",
+        options:[
+          "The societal category should be removed since commercial programs only care about financial return",
+          "Even in commercial programs, a VBS can capture legitimate non-financial value — such as reputation, compliance posture, or community impact — that contributes to organizational value even though it isn't purely financial",
+          "Societal value only applies to government or nonprofit programs",
+          "A VBS is only used during program closure, not during benefits quantification"
+        ],
+        a:1,
+        why:"A VBS deliberately captures the full range of value types, including non-financial dimensions, because organizational value includes intangible elements like reputation and compliance alongside financial return — not just for nonprofits.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's business case states an expected benefit of \"improved customer satisfaction\" with no proposed measurement approach. What is missing, and why does it matter for benefits quantification?",
+        options:[
+          "Nothing is missing; some benefits are inherently unmeasurable and should be stated qualitatively only",
+          "A defined KPI or measurement method (such as a satisfaction survey score or Net Promoter Score) is missing — without it, the benefit can't be quantified, tracked, or credibly demonstrated as realized later",
+          "The benefit should be removed from the business case entirely since it isn't financial",
+          "Customer satisfaction should only ever be measured after program closure"
+        ],
+        a:1,
+        why:"Quantification requires a defined KPI even for benefits that feel inherently qualitative — without one, there's no way to establish a baseline or later demonstrate the benefit was actually realized.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A feasibility assessment within a business case concludes that a proposed program is technically feasible and financially attractive, but operationally the organization's current staff would need significant retraining to support it. What should happen next?",
+        options:[
+          "Proceed with the program and address retraining needs informally as they arise during execution",
+          "Factor the retraining requirement into the business case's readiness assessment and resourcing plan, since operational feasibility is as important as technical and financial feasibility",
+          "Cancel the program, since any operational gap disqualifies it",
+          "Ignore operational feasibility since technical and financial feasibility already passed"
+        ],
+        a:1,
+        why:"Feasibility assessment covers technical, financial, AND operational readiness together — an operational gap doesn't automatically disqualify a program, but it needs to be planned for, not waved through or discovered later during execution.",
+        refs:["bizcase"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate reasons a business case might be rejected or sent back for revision by governance, based on sound business-case evaluation practice?",
+        options:[
+          "The options analysis only compared a single alternative to doing nothing, without considering other viable approaches",
+          "The business case is longer than governance members prefer to read",
+          "The sensitivity analysis reveals the program's viability depends heavily on an assumption governance considers unlikely to hold",
+          "The sponsor is well-liked within the organization"
+        ],
+        a:[0,2],
+        why:"A thin options analysis and a fragile, unlikely assumption are substantive grounds for governance to push back — document length and sponsor likability aren't legitimate evaluation criteria.",
+        refs:["bizcase","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is asked to quantify an expected benefit of \"reduced regulatory risk\" from a proposed compliance-automation program. There's no direct dollar figure available. What is the most defensible approach?",
+        options:[
+          "Omit the benefit from the business case since it can't be priced exactly",
+          "Develop a reasonable proxy measure — such as the estimated cost of past regulatory fines avoided, or a compliance-audit score — to assign the benefit a trackable, quantified value even though it isn't a direct revenue figure",
+          "State the benefit as \"significant\" without further definition",
+          "Assign an arbitrary dollar value without any supporting rationale"
+        ],
+        a:1,
+        why:"Even intangible or indirect benefits should get an assigned, defensible measure — a reasonable proxy grounded in real data beats both omitting the benefit and assigning either a vague label or an unsupported number.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A business case for a proposed program shows an attractive projected ROI, but the readiness assessment flags that the required technology doesn't yet exist in a mature, deployable form. How should this affect the business case's recommendation?",
+        options:[
+          "The favorable ROI should override the technology readiness concern",
+          "The recommendation should account for the technology gap — perhaps by proposing a phased approach, a pilot, or a delayed start — rather than presenting the ROI as though the program is ready to launch immediately",
+          "The technology readiness finding should be omitted from the business case to avoid discouraging approval",
+          "The business case should recommend outsourcing the entire program regardless of cost"
+        ],
+        a:1,
+        why:"A business case's recommendation should reflect ALL its findings together, including readiness gaps — presenting an attractive ROI while glossing over a real technology gap misrepresents the program's actual position.",
+        refs:["bizcase"]
+      },
+      {
+        type:"single",
+        stem:"Two competing business cases are presented to governance: Case A has a lower projected ROI but a thorough options analysis, sensitivity analysis, and readiness assessment; Case B has a higher projected ROI but skipped sensitivity and readiness analysis entirely. Which is the stronger business case, and why?",
+        options:[
+          "Case B, because higher ROI is always the deciding factor",
+          "Case A, because a complete, rigorously analyzed business case — even with a more modest projected return — gives governance a credible basis for decision-making that Case B's headline number, on its own, doesn't provide",
+          "Both are equally strong since ROI is the only metric that matters",
+          "Neither is evaluable without a financial framework"
+        ],
+        a:1,
+        why:"A business case's credibility comes from the rigor of its analysis, not just its headline number — a higher ROI built on skipped analysis is a weaker basis for a real investment decision than a lower, well-supported one.",
+        refs:["bizcase"]
+      },
+      {
+        type:"single",
+        stem:"A benefits quantification technique assigns weighted scores across categories — 50% financial return, 30% strategic fit, 20% risk — to rank several potential benefit-generating initiatives within a single program's scope. What is this an example of?",
+        options:[
+          "A Benefit Dependency Map",
+          "A weighted scoring model, used to prioritize among competing options using multiple criteria rather than a single financial metric alone",
+          "Sensitivity analysis",
+          "A stakeholder salience model"
+        ],
+        a:1,
+        why:"Weighted scoring blends multiple criteria into a single comparative ranking — distinct from a BDM (which shows causal chains), sensitivity analysis (which tests assumption fragility), or stakeholder salience (a different tool entirely).",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A business case includes a section explicitly stating the assumptions behind its financial projections — for example, \"assumes stable currency exchange rates\" and \"assumes no new competing regulation within 3 years.\" Why is explicitly stating assumptions valuable, beyond just supporting the numbers?",
+        options:[
+          "It isn't valuable; assumptions should be left implicit to avoid inviting scrutiny",
+          "Explicit assumptions give governance a clear basis for judging how much confidence to place in the projections, and give the program a defined trigger point — if a stated assumption breaks, that's a signal to revisit the business case",
+          "Assumptions are only required for programs above a certain budget threshold",
+          "Stating assumptions is a purely legal formality with no practical use"
+        ],
+        a:1,
+        why:"Explicit assumptions do double duty — they help governance calibrate confidence in the numbers, and they give the program a built-in early-warning system for exactly when the business case needs revisiting.",
+        refs:["bizcase"]
+      },
+      {
+        type:"case",
+        stem:"A retail company's business case for a \"Personalized Marketing Program\" projects $8M in incremental revenue based on a 12% conversion-rate improvement from AI-driven recommendations.",
+        scenario:"Six months into planning, a pilot test of the recommendation engine shows only a 4% conversion-rate improvement — well below the business case's core assumption.",
+        subs:[
+          {
+            stem:"What is the most appropriate immediate response to this pilot finding?",
+            options:[
+              "Continue as planned, since pilots often underperform full rollouts for unrelated reasons",
+              "Revisit the business case's benefit projection and underlying assumption in light of real pilot data, since the core driver of the projected $8M benefit is now in question",
+              "Cancel the program immediately without further analysis",
+              "Increase the projected benefit to compensate for the disappointing pilot result"
+            ],
+            a:1
+          },
+          {
+            stem:"If the revised projection, based on the 4% pilot result, shows the program's ROI falling below the organization's hurdle rate, what should happen?",
+            options:[
+              "Suppress the revised projection to protect the program's approval status",
+              "Present the revised business case to governance for a re-evaluation of whether the program should continue, be re-scoped, or be terminated",
+              "Continue the program regardless of the revised numbers, since it has already been approved once",
+              "Blame the pilot methodology without independently verifying the result"
+            ],
+            a:1
+          }
+        ],
+        why:"Real performance data that undermines a business case's core assumption should trigger a genuine re-evaluation — not denial, an unsupported adjustment, inertia from prior approval, or blaming the data without verification.",
+        refs:["bizcase","governance"]
+      }
+    ]
+  },
+  {
+    id:"ST6", domain:"strategic", name:"Funding Authorization & Value Justification",
+    refs:["standard","npv","ethics"],
+    material:[
+      "Strategic funding decisions are benefits-based, not purely cost-based — non-financial value like safety, compliance, and reputation legitimately influences a funding decision alongside financial return.",
+      "A weighted scoring model's composite result, not any single criterion in isolation, is what should drive a funding-prioritization decision.",
+      "Funding authorization needs to be actively maintained through periodic, honest renewal review — not assumed to continue indefinitely once granted.",
+      "Selectively curating a funding case to flatter a specific audience, or quietly dropping an unfavorable metric, compromises the integrity of the funding decision even without an outright lie."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's funding request package for governance includes not only ROI figures but also a summary of expected safety improvements, regulatory compliance benefits, and brand reputation impact. Why include non-financial factors in a funding request?",
+        options:[
+          "Non-financial factors should never appear in a funding request; only financial figures matter for funding decisions",
+          "Because strategic funding decisions are benefits-based, not purely cost-based — qualitative value like safety, compliance, and reputation legitimately influences governance's funding decision alongside financial return",
+          "To make the funding request longer and appear more thorough",
+          "Non-financial factors are only relevant for nonprofit organizations"
+        ],
+        a:1,
+        why:"PMI's logic here is explicit: strategic funding decisions weigh financial AND non-financial value together — a request that only shows the numbers is incomplete by that standard.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program uses a weighted scoring model to prioritize funding among its own program components — 60% ROI, 20% ESG alignment, 20% stakeholder satisfaction. Component X scores lower on ROI but significantly higher on ESG alignment than Component Y. How should this be interpreted?",
+        options:[
+          "Component Y should always be funded first because ROI is inherently more important than any other criterion",
+          "The weighted composite score should determine relative priority — a component's overall weighted score can favor it even with a lower score on any single criterion, if it performs well enough on the others per the agreed weighting",
+          "ESG alignment scores should be ignored entirely since they're subjective",
+          "Both components should receive identical funding regardless of their scores"
+        ],
+        a:1,
+        why:"The entire point of a weighted model is that the composite score, not any single criterion in isolation, drives the decision — otherwise there'd be no reason to weight multiple criteria in the first place.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager presents a sponsor/board deck for funding renewal that emphasizes only the program's successes over the past year, omitting a significant benefit shortfall in one area. What is the issue with this approach?",
+        options:[
+          "There is no issue; funding presentations should always emphasize strengths",
+          "Selectively omitting a significant shortfall undermines the transparency governance needs to make an informed funding decision, and risks damaging trust if the omission is later discovered",
+          "Shortfalls should only be disclosed if directly asked about",
+          "This is standard and expected practice for funding renewal presentations"
+        ],
+        a:1,
+        why:"Funding authorization — like other governance reporting — depends on complete, honest information; selective emphasis that hides a real shortfall compromises the integrity of the funding decision itself.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A balanced scorecard approach to justifying program funding evaluates value across financial, customer, internal process, and innovation/learning perspectives. A stakeholder asks why \"innovation and learning\" belongs in a funding justification. What is the best answer?",
+        options:[
+          "It doesn't belong, and should be removed",
+          "Programs can generate value through capability-building and organizational learning that doesn't show up in near-term financial or customer metrics but strengthens the organization's future performance — a balanced scorecard is designed to capture that dimension",
+          "Innovation and learning value only matters for technology companies",
+          "A balanced scorecard replaces the need for financial analysis entirely"
+        ],
+        a:1,
+        why:"The balanced scorecard's whole premise is that value isn't only financial or customer-facing — capability and learning gains matter too, and a funding justification limited to the other three perspectives would understate a program's real value.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program initially received funding authorization based on a projected $10M annual benefit. Two years later, at a funding renewal review, the program has only realized $4M annually so far, though it argues future years will catch up. What should determine whether funding continues?",
+        options:[
+          "Funding should continue automatically since it was already approved once",
+          "Governance should evaluate the credibility of the revised projection, the root cause of the shortfall, and whether the program's continued investment case still holds — funding authorization is not a one-time decision that's immune to later reassessment",
+          "Funding should be cut immediately regardless of the explanation",
+          "The original $10M figure should simply be updated to $4M without further discussion"
+        ],
+        a:1,
+        why:"Funding authorization needs to be actively maintained, not just obtained once — a shortfall doesn't automatically mean cutting funding, but it does mean governance needs a real evaluation of the revised case, not an assumption in either direction.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program component with strong non-financial value (major safety improvement) but weak financial ROI competes for prioritization against a component with strong ROI but minimal safety impact. The organization's stated strategic priority this year is workforce safety. Which component should be prioritized, and why?",
+        options:[
+          "The high-ROI component, because financial return should always take precedence",
+          "The safety-focused component, because funding prioritization should reflect the organization's actual current strategic priorities — in this case, safety — not default to whichever option has the best financial metric",
+          "Neither, since they can't be directly compared",
+          "Both equally, split funding down the middle regardless of strategic fit"
+        ],
+        a:1,
+        why:"Prioritization criteria should reflect the organization's actual strategic priorities at the time — when the stated priority is safety, a strategically-relevant non-financial benefit can legitimately outweigh a better financial return.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A funding request package includes a sensitivity-tested best-case and worst-case scenario alongside the primary projection. What value does presenting both cases add, compared to presenting only the primary projection?",
+        options:[
+          "None; presenting multiple scenarios only confuses governance",
+          "It gives governance a realistic sense of the range of possible outcomes and the program's downside risk, supporting a more informed funding decision than a single point estimate would",
+          "Best-case and worst-case scenarios should only be shown to the program team, never to governance",
+          "Presenting a range is required only for programs below a certain budget"
+        ],
+        a:1,
+        why:"A single point estimate hides how much the outcome could vary — showing the range gives governance the information it actually needs to weigh the funding decision's real risk.",
+        refs:["standard","npv"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks the program manager to present the funding case using only figures likely to resonate with a specific board member's known priorities, rather than the full balanced picture developed during quantification. What is the appropriate response?",
+        options:[
+          "Comply, since tailoring a pitch to the audience is good communication practice",
+          "Decline to selectively curate the funding case to appeal to one person's priorities while omitting the fuller picture — the funding request should represent the program's value honestly and completely, even while being clearly and persuasively presented",
+          "Present two different versions of the funding case to different board members",
+          "Refuse to present the funding case at all"
+        ],
+        a:1,
+        why:"There's a real difference between clear, persuasive communication and selectively curating facts to manipulate a specific audience — the latter compromises the integrity of the funding decision, even if it's \"just\" a matter of emphasis.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate components of a funding request package, per sound funding-authorization practice?",
+        options:[
+          "A benefit-cost summary sheet condensing key financial and non-financial metrics for executive review",
+          "A list of program team members' personal career goals",
+          "A sponsor/board presentation deck visually summarizing the case for governance decision-making",
+          "A guarantee that all projected benefits will be realized exactly as stated"
+        ],
+        a:[0,2],
+        why:"A benefit-cost summary and an executive presentation deck are genuine funding-package artifacts; personal career goals are irrelevant, and no credible funding case should claim a \"guarantee\" given inherent forecasting uncertainty.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's non-financial benefits (compliance risk reduction, employee retention improvement) were quantified using proxy metrics at initiation. At a funding renewal review, a board member dismisses these entirely, saying \"only real numbers count.\" How should the program manager respond?",
+        options:[
+          "Agree and drop all non-financial benefits from future reporting",
+          "Explain that the proxy metrics used for these benefits ARE real, trackable numbers (e.g., actual compliance incidents avoided, actual retention rate change) — they're just measuring something other than direct revenue, not something inherently less rigorous",
+          "Argue that financial metrics don't matter either",
+          "Avoid the conversation and change the subject"
+        ],
+        a:1,
+        why:"A well-designed proxy metric is still a real, trackable number — the board member's framing conflates \"non-financial\" with \"not measurable,\" which is exactly the misconception a rigorous benefits quantification approach is meant to counter.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program is prioritizing which of its five components to fund first, given a constrained budget this quarter. The program manager ranks them purely by which component's sponsor is most senior in the organization. What is the issue with this approach?",
+        options:[
+          "There is no issue; sponsor seniority is a valid and sufficient prioritization criterion",
+          "Sponsor seniority isn't a substantive prioritization criterion — funding priority should be driven by each component's contribution to program benefits, strategic fit, and risk, using a defined method like weighted scoring, not organizational politics",
+          "This approach is only problematic if the components have similar budgets",
+          "Sponsor seniority should be the primary criterion, with benefit contribution as a secondary tiebreaker"
+        ],
+        a:1,
+        why:"Using sponsor seniority as the prioritization driver substitutes organizational politics for the substantive criteria that should actually determine funding priority.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A funding authorization decision is being made for a program whose primary benefit is difficult to quantify financially (improved public trust in a government agency). The finance team insists on a financial-only justification. What is the most defensible position for the program manager to take?",
+        options:[
+          "Concede and force an artificial financial figure onto an inherently non-financial benefit",
+          "Advocate for including qualitative and proxy-measured value (e.g., public trust survey scores, complaint volume trends) alongside whatever financial figures do exist, since PMI's funding-authorization logic explicitly supports non-financial value as legitimate input to the decision",
+          "Recommend the program be defunded since it lacks a strong financial case",
+          "Refuse to engage with the finance team's request at all"
+        ],
+        a:1,
+        why:"Insisting on a financial-only justification for an inherently non-financial-benefit program misses the point of funding authorization logic — the right move is to make the qualitative value rigorously measurable, not to force a financial fiction or give up.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's funding is maintained year over year based on a standing assumption that \"the program is going well,\" without a formal renewal review process. What risk does this create?",
+        options:[
+          "None; informal continuation is efficient and avoids unnecessary bureaucracy",
+          "Without a formal, periodic renewal review, funding may continue past the point where it's still justified, or a real problem may go undetected until it's much harder to address — funding authorization should be actively maintained, not assumed",
+          "This is the recommended approach for well-performing programs",
+          "Formal renewal reviews are only necessary for underperforming programs"
+        ],
+        a:1,
+        why:"Skipping formal renewal review removes the very mechanism that would catch a program drifting off track — \"going well\" without structured check-ins is an assumption, not a verified fact.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"Two funding requests are being compared: Request A shows a modest financial return but strong alignment with the organization's top strategic priority this year; Request B shows a strong financial return but is only tangentially related to current strategic priorities. Per sound funding-authorization logic, which should generally be favored, all else being reasonably equal?",
+        options:[
+          "Request B, because financial return should always be the deciding factor regardless of strategic relevance",
+          "Request A, because funding decisions should weigh strategic fit alongside financial return — a program tightly aligned with current priorities can be a stronger investment than a better-returning but less strategically relevant one",
+          "Neither should be funded since they can't both be perfectly justified",
+          "Both should receive identical funding to avoid the comparison"
+        ],
+        a:1,
+        why:"This mirrors the broader Domain I logic throughout: strategic fit is a first-class criterion in funding decisions, not a tiebreaker used only when financial returns are equal.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager preparing a funding renewal case discovers that one non-financial benefit, originally projected using a proxy metric, has actually performed worse than the proxy predicted. Rather than disclosing this, the program manager considers simply removing that benefit from the renewal case entirely, without explanation. What is the appropriate action instead?",
+        options:[
+          "Remove the benefit silently, as considered, to keep the renewal case clean",
+          "Disclose the underperformance transparently, along with root-cause analysis and any corrective action being taken, since selectively removing an unfavorable data point without explanation misrepresents the program's actual performance to governance",
+          "Replace the benefit with a more favorable but unrelated metric",
+          "Delay the funding renewal request indefinitely to avoid the conversation"
+        ],
+        a:1,
+        why:"Silently dropping an unfavorable metric is a subtler version of the same transparency violation as hiding bad news outright — the correct response is always disclosure with context, not curation to make the case look better than it is.",
+        refs:["standard","ethics"]
+      }
+    ]
+  },
+  {
+    id:"ST7", domain:"strategic", name:"Regulatory, Ethical & Sustainability Factors",
+    refs:["standard","ethics"],
+    material:[
+      "Program objectives are evaluated against regulatory/legal constraints, social impacts, sustainability, cultural considerations, political climate, and ethical concerns — this evaluation happens at Domain I, before commitment, not discovered later during execution.",
+      "ESG (Environmental, Social, Governance) considerations preserve stakeholder trust and organizational reputation — proactive compliance mapping prevents costly redesigns and public trust loss.",
+      "When a program faces a choice between accelerated delivery and ethical/legal/compliance adherence, the correct PMI-aligned answer prioritizes compliance and ethics — even at the cost of delayed benefits.",
+      "Cultural and political sensitivity analysis identifies sociopolitical risks (language, governance expectations, local norms, and historical context) that a purely technical or financial analysis would miss."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A proposed \"Cross-Border Payments Program\" would operate in six countries with differing data privacy regulations. During initial strategic evaluation, the program team maps out each country's specific compliance requirements before finalizing the program's scope. What is the primary benefit of doing this mapping at this early stage rather than during execution?",
+        options:[
+          "It has no real benefit; compliance can always be addressed after launch",
+          "It prevents costly redesigns and potential public trust loss that would result from discovering compliance gaps only after the program is already built and operating",
+          "It is only useful for satisfying an internal audit checklist",
+          "Compliance mapping is only relevant for government programs, not commercial ones"
+        ],
+        a:1,
+        why:"Proactive compliance mapping at the strategic stage avoids exactly the expensive, trust-damaging scenario of discovering a regulatory gap after launch — this is the specific rationale PMI gives for doing it early.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program faces a choice: accelerate delivery by six months by skipping a planned environmental impact review, or maintain the original timeline and complete the review as planned. Leadership is under pressure to show faster results. What does PMI-aligned decision logic favor?",
+        options:[
+          "Accelerating delivery, since faster results are always preferable",
+          "Maintaining the original timeline to complete the environmental review, since PMI's guidance is that ethical, legal, and compliance adherence should be prioritized over accelerated delivery, even when that means delayed benefits",
+          "Splitting the difference by completing half the review",
+          "Delegating the decision entirely to the environmental consultant without program-level input"
+        ],
+        a:1,
+        why:"This is a direct test of PMI's stated priority: when accelerated delivery and compliance/ethical adherence conflict, compliance and ethics win, even at a real cost to timeline.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program evaluates its objectives against \"social impact\" as part of Domain I's regulatory/ethical/sustainability review. A team member asks what \"social impact\" actually means in this context, since the program has no obvious social mission. What is the best explanation?",
+        options:[
+          "Social impact only applies to nonprofit or government programs",
+          "Social impact means considering how the program's activities and outcomes affect communities, workers, and the public — even a commercial program can have real social effects worth evaluating",
+          "Social impact is a purely symbolic category with no practical evaluation criteria",
+          "Social impact should only be assessed after the program has already launched"
+        ],
+        a:1,
+        why:"Social impact evaluation applies broadly, not just to mission-driven organizations — any program can have real effects on communities and workers that are worth surfacing before commitment, not after.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"An Ethical Impact Matrix evaluates a proposed program's fairness, transparency, and social consequences. The matrix flags that one proposed component would disproportionately affect a specific demographic group's employment. What should this finding prompt?",
+        options:[
+          "Ignoring the finding since it doesn't affect the program's financial projections",
+          "Bringing the finding to governance for evaluation of whether and how to modify the component's approach, since an ethical impact matrix exists specifically to surface concerns like this before commitment",
+          "Proceeding without modification since disparate impact is unavoidable in any large program",
+          "Removing the Ethical Impact Matrix from future assessments since it produced an inconvenient finding"
+        ],
+        a:1,
+        why:"An Ethical Impact Matrix's entire purpose is surfacing exactly this kind of finding early enough to actually do something about it — the response should be governance evaluation, not dismissal or discarding the tool that caught the problem.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program operating in a politically volatile region includes a \"political climate\" assessment as part of its Domain I evaluation. What is the primary purpose of this assessment?",
+        options:[
+          "To predict election outcomes with certainty",
+          "To identify sociopolitical risks — such as shifting government priorities, instability, or regulatory unpredictability — that could affect the program's viability or require contingency planning",
+          "To justify avoiding all programs in politically volatile regions",
+          "Political climate assessment is only relevant for defense-sector programs"
+        ],
+        a:1,
+        why:"Political climate assessment isn't about prediction certainty — it's about identifying the kind of sociopolitical risk that a purely technical or financial analysis would miss, so it can inform contingency planning.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's cultural sensitivity analysis reveals that a planned communication approach (direct, informal messaging) would likely be perceived as disrespectful by a key stakeholder group in one target region, where more formal, hierarchical communication is the norm. What should this finding lead to?",
+        options:[
+          "No change; communication style is a minor detail not worth adjusting",
+          "Adapting the program's communication and stakeholder engagement approach for that region to reflect the cultural norm, since ignoring the finding risks damaging trust and support in that stakeholder group",
+          "Excluding that region's stakeholders from the program entirely to avoid the cultural mismatch",
+          "Standardizing all program communication globally regardless of regional findings"
+        ],
+        a:1,
+        why:"Cultural sensitivity findings exist to be acted on — adapting the approach protects trust and support, while ignoring the finding or overcorrecting by excluding stakeholders both miss the point.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate evaluation methods for assessing a program's regulatory, ethical, and sustainability factors during Domain I?",
+        options:[
+          "A compliance audit mapping regulatory requirements to responsible owners and evidence sources",
+          "A sustainability assessment measuring carbon impact, lifecycle waste, or energy efficiency",
+          "A private poll of only the program team's personal political opinions",
+          "Ignoring sustainability entirely unless a regulator explicitly requires it"
+        ],
+        a:[0,1],
+        why:"Compliance audits and sustainability assessments are legitimate, structured evaluation methods — a poll of the team's personal opinions isn't a valid technique, and ignoring sustainability unless legally forced contradicts the proactive posture PMI expects.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's sustainability assessment estimates significant lifecycle waste from a proposed manufacturing component. No regulation currently requires the program to address this. What is the PMI-aligned response?",
+        options:[
+          "No action needed, since there's no legal requirement to address it",
+          "Factor the sustainability finding into the program's planning and decision-making regardless of whether it's currently legally mandated, since PMI's modern program management guidance treats sustainability as a core consideration, not just a compliance checkbox",
+          "Address it only if a stakeholder complains",
+          "Defer any sustainability consideration until a future regulation requires it"
+        ],
+        a:1,
+        why:"PMI's more recent guidance treats sustainability as a genuine principle, not merely a legal compliance obligation — a real finding shouldn't be shelved just because no regulation currently forces the issue.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager discovers that a proposed component would technically comply with all current regulations but would clearly violate the spirit of an emerging regulation expected to take effect in 18 months. What is the most prudent course of action?",
+        options:[
+          "Proceed as planned, since current regulations are the only relevant standard",
+          "Raise the emerging-regulation risk with governance and consider designing the component to anticipate the likely future requirement, since technical compliance today doesn't eliminate the practical and reputational risk of building something that will soon be non-compliant",
+          "Wait until the regulation formally takes effect before considering any changes",
+          "Cancel the component entirely without further analysis"
+        ],
+        a:1,
+        why:"Purely technical compliance with current rules doesn't address the real risk of building toward an outdated standard — surfacing this to governance lets the program make an informed choice rather than being blindsided later.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder impact register captures ESG-related risks for a proposed program, including potential community displacement from a planned facility expansion. A board member argues this belongs in the risk register, not a separate ESG-focused document. Is this a meaningful objection?",
+        options:[
+          "Yes, and the stakeholder impact register should be eliminated entirely in favor of the general risk register",
+          "Not particularly — whether captured in a dedicated stakeholder impact register or integrated into the risk register, what matters is that ESG-related risks like this are identified, owned, and tracked; the specific document structure is a secondary concern",
+          "Yes, and this means ESG risks should never be tracked at all",
+          "No, because ESG risks are legally required to be in a separate document"
+        ],
+        a:1,
+        why:"The substance — identifying, owning, and tracking the risk — matters more than which specific document it lives in; the board member's objection is really about documentation structure, not whether the risk deserves attention.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program evaluating regulatory and ethical factors identifies that a planned data-collection practice, while not currently illegal in the operating jurisdiction, is likely to be viewed as invasive by the affected public and could generate significant negative press. How should this be weighed against the practice's operational benefits?",
+        options:[
+          "Legal permissibility alone should determine the decision",
+          "The reputational and public-trust risk should be weighed explicitly alongside the operational benefit and legal status, since PMI's Domain I evaluation considers social impact and ethical concerns as real factors in program decisions, not just legal compliance",
+          "Public perception should never factor into a legally compliant business decision",
+          "The decision should be delegated entirely to the legal department without program-level input"
+        ],
+        a:1,
+        why:"Legal permissibility is necessary but not sufficient — Domain I evaluation explicitly considers social and ethical dimensions beyond strict legality, which is exactly the gap between \"legal\" and \"will be perceived as invasive\" that this scenario tests.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program manager for a multinational program is preparing to evaluate cultural considerations across five target countries. What is the most defensible approach?",
+        options:[
+          "Apply the program manager's home-country cultural norms uniformly across all five countries for consistency",
+          "Conduct a distinct cultural and stakeholder sensitivity analysis for each country, since norms, expectations, and sensitivities genuinely differ by context, and a uniform approach risks missing region-specific issues",
+          "Skip cultural analysis entirely for countries where the program manager has personally traveled before",
+          "Delegate all cultural considerations entirely to local hires with no program-level coordination"
+        ],
+        a:1,
+        why:"Cultural evaluation has to be context-specific to be meaningful — applying one set of norms uniformly, or skipping analysis based on personal familiarity, both undermine the real purpose of the assessment.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A regulatory and legal compliance matrix for a program lists each applicable requirement, a responsible owner, and an evidence source demonstrating compliance. Why does the matrix require a named \"responsible owner\" for each requirement rather than just listing the requirements themselves?",
+        options:[
+          "Named ownership is purely a formality with no practical function",
+          "Without a named, accountable owner, a compliance requirement risks falling through the cracks — accountability is what turns a list of obligations into something that's actually tracked and fulfilled",
+          "Owners are only needed for requirements the program considers high-risk",
+          "The matrix should list owners only after a compliance failure has already occurred"
+        ],
+        a:1,
+        why:"This mirrors the broader governance principle that accountability drives follow-through — a compliance matrix without named ownership is just a list, not a control.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's stakeholder and cultural sensitivity analysis identifies significant local opposition to a planned component in one region, rooted in a decades-old grievance over a prior, unrelated infrastructure project by a different organization. A team member argues this history is irrelevant since \"it wasn't even our organization.\" What is the more accurate view?",
+        options:[
+          "The team member is correct; unrelated historical grievances shouldn't factor into program planning",
+          "The historical context is directly relevant, since local stakeholder trust and receptiveness are shaped by that history regardless of which organization was originally responsible — the program still has to navigate the trust environment that exists today",
+          "The program should publicly clarify that it wasn't responsible for the prior project and consider the matter closed",
+          "Historical grievances should only be considered if they involve the program's own organization"
+        ],
+        a:1,
+        why:"Stakeholders' present-day trust and receptiveness are shaped by cumulative history, not just an organization's own track record — dismissing relevant context because \"it wasn't us\" misunderstands how stakeholder sentiment actually works.",
+        refs:["standard","stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is evaluating whether to proceed with a component that offers strong financial returns but poses a moderate risk of significant reputational damage if a specific ethical concern becomes public. Leadership wants a straightforward go/no-go recommendation. What is the most defensible way to frame that recommendation?",
+        options:[
+          "Recommend proceeding, since financial return is the primary criterion for any component decision",
+          "Present the financial case alongside an honest assessment of the reputational risk and its potential severity, and recommend a course of action — proceeding, modifying the approach, or halting — based on the organization's actual risk appetite, rather than defaulting to whichever answer is easiest to deliver",
+          "Recommend against proceeding automatically, since any ethical risk should block a component regardless of magnitude or the organization's risk tolerance",
+          "Avoid making a recommendation at all and let leadership decide with no input"
+        ],
+        a:1,
+        why:"A defensible recommendation weighs the real risk against the organization's actual risk appetite and presents that judgment honestly — it doesn't default to either \"financials always win\" or \"any ethical risk automatically blocks,\" and it doesn't punt entirely.",
+        refs:["standard","ethics"]
+      }
+    ]
+  },
+  {
+    id:"ST8", domain:"strategic", name:"Charter, Integration & Exploiting Change",
+    refs:["standard","governance"],
+    material:[
+      "The program charter consolidates the business case, roadmap, and benefits plan into governance's authorization document — it formally grants the program manager authority to apply organizational resources and connects the program to ongoing strategic priorities.",
+      "If a charter is not authorized, the outcome should be recorded and archived in a lessons-learned repository — not simply dropped without documentation.",
+      "Integration opportunities can exist beyond a program's own components — interface/dependency mapping, organizational network analysis, and process harmonization can surface shared resources or systems elsewhere in the organization worth coordinating with.",
+      "Exploiting a strategic opportunity for change means evaluating and formally updating the business case for governance approval — not acting unilaterally, and not letting a good opportunity pass by waiting too long."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program charter is submitted for governance approval but is rejected due to insufficient strategic alignment evidence. What should happen to this outcome?",
+        options:[
+          "The charter attempt should simply be discarded with no further documentation",
+          "The rejection and its rationale should be recorded and archived in a lessons-learned repository, since this information has value for future charter attempts and organizational learning, even though this particular program didn't proceed",
+          "The program manager should resubmit the identical charter immediately without changes",
+          "The rejection should be kept confidential from anyone outside the immediate program team"
+        ],
+        a:1,
+        why:"A rejected charter isn't a dead end to erase — documenting and archiving the outcome preserves organizational learning that can improve future charter attempts and portfolio decision-making.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program charter consolidates information from the business case, the roadmap, and the benefits plan into a single document for governance review. Why does PMI emphasize consolidating these into ONE document rather than presenting them separately?",
+        options:[
+          "Consolidation is purely an administrative convenience with no substantive purpose",
+          "A consolidated charter lets governance evaluate the program's full picture — justification, timing, and expected value — together as one coherent authorization decision, rather than assessing fragments in isolation",
+          "Separate documents are actually preferred; consolidation is a common mistake",
+          "Consolidation is only necessary for programs exceeding a certain budget threshold"
+        ],
+        a:1,
+        why:"The charter's value is in presenting a coherent, complete picture for a single authorization decision — evaluating fragments separately risks governance missing how the pieces fit together.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Once a program charter is approved, what specific authority does that approval grant the program manager?",
+        options:[
+          "Unlimited authority over any organizational resource with no further oversight",
+          "The authority to apply organizational resources to the program's phases, formally connecting the program to the organization's ongoing work and strategic priorities — within the governance structure the charter itself establishes",
+          "No new authority; approval is symbolic only",
+          "Authority limited exclusively to hiring decisions"
+        ],
+        a:1,
+        why:"Charter approval is a real grant of authority to apply resources — but it's bounded by the governance structure the charter establishes, not an unlimited mandate.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is assigned to a program during the formulation subphase, before the charter is approved. A colleague asks why the program manager was assigned this early, since \"there's no program to manage yet.\" What is the best response?",
+        options:[
+          "The assignment was premature and should be reversed until after charter approval",
+          "Early assignment lets the program manager effectively guide charter development and facilitate the required outcomes during formulation — the role isn't just executing an already-approved charter, it includes shaping it",
+          "Program managers should never be involved before governance approval",
+          "The program manager's role during formulation is purely observational"
+        ],
+        a:1,
+        why:"The program manager's early involvement during formulation is deliberate — they help shape the business case, roadmap, and charter itself, not just execute a document handed to them after the fact.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's dependency mapping exercise reveals that a completely separate division of the organization is independently developing a data platform with significant technical overlap with one of the program's planned components. What should this finding prompt?",
+        options:[
+          "No action, since the other division's work is outside the program's formal scope",
+          "Investigation into whether coordinating or integrating with the other division's effort could eliminate duplication and improve overall benefit realization, even though it's not one of the program's own chartered components",
+          "Immediately absorbing the other division's project into the program without discussion",
+          "Reporting the other division for scope overlap without attempting coordination"
+        ],
+        a:1,
+        why:"Integration-opportunity analysis is explicitly meant to surface exactly this kind of cross-boundary overlap — the response is to investigate coordination, not ignore it as \"not our scope\" or seize it unilaterally.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"An Organizational Network Analysis (ONA) conducted as part of integration-opportunity assessment reveals that two departments critical to the program's success have almost no existing collaboration pathways or relationships. What does this finding suggest for program planning?",
+        options:[
+          "Nothing; ONA findings are informational only and don't require any planning response",
+          "The program should proactively build collaboration mechanisms (shared forums, liaison roles, joint planning sessions) between these departments, since the current lack of relationship pathways is a real risk to the coordination the program will need",
+          "The two departments should be excluded from the program's stakeholder engagement entirely",
+          "The finding indicates the program should be restructured to avoid needing both departments"
+        ],
+        a:1,
+        why:"ONA exists to surface exactly this kind of structural gap so the program can proactively address it — treating the finding as merely informational wastes the value of having done the analysis.",
+        refs:["standard","systemsthinking"]
+      },
+      {
+        type:"single",
+        stem:"During execution, a new technology emerges that could significantly enhance one of the program's planned benefits, but adopting it would require a moderate change to program architecture. The program manager is confident in the opportunity but recognizes it wasn't part of the original approved scope. What is the correct process?",
+        options:[
+          "Adopt the new technology immediately without formal evaluation, since speed matters most for competitive opportunities",
+          "Evaluate and quantify the opportunity's costs and benefits, then formally update the business case or submit a change request for governance approval before pivoting the architecture",
+          "Wait until the program's next full replanning cycle, even if that's over a year away, before considering the opportunity at all",
+          "Delegate the decision entirely to the technology vendor"
+        ],
+        a:1,
+        why:"Exploiting a strategic opportunity means evaluating it formally and taking it through governance — not acting unilaterally out of urgency, and not sitting on a good opportunity until an arbitrary future cycle.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's opportunity log captures a potential enhancement identified six months ago, but no one has evaluated it since it was logged. What does this indicate about the program's approach to exploiting strategic opportunities?",
+        options:[
+          "Nothing of concern; an opportunity log is simply an archive with no expectation of follow-up",
+          "A gap in practice — an opportunity log is only valuable if logged items are actually evaluated in a timely way; letting a potential enhancement sit unexamined for six months risks losing a genuine strategic opportunity",
+          "The opportunity should be automatically approved since it has been logged for a long time",
+          "The opportunity should be removed from the log without evaluation, since stale entries are assumed to be no longer relevant"
+        ],
+        a:1,
+        why:"An opportunity log's value depends on active follow-through — treating it as a passive archive defeats its purpose, since good opportunities can go stale or be lost while sitting unevaluated.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate integration techniques used to identify opportunities across organizational or operational boundaries?",
+        options:[
+          "Interface and dependency mapping, identifying shared systems, processes, or technologies",
+          "Requiring every department in the organization to formally join the program regardless of relevance",
+          "Capability alignment review, assessing how new capabilities reinforce or conflict with existing operations",
+          "Ignoring any potential overlap discovered outside the program's chartered components"
+        ],
+        a:[0,2],
+        why:"Interface/dependency mapping and capability alignment review are genuine integration techniques; forcing irrelevant departments into the program and ignoring discovered overlaps both work against the purpose of integration analysis.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager identifies a genuine strategic opportunity but determines that pursuing it would require significant rework of already-approved components. A sponsor asks whether this rework \"defeats the purpose of having approved a plan in the first place.\" What is the best response?",
+        options:[
+          "Yes, and the opportunity should be declined solely to preserve the original plan",
+          "No — programs are expected to adapt through formal, governance-approved change when a genuine strategic opportunity justifies it; a plan's value comes from disciplined execution AND from being revisited when better information emerges, not from rigid adherence regardless of new opportunities",
+          "The rework should proceed without any governance involvement since the program manager is confident in the opportunity",
+          "The original plan should never be reconsidered once approved, regardless of new information"
+        ],
+        a:1,
+        why:"This tests the balance PMI expects: programs embrace change to optimize benefits, but through formal evaluation and approval — neither rigid adherence to the original plan nor unapproved unilateral pivoting reflects that balance correctly.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A charter development process consolidates the program's roadmap, business case, and benefits plan, and also explicitly defines roles (sponsor, steering committee, program manager) and a high-level governance structure. Why does the charter need to define governance structure, rather than leaving that to be worked out later during planning?",
+        options:[
+          "Governance structure is optional and rarely included in real charters",
+          "Establishing governance structure at the charter stage gives the program clear decision rights and escalation paths from the moment it's authorized, rather than operating in an accountability vacuum during early planning",
+          "Governance structure should only be defined after the first major program issue arises",
+          "The charter should focus exclusively on financial content and avoid governance topics"
+        ],
+        a:1,
+        why:"Leaving governance undefined until \"later\" creates exactly the accountability gap the charter is meant to prevent — decision rights and escalation paths need to exist from day one of authorized program activity.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A capability alignment review, performed as part of integration-opportunity assessment, finds that a new capability the program plans to build would directly conflict with an existing operational process elsewhere in the organization. What should the program manager do?",
+        options:[
+          "Proceed with building the new capability regardless, since the program's charter doesn't mention the existing process",
+          "Investigate the conflict and work with the affected operational area to resolve or reconcile it before finalizing the approach, since building a capability that actively conflicts with existing operations undermines the synergy integration analysis is meant to protect",
+          "Cancel the new capability entirely without discussion",
+          "Ignore the finding, since capability alignment reviews are advisory only"
+        ],
+        a:1,
+        why:"A capability alignment review exists to catch exactly this kind of conflict before it's built — the response is active reconciliation, not proceeding blindly, canceling reflexively, or dismissing the review's purpose.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee approves a program charter but attaches a condition: funding for Phase 2 is contingent on Phase 1 achieving a specific benefit threshold. How should the program manager interpret this conditional approval?",
+        options:[
+          "As a formality that doesn't meaningfully affect how the program should be planned",
+          "As a real governance signal that Phase 2 planning and resourcing should be structured around demonstrating that Phase 1 threshold, since continued authorization is explicitly tied to it",
+          "As an indication the entire program should be restructured to avoid phases",
+          "As grounds to challenge the steering committee's authority to attach conditions"
+        ],
+        a:1,
+        why:"A conditional charter approval is a real governance instrument, not a formality — the program should be planned with clear awareness that Phase 2's authorization genuinely depends on hitting the Phase 1 threshold.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"Late in a program's life, a genuinely significant strategic opportunity emerges that would meaningfully increase benefit realization, but pursuing it would require reopening several already-closed components. The program manager is hesitant given how far along the program is. What should guide the decision?",
+        options:[
+          "Automatically decline, since a program \"late in its life\" should never revisit closed components regardless of opportunity size",
+          "Evaluate the opportunity on its actual merits — the cost and disruption of reopening closed components versus the benefit gain — and bring a recommendation to governance, rather than declining by default purely because of program timing",
+          "Automatically pursue it, since any genuine opportunity should always be taken regardless of cost",
+          "Make the decision unilaterally without governance involvement, given the program's advanced stage"
+        ],
+        a:1,
+        why:"Program timing isn't itself a valid reason to decline a genuine opportunity — the decision should rest on an honest cost/benefit evaluation brought to governance, the same discipline applied to any other opportunity.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"case",
+        stem:"A national retailer is developing a program charter for a \"Sustainable Supply Chain Program.\"",
+        scenario:"During charter development, the team performs interface and dependency mapping and discovers that a completely separate procurement modernization initiative — run by a different division — is planning to implement supplier-tracking software with substantial functional overlap with a planned component of the new program.",
+        subs:[
+          {
+            stem:"What should this integration finding lead the program team to do before finalizing the charter?",
+            options:[
+              "Ignore the other initiative, since it isn't part of this program's chartered scope",
+              "Investigate coordinating with the procurement modernization initiative to avoid duplicating the supplier-tracking capability, potentially reshaping this component before the charter is finalized",
+              "Immediately absorb the other division's initiative into this program without discussion",
+              "Delay the charter indefinitely until the other initiative is fully complete"
+            ],
+            a:1
+          },
+          {
+            stem:"If coordination with the other division proves possible, how should this be reflected in the charter?",
+            options:[
+              "The charter should not mention the coordination arrangement at all",
+              "The charter should document the coordination approach and any resulting change to this program's scope or governance touchpoints, so the authorization reflects the program's actual, coordinated plan",
+              "The charter should be scrapped and restarted as an entirely different program",
+              "The coordination should be handled entirely outside of any formal documentation"
+            ],
+            a:1
+          }
+        ],
+        why:"Integration findings discovered during charter development should actually shape the charter, not be ignored, seized unilaterally, or left undocumented — a charter should reflect the program's real, coordinated plan.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
     id:"LC1", domain:"lifecycle", name:"Program Definition, Roadmap & Integrated Planning",
     refs:["standard","raci"],
     material:[
@@ -1430,11 +2720,20 @@ function persist(){ saveProgress(state.progress); }
 
 /* ============================== SESSION BUILDERS ============================== */
 
+var BLOCK_SESSION_SIZE = 10;
 function buildBlockSession(blockId){
   var block = BLOCKS.filter(function(b){return b.id===blockId;})[0];
   var qs = ALLQ.filter(function(q){return q.block===blockId;});
+  var n = Math.min(BLOCK_SESSION_SIZE, qs.length);
   return { kind:"block", blockId:blockId, title:block.name, timed:false, accent:DOMAINS[block.domain].token,
-    questions: shuffle(qs), answers:{}, missed:[], submitted:false };
+    questions: sample(qs, n), answers:{}, missed:[], submitted:false };
+}
+function rebuildSession(kind, blockId){
+  if(kind==="block") return buildBlockSession(blockId);
+  if(kind==="quick") return buildQuickSession();
+  if(kind==="mock") return buildMockSession();
+  if(kind==="drill") return buildDrillSession();
+  return null;
 }
 function buildQuickSession(){
   var n = Math.min(10, ALLQ.length);
@@ -1682,7 +2981,9 @@ function renderQuiz(){
   return '<div class="quiz-head">'+
       '<button class="backbtn" data-act="exitQuiz">← Deck</button>'+
       '<h2 style="font-size:18px;color:var(--'+s.accent+')">'+esc(s.title)+'</h2>'+
-      '<span class="spacer"></span>'+timerHtml+
+      '<span class="spacer"></span>'+
+      '<button class="backbtn" data-act="newSet" title="Discard current answers and draw a fresh random set">⟳ New set</button>'+
+      timerHtml+
       '<span class="mono dim" style="font-size:12px">'+answeredCount+'/'+s.questions.length+'</span>'+
     '</div>'+
     (s.timed && idx===0 ? '<div class="card" style="padding:10px 13px;margin-bottom:14px;border-color:var(--violet);font-size:12.5px" class="dim">Real PgMP-style pacing: work steadily, flag and move on rather than stalling on one item.</div>' : '')+
@@ -1918,6 +3219,15 @@ document.getElementById("app").addEventListener("click", function(e){
   if(act==="startMock") return startMock();
   if(act==="startDrill") return startDrill();
   if(act==="exitQuiz") return exitQuiz();
+  if(act==="newSet"){
+    if(!s) return;
+    stopTimer();
+    var fresh = rebuildSession(s.kind, s.blockId);
+    if(!fresh) return;
+    fresh._idx = 0;
+    state.session = fresh;
+    return render();
+  }
   if(act==="startFlash") return startFlash();
   if(act==="exitFlash") return exitFlash();
   if(act==="resetAsk"){ state.confirmReset=true; return render(); }
