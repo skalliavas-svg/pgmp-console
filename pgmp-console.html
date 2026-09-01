@@ -185,7 +185,8 @@ var REFS = {
   systemsthinking:    { label:"Systems thinking",                      url:"https://en.wikipedia.org/wiki/Systems_thinking" },
   swot:               { label:"SWOT / environmental analysis",         url:"https://en.wikipedia.org/wiki/SWOT_analysis" },
   decisiontree:       { label:"Decision tree analysis",                url:"https://en.wikipedia.org/wiki/Decision_tree" },
-  evm:                { label:"Earned value management",               url:"https://en.wikipedia.org/wiki/Earned_value_management" }
+  evm:                { label:"Earned value management",               url:"https://en.wikipedia.org/wiki/Earned_value_management" },
+  npv:                { label:"Net present value / IRR",                url:"https://en.wikipedia.org/wiki/Net_present_value" }
 };
 
 /* Content sourced from: PMI PgMP Examination Content Outline (March 2024),
@@ -270,6 +271,83 @@ var BLOCKS = [
         a:1,
         why:"A program should make the whole exceed the sum of its parts. If grouping components isn't producing more value than managing them independently would, the \"program\" isn't functioning as one — the coordination overhead isn't buying anything.",
         refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"ST2", domain:"strategic", name:"Financial Framework, Mission & Prioritization",
+    refs:["standard","bizcase","npv"],
+    material:[
+      "A program's high-level financial framework (funding model, NPV/IRR/payback, funding tranches tied to gates) is a strategic-stage artifact — distinct from, and prior to, a detailed project-level budget.",
+      "A program mission statement expresses why the program exists and the outcome it seeks, in stakeholder terms — not what will be built. \"Install X units\" is deliverable framing; PMI wants outcome framing.",
+      "Competing programs are ranked with weighted scoring against strategic fit, risk, and benefit value — not by sponsor seniority, submission order, or which stakeholder is loudest.",
+      "Identifying integration opportunities can mean looking beyond the program's own components to shared resources or systems elsewhere in the organization, to eliminate duplication and grow benefit realization."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's financial framework presents funding tranches over three years tied to governance decision gates, along with an NPV and IRR estimate for the investment. A sponsor asks the program manager to instead provide a detailed, itemized project budget for the first year. What should the program manager do?",
+        options:[
+          "Provide the detailed itemized budget instead, since it's more precise",
+          "Explain that a high-level financial framework — not a detailed budget — is what supports governance validation at this strategic stage; detailed budgets belong at the component level, later",
+          "Provide both documents and let the sponsor choose which to use",
+          "Decline to provide any financial information until the charter is signed"
+        ],
+        a:1,
+        why:"PMI distinguishes the strategic financial framework (funding architecture, NPV/IRR, tranches) from a detailed project-level budget. Conflating the two skips a step the alignment domain exists to protect.",
+        refs:["bizcase","npv"]
+      },
+      {
+        type:"single",
+        stem:"A working group drafts a program mission statement: \"Install rooftop solar arrays on 500 municipal buildings by 2027.\" A reviewer flags this as poorly framed. What is the issue?",
+        options:[
+          "The 2027 timeline is too aggressive",
+          "The statement describes a deliverable (installing arrays), not the strategic outcome or benefit the program exists to achieve",
+          "It should specify the exact solar panel vendor",
+          "Municipal buildings are not an appropriate scope for a mission statement"
+        ],
+        a:1,
+        why:"A mission statement expresses why the program exists and the outcome sought — such as emissions reduction or energy-cost savings — not a deliverable count. \"Install X units\" is output framing, a common exam trap.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"An organization must choose which of four proposed programs to fund this year. Which TWO factors should most heavily inform that decision, per PMI's strategic alignment logic?",
+        options:[
+          "Which program's sponsor is most senior in the organization",
+          "Each program's weighted score against strategic fit, risk, and expected benefit value",
+          "Which program was proposed first",
+          "Each program's alignment with organizational strategy, reassessed at major reviews rather than assumed"
+        ],
+        a:[1,3],
+        why:"Portfolio-level prioritization runs on weighted scoring against strategic criteria, and alignment is continuously reassessed — not decided by seniority or submission order.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A defense modernization program is evaluating whether to integrate its new cybersecurity platform with an existing, unrelated logistics system already used elsewhere in the organization. Integrating would take extra coordination effort but could eliminate duplicate infrastructure investment. What should guide the program manager's decision?",
+        options:[
+          "Avoid integration entirely, since it adds coordination complexity to the program's own components",
+          "Evaluate the integration opportunity for its potential to eliminate duplication and increase overall benefit realization, even though it lies outside the program's immediate components",
+          "Proceed with integration only if the logistics system's owning department requests it",
+          "Defer the decision to each component project manager independently"
+        ],
+        a:1,
+        why:"Identifying and evaluating integration opportunities — even across organizational boundaries — is an explicit strategic-alignment task aimed at maximizing benefit realization, not just managing the program's own component list.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"During a national broadband program, a new, lower-cost satellite technology emerges that could expand coverage well beyond the original plan. The program manager is confident this is a good opportunity. What is the appropriate next step?",
+        options:[
+          "Quietly redirect program resources toward the new technology, since time-sensitive opportunities shouldn't wait for approval",
+          "Evaluate and quantify the opportunity, then formally update the business case and seek governance approval before pivoting architecture",
+          "Wait until the current program closes, then propose a new program for the opportunity",
+          "Delegate the decision to the vendor providing the satellite technology"
+        ],
+        a:1,
+        why:"Strategic opportunities are exploited through evaluation and formal governance approval, not unilateral action — agility and governance discipline both matter here, and neither delaying until closure nor bypassing approval reflects that balance.",
+        refs:["standard","governance"]
       }
     ]
   },
@@ -455,6 +533,176 @@ var BLOCKS = [
     ]
   },
   {
+    id:"LC3", domain:"lifecycle", name:"Component Definition, Baselines & Resourcing",
+    refs:["standard","raci"],
+    material:[
+      "Components are selected for a program because they contribute directly to intended benefits — not because they're individually feasible. A Component Initiation Request formalizes that benefit linkage for governance approval.",
+      "Program scope and schedule baselines operate at the outcome/milestone level; work-package detail belongs to project-level planning, not the program baseline.",
+      "A budget baseline is approved, governance-endorsed funding; a forecast is only an estimate — recognizing which one is the formal control document is a recurring exam distinction.",
+      "Resource conflicts between components that affect strategic objectives, or that exceed the program manager's delegated authority, go to governance for a prioritization decision."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A newly chartered program has identified eight potentially feasible sub-projects that various departments would like included as program components. Only five of them clearly link to the program's intended benefits. How should the program manager proceed?",
+        options:[
+          "Include all eight, since more components mean more delivered value",
+          "Select the five components with clear benefit contribution as program components, and route the other three through separate channels if they have independent merit",
+          "Select components based on which departments have the most funding available",
+          "Delay chartering the program until all eight departments agree on scope"
+        ],
+        a:1,
+        why:"Programs select components based on direct contribution to intended benefits, not feasibility or departmental interest alone — a program isn't just \"everything that's plausible.\"",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Governance asks a program manager to explain how the program's schedule baseline differs from simply combining every component's detailed project schedule into one master file. What is the correct distinction?",
+        options:[
+          "There is no meaningful difference between the two",
+          "The program schedule baseline consolidates milestone synchronization and benefit-delivery checkpoints for governance monitoring, not day-to-day activity-level control",
+          "The master file should always take precedence over the baseline for reporting",
+          "Detailed component schedules should never be shared with governance"
+        ],
+        a:1,
+        why:"A program-level schedule baseline exists to synchronize milestones and pace benefit delivery for governance — a raw combination of detailed project schedules buries that signal in activity-level noise.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee is reviewing two figures for a program: an approved budget baseline of $150M released in phased gates, and a project team's internal forecast projecting $162M in likely spend. Which figure should govern funding-release decisions, and why?",
+        options:[
+          "The forecast, because it reflects the most current thinking",
+          "The budget baseline, because it represents formally approved funding — the forecast is only an estimate and isn't itself an authorization to spend more",
+          "Whichever number is lower, to be conservative",
+          "Both carry equal governance weight"
+        ],
+        a:1,
+        why:"A budget baseline is the approved control document; a forecast is an estimate. A rising forecast is a signal for governance review, not an automatic new baseline.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Two components are both behind schedule and each requests additional specialized engineers from the same limited internal pool. Fully resourcing both requests would exceed the program manager's delegated authority over that shared pool. What should the program manager do?",
+        options:[
+          "Split the available engineers evenly between the two components regardless of impact on benefits",
+          "Escalate the resourcing trade-off to governance for a prioritization decision, since it exceeds delegated authority and affects strategic objectives",
+          "Approve the full request for whichever component asked first",
+          "Deny both requests to avoid taking sides"
+        ],
+        a:1,
+        why:"When a resourcing trade-off exceeds delegated authority and touches strategic objectives, governance prioritization — not an even split, first-come basis, or blanket denial — is the correct path.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"case",
+        stem:"A \"Customer Digital Transformation Program\" is in Definition. Three candidate components have been proposed for it.",
+        scenario:"Candidate 1: a mobile app rebuild expected to drive customer retention. Candidate 2: a CRM integration expected to improve sales conversion. Candidate 3: an internal expense-reporting tool with no clear link to any program benefit, proposed because \"the finance team has wanted it for years.\"",
+        subs:[
+          {
+            stem:"Which candidates should proceed through a Component Initiation Request for this program?",
+            options:[
+              "All three, since resourcing is available",
+              "Only the mobile app rebuild and CRM integration, since they link directly to program benefits",
+              "Only the expense-reporting tool, since it's the smallest and easiest to deliver",
+              "None, until all three have identical business cases"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate treatment of the expense-reporting tool request?",
+            options:[
+              "Add it to the program anyway to keep finance satisfied",
+              "Redirect it outside the program, since it has no demonstrated link to the program's intended benefits",
+              "Cancel it permanently with no further consideration",
+              "Make it the program's top-priority component"
+            ],
+            a:1
+          }
+        ],
+        why:"Component selection is governed by benefit contribution, not stakeholder goodwill or ease of delivery. A request with no benefit linkage doesn't belong in the program even if it's otherwise reasonable work.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC4", domain:"lifecycle", name:"Execution Controls: EVM, Quality & Change Governance",
+    refs:["evm","changemgmt","governance"],
+    material:[
+      "Program-level EVM (aggregate CPI/SPI) measures cost/schedule performance trends across components and triggers realignment action — it's a monitoring signal, not a project-level task tracker.",
+      "Program quality management assures that cumulative results satisfy strategic requirements — distinct from project-level inspection/testing of individual deliverables.",
+      "Program-level changes to scope, cost, schedule, or benefits go through a Change Control Board using impact analysis before baselines are updated; informal agreement never substitutes for that step, however senior the people involved.",
+      "Full transparency in performance reporting is expected even when the news is bad; concealing negative variance is a governance and ethics violation, not a judgment call."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A quarterly program performance review shows an aggregate Cost Performance Index (CPI) of 0.88 across all components, down from 0.97 the prior quarter. Individually, no single component is flagged as critical. What should the program manager do?",
+        options:[
+          "Take no action, since no individual component has been flagged as critical",
+          "Investigate the aggregate cost trend across components and initiate corrective action to protect overall benefit realization, even though no single component looks alarming on its own",
+          "Wait for the next quarter to confirm whether the trend continues",
+          "Instruct each component to independently cut costs by 12% to compensate"
+        ],
+        a:1,
+        why:"Program-level EVM exists to catch aggregate trends that don't show up as a single component's crisis — a declining CPI trend is a signal to investigate and act, not wait out or push down as an arbitrary blanket cut.",
+        refs:["evm"]
+      },
+      {
+        type:"single",
+        stem:"A component project team reports that all its individual deliverables passed their acceptance tests. The program's quality lead is still concerned. What is the most likely reason?",
+        options:[
+          "Individual test results are irrelevant at the program level",
+          "Passing individual deliverable tests (conformance) doesn't confirm that the cumulative results across components actually satisfy the program's strategic quality requirements (assurance)",
+          "The quality lead should simply trust the component's test results without further review",
+          "Quality management is entirely a project-level responsibility with no program role"
+        ],
+        a:1,
+        why:"Program-level quality management is about assurance — whether cumulative outcomes meet strategic requirements — a different, higher-altitude concern than individual deliverable conformance testing.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component sponsor and the program manager verbally agree, in a hallway conversation, to expand a component's scope to include a feature both consider low-risk. No formal change request is filed. What is wrong with this approach?",
+        options:[
+          "Nothing, since both parties with relevant authority agreed",
+          "Program-level changes to scope, cost, schedule, or benefits require formal evaluation and approval through the Change Control Board before baselines are updated — informal agreement isn't a substitute, however low-risk it seems",
+          "The change should have gone directly to the executive sponsor instead",
+          "Verbal agreements are acceptable as long as they're documented afterward in an email"
+        ],
+        a:1,
+        why:"PMI consistently rewards formal change control over informal agreement, regardless of how low-risk the change seems or how senior the people involved are.",
+        refs:["changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A program is showing negative cost and schedule variance heading into a major governance review. The program manager considers presenting only the positive-trending metrics this quarter, planning to disclose the full picture next quarter once (hopefully) it improves. What is the correct action?",
+        options:[
+          "Present only the positive metrics this quarter, as planned, to avoid unnecessary alarm",
+          "Present complete, transparent variance data now, including the negative trends, since concealing performance information violates governance and ethical principles",
+          "Present the negative metrics only if directly asked by a board member",
+          "Delay the governance review until performance improves"
+        ],
+        a:1,
+        why:"Full transparency in performance reporting — including unfavorable variance — is a governance and ethics requirement, not a discretionary communication choice.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO statements correctly describe program closure sequencing and requirements?",
+        options:[
+          "Individual components must be formally closed, with deliverables accepted and accounts reconciled, before overall program closure proceeds",
+          "The program can close as soon as the majority of components are finished, regardless of the rest",
+          "Program closure requires financial and contractual closure, resource release, and a governance sign-off — not just deliverable completion",
+          "Once all components are closed, no further governance review is needed before the program itself is formally closed"
+        ],
+        a:[0,2],
+        why:"Components close first, individually and formally, and program closure itself requires financial/contractual closure plus a governance sign-off — not simply a majority of components finishing, and not skipping the program-level review.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
     id:"BN1", domain:"benefits", name:"Benefits Realization & Sustainment",
     refs:["benefitsreg","decisiontree"],
     material:[
@@ -528,6 +776,83 @@ var BLOCKS = [
         a:1,
         why:"Even intangible benefits need assigned, measurable value. The fix is finding a workable proxy metric and a baseline — not accepting an unmeasurable claim at face value or discarding it outright.",
         refs:["benefitsreg","decisiontree"]
+      }
+    ]
+  },
+  {
+    id:"BN2", domain:"benefits", name:"Quantification, Prioritization & Optimization",
+    refs:["benefitsreg","npv"],
+    material:[
+      "Benefits quantification blends financial methods (NPV, IRR, cost-benefit ratio) with non-financial value (compliance, reputation, ESG) — PMI expects both to inform funding decisions, not cost alone.",
+      "Benefits are prioritized by strategic value, risk, and total contribution — not by urgency or whichever stakeholder pushes hardest.",
+      "Dis-benefits (negative outcomes) and interdependencies between benefits must be identified alongside the benefits themselves, so realizing one doesn't silently undermine another.",
+      "Scaling or optimizing a realized benefit still requires governance analysis and approval — expanding it unilaterally isn't optimization, it's uncontrolled scope creep."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A proposed program component would generate a modest 4% ROI but is expected to meaningfully improve regulatory compliance posture and reduce legal exposure. A finance reviewer recommends rejecting it because the ROI is below the organization's typical hurdle rate. What is the most appropriate response?",
+        options:[
+          "Reject the component, since financial ROI is the only valid benefit metric",
+          "Evaluate the component using both financial and non-financial value — such as compliance and risk reduction — before deciding, since PMI treats these as legitimate strategic benefits",
+          "Approve the component automatically, since compliance benefits always override financial criteria",
+          "Defer the decision until the ROI improves"
+        ],
+        a:1,
+        why:"Benefits quantification explicitly includes non-financial value like compliance and risk reduction alongside financial metrics — neither dimension automatically overrides the other.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner argues that a particular benefit should be prioritized above others because a major client is loudly demanding it, even though it ranks lower on the program's weighted strategic-value criteria. How should this be resolved?",
+        options:[
+          "Prioritize it immediately, since client pressure should always come first",
+          "Evaluate it through the same weighted prioritization criteria as the other benefits — urgency or stakeholder pressure alone doesn't override strategic-value ranking",
+          "Ignore the client's request entirely, since only internal criteria matter",
+          "Let the benefit owner make the final call independently"
+        ],
+        a:1,
+        why:"Prioritization is meant to be criteria-driven — strategic fit, value, risk — rather than reactive to whichever stakeholder pushes hardest. Urgency is one input, not an automatic override.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's benefits register lists an expected 20% increase in production throughput from a new automated line. It does not mention that the same automation is expected to reduce headcount needs in a way that may affect a related workforce-development benefit elsewhere in the program. What is missing from the benefits management approach?",
+        options:[
+          "Nothing; each benefit can be tracked independently",
+          "Identification of dis-benefits and interdependencies between benefits, so that achieving one doesn't unexpectedly undermine another",
+          "A more detailed financial model for the automation line alone",
+          "Additional stakeholder interviews about the automation technology"
+        ],
+        a:1,
+        why:"Sound benefits management identifies both dis-benefits and interdependencies between benefits — treating benefits as fully independent misses exactly this kind of conflict.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component's new supplier-management software, built for one specific component, is working well. A team member suggests rolling it out across the entire enterprise immediately to capture more savings. What is the correct next step?",
+        options:[
+          "Roll it out enterprise-wide immediately, since more savings is always better",
+          "Evaluate the scaling opportunity and bring a recommendation to governance for analysis and approval before expanding beyond the program's original scope",
+          "Keep the software limited to its original component indefinitely, since scope should never change",
+          "Let each interested department decide independently whether to adopt it"
+        ],
+        a:1,
+        why:"Optimizing and scaling a realized benefit is a legitimate goal, but it still requires governance analysis and approval — uncontrolled expansion isn't optimization, it's scope creep without oversight.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"While recalculating a program's expected ROI, the program manager discovers that a key input — projected fuel-cost savings — was based on outdated pricing data. Correcting it lowers the projected ROI from 18% to 14%. A sponsor suggests keeping the original 18% figure in reports since the program is already approved. What should the program manager do?",
+        options:[
+          "Keep the original 18% figure, since the program is already approved and changing it now serves no purpose",
+          "Update the reported ROI to reflect the corrected assumption, since PMI prioritizes data credibility over optimistic figures, even after approval",
+          "Report a figure between the two to split the difference",
+          "Omit the ROI figure from future reports to avoid the discrepancy"
+        ],
+        a:1,
+        why:"Benefits management requires ongoing validation of assumptions and data credibility, not preserving a flattering number after approval — accuracy and governance trust outweigh a more attractive figure.",
+        refs:["benefitsreg"]
       }
     ]
   },
@@ -623,6 +948,84 @@ var BLOCKS = [
     ]
   },
   {
+    id:"SH2", domain:"stakeholder", name:"Influence, Readiness & Governance Integration",
+    refs:["stakeholder_","stakeholdermap","ethics"],
+    material:[
+      "Stakeholder identification must be broad and iterative, including external and indirect parties — regulators, communities, the public. Limiting it to \"those directly involved\" is a recurring exam trap.",
+      "Engagement readiness (unaware, resistant, neutral, supportive, leading) is a different dimension from communication frequency; shifting a stakeholder's readiness takes a targeted intervention, not just more frequent updates.",
+      "Engagement activities should integrate with governance touchpoints and decision pathways, not run as a separate, parallel process alongside governance.",
+      "Ethical, non-coercive influence — coalition-building, transparency, credible advocates — is the only acceptable form of influence management; trading favors for endorsement is manipulation, not engagement."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A regional infrastructure program's stakeholder identification effort focuses only on the funding agency, the contractor, and the internal project team, since those are seen as \"the people actually doing the work.\" What is the flaw in this approach?",
+        options:[
+          "There is no flaw; those are the only parties whose input matters for delivery",
+          "It excludes external and indirect stakeholders — such as regulators, affected communities, or the public — who can still affect or be affected by the program",
+          "The internal project team should be excluded, since they aren't external stakeholders",
+          "Stakeholder identification should only happen once, at program kickoff"
+        ],
+        a:1,
+        why:"PMI expects broad, inclusive stakeholder identification extending beyond those directly executing the work — external and indirect parties are exactly what a narrow approach like this misses.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder group has received frequent, detailed updates about a program for a year but remains actively resistant to it. The program manager proposes increasing the frequency of updates even further. What is the likely issue with this plan?",
+        options:[
+          "Increasing frequency should resolve resistance over time regardless of content",
+          "Communication frequency and stakeholder readiness are different things; resistance likely requires a targeted intervention addressing the underlying concern, not simply more frequent messaging",
+          "The stakeholder group should be removed from the communication plan entirely",
+          "The program manager should escalate the group's resistance to HR"
+        ],
+        a:1,
+        why:"Engagement readiness — unaware, resistant, neutral, supportive, leading — is a distinct dimension from communication cadence. More messages without addressing the root concern rarely shifts an actively resistant stakeholder.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager runs stakeholder engagement activities — briefings, surveys, working groups — entirely separately from the program's formal governance review cycle, believing this keeps engagement more agile and informal. What risk does this create?",
+        options:[
+          "None; keeping engagement separate from governance makes it more effective",
+          "Engagement activities that aren't integrated with governance touchpoints risk becoming disconnected from actual decision-making, undermining both transparency and traceability",
+          "Governance boards should never be involved in stakeholder engagement",
+          "This approach is correct as long as engagement activities are well-documented"
+        ],
+        a:1,
+        why:"Stakeholder engagement should reinforce and integrate with governance decision pathways, not run in parallel — disconnection between the two can make engagement feel like theater rather than real input.",
+        refs:["stakeholder_","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager identifies a well-respected, skeptical senior manager whose public support would significantly help win over a resistant stakeholder group. To secure that support, the program manager offers the senior manager a favorable assignment on an unrelated, desirable project in exchange for publicly endorsing the program. Is this an acceptable influence strategy?",
+        options:[
+          "Yes, since building coalitions with credible advocates is an encouraged influence technique",
+          "No — trading an unrelated favor for endorsement is coercion/manipulation and violates PMI's Code of Ethics, even though building coalitions with credible advocates is otherwise appropriate",
+          "Yes, as long as the arrangement isn't documented anywhere",
+          "No, because senior managers should never be engaged as stakeholders"
+        ],
+        a:1,
+        why:"Ethical influence management means genuine engagement and coalition-building — not transactional trades that amount to manipulation. The tactic (a credible advocate) is fine; the mechanism (a quid pro quo favor) is the ethics violation.",
+        refs:["stakeholder_","ethics"]
+      },
+      {
+        type:"matching",
+        stem:"Match each stakeholder engagement readiness level to the intervention most likely to move them toward support.",
+        prompts:["Unaware","Resistant","Neutral","Leading"],
+        choices:[
+          "Provide basic awareness communication introducing the program and its purpose",
+          "Investigate and address the specific underlying concern driving opposition",
+          "Recognize and equip them as a visible advocate to influence others",
+          "Share targeted information on relevant benefits to build interest"
+        ],
+        a:[0,1,3,2],
+        why:"Each readiness level calls for a different kind of intervention — treating them all the same, with generic status updates, is a common engagement-planning mistake.",
+        refs:["stakeholder_"]
+      }
+    ]
+  },
+  {
     id:"GV1", domain:"governance", name:"Framework, Escalation & Enablement",
     refs:["governance","ethics"],
     material:[
@@ -699,6 +1102,83 @@ var BLOCKS = [
         refs:["governance"]
       }
     ]
+  },
+  {
+    id:"GV2", domain:"governance", name:"Performance Metrics, Compliance & Enterprise Integration",
+    refs:["governance","benefitsreg"],
+    material:[
+      "Governance performance is measured with its own KPIs — decision timeliness, escalation resolution, compliance, stakeholder satisfaction with governance — distinct from the program's cost/schedule/benefit metrics.",
+      "Program governance must integrate with, not duplicate or run parallel to, enterprise governance and external oversight bodies; the program manager stays accountable even when oversight is shared.",
+      "Accountability (ultimate ownership, typically the sponsor) and responsibility (who executes, typically the program manager or component leads) are distinct — deep involvement doesn't transfer accountability.",
+      "Governance obligations continue past program closure — a named owner and a documented plan for post-closure oversight are required, not just an intention to keep monitoring."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A governance board wants to assess whether its own decision-making process is functioning well, separate from how the program itself is performing on cost and schedule. Which of the following would be the most appropriate metric to track?",
+        options:[
+          "The program's overall cost performance index (CPI)",
+          "The percentage of governance decisions implemented on time and the number of escalations resolved within the agreed service level",
+          "The number of components currently active in the program",
+          "Total headcount assigned to the program"
+        ],
+        a:1,
+        why:"Governance performance is measured on its own terms — decision timeliness, escalation resolution, compliance — separate from the program's cost/schedule/benefit metrics.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"In a program's governance structure, the sponsor holds ultimate accountability for a strategic scope decision, while the program manager is responsible for implementing it once approved. A team member is confused about why the program manager didn't just decide unilaterally, given their deep day-to-day involvement. What distinction resolves this confusion?",
+        options:[
+          "There is no meaningful distinction; whoever is more involved should decide",
+          "Accountability (ultimate ownership of the decision) and responsibility (executing it) are distinct — the program manager's deep involvement doesn't substitute for the sponsor's accountability for a strategic-level decision",
+          "The program manager should always have final authority regardless of decision type",
+          "Accountability and responsibility always sit with the same person"
+        ],
+        a:1,
+        why:"This accountability-vs-responsibility distinction is a classic PgMP exam trap — deep involvement or expertise doesn't transfer ultimate ownership of a decision to someone who isn't accountable for it.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A multinational program shares compliance oversight with an external regulatory body, which independently reviews and signs off on certain safety requirements. After the external body approves a component, the program manager considers that component fully compliant with no further internal tracking needed. Is this correct?",
+        options:[
+          "Yes — once an external body approves something, internal tracking is redundant",
+          "No — the program manager remains accountable for compliance even when oversight is shared with an external body, and should continue coordinated tracking rather than treating external approval as the end of the program's own responsibility",
+          "Yes, but only for components explicitly named in the regulatory agreement",
+          "No, because external bodies should never be involved in program oversight"
+        ],
+        a:1,
+        why:"Coordination with external governance bodies means shared oversight, not a full handoff of accountability — the program manager doesn't get to stop tracking compliance just because an external party also reviewed it.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"At program closure, the closure report states that \"benefits will continue to be monitored going forward\" but does not name a specific owner or a documented monitoring plan. A governance reviewer flags this as insufficient. Why?",
+        options:[
+          "It isn't insufficient; a general statement of intent is enough at closure",
+          "Post-closure benefit monitoring requires a named owner and a documented plan — a general intention without accountability or process isn't a real transition of governance obligation",
+          "Benefits monitoring should stop entirely once the program closes",
+          "The closure report should have been signed by the original program manager only"
+        ],
+        a:1,
+        why:"Governance obligations for benefit sustainment continue beyond program closure and require an explicit handover — a named owner and documented monitoring plan — not just a hopeful statement that monitoring will continue.",
+        refs:["governance","benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound ethical governance practice, per PMI's Code of Ethics?",
+        options:[
+          "Requiring board members to disclose vendor relationships before contract-award decisions",
+          "Allowing a governance decision to proceed faster by skipping the conflict-of-interest disclosure step when the deadline is tight",
+          "Prioritizing ethical and legal adherence over accelerated delivery, even when that delays benefits",
+          "Restricting information about a governance decision from stakeholders whenever it might generate difficult questions"
+        ],
+        a:[0,2],
+        why:"Conflict-of-interest disclosure and prioritizing ethics over speed reflect PMI's ethical governance principles; skipping disclosure under time pressure and withholding information to avoid scrutiny are exactly the shortcuts PMI's ethics standard prohibits.",
+        refs:["governance","ethics"]
+      }
+    ]
   }
 ];
 
@@ -709,6 +1189,9 @@ var FLASHCARDS = [
   {id:"f-st4", domain:"strategic", term:"Portfolio-Up Thinking", definition:"Resolving cross-component resource conflicts at the program level, for overall benefit — not project-down, one component at a time.", refs:["standard"]},
   {id:"f-st5", domain:"strategic", term:"PESTLE / SWOT Scanning", definition:"Ongoing assessment of internal capability and external (political, economic, social, technological, legal, environmental) factors that feed continuous strategic alignment.", refs:["swot"]},
   {id:"f-st6", domain:"strategic", term:"Synergy", definition:"The whole exceeding the sum of its parts — the test of whether components genuinely need to be managed together as a program.", refs:["standard"]},
+  {id:"f-st7", domain:"strategic", term:"Program Financial Framework", definition:"High-level funding architecture (NPV, IRR, payback, funding tranches) that precedes and supports governance validation — distinct from a detailed project budget.", refs:["npv"]},
+  {id:"f-st8", domain:"strategic", term:"Weighted Scoring Model", definition:"Ranks competing programs or benefits against weighted strategic criteria — fit, risk, value — rather than urgency or sponsor seniority.", refs:["standard"]},
+  {id:"f-st9", domain:"strategic", term:"Feasibility & Readiness Assessment", definition:"Evaluates technical, financial, and operational readiness to support a business case — distinct from confirming strategic fit alone.", refs:["bizcase"]},
 
   {id:"f-lc1", domain:"lifecycle", term:"Program Roadmap", definition:"A high-level, strategic view of milestones and component sequencing that gains detail over time — not a fully detailed schedule from day one.", refs:["standard"]},
   {id:"f-lc2", domain:"lifecycle", term:"Responsibility Assignment Matrix (RACI)", definition:"Clarifies program vs. project roles so the program manager coaches component managers rather than directing their execution.", refs:["raci"]},
@@ -718,6 +1201,10 @@ var FLASHCARDS = [
   {id:"f-lc6", domain:"lifecycle", term:"Embrace Change", definition:"Programs proactively use change — including canceling or re-scoping components — to optimize benefits; projects control change to protect scope.", refs:["changemgmt"]},
   {id:"f-lc7", domain:"lifecycle", term:"Team of Teams", definition:"A network of component teams connected for shared strategy and empowered execution, led through coaching rather than direction.", refs:["standard"]},
   {id:"f-lc8", domain:"lifecycle", term:"Decision/Phase Gate", definition:"A formal governance checkpoint where the program's business case, components, and continuation are reviewed before proceeding.", refs:["governance"]},
+  {id:"f-lc9", domain:"lifecycle", term:"Component Initiation Request (CIR)", definition:"The governance-facing justification that links a proposed component directly to the program's intended benefits before it's chartered.", refs:["standard"]},
+  {id:"f-lc10", domain:"lifecycle", term:"Change Control Board (CCB)", definition:"The formal body that evaluates and approves program-level changes to scope, cost, schedule, or benefits — informal agreement is never a substitute.", refs:["changemgmt"]},
+  {id:"f-lc11", domain:"lifecycle", term:"Program-Level EVM (CPI/SPI)", definition:"Aggregate cost/schedule performance indices used to catch trends across components before any single one looks critical.", refs:["evm"]},
+  {id:"f-lc12", domain:"lifecycle", term:"Budget Baseline vs. Forecast", definition:"The baseline is approved, governance-endorsed funding; a forecast is only an estimate and isn't itself authorization to spend more.", refs:["standard"]},
 
   {id:"f-bn1", domain:"benefits", term:"Benefits Register", definition:"The log of expected benefits, their owners, baseline/target measures, and realization status.", refs:["benefitsreg"]},
   {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Sets the measurement criteria and baseline for benefits, updated and communicated to stakeholders throughout the life cycle.", refs:["benefitsreg"]},
@@ -725,6 +1212,9 @@ var FLASHCARDS = [
   {id:"f-bn4", domain:"benefits", term:"Transition Plan to Operations", definition:"Guarantees the sustainment of products and benefits delivered by the program after the team disbands.", refs:["benefitsreg"]},
   {id:"f-bn5", domain:"benefits", term:"Decision Tree Analysis", definition:"A technique for evaluating benefit options and their probability-weighted outcomes before committing resources.", refs:["decisiontree"]},
   {id:"f-bn6", domain:"benefits", term:"Benefits Justify Investment — Continuously", definition:"A component's resource investment must remain justified by its benefit contribution throughout the program, not only at initiation.", refs:["benefitsreg"]},
+  {id:"f-bn7", domain:"benefits", term:"Dis-Benefit", definition:"A negative outcome of the program that must be identified and managed alongside intended benefits, not overlooked.", refs:["benefitsreg"]},
+  {id:"f-bn8", domain:"benefits", term:"Benefit Dependency Network", definition:"Maps how benefits interact, overlap, or conflict, so pursuing one doesn't unexpectedly undermine another.", refs:["benefitsreg"]},
+  {id:"f-bn9", domain:"benefits", term:"NPV / IRR / Cost-Benefit Ratio", definition:"Financial quantification methods used alongside non-financial value to justify and prioritize benefits — neither dimension automatically wins.", refs:["npv"]},
 
   {id:"f-sh1", domain:"stakeholder", term:"Stakeholder Matrix", definition:"Documents each stakeholder's position relative to the program, built from stakeholder analysis.", refs:["stakeholder_"]},
   {id:"f-sh2", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
@@ -732,13 +1222,19 @@ var FLASHCARDS = [
   {id:"f-sh4", domain:"stakeholder", term:"Proactive Engagement", definition:"Identifying, analyzing, and engaging stakeholders before problems surface — silence is not the same as support.", refs:["stakeholder_"]},
   {id:"f-sh5", domain:"stakeholder", term:"Targeted Communication", definition:"Tailoring message content and detail level to each stakeholder group, rather than broadcasting one report to everyone.", refs:["stakeholder_"]},
   {id:"f-sh6", domain:"stakeholder", term:"Trust (three dimensions)", definition:"Personality-based (rapport), cognitive-based (competence/reliability), and institutional-based trust — strength in one doesn't guarantee the others.", refs:["stakeholder_"]},
+  {id:"f-sh7", domain:"stakeholder", term:"Engagement Readiness", definition:"A stakeholder's current disposition — unaware, resistant, neutral, supportive, leading — a different dimension from communication frequency.", refs:["stakeholder_"]},
+  {id:"f-sh8", domain:"stakeholder", term:"Engagement Strategy vs. Plan", definition:"The strategy defines how and why to engage; the plan defines what, when, and by whom — strategy precedes and informs the plan.", refs:["stakeholder_"]},
+  {id:"f-sh9", domain:"stakeholder", term:"Ethical Influence Management", definition:"Building genuine coalitions and credible advocacy — never coercion or transactional trades — to shift stakeholder support.", refs:["ethics"]},
 
   {id:"f-gv1", domain:"governance", term:"Program Governance Plan", definition:"Defines decision rights, escalation paths, and the roles that authorize the program.", refs:["governance"]},
   {id:"f-gv2", domain:"governance", term:"Stage/Phase Gate Review", definition:"Where the program obtains authorization from governance to proceed to the next phase.", refs:["governance"]},
   {id:"f-gv3", domain:"governance", term:"Escalate Through Governance", definition:"Issues exceeding the program manager's authority go through the defined escalation path — not around it, and not decided unilaterally.", refs:["governance"]},
   {id:"f-gv4", domain:"governance", term:"Right-Sized Governance", definition:"Governance proportionate to a program's size and complexity; over-governing is as harmful as under-governing.", refs:["governance"]},
   {id:"f-gv5", domain:"governance", term:"Governance Enables", definition:"Good governance provides decisions, resources, and support — not just compliance oversight.", refs:["governance"]},
-  {id:"f-gv6", domain:"governance", term:"PMI Code of Ethics", definition:"Responsibility, respect, fairness, and honesty — applies to every exam scenario; the ethical answer wins even when costly.", refs:["ethics"]}
+  {id:"f-gv6", domain:"governance", term:"PMI Code of Ethics", definition:"Responsibility, respect, fairness, and honesty — applies to every exam scenario; the ethical answer wins even when costly.", refs:["ethics"]},
+  {id:"f-gv7", domain:"governance", term:"Governance Performance Metrics", definition:"KPIs (decision timeliness, escalation resolution, compliance, stakeholder satisfaction) that measure the governance process itself, distinct from program cost/schedule metrics.", refs:["governance"]},
+  {id:"f-gv8", domain:"governance", term:"Accountability vs. Responsibility", definition:"Accountability is ultimate ownership (e.g., the sponsor); responsibility is who executes (e.g., the program manager) — deep involvement doesn't transfer accountability.", refs:["governance"]},
+  {id:"f-gv9", domain:"governance", term:"Governance Transition Plan", definition:"Names ongoing owners and processes so governance obligations, like benefit oversight, continue past program closure.", refs:["governance","benefitsreg"]}
 ];
 
 /* flatten questions with block context */
