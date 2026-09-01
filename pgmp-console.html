@@ -6372,6 +6372,1400 @@ var BLOCKS = [
         refs:["governance","ethics"]
       }
     ]
+  },
+  {
+    id:"GV3", domain:"governance", name:"Governance Structure Design & Roles",
+    refs:["governance"],
+    material:[
+      "Governance structure — steering committee composition, decision rights, review cadence — should be designed deliberately based on the program's actual complexity, risk profile, and stakeholder landscape, not copied wholesale from an unrelated past program.",
+      "Each governance role needs a clear, documented scope of decision authority; ambiguity about who can actually approve what invites either bottlenecks (everyone escalates everything) or overreach (people decide things outside their authority).",
+      "Governance structures should be reviewed periodically for continued fit as the program evolves — a structure right-sized at initiation can become mismatched as the program's scope, risk, or stakeholder landscape shifts.",
+      "A governance body's membership should reflect the decision rights it actually needs to exercise — including members without the authority or expertise to make the decisions the body is meant to make undermines its function."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A newly chartered program manager copies the governance structure — committee composition, meeting cadence, decision thresholds — directly from a much larger, higher-risk program the organization ran previously, reasoning that a proven structure is safer than designing a new one. What is the concern with this approach?",
+        options:[
+          "There is no concern; reusing a proven governance structure is always the safest choice",
+          "Governance structure should be designed for the specific program's actual complexity, risk, and stakeholder landscape — a structure sized for a much larger, higher-risk program may be poorly matched and create unnecessary overhead",
+          "Governance structures should never be reused across any programs under any circumstances",
+          "The new program should be resized to match the larger program's scope instead"
+        ],
+        a:1,
+        why:"A structure that worked for a different program's risk and complexity profile isn't automatically right for this one — deliberate design based on this program's actual characteristics is what avoids mismatched, over- or under-built governance.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance charter states that the steering committee \"oversees major decisions\" without specifying what counts as major or what the program manager can decide independently. As a result, the program manager escalates nearly every decision to avoid overstepping, significantly slowing the program down. What is the root cause?",
+        options:[
+          "The program manager is being overly cautious for no good reason",
+          "Ambiguous decision authority — without a clear, documented scope of what the program manager can decide independently versus what requires committee approval — naturally pushes toward over-escalation as a defensive default",
+          "Steering committees should never be given oversight of major decisions",
+          "The program manager should simply start making major decisions unilaterally to fix the slowdown"
+        ],
+        a:1,
+        why:"Vague decision authority doesn't just create occasional confusion — it systematically pushes people toward the safer, slower choice of escalating everything, which is exactly the bottleneck a clear scope of authority is meant to prevent.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance structure, appropriately sized at initiation for a single-region, moderate-complexity program, hasn't been revisited even as the program has since expanded to five regions with significantly higher regulatory complexity. What risk does this create?",
+        options:[
+          "No risk; a governance structure, once designed, should never be changed regardless of how the program evolves",
+          "The original structure may no longer be adequately sized for the program's current complexity and risk — governance should be periodically reviewed for continued fit as the program evolves",
+          "The program should be split into five entirely separate programs to avoid revisiting governance",
+          "Regulatory complexity has no bearing on what governance structure is appropriate"
+        ],
+        a:1,
+        why:"A governance structure right-sized for the program at initiation doesn't automatically stay right-sized as the program's scope and risk grow — periodic review is what catches the mismatch before it becomes a real problem.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee includes a member with no technical background and limited program context, added primarily because of their seniority in an unrelated part of the organization. This member frequently defers or votes without engaging substantively with the decisions at hand. What does this illustrate?",
+        options:[
+          "Seniority alone is always a sufficient basis for steering committee membership",
+          "Governance body membership should reflect the decision rights and expertise actually needed — including a member without the relevant authority or expertise to meaningfully engage undermines the body's real function",
+          "This member should be given more decisions to approve to increase their engagement",
+          "Steering committees should be composed entirely of senior executives regardless of relevant expertise"
+        ],
+        a:1,
+        why:"A committee seat filled by seniority alone, without the expertise or context to meaningfully engage in the decisions at hand, doesn't strengthen governance — it can quietly weaken it by diluting substantive engagement.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is designing governance for a new, moderately complex program and is deciding on steering committee size. A colleague suggests including as many senior stakeholders as possible to maximize buy-in. What is the risk of this approach?",
+        options:[
+          "There is no risk; a larger steering committee is always more effective",
+          "An oversized committee can slow decision-making and dilute individual accountability — membership should be based on who genuinely needs the decision rights the body exercises, not maximized for buy-in alone",
+          "Buy-in should never be a consideration in governance design",
+          "Steering committees should always be limited to exactly three members regardless of program size"
+        ],
+        a:1,
+        why:"Buy-in matters, but it's not the only consideration — a committee sized purely to maximize inclusion risks becoming unwieldy and diffusing the accountability a smaller, more deliberately composed body would provide.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance charter clearly documents which decisions the program manager can make independently, which require steering committee approval, and which require sponsor sign-off. A new steering committee member asks why this level of specificity matters. What is the best answer?",
+        options:[
+          "It doesn't matter much; general principles are sufficient without specific documentation",
+          "Clear, documented decision authority prevents both the bottleneck of over-escalation and the risk of overreach — everyone knows what they can decide without needing to check each time",
+          "This level of detail is only useful for very large programs",
+          "Documented decision authority is primarily a legal formality with no practical operational benefit"
+        ],
+        a:1,
+        why:"Specificity is what actually prevents the two failure modes — vague authority breeds either paralysis (over-escalation) or overreach — documenting exactly who decides what removes the guesswork that causes both.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance structure originally designed for quarterly steering committee reviews is proving too slow for a program now facing frequent, fast-moving market changes requiring quicker decisions. What is the most appropriate response?",
+        options:[
+          "Continue with quarterly reviews regardless of the program's changed pace, since the structure was formally approved",
+          "Propose a revised governance cadence — for example, more frequent reviews or a defined fast-track escalation path — better suited to the program's current decision-making needs",
+          "Bypass governance entirely and have the program manager make all time-sensitive decisions unilaterally",
+          "Dissolve the steering committee since it can no longer keep pace"
+        ],
+        a:1,
+        why:"A governance cadence that no longer matches the program's actual pace of change is a design mismatch worth correcting — proposing a revised cadence or escalation path addresses the real problem without abandoning governance altogether.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is asked to justify why the program's governance structure includes a technical advisory subcommittee in addition to the main steering committee. What would be the most defensible reason?",
+        options:[
+          "It exists purely to add prestige to the program's governance structure",
+          "Certain technical decisions require expertise the main steering committee doesn't have — a subcommittee with the right expertise ensures those decisions get genuinely informed review before or alongside steering committee approval",
+          "Subcommittees should never be part of a program's governance structure",
+          "It exists to give the program manager an alternative approval path to bypass the steering committee"
+        ],
+        a:1,
+        why:"A subcommittee earns its place in the structure by supplying decision-relevant expertise the main body lacks — governance design should be driven by what different decisions actually require, not by prestige or workaround value.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance structure assigns the steering committee authority over budget decisions above $500,000, but a recent $2M decision was made by the program manager alone without committee involvement, on the reasoning that it was \"clearly the right call.\" What is the concern?",
+        options:[
+          "There is no concern, since the decision turned out to be correct",
+          "The decision exceeded the program manager's documented authority regardless of whether it was substantively correct — governance authority exists to ensure the right body reviews decisions at that threshold, not just to validate good outcomes after the fact",
+          "The steering committee's authority threshold was set too low and should be raised immediately",
+          "Governance authority thresholds should never apply to time-sensitive decisions"
+        ],
+        a:1,
+        why:"A good outcome doesn't retroactively make an authority overreach acceptable — governance thresholds exist so decisions at that scale get the right review before they're made, not just a favorable result afterward.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for designing a program's governance structure?",
+        options:[
+          "Sizing the structure to the program's actual complexity, risk, and stakeholder landscape rather than copying an unrelated program's structure wholesale",
+          "Maximizing steering committee size to include as many stakeholders as possible regardless of relevant expertise",
+          "Documenting clear decision authority for each governance role and level",
+          "Treating the governance structure as fixed once designed, regardless of how the program evolves"
+        ],
+        a:[0,2],
+        why:"Deliberate, program-specific sizing and clear documented authority are what make a governance structure actually work — an oversized committee for buy-in's sake or a structure frozen in time both undercut effective governance.",
+        refs:["governance"]
+      },
+      {
+        type:"case",
+        stem:"A national home-improvement retailer is running a \"Store Systems Modernization Program\" spanning point-of-sale, inventory, and customer-loyalty platforms.",
+        scenario:"The program's governance structure, designed at initiation for a single-platform pilot, was never revised as the scope expanded to all three platforms across the entire store network. The steering committee still meets quarterly with the same three original members, none of whom have direct expertise in two of the three platforms now in scope.",
+        subs:[
+          {
+            stem:"What is the most significant structural problem with the current governance setup?",
+            options:[
+              "There is no problem; quarterly meetings with the original members remain appropriate regardless of how the program's scope has grown",
+              "The structure was never revisited as scope and complexity grew substantially, leaving both the review cadence and the committee's expertise mismatched to the program's current needs",
+              "The steering committee should be dissolved entirely rather than revised",
+              "Only the meeting cadence needs to change; the committee's expertise composition is not a real concern"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate corrective step?",
+            options:[
+              "Continue with the current structure since it was formally approved at initiation and reopening it would be disruptive",
+              "Propose a revised governance structure — updated cadence and expanded or supplemented committee expertise — that reflects the program's current scope and complexity",
+              "Have the program manager make all governance decisions independently going forward instead of revising the committee",
+              "Reduce the program's scope back to the original single-platform pilot to match the existing governance structure"
+            ],
+            a:1
+          }
+        ],
+        why:"A governance structure that was appropriate at a much smaller scope doesn't automatically stay appropriate as a program grows substantially — the fix is revising the structure to match current reality, not preserving it out of inertia or abandoning governance altogether.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV4", domain:"governance", name:"Decision Rights, Authority Levels & Delegation",
+    refs:["governance"],
+    material:[
+      "Delegated authority (a program manager empowered to approve certain decisions within defined limits) is different from usurped authority (a program manager making a decision beyond those limits without approval) — the distinction matters even when the decision itself is sound.",
+      "Delegation of authority should come with genuine accountability for how it's exercised — delegating a decision without any mechanism to review how it was used undermines the point of having decision rights at all.",
+      "When authority is unclear or contested between two roles or bodies, the resolution should clarify and document the boundary going forward, not just settle the immediate dispute informally.",
+      "Emergency or time-critical situations may call for pre-authorized expedited decision paths, established in advance — improvising an ad hoc bypass of governance in the moment is a different, riskier thing."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program manager has been explicitly delegated authority to approve vendor contracts up to $250,000. They approve a $230,000 contract independently, within that delegated limit. Is this an appropriate exercise of authority?",
+        options:[
+          "No, all vendor contracts should require steering committee approval regardless of delegated limits",
+          "Yes — this is a legitimate exercise of properly delegated authority, distinct from a program manager acting beyond an established limit",
+          "No, because program managers should never be delegated financial approval authority",
+          "Yes, but only if the steering committee is notified in advance of every such approval"
+        ],
+        a:1,
+        why:"Acting within a properly delegated limit is exactly what delegation is for — this is meaningfully different from a program manager exceeding their authority, even though both might superficially look like \"the PM made the call.\"",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager has broad delegated authority over day-to-day component-level decisions, with no requirement to report on how that authority is being exercised. Governance later discovers a pattern of decisions that, while individually within the delegated limit, collectively represent a concerning drift from the program's original direction. What does this illustrate?",
+        options:[
+          "Delegation should never come with any oversight, since that would defeat its purpose",
+          "Delegated authority without any accountability mechanism for how it's exercised can allow a concerning pattern to develop unnoticed, even when no single decision exceeded its individual limit",
+          "The program manager acted improperly by using authority that was properly delegated to them",
+          "This outcome is unrelated to how the delegation was structured"
+        ],
+        a:1,
+        why:"Delegation without any visibility into the pattern of decisions made under it can let a real problem accumulate invisibly — accountability doesn't have to mean pre-approval, but some mechanism for review is what closes this gap.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"Two governance bodies — a regional steering committee and a global program board — both believe they have final authority over a specific type of scope decision, and a dispute arises when they reach conflicting conclusions on the same issue. How should this be resolved?",
+        options:[
+          "Whichever body acts first should be considered to have final authority going forward",
+          "Resolve the immediate dispute, and also formally clarify and document which body holds authority over this type of decision going forward, so the same conflict doesn't recur",
+          "Ignore the conflict and let the program manager decide independently in all future similar cases",
+          "Escalate every future instance of this decision type to both bodies jointly without ever resolving the ambiguity"
+        ],
+        a:1,
+        why:"Resolving just the immediate dispute leaves the underlying ambiguity in place to cause the same conflict again — documenting the actual authority boundary is what prevents a repeat.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"During a genuine emergency, a program manager makes a rapid decision outside their normal delegated authority because the pre-established governance plan includes a defined emergency-decision protocol for exactly this kind of situation, followed by required post-decision reporting to the steering committee. Is this appropriate?",
+        options:[
+          "No, any decision outside normal delegated authority is automatically inappropriate regardless of context",
+          "Yes — using a pre-authorized, defined emergency protocol with required follow-up reporting is different from an improvised, ad hoc bypass of governance, and is a legitimate way to handle genuinely time-critical situations",
+          "Yes, but only if the program manager never reports the decision afterward",
+          "No, because emergency protocols should never be part of a governance plan"
+        ],
+        a:1,
+        why:"A pre-established emergency path with built-in accountability (the required follow-up report) is a deliberate governance design choice — it's meaningfully different from a program manager simply deciding to bypass governance in the moment because it felt urgent.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager faces a time-sensitive decision with no pre-established emergency protocol covering the situation, and no time to convene the steering committee. They make the call unilaterally, reasoning that the situation was urgent. What is the most appropriate way to evaluate this after the fact?",
+        options:[
+          "The decision should be treated identically to one made under a pre-authorized emergency protocol, since both were driven by urgency",
+          "The decision was made outside authority with no pre-established path for the situation — governance should review it, and if similar situations are foreseeable, establish a defined protocol going forward rather than relying on improvisation next time",
+          "The program manager should be immediately removed from the role for exceeding authority",
+          "No review is necessary as long as the outcome was ultimately favorable"
+        ],
+        a:1,
+        why:"Improvised urgency, however understandable in the moment, is a different situation from a pre-authorized path — reviewing it and building a defined protocol for next time is what turns a one-off improvisation into a governed response.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A component manager, delegated authority over their component's day-to-day resourcing, begins making decisions that effectively shift the component's strategic direction — decisions arguably beyond the scope of \"day-to-day resourcing.\" What is the most likely underlying issue?",
+        options:[
+          "The component manager should always have full authority over strategic direction as well as resourcing",
+          "The boundary of the delegated authority (\"day-to-day resourcing\") may not have been specific enough to prevent this drift into strategic-level decisions — clearer scoping of the delegation would help",
+          "Delegation should never be granted to component managers under any circumstances",
+          "This drift is not actually a governance concern as long as the decisions turn out well"
+        ],
+        a:1,
+        why:"A vaguely scoped delegation (\"day-to-day resourcing\") can quietly stretch to cover decisions well beyond its intent — the fix is a more precisely defined boundary, not abandoning delegation altogether.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee delegates a specific decision-making authority to the program manager but reserves the right to review a sample of decisions made under that authority each quarter. A program manager new to this structure asks why the committee doesn't just fully trust the delegation without any review. What is the best answer?",
+        options:[
+          "Sampling review defeats the entire purpose of delegation and should be eliminated",
+          "Periodic sampling provides accountability for how delegated authority is actually being exercised without requiring pre-approval for every decision — it's a way to maintain oversight while still genuinely delegating day-to-day authority",
+          "The committee should instead review every single decision individually, since sampling is insufficiently rigorous",
+          "Review should only occur if a stakeholder specifically complains about a decision"
+        ],
+        a:1,
+        why:"Periodic sampling strikes a real balance — genuine delegation without pre-approval bottlenecks, paired with enough after-the-fact visibility to catch problems, rather than an all-or-nothing choice between full trust and full control.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance documentation delegates authority over \"minor schedule adjustments\" to the program manager without defining what counts as minor. Two different program managers on similar programs interpret this very differently — one treats a two-week slip as minor, the other escalates a two-day slip. What does this illustrate?",
+        options:[
+          "This inconsistency is acceptable since program managers should have full discretion over interpretation",
+          "Undefined thresholds within a delegation invite inconsistent interpretation — specific, measurable boundaries (e.g., a defined number of days) would produce more consistent, predictable application of the delegated authority",
+          "Schedule adjustments should never be delegated under any circumstances",
+          "The inconsistency reflects a personality difference between the two program managers rather than a governance design issue"
+        ],
+        a:1,
+        why:"A vague qualifier like \"minor\" leaves room for wildly different interpretations — specific, measurable thresholds are what make a delegation consistently and predictably applied across different people exercising it.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for structuring delegated decision authority?",
+        options:[
+          "Defining delegation boundaries with specific, measurable thresholds rather than vague qualifiers",
+          "Delegating broad authority with no mechanism to review how it is subsequently exercised",
+          "Establishing pre-authorized emergency decision paths in advance, with required follow-up reporting",
+          "Treating an ad hoc, improvised bypass of governance during a busy period as equivalent to a pre-established emergency protocol"
+        ],
+        a:[0,2],
+        why:"Specific thresholds and pre-established emergency paths with follow-up accountability are what make delegation both usable and governed — unreviewed broad delegation and improvised bypasses both erode the real point of having decision rights at all.",
+        refs:["governance"]
+      },
+      {
+        type:"case",
+        stem:"A regional airport authority is running a \"Terminal Expansion Program\" with delegated authority structured across several governance tiers.",
+        scenario:"During a severe weather event affecting active construction safety, the program manager makes an emergency decision to halt work and reroute a contractor — outside their normal delegated authority — because the program's governance plan includes a pre-established safety-emergency protocol for exactly this situation, including mandatory same-day reporting to the steering committee.",
+        subs:[
+          {
+            stem:"How should this decision be characterized?",
+            options:[
+              "As an inappropriate overreach of authority regardless of the circumstances",
+              "As a legitimate use of a pre-authorized emergency protocol, distinct from an improvised, ad hoc bypass of governance",
+              "As identical in nature to a program manager unilaterally deciding to exceed authority with no prior protocol in place",
+              "As a decision that should have waited for full steering committee convening despite the safety emergency"
+            ],
+            a:1
+          },
+          {
+            stem:"What should happen next, per the described protocol?",
+            options:[
+              "Nothing further is required since the decision was already made",
+              "The program manager should file the mandatory same-day report to the steering committee as specified in the protocol, providing the accountability the pre-established path was designed to include",
+              "The steering committee should retroactively revoke the decision regardless of circumstances",
+              "The emergency protocol should be discontinued now that it has been used once"
+            ],
+            a:1
+          }
+        ],
+        why:"A pre-established emergency protocol with built-in reporting is exactly the kind of deliberate governance design that makes fast, necessary action possible without abandoning accountability — following through on the reporting requirement is what completes the loop.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV5", domain:"governance", name:"Reporting Structures & Governance Documentation",
+    refs:["governance"],
+    material:[
+      "Governance reporting structures define what information flows to which body, at what cadence, and in what format — an undefined or inconsistent reporting structure leaves gaps that let real issues go unnoticed.",
+      "Governance documentation (charters, terms of reference, decision logs) provides the record that lets a governance body's decisions and rationale be traced and understood later, including by people who weren't in the room.",
+      "A decision log capturing what was decided, by whom, and why is distinct from a status report — the two serve different purposes and one doesn't substitute for the other.",
+      "Governance documentation should be a living reference actively used to guide behavior, not an artifact produced once for compliance and then left unopened."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program has no formally defined reporting structure specifying which information goes to which governance body; instead, whichever information seems relevant is shared informally and inconsistently. A significant risk is discussed at a working-level meeting but never reaches the steering committee, since no one owns ensuring it flows upward. What does this illustrate?",
+        options:[
+          "Informal information sharing is generally more efficient than a defined reporting structure",
+          "Without a defined reporting structure specifying what information flows where, real issues can fall through the gaps between levels — no one is accountable for ensuring the right information reaches the right body",
+          "This gap is solely the responsibility of whoever raised the risk at the working-level meeting",
+          "Steering committees should be present at every working-level meeting to avoid this problem"
+        ],
+        a:1,
+        why:"An informal, undefined reporting structure relies on someone happening to pass information upward — a defined structure is what makes sure significant issues reliably reach the body that needs to know about them.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance reviewer, joining the program a year after a significant scope decision was made, wants to understand why that decision was made and what alternatives were considered. No decision log exists — only the program's regular status reports, which mention the decision's outcome but not its rationale. What is missing?",
+        options:[
+          "Nothing; a status report is sufficient documentation of any governance decision",
+          "A decision log capturing what was decided, by whom, and why — distinct from a status report, which documents ongoing state rather than the reasoning behind a specific past decision",
+          "The reviewer should not need to understand past decisions to participate in current governance",
+          "Status reports should be entirely replaced by decision logs going forward"
+        ],
+        a:1,
+        why:"A status report tells you where things stand now; it doesn't capture the reasoning behind a specific past decision — that's exactly what a decision log is for, and its absence leaves later reviewers unable to reconstruct the rationale.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance charter, terms of reference, and escalation procedures were thoroughly documented at initiation but have not been referenced or updated since; new steering committee members have never actually read them. What is the concern with this?",
+        options:[
+          "There is no concern; the existence of the documentation is sufficient regardless of whether it's actively used",
+          "Governance documentation that isn't actively used to guide behavior functions as a compliance artifact rather than a living reference — new members operating without genuine familiarity with it risks inconsistent governance practice",
+          "Governance documentation should only be produced once and never revisited under any circumstances",
+          "New steering committee members don't need to be familiar with governance documentation to participate effectively"
+        ],
+        a:1,
+        why:"Documentation that sits unread doesn't actually guide anyone's behavior — new members governing without real familiarity with the charter and procedures risks drifting from the intended structure without anyone noticing.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is designing the program's reporting structure and must decide the cadence for different types of information flowing to the steering committee. What is the most appropriate approach?",
+        options:[
+          "Use a single uniform cadence for all information types, regardless of urgency or significance",
+          "Match the cadence to the nature of the information — routine status on a regular schedule, but a defined path for urgent or significant issues to reach the committee promptly rather than waiting for the next scheduled report",
+          "Report everything only at the end of the program to minimize the burden on the steering committee",
+          "Let each component decide independently whether and when to report anything upward"
+        ],
+        a:1,
+        why:"Not all information is equally time-sensitive — a reporting structure that treats routine status and urgent issues identically risks either overwhelming the committee with noise or delaying something that needed faster attention.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee decision log records \"approved scope change\" for a significant decision, with no further detail about the options considered or the reasoning behind the approval. Eighteen months later, a similar decision arises, and no one can recall or reconstruct why the earlier one was decided the way it was. What is the gap in the original log entry?",
+        options:[
+          "There is no gap; recording that a decision was approved is sufficient documentation",
+          "The log captured the outcome but not the rationale or alternatives considered — a decision log that omits the reasoning provides limited value when a similar situation arises later and context is needed",
+          "Decision logs should never be used for scope-related decisions",
+          "The gap only matters if the original decision turns out to have been wrong"
+        ],
+        a:1,
+        why:"A bare outcome without reasoning is only half a decision log — the value of capturing rationale and alternatives is precisely for moments like this, when a similar situation resurfaces and the original context is needed to inform it.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is preparing a status report for the steering committee and is deciding whether to also include a governance decision that was made informally between two committee members outside a formal meeting. What is the appropriate approach?",
+        options:[
+          "Omit the informal decision entirely, since it wasn't made in a formal meeting",
+          "Formally document the decision — including it in the decision log and/or bringing it to the full committee for ratification — so it's captured consistently rather than existing only as an undocumented informal understanding",
+          "Treat the informal decision as equally valid and permanent without any further documentation or ratification",
+          "Reverse the informal decision automatically since it wasn't made in a formal setting"
+        ],
+        a:1,
+        why:"A decision made informally by a subset of the committee still needs to enter the formal record — otherwise it exists only as an undocumented understanding that the rest of governance, and anyone later, has no reliable way to trace.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's terms of reference document specifies quorum requirements for steering committee decisions, but a recent significant decision was made with only two of six required members present, with no formal quorum waiver process invoked. What is the concern?",
+        options:[
+          "There is no concern, since the decision was still made by legitimate committee members",
+          "The decision was made without meeting the documented quorum requirement and without an explicit waiver process, undermining the governance structure's own documented rules for legitimate decision-making",
+          "Quorum requirements are purely symbolic and don't affect the validity of governance decisions",
+          "The remaining four members should be removed from the committee for not attending"
+        ],
+        a:1,
+        why:"Quorum requirements exist precisely to ensure decisions reflect genuine committee deliberation — bypassing them without even an explicit waiver process undermines the documented structure's own legitimacy.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A newly onboarded steering committee member asks for a copy of the program's governance charter and terms of reference before their first meeting. What is the value of providing this proactively?",
+        options:[
+          "Little value; new members can simply learn governance norms informally by observing meetings",
+          "It gives the new member genuine familiarity with documented decision rights, escalation paths, and procedures before they're expected to exercise governance responsibility, rather than learning by trial and error",
+          "This documentation should only be shared after a member has served for at least a year",
+          "Governance documentation is only relevant to the program manager, not committee members"
+        ],
+        a:1,
+        why:"A new member exercising real governance responsibility benefits from understanding the documented structure upfront — learning it informally through observation risks gaps and inconsistent practice in the meantime.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for governance reporting and documentation?",
+        options:[
+          "Defining a reporting structure that routes urgent or significant issues to the right body promptly, not only on a fixed routine schedule",
+          "Recording only the outcome of a governance decision in the decision log, without capturing the rationale or alternatives considered",
+          "Formally documenting decisions made informally outside a scheduled meeting, rather than leaving them undocumented",
+          "Producing governance documentation once at initiation and treating it as complete with no further reference"
+        ],
+        a:[0,2],
+        why:"A reporting structure that routes urgent issues promptly, and formally capturing informal decisions, are what keep governance documentation actually useful — logging outcomes without rationale, or letting documentation go unused after initiation, both erode its real value.",
+        refs:["governance"]
+      },
+      {
+        type:"case",
+        stem:"A national pension fund administrator is running a \"Member Portal Modernization Program\" under a steering committee with documented terms of reference.",
+        scenario:"A significant decision to change the program's data-migration approach was made in a hallway conversation between the program manager and two steering committee members, and was never formally logged, ratified by the full committee, or explained to the other three members, who learn about it weeks later from a status report.",
+        subs:[
+          {
+            stem:"What is the most significant governance problem with how this decision was handled?",
+            options:[
+              "There is no problem, since two committee members were involved in the conversation",
+              "The decision bypassed the documented committee process and was never formally logged or ratified, leaving the rest of the committee uninformed and the decision's legitimacy unclear",
+              "The decision itself must have been substantively wrong given how it was made",
+              "The program manager should never discuss program matters informally with any committee member"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate corrective step now?",
+            options:[
+              "Take no further action, since the decision has already been implemented and reported in a status update",
+              "Formally document the decision in the decision log and bring it to the full committee for ratification or reconsideration, ensuring all members are properly informed and the decision has genuine governance standing",
+              "Reverse the decision automatically without further discussion, given how it originated",
+              "Discontinue the decision log entirely since it failed to capture this decision in real time"
+            ],
+            a:1
+          }
+        ],
+        why:"An informal conversation between a subset of the committee isn't a substitute for the documented governance process — retroactively formalizing the decision, rather than letting it stand undocumented or discarding it outright, is what restores real governance standing.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV6", domain:"governance", name:"Compliance, Regulatory & Audit Readiness",
+    refs:["governance","ethics"],
+    material:[
+      "Program governance must ensure ongoing compliance with applicable regulatory, legal, and organizational-policy requirements — compliance is a continuous governance responsibility, not a one-time check at initiation.",
+      "Audit readiness means being able to produce a clear, traceable record of decisions and their rationale on demand — scrambling to reconstruct history only when an audit is announced is a sign the underlying practice was already inadequate.",
+      "When a compliance requirement changes mid-program, governance needs a defined process to assess impact and update plans accordingly, not an assumption that the original compliance posture remains valid indefinitely.",
+      "Genuine compliance goes beyond satisfying the letter of a requirement — governance should be alert to situations where a technically compliant action still runs against the requirement's underlying intent."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program confirmed regulatory compliance thoroughly at initiation and has not revisited the question since, even though eighteen months have passed and the regulatory environment in the program's industry has been active. What is the risk of this approach?",
+        options:[
+          "No risk; compliance confirmed at initiation remains valid for the life of the program",
+          "Compliance is a continuous governance responsibility — regulatory requirements can change after initiation, and a program that doesn't revisit compliance risks operating against outdated requirements without realizing it",
+          "Regulatory compliance is solely the legal department's responsibility and shouldn't involve program governance at all",
+          "This is only a concern for programs operating in multiple countries"
+        ],
+        a:1,
+        why:"Confirming compliance once, at a single point in time, doesn't protect against regulatory change that happens afterward — ongoing attention is what keeps the program's compliance posture actually current.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"An internal audit is announced with two weeks' notice, and the program team scrambles to reconstruct the reasoning behind several major governance decisions made over the prior year, since no consistent decision log was maintained. What does this scrambling indicate?",
+        options:[
+          "This is a normal and acceptable part of preparing for any audit",
+          "The underlying documentation practice was already inadequate — genuine audit readiness means being able to produce a traceable record on demand, not needing to reconstruct history once an audit is announced",
+          "Audits should never be announced with only two weeks' notice",
+          "The program should have avoided making any major governance decisions to simplify future audits"
+        ],
+        a:1,
+        why:"Needing to scramble and reconstruct history is the symptom — genuinely audit-ready governance means the traceable record already exists as decisions happen, not that it gets assembled retroactively under time pressure.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"Midway through a program, a new regulatory requirement takes effect that materially affects one of the program's components. The program manager continues operating under the original compliance plan, assuming it's the legal department's job to flag any needed changes. What is the concern with this assumption?",
+        options:[
+          "There is no concern; compliance monitoring is entirely outside the program manager's responsibility",
+          "Without a defined process for assessing the impact of regulatory changes on the program, an assumption that someone else will flag it can mean the change goes unaddressed — governance should have an active process for this, not rely on an informal handoff",
+          "The program should be immediately terminated whenever any regulatory change occurs",
+          "New regulatory requirements never apply to programs already underway"
+        ],
+        a:1,
+        why:"Assuming someone else is watching for a compliance-relevant change is exactly how it can go unaddressed — a defined governance process for assessing regulatory impact is what actually closes this gap, rather than an informal, unverified handoff.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program technically satisfies a data-retention regulation's minimum requirements by deleting records at the earliest permissible moment, even though doing so eliminates information that would clearly help detect a pattern the regulation was designed to catch. Is this an acceptable compliance posture?",
+        options:[
+          "Yes, meeting the technical minimum is always sufficient regardless of the requirement's underlying intent",
+          "It's worth scrutiny — technically satisfying a requirement's letter while undermining its underlying intent is a meaningful compliance risk governance should be alert to, not simply accept as sufficient",
+          "No, because data-retention regulations should never be followed at their minimum requirement",
+          "Yes, but only if the deletion is documented in the decision log"
+        ],
+        a:1,
+        why:"Genuine compliance is about more than clearing the technical bar — governance should notice when an action satisfies the letter of a requirement while working against what the requirement actually exists to achieve.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is preparing governance documentation and considers how much detail to include in decision rationale, reasoning that lighter documentation is more efficient day-to-day. A colleague points out this could become a liability if an audit occurs later. How should the program manager weigh this trade-off?",
+        options:[
+          "Favor minimal documentation regardless of audit implications, since day-to-day efficiency should always take priority",
+          "Recognize that adequate documentation of decision rationale serves both ongoing governance quality and future audit readiness — the efficiency gained from lighter documentation is a real cost if it leaves the program unable to demonstrate its reasoning later",
+          "Documentation detail has no real bearing on audit readiness",
+          "Avoid any documentation of decision rationale to eliminate audit risk entirely"
+        ],
+        a:1,
+        why:"Documentation that's too light to be useful later isn't actually more efficient — it just defers the cost to a moment (an audit, a dispute) when reconstructing the reasoning is much harder and more urgent.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance reviewer notes that a program's compliance checklist was completed once at initiation and never updated, even though several new organizational policies have since taken effect that plausibly apply to the program. What is the appropriate response?",
+        options:[
+          "No action needed; the initial checklist remains valid regardless of subsequent policy changes",
+          "Reassess the compliance checklist against current policy, since organizational requirements — like regulatory ones — can change after initiation and a program should periodically confirm it remains aligned",
+          "Discontinue the compliance checklist entirely since it clearly wasn't being maintained",
+          "Assume new organizational policies never apply retroactively to programs already underway"
+        ],
+        a:1,
+        why:"Organizational policy, like external regulation, isn't frozen at the moment a program starts — periodically reassessing compliance against current policy is what keeps a checklist actually meaningful rather than a historical artifact.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager discovers a minor compliance gap that, while technically a violation, is very unlikely to be noticed by any regulator or auditor. A team member suggests quietly correcting it going forward without disclosing the past gap. What is the most appropriate response?",
+        options:[
+          "Follow the team member's suggestion, since the gap is unlikely to be noticed",
+          "Disclose and formally address the gap through the appropriate governance and compliance channels, rather than quietly correcting it without documentation or disclosure, regardless of how likely detection is",
+          "Ignore the gap entirely since it is minor",
+          "Escalate the gap only if a regulator specifically asks about it"
+        ],
+        a:1,
+        why:"Likelihood of detection isn't the standard for whether a compliance gap gets addressed properly — quietly fixing it without disclosure sidesteps exactly the transparency and accountability governance and ethical practice require.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program operating in a heavily regulated industry maintains detailed records of every governance decision, including rationale, alternatives considered, and approval chain, as a standard practice rather than only in anticipation of a specific audit. What is the primary benefit of this practice?",
+        options:[
+          "It has no practical benefit beyond satisfying a general sense of thoroughness",
+          "It ensures the program is continuously audit-ready, able to produce a clear, traceable record on demand rather than needing to reconstruct history under time pressure whenever an audit is announced",
+          "It is only useful if an audit is already scheduled",
+          "It primarily benefits the program manager's personal record rather than the organization"
+        ],
+        a:1,
+        why:"Standard, ongoing documentation practice is what makes audit readiness a constant state rather than a scramble — the benefit shows up precisely because it doesn't depend on knowing in advance when an audit will happen.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for program compliance and audit readiness?",
+        options:[
+          "Treating compliance confirmation as an ongoing responsibility, revisited as regulations or policies change",
+          "Maintaining decision documentation as standard practice rather than only when an audit is anticipated",
+          "Assuming a compliance posture confirmed at program initiation remains valid for the program's full duration",
+          "Quietly correcting a discovered compliance gap without disclosure, when detection seems unlikely"
+        ],
+        a:[0,1],
+        why:"Continuous compliance attention and standing documentation practice are what keep a program genuinely audit-ready — assuming initiation-stage compliance stays valid forever, or quietly fixing gaps without disclosure, both leave real exposure.",
+        refs:["governance"]
+      },
+      {
+        type:"case",
+        stem:"A national food distribution company is running a \"Cold Chain Traceability Program\" subject to food-safety regulatory oversight.",
+        scenario:"A new food-safety regulation takes effect eight months into the program, materially changing documentation requirements for one component. The program manager becomes aware of the change but assumes the compliance team will independently update the program's plans, and continues operating under the original requirements for several more months without confirming this happened.",
+        subs:[
+          {
+            stem:"What is the most significant risk in the program manager's assumption?",
+            options:[
+              "There is no risk; compliance updates are always handled automatically by the compliance team without any need for program-level confirmation",
+              "Without confirming the compliance team actually acted, the program may continue operating under outdated requirements for an extended period, since no governance process verified the handoff occurred",
+              "The regulation change itself is the only real problem, regardless of how the program responds to it",
+              "This is solely a legal department issue with no bearing on program governance"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate step for the program manager to take now?",
+            options:[
+              "Continue assuming the compliance team has handled it, since raising the issue might seem like overstepping",
+              "Proactively confirm with the compliance team whether the program's plans have been updated to reflect the new requirement, and if not, initiate the update through the appropriate governance process",
+              "Wait for the next scheduled audit to determine whether the update occurred",
+              "Independently interpret and implement the new regulation without involving the compliance team at all"
+            ],
+            a:1
+          }
+        ],
+        why:"An unconfirmed assumption about who's handling a compliance-relevant change is exactly how a gap can persist for months — proactively confirming, rather than assuming silence means it's handled, is what actually closes the loop.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV7", domain:"governance", name:"Governance Performance & Continuous Improvement",
+    refs:["governance"],
+    material:[
+      "Governance itself should be periodically evaluated for effectiveness — decision timeliness, quality, stakeholder satisfaction with the process — rather than assuming a structure that was well-designed once continues performing well indefinitely.",
+      "Governance improvement should be based on evidence (patterns in decision delays, escalation volume, feedback) rather than a single dramatic incident driving an overcorrection.",
+      "Streamlining governance to reduce friction is legitimate, but should be evaluated against what oversight or rigor might be lost — faster isn't automatically better if it trades away meaningful review.",
+      "Lessons about what worked or didn't work in a program's governance approach should be captured and made available to future programs, not left as tacit knowledge that leaves with the people involved."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's governance structure was carefully designed and worked well in its first year. Two years later, decision delays have crept up significantly, but no one has evaluated whether the structure itself is still functioning effectively, since it was \"already proven to work.\" What is the flaw in this reasoning?",
+        options:[
+          "There is no flaw; a structure that worked well initially will continue to work well indefinitely",
+          "Governance effectiveness isn't a one-time property — it should be periodically evaluated, since a structure that performed well initially can degrade or become mismatched over time without anyone noticing unless it's actively assessed",
+          "Decision delays are unrelated to governance structure and should be addressed through other means entirely",
+          "The structure should be completely redesigned from scratch rather than evaluated"
+        ],
+        a:1,
+        why:"Early success doesn't guarantee continued performance — periodic evaluation is what catches a structure quietly degrading over time, rather than assuming \"it worked once\" is a permanent guarantee.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"After a single high-profile governance decision goes badly, the steering committee immediately overhauls the entire decision-making process, adding significant additional review steps to every future decision regardless of scale or type. What is the concern with this response?",
+        options:[
+          "There is no concern; a dramatic response is always appropriate after a significant failure",
+          "A sweeping overhaul driven by one incident, without examining whether it reflects a genuine pattern, risks overcorrecting — adding friction to every future decision based on a single data point rather than evidence of a broader problem",
+          "The steering committee should have made no changes at all in response to the failure",
+          "Governance processes should never be changed in response to any single decision, regardless of its outcome"
+        ],
+        a:1,
+        why:"One bad outcome, however visible, isn't automatically evidence the whole process is broken — a response scaled to a single incident risks over-engineering friction into every future decision, most of which had nothing to do with what actually went wrong.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager proposes streamlining governance by removing a review step that has historically added a week to certain decisions, citing efficiency gains. A colleague asks what that review step was actually catching before recommending its removal. What is the most appropriate way to evaluate this proposal?",
+        options:[
+          "Approve the streamlining immediately, since faster decision-making is always preferable",
+          "Evaluate what oversight or rigor the review step currently provides before removing it, since a faster process isn't an improvement if it trades away meaningful review that was catching real issues",
+          "Reject the proposal automatically, since any existing review step should never be removed",
+          "Approve the streamlining only if it saves more than two weeks per decision"
+        ],
+        a:1,
+        why:"Speed and quality of oversight are a real trade-off — removing a review step without first understanding what it was actually catching risks trading away meaningful rigor for an efficiency gain that turns out to be a false economy.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program is closing, and its governance approach — including what worked well and what caused friction — exists mainly as informal knowledge among the program manager and a few steering committee members, with nothing formally documented for future programs to reference. What is the concern?",
+        options:[
+          "There is no concern; future programs should design their own governance from scratch regardless of past experience",
+          "Valuable lessons about what worked and didn't in this program's governance approach will likely be lost once these individuals move on, rather than being available to inform future programs' governance design",
+          "Governance lessons are not the kind of knowledge worth capturing formally",
+          "This is only a concern if the program's governance was considered a failure"
+        ],
+        a:1,
+        why:"Tacit knowledge that lives only in a few people's heads doesn't transfer automatically — without formal capture, future programs lose the chance to build on real, hard-won lessons about what actually worked.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager wants to evaluate governance effectiveness but is unsure what to actually measure beyond \"it feels slow sometimes.\" What would be the most useful starting point?",
+        options:[
+          "Rely solely on subjective impressions, since governance effectiveness can't be meaningfully measured",
+          "Track concrete indicators — decision timeliness, escalation volume, patterns in delays, and stakeholder feedback on the governance process — to move from vague impressions to an evidence-based assessment",
+          "Measure only the total number of steering committee meetings held",
+          "Evaluate governance effectiveness solely based on whether the program is currently on schedule"
+        ],
+        a:1,
+        why:"Concrete indicators turn a vague sense that \"it feels slow\" into an actual evidence base — without them, governance evaluation stays subjective and hard to act on.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance evaluation reveals that decision delays are concentrated specifically around a particular type of technical approval, while other decision types move at a healthy pace. The steering committee is considering whether to address this narrowly or overhaul the entire governance process. What is the most appropriate response?",
+        options:[
+          "Overhaul the entire governance process, since any identified problem should trigger a comprehensive redesign",
+          "Address the specific bottleneck around technical approvals, since the evidence points to a narrow, identifiable issue rather than a broad, systemic governance failure",
+          "Take no action, since only one decision type is affected",
+          "Eliminate the technical approval step entirely to remove the bottleneck"
+        ],
+        a:1,
+        why:"Evidence pointing to a specific, narrow bottleneck calls for a targeted fix — a full overhaul in response to a localized issue would add unnecessary friction elsewhere for a problem that doesn't exist there.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee member proposes conducting a structured governance retrospective every year, similar to a project retrospective, to assess what's working and what isn't. Another member questions whether this is really necessary given governance was already carefully designed at initiation. What is the strongest argument for the annual retrospective?",
+        options:[
+          "It's not necessary; a well-designed initial structure requires no further evaluation",
+          "Regular, structured evaluation is what actually catches gradual drift or emerging problems in governance effectiveness — waiting for a visible failure before evaluating misses issues that build up quietly over time",
+          "Annual retrospectives should replace all other forms of governance documentation",
+          "Governance retrospectives are useful only for programs experiencing visible, active failures"
+        ],
+        a:1,
+        why:"A structured, regular check is what surfaces gradual drift before it becomes a visible failure — relying on a crisis to prompt evaluation means real problems can compound for a long time before anyone notices.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's governance lessons-learned documentation notes that a particular escalation threshold was set too low, causing excessive escalations, but the documentation doesn't specify what a better threshold might have looked like or why. A future program manager reading this later finds it only partially useful. What is missing?",
+        options:[
+          "Nothing; simply noting that the threshold was too low is sufficient documentation",
+          "Specific, actionable detail — what a better threshold might have been and the reasoning behind that assessment — that would let a future program actually apply the lesson rather than just knowing a problem existed",
+          "The documentation should have omitted this finding entirely since the original threshold decision can't be undone",
+          "This kind of operational lesson doesn't belong in governance documentation at all"
+        ],
+        a:1,
+        why:"A lesson that only names the problem, without actionable specifics, is only partially transferable — the real value for a future program comes from detail concrete enough to actually apply, not just a general \"this didn't work.\"",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for evaluating and improving program governance?",
+        options:[
+          "Using evidence — decision timeliness, escalation patterns, stakeholder feedback — to guide governance improvement, rather than reacting to a single incident alone",
+          "Assuming a governance structure that worked well initially will continue performing well indefinitely without further evaluation",
+          "Evaluating what oversight a review step provides before removing it in the name of efficiency",
+          "Keeping governance lessons learned as informal, undocumented knowledge among the people directly involved"
+        ],
+        a:[0,2],
+        why:"Evidence-based evaluation and weighing what a review step actually provides before cutting it are what make governance improvement genuine rather than reactive — assuming permanence or leaving lessons undocumented both leave real value on the table.",
+        refs:["governance"]
+      },
+      {
+        type:"case",
+        stem:"A national broadcasting company is running a \"Content Distribution Platform Program\" whose governance structure was carefully designed at initiation three years ago.",
+        scenario:"A recent high-profile decision delay drew sharp criticism from a senior stakeholder, prompting the steering committee to propose eliminating a technical risk-review step from all future decisions. No one has yet examined whether this specific decision's delay reflects a broader pattern or an isolated case, nor what the risk-review step has historically caught.",
+        subs:[
+          {
+            stem:"What is the most significant issue with the committee's proposed response?",
+            options:[
+              "There is no issue; any governance friction identified by a senior stakeholder should be eliminated immediately",
+              "The proposal reacts to a single incident without first examining whether it reflects a genuine pattern or what value the risk-review step has historically provided — risking an overcorrection based on limited evidence",
+              "The risk-review step should have been eliminated from the very beginning of the program",
+              "The senior stakeholder's criticism should be disregarded entirely regardless of its merit"
+            ],
+            a:1
+          },
+          {
+            stem:"What would be a more appropriate next step before making a final decision?",
+            options:[
+              "Proceed directly with eliminating the risk-review step as proposed",
+              "Review decision-timeliness data and the risk-review step's track record to determine whether this delay reflects a broader pattern and what oversight would actually be lost by removing the step",
+              "Take no action of any kind and dismiss the senior stakeholder's concern entirely",
+              "Add additional review steps to every decision type in response to this one incident"
+            ],
+            a:1
+          }
+        ],
+        why:"A single high-profile delay is a reason to look closer, not to immediately overhaul the process — an evidence-based look at both the pattern and what the review step actually catches is what should inform the decision, rather than reacting to the visibility of the complaint alone.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV8", domain:"governance", name:"Ethics, Conflicts of Interest & Governance Integrity",
+    refs:["governance","ethics"],
+    material:[
+      "Conflicts of interest — financial, personal, or organizational — should be proactively disclosed and managed within governance, not left for someone else to discover later; disclosure itself doesn't resolve a conflict, but it's the necessary first step.",
+      "Governance integrity depends on decisions being made on their actual merits — even subtle, well-intentioned pressure to favor a particular outcome (a friendship, a past favor, organizational politics) can compromise that if left unexamined.",
+      "PMI's Code of Ethics applies fully within governance processes: responsibility, respect, fairness, and honesty aren't suspended because a decision is difficult, high-stakes, or politically sensitive.",
+      "A governance body member who cannot act impartially on a specific decision should recuse themselves from that decision, rather than participating while carrying an unmanaged conflict."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A steering committee member is evaluating a vendor selection decision where one of the competing vendors is owned by a close family member. The member does not disclose this relationship and participates fully in the discussion and vote. What is the concern?",
+        options:[
+          "There is no concern, as long as the member believes they can remain objective",
+          "The undisclosed conflict of interest should have been proactively disclosed before participating — disclosure is the necessary first step regardless of the member's personal confidence in their own objectivity",
+          "Family relationships are never relevant to conflict-of-interest policy",
+          "The concern only matters if the family member's vendor ultimately wins the selection"
+        ],
+        a:1,
+        why:"A member's confidence in their own objectivity isn't the standard — a real conflict needs to be disclosed so the body itself, not just the individual, can decide how to handle it.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program manager discloses a potential conflict of interest — a personal friendship with a vendor being considered for a contract — to the steering committee, which then decides the program manager may continue to be involved in a limited capacity with additional oversight. Is this an appropriate resolution?",
+        options:[
+          "No, disclosure alone is meaningless and the program manager should have been removed from the program entirely",
+          "Potentially — proactive disclosure followed by a deliberate, documented decision about how to manage the conflict (rather than ignoring it or pretending it doesn't exist) reflects sound handling, though the specific mitigation should genuinely address the risk",
+          "Yes, but only because the program manager is the one who disclosed it",
+          "No, because conflicts of interest can never be appropriately managed once disclosed"
+        ],
+        a:1,
+        why:"Disclosure by itself doesn't resolve a conflict — but proactive disclosure followed by a deliberate, examined decision about how to manage it (recusal, added oversight, or otherwise) is exactly the process integrity depends on, distinct from either ignoring the conflict or reacting to it with an automatic removal.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee member has no financial or family conflict but has a long-standing professional friendship with one candidate being considered for a key leadership role on the program. The member doesn't view this as a conflict requiring disclosure. Is this the right call?",
+        options:[
+          "Yes, only financial or family relationships constitute conflicts of interest requiring disclosure",
+          "Not necessarily — even a non-financial personal relationship can subtly influence judgment, and governance integrity is better served by disclosing it and letting the body decide how to handle it, rather than the individual member deciding alone that it doesn't matter",
+          "Yes, because professional friendships never influence governance decisions",
+          "No, because the member should be removed from the steering committee entirely for having any friendships in the industry"
+        ],
+        a:1,
+        why:"Conflicts aren't limited to financial or family ties — a personal relationship can shape judgment too, and it's not really the conflicted individual's call alone to decide it's immaterial; that's exactly what disclosure and body-level review are for.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A governance decision is being made under significant organizational political pressure to favor a particular outcome that isn't clearly supported by the actual data and analysis. A steering committee member privately feels uneasy but goes along with the pressured outcome to avoid conflict. What does this scenario illustrate?",
+        options:[
+          "The member acted appropriately by prioritizing organizational harmony",
+          "Political pressure that isn't grounded in the actual merits of a decision is exactly the kind of influence governance integrity should resist — going along with it despite genuine unease compromises the decision's basis in real analysis",
+          "Political pressure should always determine the outcome of governance decisions",
+          "This scenario has no ethical dimension since no explicit conflict of interest was involved"
+        ],
+        a:1,
+        why:"Compromised decision-making doesn't require an explicit conflict of interest — unexamined political pressure that overrides what the actual analysis supports is its own threat to governance integrity, even without a formal conflict on the table.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee member recognizes they cannot evaluate a specific decision impartially due to a personal stake, and formally recuses themselves from that single decision while continuing to participate normally in all other committee business. Is this an appropriate approach?",
+        options:[
+          "No, recusal from a single decision is insufficient and the member should resign from the committee entirely",
+          "Yes — recusing from the specific decision where impartiality is compromised, while continuing to serve on matters where no conflict exists, is a proportionate and appropriate way to manage the conflict",
+          "No, because committee members should never recuse themselves from any decision",
+          "Yes, but only if the recusal is kept confidential from the rest of the committee"
+        ],
+        a:1,
+        why:"Recusal scoped to the specific conflicted decision is a proportionate response — it protects the integrity of that decision without requiring the member to abandon a role where most of their participation is genuinely conflict-free.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program sponsor pressures the program manager to present a component's status more favorably than the underlying data supports, ahead of an important funding renewal decision. What is the most appropriate response?",
+        options:[
+          "Comply with the sponsor's request, since sponsors hold significant authority over the program",
+          "Present the status accurately based on the underlying data, even under pressure, since honesty in governance reporting isn't something that yields to convenience or authority",
+          "Present a status report that splits the difference between accurate and favorable",
+          "Refuse to provide any status report at all rather than address the pressure directly"
+        ],
+        a:1,
+        why:"Honest reporting doesn't become optional under pressure, however senior the source — the ethical obligation to accurate governance information holds regardless of who's asking for something different.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A governance body is evaluating two internal candidates for a significant program role. One committee member previously supervised one of the candidates and holds a generally favorable view of them, though no formal conflict (financial, family) exists. Should this be disclosed?",
+        options:[
+          "No, only formal financial or family conflicts warrant disclosure",
+          "Yes — disclosing the prior supervisory relationship and resulting favorable impression allows the body to weigh the input appropriately, even though it doesn't rise to a disqualifying conflict of interest",
+          "No, since the member's favorable view is likely to be accurate given their firsthand experience",
+          "Yes, but only if the member's vote would change the outcome"
+        ],
+        a:1,
+        why:"Transparency about a relevant relationship lets the body properly weigh input, whether or not it rises to a formal disqualifying conflict — disclosure isn't only for the most severe conflicts.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program manager discovers that a steering committee decision favored an outcome that benefited a committee member's former employer, and that this relationship was never disclosed. What is the most appropriate response?",
+        options:[
+          "Ignore the discovery since the decision has already been made and implemented",
+          "Raise the undisclosed relationship through the appropriate governance channel for review, since an undisclosed conflict affecting a real decision needs to be examined regardless of when it's discovered",
+          "Confront the committee member privately and informally without escalating further",
+          "Assume the decision was made properly since no one raised a concern at the time"
+        ],
+        a:1,
+        why:"Discovering an undisclosed conflict after the fact still calls for formal review — the timing of discovery doesn't reduce the need to examine whether the decision's basis was actually sound.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for managing conflicts of interest and governance integrity?",
+        options:[
+          "Proactively disclosing a potential conflict of interest before participating in a related decision",
+          "Allowing the individual with the conflict to decide alone whether it's significant enough to warrant disclosure",
+          "Recusing from a specific decision where impartiality is genuinely compromised, while continuing to serve on unrelated matters",
+          "Presenting a status report more favorably than the data supports when under pressure from a senior stakeholder"
+        ],
+        a:[0,2],
+        why:"Proactive disclosure and scoped recusal are what keep governance integrity intact — letting a conflicted individual self-judge their own conflict, or bending honest reporting under pressure, both erode the trust governance depends on.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"case",
+        stem:"A national engineering firm is running a \"Bridge Infrastructure Renewal Program\" with a steering committee evaluating a major subcontractor selection.",
+        scenario:"One steering committee member's spouse recently joined the leadership team of one of the two finalist subcontractors. The member has not disclosed this and has been the most vocal advocate for that subcontractor throughout the evaluation process.",
+        subs:[
+          {
+            stem:"What is the most appropriate initial step once this relationship comes to light?",
+            options:[
+              "Take no action, since the member's advocacy might have been based purely on the subcontractor's merits",
+              "Require disclosure and formal review of the conflict, given its direct relevance to a decision the member has actively advocated on, before the selection proceeds further",
+              "Automatically select the other finalist subcontractor to avoid any appearance of impropriety",
+              "Quietly note the relationship without raising it formally to avoid an uncomfortable conversation with the member"
+            ],
+            a:1
+          },
+          {
+            stem:"What would be the most appropriate way to handle the member's continued participation going forward?",
+            options:[
+              "Allow the member to continue advocating for their preferred subcontractor as before, now that the relationship is known",
+              "Have the member recuse themselves from this specific selection decision, while continuing to participate normally in the committee's other, unrelated business",
+              "Remove the member from the steering committee entirely",
+              "Dissolve the steering committee and restart the entire subcontractor evaluation from scratch"
+            ],
+            a:1
+          }
+        ],
+        why:"A real, undisclosed conflict directly tied to active advocacy on a specific decision calls for disclosure and recusal from that decision — proportionate to the actual conflict, not an overreaction that removes the member from all governance participation.",
+        refs:["governance","ethics"]
+      }
+    ]
+  },
+  {
+    id:"GV9", domain:"governance", name:"Multi-Program & Portfolio-Level Governance Coordination",
+    refs:["governance","standard"],
+    material:[
+      "When a program's governance interacts with portfolio-level or enterprise-level governance, decisions can't be made in isolation — resourcing, prioritization, and risk decisions at the program level often ripple into or depend on the broader portfolio.",
+      "Competing programs within the same portfolio, drawing on shared resources or targeting overlapping strategic objectives, need a coordinated governance mechanism to resolve conflicts — leaving it to informal negotiation between individual program managers invites inconsistent, political outcomes.",
+      "Portfolio-level governance bodies need visibility into program-level risk and status that's genuinely comparable across programs — inconsistent reporting formats between programs undermine the portfolio body's ability to make sound relative-priority decisions.",
+      "A program manager operating within a larger portfolio needs to understand which decisions are genuinely theirs to make and which require portfolio-level awareness or approval, even when the decision looks purely program-internal on its face."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program manager makes a significant resourcing decision that pulls specialized staff away from a lower-priority activity within their own program, without realizing that pool of specialized staff is also relied upon by another program in the same portfolio. What is the underlying governance gap?",
+        options:[
+          "There is no gap; program managers should have full autonomy over resourcing decisions within their own program",
+          "The decision, though it looked purely program-internal, actually had portfolio-level resourcing implications — without visibility into or coordination with portfolio-level governance, this kind of cross-program impact can go unrecognized until it causes a conflict",
+          "The other program should have anticipated this resourcing conflict independently with no coordination required",
+          "This type of conflict should be resolved by whichever program manager has more organizational seniority"
+        ],
+        a:1,
+        why:"A decision that looks entirely internal to one program can still ripple into a shared resource pool another program depends on — this is exactly the kind of cross-program effect that needs portfolio-level visibility to catch before it becomes a conflict.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"Two programs within the same portfolio are both requesting the same specialized engineering resource for overlapping time periods, and their program managers have been trying to negotiate the conflict informally between themselves for weeks without resolution. What is the concern with resolving this purely through informal program-manager-to-program-manager negotiation?",
+        options:[
+          "There is no concern; informal negotiation between program managers is always the most efficient way to resolve resource conflicts",
+          "Without a coordinated portfolio-level governance mechanism, the outcome risks depending more on relative negotiating skill or organizational politics than on which program's need actually has greater strategic priority",
+          "Portfolio-level governance should never be involved in resource allocation decisions between programs",
+          "This conflict should be resolved by simply splitting the resource's time exactly evenly regardless of relative priority"
+        ],
+        a:1,
+        why:"Leaving a genuine strategic priority question to informal negotiation between two program managers risks the outcome reflecting negotiating leverage rather than which program's need actually matters more to the organization — that's a portfolio-level judgment call.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A portfolio governance body is trying to compare risk exposure across five programs to make a relative prioritization decision, but each program reports risk using different formats, scales, and terminology. What problem does this create?",
+        options:[
+          "No problem; the portfolio body can simply compare the reports as they are",
+          "Inconsistent reporting formats make genuine comparison across programs difficult, undermining the portfolio body's ability to make a well-informed relative-priority decision",
+          "Each program should be evaluated in complete isolation with no cross-program comparison ever attempted",
+          "This is solely a documentation formatting issue with no real bearing on the prioritization decision"
+        ],
+        a:1,
+        why:"A portfolio body making relative decisions across programs needs genuinely comparable information — inconsistent formats and terminology make that comparison unreliable, regardless of how sound each individual program's own risk analysis is.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager considers a scope adjustment that stays fully within their program's approved budget and doesn't require steering committee approval under the program's own governance charter, but which would shift the program's outputs in a way that affects a strategic synergy with another program in the portfolio. Is program-level approval alone sufficient here?",
+        options:[
+          "Yes, since the decision stays within the program's own approved budget and governance thresholds",
+          "Not necessarily — even a decision that clears the program's own internal governance thresholds may still warrant portfolio-level awareness if it affects a strategic synergy or dependency with another program",
+          "No, because any scope adjustment always requires portfolio-level approval regardless of its actual impact",
+          "Yes, but only if the other program's manager happens to notice the change independently"
+        ],
+        a:1,
+        why:"Program-level thresholds are calibrated for that program's own internal decisions — they don't automatically account for cross-program effects, which is exactly why a decision can be fully compliant internally while still needing portfolio-level visibility.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A portfolio-level governance body wants to establish a standard risk-reporting template that all programs in the portfolio must use, replacing each program's own previously customized format. A program manager objects that their program's specific risk profile doesn't fit the standard template well. What is the most appropriate way to resolve this?",
+        options:[
+          "The program should be exempted entirely from portfolio-level reporting standards",
+          "Work with the portfolio body to adapt the standard template to accommodate the program's genuine specific needs while preserving the comparability the portfolio level requires, rather than either forcing an ill-fitting format or abandoning standardization altogether",
+          "The portfolio body should abandon standardized reporting entirely given this one objection",
+          "The program manager should simply comply with the standard template regardless of whether it captures the program's actual risk profile"
+        ],
+        a:1,
+        why:"A genuine mismatch between a standard template and a program's real risk profile deserves a real accommodation — but the fix is adapting the template while preserving comparability, not throwing out standardization or forcing a bad fit.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is unsure whether a particular decision requires portfolio-level awareness, since it technically falls within their program's own delegated authority. What is the most useful test to apply?",
+        options:[
+          "Any decision within delegated program-level authority never requires portfolio-level awareness by definition",
+          "Consider whether the decision has effects reaching beyond the program itself — shared resources, strategic dependencies, or synergies with other programs — regardless of whether it technically clears the program's own internal threshold",
+          "Escalate every single program decision to the portfolio level regardless of scale to be safe",
+          "Only decisions above a certain dollar threshold ever warrant portfolio-level awareness"
+        ],
+        a:1,
+        why:"Delegated authority describes what a program manager can decide without additional approval — it doesn't by itself tell you whether the decision's effects stay contained within the program, which is the real test for whether portfolio-level awareness matters.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A portfolio governance body deprioritizes one program in favor of another with a stronger current strategic case, reallocating a shared resource pool accordingly. The deprioritized program's manager is frustrated and considers appealing informally to individual portfolio committee members outside the formal process. What is the most appropriate path instead?",
+        options:[
+          "Pursuing informal appeals to individual committee members is the most effective and appropriate approach",
+          "Raise any substantive concerns about the decision through the portfolio governance body's formal review or appeal process, rather than working around it through informal individual appeals",
+          "Accept the decision without any further engagement, regardless of whether new information might be relevant",
+          "Unilaterally continue operating at the original resource level despite the portfolio-level reallocation"
+        ],
+        a:1,
+        why:"A legitimate concern about a portfolio-level decision deserves a legitimate channel — working the room informally, rather than using the formal review process, risks exactly the kind of political dynamic that undermines fair, evidence-based portfolio governance.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"single",
+        stem:"A program operating within a larger portfolio experiences a significant risk event that, while fully contained within the program itself, is similar in nature to a risk that materialized in a different portfolio program the previous year. The program manager handles it entirely within their own program's risk process without flagging the pattern to the portfolio level. What is the missed opportunity here?",
+        options:[
+          "There is no missed opportunity; risk events fully contained within one program never need portfolio-level visibility",
+          "Flagging the pattern to the portfolio level could help other programs recognize and prepare for a similar risk, and could reveal whether this is a recurring, portfolio-wide risk type worth addressing systemically",
+          "The program manager should have escalated the risk event even though it was already resolved",
+          "Portfolio-level governance has no legitimate interest in risks that don't currently threaten multiple programs simultaneously"
+        ],
+        a:1,
+        why:"A risk that recurs across different programs in the same portfolio is a pattern worth surfacing, even when each individual occurrence stays contained — the portfolio level is exactly where that kind of systemic pattern becomes visible and actionable.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for governance coordination across multiple programs in a portfolio?",
+        options:[
+          "Maintaining reporting formats consistent enough for the portfolio body to genuinely compare risk and status across programs",
+          "Resolving resource conflicts between programs purely through informal negotiation between individual program managers",
+          "Recognizing when a program-internal decision may still have effects reaching other programs or the shared portfolio",
+          "Assuming any decision within a program's own delegated authority never requires portfolio-level awareness"
+        ],
+        a:[0,2],
+        why:"Comparable reporting and awareness of cross-program effects are what make portfolio-level governance actually function — informal negotiation for real conflicts and treating delegated authority as a blanket exemption both risk missing the bigger picture.",
+        refs:["governance","standard"]
+      },
+      {
+        type:"case",
+        stem:"A national healthcare system is running three concurrent programs under a shared portfolio governance structure, all drawing on a common pool of clinical informatics specialists.",
+        scenario:"The \"Patient Records Modernization Program\" manager decides to accelerate a component's timeline, which requires temporarily pulling several clinical informatics specialists from their current allocation. This decision is fully within the program's own delegated authority and budget, but the specialists were also relied upon by the \"Telehealth Expansion Program,\" whose manager only learns of the reallocation after the fact.",
+        subs:[
+          {
+            stem:"What does this situation most directly illustrate?",
+            options:[
+              "The Patient Records program manager acted entirely appropriately since the decision was within their own delegated authority",
+              "A decision that clears a program's own internal governance thresholds can still have real cross-program effects that portfolio-level visibility is meant to catch before they cause a conflict",
+              "The Telehealth Expansion program manager should have anticipated this reallocation without any coordination mechanism",
+              "Shared resource pools should never be used across multiple programs in a portfolio"
+            ],
+            a:1
+          },
+          {
+            stem:"What would be the most appropriate governance improvement going forward?",
+            options:[
+              "No changes are needed, since the decision was technically within the program manager's authority",
+              "Establish a portfolio-level coordination mechanism — such as a shared-resource review step — for decisions affecting resources known to be relied upon by multiple programs, even when those decisions fall within a single program's own delegated authority",
+              "Remove the Patient Records program manager's delegated authority over all resourcing decisions",
+              "Assign the shared specialist pool permanently and exclusively to a single program to avoid future conflicts"
+            ],
+            a:1
+          }
+        ],
+        why:"A decision fully proper at the program level can still create real friction at the portfolio level when it touches a genuinely shared resource — the fix is a coordination mechanism scoped to that specific risk, not stripping away legitimate program-level authority or exclusively locking up a shared resource.",
+        refs:["governance","standard"]
+      }
+    ]
+  },
+  {
+    id:"GV10", domain:"governance", name:"Gate Reviews, Termination Decisions & Governance Under Pressure",
+    refs:["governance","benefitsreg"],
+    material:[
+      "A stage/phase gate review exists to make a genuine go/no-go (or go-with-conditions) decision based on current evidence — treating it as a formality to rubber-stamp already-assumed continuation defeats its purpose.",
+      "Recommending termination or significant redirection of a program one has invested heavily in is a legitimate, sometimes necessary governance outcome — sunk cost and personal investment shouldn't be allowed to keep a no-longer-justified program alive.",
+      "Governance decisions made under significant time or political pressure are especially vulnerable to skipped analysis — pressure is a reason for more discipline in the decision process, not less.",
+      "A gate review's rigor should scale with the stakes of the decision — a routine, low-risk continuation deserves a lighter review than a major go/no-go call with significant sunk investment and strategic consequences riding on it."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A steering committee's gate reviews have, for the past year, always resulted in approval to continue, with discussions focused mainly on scheduling the next milestone rather than genuinely evaluating whether continuation is still justified. A new member asks whether the gate review process still serves its intended purpose. What is the concern?",
+        options:[
+          "There is no concern; consistent approval simply reflects a well-run program",
+          "A pattern of automatic approval, with discussion focused on logistics rather than genuine evaluation, suggests the gate review may have become a formality rather than the real go/no-go decision point it's meant to be",
+          "Gate reviews should never result in approval to continue under any circumstances",
+          "The new member's question reflects a misunderstanding of what gate reviews are for"
+        ],
+        a:1,
+        why:"A string of automatic approvals with no real evaluative discussion is exactly what a gate review becoming a rubber stamp looks like — the new member's instinct to question it is the right one.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"At a gate review, the evidence suggests a component no longer justifies its resource investment relative to its now-diminished expected benefit, but the steering committee is reluctant to terminate it given how much has already been invested. What is the most appropriate governance principle to apply here?",
+        options:[
+          "Continue the component regardless of the evidence, since terminating it would waste the prior investment",
+          "Evaluate the decision based on the component's current and future value relative to continued investment, not on how much has already been spent — sunk costs shouldn't be allowed to keep a no-longer-justified component alive",
+          "Terminate the component automatically whenever any termination option is raised at a gate review",
+          "Delay the decision indefinitely until the sunk-cost discomfort resolves itself"
+        ],
+        a:1,
+        why:"Prior investment is gone either way — the only question a sound gate decision should weigh is whether continuing is still the best use of resources going forward, not how much has already been spent trying to justify staying the course.",
+        refs:["governance","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A major go/no-go gate review is scheduled during a period of intense organizational pressure to show progress, with senior leadership publicly expecting continuation. The program manager privately has real concerns about the program's viability that the data supports. What is the most appropriate approach?",
+        options:[
+          "Downplay the concerns in the gate review materials to align with leadership's public expectations",
+          "Present the concerns and supporting evidence fully and honestly at the gate review, since pressure to reach a particular outcome is a reason for more rigor in the decision process, not a reason to suppress relevant evidence",
+          "Postpone the gate review indefinitely to avoid the difficult conversation",
+          "Resign from the program rather than present concerns that conflict with leadership's public expectations"
+        ],
+        a:1,
+        why:"External pressure toward a particular outcome is exactly when rigorous, honest presentation of the evidence matters most — suppressing real concerns to match expectations is how governance under pressure goes wrong.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A gate review for a small, low-risk component continuation is given the same extensive multi-week preparation and review process as the program's major strategic go/no-go decisions. Component teams report this feels disproportionate to the actual stakes involved. What is the most appropriate response?",
+        options:[
+          "Maintain identical rigor for every gate review regardless of the decision's actual stakes, to ensure consistency",
+          "Scale the gate review's rigor to the actual stakes of the decision — a routine, low-risk continuation reasonably warrants a lighter-touch review than a major strategic decision with significant investment and consequences",
+          "Eliminate gate reviews entirely for low-risk components",
+          "Apply the same lightweight review to every gate decision, including major strategic ones, to reduce overall burden"
+        ],
+        a:1,
+        why:"Uniform maximum rigor for every decision, regardless of stakes, wastes effort on low-risk calls without necessarily making high-stakes ones any better — scaling review depth to actual stakes is what keeps the process both efficient and appropriately careful where it matters most.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager who has led a program for three years, personally invested in its success, is preparing materials for a gate review where the honest assessment suggests a significant strategic redirection or possible termination may be warranted. What is the most appropriate way to handle this personal investment?",
+        options:[
+          "Present the redirection or termination case as weakly as possible, since acknowledging it may reflect poorly on the program manager's leadership",
+          "Present the honest assessment fully and objectively, recognizing that recommending termination or redirection of a program one has invested heavily in is a legitimate and sometimes necessary governance outcome, not a personal failure",
+          "Avoid scheduling the gate review at all to prevent the difficult conversation",
+          "Resign from the program manager role rather than present an honest but unfavorable assessment"
+        ],
+        a:1,
+        why:"Personal investment in a program's success shouldn't distort what the gate review actually needs — an honest recommendation, even one pointing toward termination or major redirection, is a legitimate part of good governance, not a personal failure to avoid.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A gate review reaches a \"go, with conditions\" decision — approving continuation but requiring specific corrective actions before the next gate. Three months later, at the next gate, the conditions were never actually tracked or verified, and continuation is approved again by default. What is the concern?",
+        options:[
+          "There is no concern; a conditional go decision is functionally equivalent to an unconditional one",
+          "Conditions attached to a gate decision need to be actively tracked and verified — treating them as a formality that gets waved through at the next gate undermines the entire purpose of making continuation conditional in the first place",
+          "Conditional gate decisions should never be used since they're too difficult to track",
+          "The conditions should have been made permanent requirements rather than tied to the next gate"
+        ],
+        a:1,
+        why:"A \"go, with conditions\" decision only means something if the conditions are actually tracked and checked — otherwise it's functionally identical to an unconditional approval, which defeats the entire point of attaching conditions.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee is under pressure from a major stakeholder to fast-track an upcoming gate review, skipping the usual independent risk assessment to save two weeks. What is the most appropriate response?",
+        options:[
+          "Comply with the request, since stakeholder pressure should generally take precedence over standard process",
+          "Push back on skipping the independent risk assessment, since time pressure is exactly the situation where a genuine, rigorous review matters most, not a justification for cutting a step designed to catch real risk",
+          "Cancel the gate review entirely rather than either comply or push back",
+          "Comply with the request but keep it undocumented to avoid drawing attention to the shortcut"
+        ],
+        a:1,
+        why:"Skipping a risk assessment to save time under pressure is precisely the scenario that assessment exists to guard against — the two weeks saved isn't worth the risk of a decision made without genuine evaluation.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"At a gate review, the evidence is genuinely mixed — some strong positive indicators, some real concerns — and a clear go or no-go call isn't obviously supported by the data either way. What is the most appropriate governance response?",
+        options:[
+          "Force a definitive go or no-go decision regardless of how genuinely mixed the evidence is, to avoid appearing indecisive",
+          "Consider a conditional or narrower decision — such as continuation with specific, trackable conditions, or a shorter interval to the next gate — that reflects the genuine uncertainty rather than forcing false confidence in either direction",
+          "Default to termination whenever the evidence isn't clearly favorable",
+          "Postpone any decision indefinitely until the evidence becomes completely unambiguous"
+        ],
+        a:1,
+        why:"Genuinely mixed evidence doesn't require pretending to certainty — a conditional decision or a shorter review interval can reflect the real uncertainty honestly, rather than forcing an artificially confident go or no-go call.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee approves continuation at a gate review but the meeting minutes only record \"approved\" with no summary of the evidence reviewed or the specific reasoning behind the decision. Six months later, a new committee member asks what evidence supported the decision, and no one can reconstruct it in detail. What does this illustrate?",
+        options:[
+          "There is no issue; recording the outcome of a gate decision is sufficient",
+          "Gate review documentation that captures only the outcome, not the evidence and reasoning behind it, leaves the decision effectively untraceable later — exactly the kind of gap that undermines both governance quality and audit readiness",
+          "New committee members shouldn't need to understand the reasoning behind decisions made before they joined",
+          "This gap only matters if the original decision is later found to have been wrong"
+        ],
+        a:1,
+        why:"A bare \"approved\" doesn't preserve the actual basis for a significant decision — without the evidence and reasoning captured, the decision becomes effectively unreviewable later, regardless of whether it was originally sound.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A gate review is approaching, and the program manager realizes that presenting the full, unfiltered set of concerns would likely trigger a difficult, lengthy discussion, while a more curated, upbeat presentation would likely sail through quickly. What is the most appropriate approach?",
+        options:[
+          "Present the curated, upbeat version to keep the gate review efficient and avoid an uncomfortable discussion",
+          "Present the full, honest picture including the real concerns, even though it will likely take longer and prompt harder questions — a gate review's purpose is to surface exactly this kind of input, not to move quickly through a filtered version",
+          "Present the concerns only if a committee member specifically asks about them",
+          "Skip the gate review this cycle and address the concerns informally instead"
+        ],
+        a:1,
+        why:"A gate review that moves quickly because it was fed a curated picture isn't actually doing its job — the harder, longer conversation prompted by honest input is exactly what the review exists to enable.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program has passed every prior gate review with strong approval, and the upcoming gate is widely expected by the team to be another formality. New data arriving just before the gate review reveals a significant and previously unrecognized risk to the program's benefit case. How should this affect the upcoming gate review?",
+        options:[
+          "The gate review should proceed as originally expected, since prior gates all went smoothly",
+          "The new data should be presented fully at the gate review regardless of the prior pattern of easy approvals, since each gate review should reflect current evidence, not the momentum of past decisions",
+          "The new data should be held back until after the gate review to avoid disrupting the expected outcome",
+          "The gate review should be cancelled since the new data changes the situation"
+        ],
+        a:1,
+        why:"A pattern of past approvals doesn't reduce the obligation to bring current, relevant data to the next gate — each review needs to reflect where things actually stand now, not the inertia of prior outcomes.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee is evaluating whether to terminate a program that has strong emotional significance to several long-tenured executives who championed its original vision, even though the current data no longer supports its continuation. What is the most appropriate way to navigate this?",
+        options:[
+          "Avoid raising termination as an option out of respect for the executives' original vision",
+          "Present the current data and its implications clearly and respectfully, recognizing that emotional attachment to a program's original vision, however genuine, shouldn't be allowed to override what the current evidence indicates is the right decision",
+          "Terminate the program immediately without any discussion of the executives' perspective",
+          "Delay the decision indefinitely until the executives' attachment to the program fades naturally"
+        ],
+        a:1,
+        why:"Respecting the people involved and following the evidence aren't in conflict — presenting the data clearly and respectfully is what allows a hard decision to be made on its actual merits rather than deferred indefinitely out of discomfort.",
+        refs:["governance","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A gate review's independent risk assessment is conducted by the same team that has been managing the program's day-to-day delivery, raising a question from a new committee member about the assessment's objectivity. What is the most appropriate response?",
+        options:[
+          "Dismiss the concern, since the delivery team has the most detailed knowledge of the program's actual status",
+          "Take the concern seriously — a genuinely independent perspective (an external reviewer, a different team, or at minimum a structured challenge process) can surface things a delivery team too close to its own work might miss",
+          "Eliminate the independent risk assessment requirement entirely, since true independence is hard to achieve",
+          "Have the delivery team review their own assessment a second time to address the concern"
+        ],
+        a:1,
+        why:"A team deeply invested in its own program's continued delivery isn't always best positioned to assess it with full objectivity — genuine independence in the review is what the concern is pointing to, and it's worth taking seriously rather than dismissing.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager, anticipating a difficult gate review, considers scheduling it for a time when a particularly skeptical steering committee member is known to be unavailable. What is the concern with this approach?",
+        options:[
+          "There is no concern; scheduling is a purely administrative decision unrelated to governance integrity",
+          "Deliberately scheduling around a specific member's scrutiny undermines the integrity of the gate review process — the decision should reflect genuine, full committee evaluation, not be shaped by who happens to be in the room",
+          "The skeptical committee member should be removed from the committee instead",
+          "This is an acceptable practice as long as the meeting minutes are shared with the absent member afterward"
+        ],
+        a:1,
+        why:"A gate decision reached because a particular scrutinizing voice happened to be absent isn't a genuine evaluation — deliberately engineering that outcome through scheduling undermines exactly the rigor the review is supposed to provide.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"At a gate review, one committee member raises a substantive concern that the rest of the committee doesn't share, and the majority votes to approve continuation despite the unresolved concern. The dissenting view is not recorded anywhere. What is missing from this process?",
+        options:[
+          "Nothing; a majority vote is sufficient to resolve any disagreement",
+          "Recording the substantive dissenting concern, even when outvoted, preserves it for future reference — an unresolved concern that simply disappears from the record can't inform later decisions if it turns out to have been prescient",
+          "The dissenting member should have been required to change their vote to match the majority",
+          "Gate review decisions should always require unanimous agreement rather than majority vote"
+        ],
+        a:1,
+        why:"A substantive concern doesn't stop mattering just because it was outvoted — recording it preserves the chance to revisit it later, especially if subsequent events suggest the dissent had real merit.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is preparing for a gate review where a significant scope reduction, rather than full termination, may be the most evidence-supported outcome. A colleague suggests only presenting the binary continue/terminate framing since that's the traditional gate review format. What is the concern with this framing?",
+        options:[
+          "There is no concern; gate reviews should always be framed as a strict binary decision",
+          "A rigid continue/terminate binary may obscure a genuinely better middle option — such as a significant scope reduction — that the evidence actually supports; the framing should reflect the real range of evidence-supported outcomes",
+          "Scope reduction should never be considered as a gate review outcome",
+          "The gate review should be cancelled if a binary framing doesn't fit the situation"
+        ],
+        a:1,
+        why:"Forcing a decision into a binary when the evidence actually points to a middle path — like scope reduction — risks losing the best available option to an artificial format constraint.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A gate review committee is asked to approve continuation of a program based primarily on a summary slide showing green status indicators, with the detailed supporting analysis available only if specifically requested. Few committee members ever request the underlying detail. What risk does this presentation approach create?",
+        options:[
+          "No risk; summary status indicators are sufficient for any gate review decision",
+          "A summary-only default risks the committee approving continuation based on a high-level impression rather than genuine engagement with the underlying evidence, since few will proactively seek out the detail behind a reassuring green indicator",
+          "Detailed supporting analysis should never be prepared for gate reviews, since summaries are always preferred",
+          "This is only a risk if the green status indicators later turn out to be inaccurate"
+        ],
+        a:1,
+        why:"A reassuring summary that's rarely dug into defaults the committee toward approving based on impression rather than evidence — a genuine gate decision needs the committee to actually engage with what's behind the indicator, not just see that it's green.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for stage/phase gate reviews and related governance decisions?",
+        options:[
+          "Evaluating continuation based on current and future value rather than how much has already been invested",
+          "Presenting concerns supported by the data honestly even under significant pressure toward a particular outcome",
+          "Treating a routine, low-risk gate review with the same extensive process as a major strategic go/no-go decision",
+          "Allowing a pattern of automatic approval to continue as long as no one has formally objected"
+        ],
+        a:[0,1],
+        why:"Weighing current and future value over sunk cost, and honest presentation under pressure, are what keep gate reviews genuine decision points — uniform maximum process regardless of stakes, and letting automatic approval continue unexamined, both drift away from real governance.",
+        refs:["governance","benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A national retail bank is running a \"Branch Digital Transformation Program\" approaching a major strategic gate review after two years and significant investment.",
+        scenario:"The underlying data shows the program's core benefit case has weakened significantly due to a shift in customer behavior since the program began, but senior leadership has publicly championed the program and there is strong organizational pressure to approve continuation regardless. The program manager is preparing the gate review materials.",
+        subs:[
+          {
+            stem:"What is the most appropriate way for the program manager to handle the gate review materials given this pressure?",
+            options:[
+              "Downplay the weakened benefit case in the materials to align with leadership's public position",
+              "Present the current benefit case data honestly and fully, since pressure toward a particular outcome is exactly when rigorous, evidence-based presentation matters most",
+              "Omit the gate review materials on this topic entirely to avoid the difficult conversation",
+              "Present two separate versions of the materials — one for leadership and a more honest one for internal records"
+            ],
+            a:1
+          },
+          {
+            stem:"If the honest data ultimately points toward significant redirection or termination, how should this be framed?",
+            options:[
+              "As a personal failure of the program manager's leadership that should be minimized in the materials",
+              "As a legitimate governance outcome based on current evidence — recommending redirection or termination of a heavily invested program is a valid and sometimes necessary result of a genuine gate review, not a failure to be hidden",
+              "As a reason to cancel the gate review and continue the program without further evaluation",
+              "As something that should be decided by the program manager alone without steering committee involvement"
+            ],
+            a:1
+          }
+        ],
+        why:"A gate review under real organizational pressure to reach a particular outcome is exactly the moment rigorous, honest evidence matters most — and a recommendation for termination or redirection, when the data genuinely supports it, is sound governance, not a personal or organizational failure.",
+        refs:["governance","benefitsreg"]
+      }
+    ]
   }
 ];
 
