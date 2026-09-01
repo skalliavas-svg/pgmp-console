@@ -1,0 +1,1159 @@
+<title>Program Control Deck</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#f5f7f8; --panel:#ffffff; --panel-2:#eef1f3; --line:#dbe2e8;
+    --text:#1b232c; --text-dim:#5c6b78;
+    --steel:#5b84ab; --radar:#3f8f7c; --brass:#b9863a; --rose:#b85f4f; --violet:#7566a0;
+    --steel-tx:#3c5f80; --radar-tx:#2c6e5c; --brass-tx:#8a6423; --rose-tx:#a14f3f; --violet-tx:#5f4f85;
+    --good:#2f8f5c; --warn:#b9863a; --bad:#b3453a;
+    --shadow: 0 1px 2px rgba(20,30,40,.06), 0 8px 24px rgba(20,30,40,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#0d1116; --panel:#161b22; --panel-2:#1c222b; --line:#2a323c;
+      --text:#e7ebef; --text-dim:#8a95a3;
+      --steel:#6f9cc4; --radar:#57b39c; --brass:#d3a35c; --rose:#d3897a; --violet:#a292c9;
+      --steel-tx:#9dc0e0; --radar-tx:#8ed6bf; --brass-tx:#eabf82; --rose-tx:#e8ac9f; --violet-tx:#c3b3e6;
+      --good:#57b384; --warn:#d3a35c; --bad:#d3776a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#0d1116; --panel:#161b22; --panel-2:#1c222b; --line:#2a323c;
+    --text:#e7ebef; --text-dim:#8a95a3;
+    --steel:#6f9cc4; --radar:#57b39c; --brass:#d3a35c; --rose:#d3897a; --violet:#a292c9;
+    --steel-tx:#9dc0e0; --radar-tx:#8ed6bf; --brass-tx:#eabf82; --rose-tx:#e8ac9f; --violet-tx:#c3b3e6;
+    --good:#57b384; --warn:#d3a35c; --bad:#d3776a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--ink); color:var(--text); margin:0}
+  #app{font-family:'Inter',ui-sans-serif,system-ui,sans-serif; max-width:880px; margin:0 auto; padding:20px 16px 72px; line-height:1.45}
+  h1,h2,h3{font-family:'Sora',ui-sans-serif,system-ui,sans-serif; margin:0; text-wrap:balance}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+  button{font-family:inherit; cursor:pointer}
+  button:focus-visible, select:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--radar); outline-offset:2px}
+  a{color:inherit}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow)}
+  .dim{color:var(--text-dim)}
+  .eyebrow{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.14em; color:var(--text-dim); text-transform:uppercase}
+
+  /* ---- header / instrument bar ---- */
+  .deck-head{position:relative; overflow:hidden; border-radius:16px; padding:20px 22px; margin-bottom:16px;
+    background:
+      radial-gradient(600px 200px at 85% -20%, color-mix(in srgb, var(--radar) 16%, transparent), transparent),
+      radial-gradient(500px 220px at -10% 120%, color-mix(in srgb, var(--steel) 14%, transparent), transparent),
+      var(--panel);
+    border:1px solid var(--line);
+  }
+  .scanline{position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--radar) 10%, transparent) 50%, transparent 100%);
+    background-size:100% 260%;
+    animation:sweep 7s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){ .scanline{animation:none} }
+  @keyframes sweep{ 0%{background-position:0 -160%} 100%{background-position:0 160%} }
+  .deck-head-row{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; position:relative}
+  .brand{display:flex; align-items:center; gap:10px}
+  .brand-mark{width:34px; height:34px; border-radius:9px; display:grid; place-items:center; background:color-mix(in srgb, var(--radar) 20%, var(--panel-2)); border:1px solid var(--line); flex:none}
+  .deck-sub{color:var(--text-dim); font-size:13.5px; margin-top:10px; max-width:60ch}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; position:relative}
+  .chip{font-family:'IBM Plex Mono'; font-size:10.5px; letter-spacing:.03em; padding:3px 9px; border-radius:20px; border:1px solid var(--line); color:var(--text-dim); background:var(--panel-2)}
+
+  /* ---- ring ---- */
+  .ring-wrap{position:relative; width:64px; height:64px; flex:none}
+  .ring-wrap svg{transform:rotate(-90deg)}
+  .ring-label{position:absolute; inset:0; display:grid; place-items:center; font-family:'IBM Plex Mono'; font-size:14px; font-weight:600}
+
+  /* ---- flight strip (domain rail) ---- */
+  .strip{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:16px}
+  .strip-item{background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:10px 12px}
+  .strip-top{display:flex; align-items:center; gap:7px; margin-bottom:7px}
+  .dot{width:8px; height:8px; border-radius:3px; flex:none}
+  .strip-name{font-size:12.5px; font-weight:600}
+  .bar{height:6px; border-radius:4px; background:var(--panel-2); overflow:hidden}
+  .bar > span{display:block; height:100%; border-radius:4px}
+  .strip-meta{display:flex; justify-content:space-between; margin-top:6px; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--text-dim)}
+
+  /* ---- block list ---- */
+  section.domain-group{margin-bottom:12px; overflow:hidden}
+  .domain-group-head{display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--panel-2); border-bottom:1px solid var(--line)}
+  .domain-group-head h3{font-size:15px}
+  .block-row{width:100%; display:flex; align-items:center; gap:12px; padding:13px 16px; background:transparent; border:none; border-top:1px solid var(--line); text-align:left; color:var(--text)}
+  .block-row:hover{background:var(--panel-2)}
+  .block-id{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-dim); width:40px; flex:none}
+  .block-name{flex:1; font-size:14.5px; font-weight:500}
+  .pct{font-family:'IBM Plex Mono'; font-size:12px}
+  .badge{font-family:'IBM Plex Mono'; font-size:10.5px; padding:3px 9px; border-radius:20px; font-weight:600; flex:none}
+  .badge-solid{color:var(--ink)}
+  .badge-outline{border:1px solid currentColor}
+
+  /* ---- launch buttons ---- */
+  .launch-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+  .launch{flex:1 1 190px; text-align:left; padding:15px 16px; border-radius:12px; background:var(--panel); border:1px solid var(--line); color:var(--text)}
+  .launch[disabled]{opacity:.55; cursor:not-allowed}
+  .launch-title{font-family:'Sora'; font-weight:600; font-size:15.5px}
+  .launch-sub{font-size:12px; color:var(--text-dim); margin-top:3px}
+
+  /* ---- diagnostic ---- */
+  .diag-row{display:flex; align-items:center; gap:12px; margin-bottom:9px}
+  .diag-name{font-size:13px; width:190px; flex:none; color:var(--text)}
+  .diag-id{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-dim); width:36px; flex:none}
+
+  /* ---- quiz ---- */
+  .quiz-head{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+  .quiz-head .spacer{margin-left:auto}
+  .backbtn{background:none; border:1px solid var(--line); border-radius:8px; color:var(--text-dim); padding:6px 12px; font-size:13px}
+  .timer{font-family:'IBM Plex Mono'; font-size:13px; font-weight:600}
+  .dotrow{display:flex; gap:5px; flex-wrap:wrap; margin-bottom:16px}
+  .qdot{width:24px; height:6px; border-radius:4px; border:none; background:var(--panel-2)}
+  .qcard{padding:20px 20px 22px}
+  .qtag-row{display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap}
+  .tag{font-family:'IBM Plex Mono'; font-size:10.5px; padding:3px 9px; border-radius:20px; border:1px solid var(--line); color:var(--text-dim)}
+  .stem{font-size:16.5px; font-weight:500; line-height:1.5; margin-bottom:16px}
+  .options{display:grid; gap:8px}
+  .opt{display:flex; gap:11px; align-items:flex-start; text-align:left; padding:12px 13px; border-radius:10px; border:1px solid var(--line); background:var(--panel-2); color:var(--text); width:100%}
+  .opt-key{font-family:'IBM Plex Mono'; font-size:12px; font-weight:700; color:var(--text-dim); margin-top:1px; flex:none; width:18px; text-align:center}
+  .scenario{background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--radar); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:13.5px; line-height:1.55; color:var(--text-dim)}
+  select.picker{width:100%; background:var(--panel-2); color:var(--text); border:1px solid var(--line); border-radius:9px; padding:9px 10px; font-size:13.5px; font-family:inherit}
+  .qnav{display:flex; justify-content:space-between; align-items:center; margin-top:16px}
+  .navbtn{padding:11px 18px; border-radius:10px; border:1px solid var(--line); background:var(--panel-2); color:var(--text); font-size:14px}
+  .navbtn[disabled]{opacity:.55; cursor:not-allowed}
+  .submitbtn{padding:11px 18px; border-radius:10px; border:none; font-weight:700}
+
+  /* ---- results ---- */
+  .score-banner{display:flex; align-items:center; gap:18px; padding:18px 20px; margin-top:4px}
+  .score-head{font-family:'Sora'; font-size:19px; font-weight:600; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .prof-row{display:flex; align-items:center; gap:12px; margin-bottom:9px}
+  .prof-name{font-size:13px; width:150px; flex:none}
+  .prof-band{font-family:'IBM Plex Mono'; font-size:11px; width:120px; text-align:right; flex:none}
+  .studycard{margin-top:12px; padding:14px 16px}
+  .refs{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px}
+  .ref-link{font-size:12px; text-decoration:none; display:inline-flex; gap:5px; align-items:center; padding:4px 9px; border-radius:20px; border:1px solid var(--line); background:var(--panel-2)}
+  .review-item{margin-bottom:10px; overflow:hidden}
+  .review-toggle{width:100%; background:transparent; border:none; padding:13px 16px; display:flex; gap:10px; align-items:flex-start; text-align:left; color:var(--text)}
+  .review-body{padding:0 16px 16px 40px; font-size:13.5px}
+  .why-box{margin-top:10px; padding:10px 12px; background:var(--panel-2); border-left:3px solid var(--radar); border-radius:6px; font-size:13.5px; line-height:1.5}
+  .final-row{display:flex; gap:12px; margin-top:16px}
+  .final-row button{flex:1; padding:14px; border-radius:11px; font-size:15px; font-weight:600; border:1px solid var(--line); background:var(--panel-2); color:var(--text)}
+  .final-row button.primary{border:none; font-weight:700}
+
+  /* ---- flashcards ---- */
+  .flash-stage{padding:30px 22px; text-align:center; min-height:230px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; cursor:pointer}
+  .flash-face-label{font-family:'IBM Plex Mono'; font-size:10.5px; letter-spacing:.12em; color:var(--text-dim); text-transform:uppercase}
+  .flash-term{font-family:'Sora'; font-size:23px; font-weight:600}
+  .flash-def{font-size:15px; line-height:1.55; max-width:52ch}
+  .flash-hint{font-size:12px; color:var(--text-dim)}
+  .flash-grade{display:flex; gap:12px; margin-top:14px}
+  .flash-grade button{flex:1; padding:13px; border-radius:11px; font-size:14.5px; font-weight:600; border:1px solid var(--line)}
+  .flash-progress{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-family:'IBM Plex Mono'; font-size:12px; color:var(--text-dim)}
+
+  .footer-row{display:flex; justify-content:space-between; align-items:center; margin-top:26px; color:var(--text-dim); font-size:12px; gap:12px; flex-wrap:wrap}
+  .link-btn{background:none; border:none; color:var(--text-dim); text-decoration:underline; font-size:12px; padding:0}
+  .empty-note{padding:14px 16px; font-size:13px; color:var(--text-dim)}
+</style>
+<div id="app"></div>
+<script>
+(function(){
+"use strict";
+
+/* ============================== DATA ============================== */
+
+var DOMAINS = {
+  strategic:  { name:"Strategic Program Management", abbr:"Strategic",  token:"steel"  },
+  lifecycle:  { name:"Program Life Cycle",            abbr:"Life Cycle", token:"radar"  },
+  benefits:   { name:"Benefits Management",           abbr:"Benefits",  token:"brass"  },
+  stakeholder:{ name:"Stakeholder Engagement",        abbr:"Stakeholder",token:"rose"   },
+  governance: { name:"Governance",                    abbr:"Governance",token:"violet" }
+};
+var DOMAIN_ORDER = ["strategic","lifecycle","benefits","stakeholder","governance"];
+
+var REFS = {
+  pgmp:          { label:"PMI · PgMP credential overview",        url:"https://www.pmi.org/certifications/program-management-pgmp" },
+  standard:      { label:"Program management (overview)",         url:"https://en.wikipedia.org/wiki/Program_management" },
+  bizcase:       { label:"Business case",                         url:"https://en.wikipedia.org/wiki/Business_case" },
+  benefitsreg:   { label:"Benefits realisation management",       url:"https://en.wikipedia.org/wiki/Benefits_realisation_management" },
+  stakeholder_:  { label:"Stakeholder management",                url:"https://en.wikipedia.org/wiki/Stakeholder_management" },
+  stakeholdermap:{ label:"Stakeholder analysis (power/interest)", url:"https://en.wikipedia.org/wiki/Stakeholder_analysis" },
+  governance:    { label:"Governance",                            url:"https://en.wikipedia.org/wiki/Governance" }
+};
+
+/* NOTE: this is a starter bank (1 block + 3 questions per domain) so the engine
+   can be exercised end to end. Swap BLOCKS / FLASHCARDS below for the real
+   PgMP-sourced content once it's ready — the id scheme (e.g. "ST1", "ST2")
+   leaves room to add more blocks per domain without touching the engine. */
+
+var BLOCKS = [
+  {
+    id:"ST1", domain:"strategic", name:"Strategic Alignment & the Business Case",
+    refs:["standard","bizcase"],
+    material:[
+      "A program is chartered to deliver strategic benefits its component projects cannot achieve individually.",
+      "The program business case links the mandate to organizational strategy and justifies the investment in benefit/cost terms.",
+      "Environmental scanning — internal capability plus external market/regulatory factors — feeds strategic alignment on an ongoing basis, not just at kickoff.",
+      "A program roadmap is a high-level strategic view of milestones and component sequencing, not a detailed schedule."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program sponsor asks the program manager to add an unplanned component because a competitor just launched a similar capability. The component could improve market position, but it hasn't been checked against the benefits realization plan or business case. What should the program manager do FIRST?",
+        options:[
+          "Reject the request since it wasn't in the original roadmap",
+          "Add the component now and update the business case retroactively at the next gate",
+          "Assess the component's strategic fit and benefit contribution against the current business case before committing resources",
+          "Escalate to the PMO to decide without further analysis"
+        ],
+        a:2,
+        why:"Strategic-fit analysis happens before commitment, not after. Rejecting outright and committing first both skip the assessment step that alignment work exists to do.",
+        refs:["standard","bizcase"]
+      },
+      {
+        type:"single",
+        stem:"Eighteen months into a program, an internal skills assessment shows the organization no longer has the technical capability the remaining components require, after a wave of attrition. This most directly triggers a revisit of which program artifact?",
+        options:[
+          "The stakeholder register",
+          "The program roadmap and business case, via environmental scanning",
+          "The communications management plan",
+          "The individual project schedules"
+        ],
+        a:1,
+        why:"Internal capability is an environmental factor. Ongoing scanning feeds back into strategic alignment — the roadmap and business case need re-evaluating, not just execution-level plans.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are primary purposes of a program's strategic alignment activities?",
+        options:[
+          "Ensure each component individually meets its own project baseline",
+          "Confirm the program continues to support organizational strategy as conditions change",
+          "Produce the detailed work breakdown structure for each component",
+          "Identify when the business case or benefit assumptions no longer hold"
+        ],
+        a:[1,3],
+        why:"Alignment is about the ongoing strategy fit (confirming continued support) and catching invalidated assumptions. Component baselines and WBS detail are project-level concerns.",
+        refs:["standard","bizcase"]
+      }
+    ]
+  },
+  {
+    id:"LC1", domain:"lifecycle", name:"Tranches & Program Phases",
+    refs:["standard"],
+    material:[
+      "Program Definition produces the charter, roadmap, and initial business case; Delivery authorizes and integrates components in tranches; Closure formally transitions benefits and disbands the program.",
+      "A tranche groups components that together deliver a distinct set of benefits, ending in a decision gate before the next tranche is authorized.",
+      "Component transition — moving a project's output into ongoing operations — is planned and overseen by the program even though execution sits at the project level."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program is structured into three tranches. At the Tranche 1 gate, two of three planned components are complete and delivering benefit, but the third is nine months behind and its output is no longer required after a strategy shift. What is the MOST appropriate recommendation for the gate review?",
+        options:[
+          "Continue the third component unchanged since it is already funded",
+          "Recommend closing the third component and reallocating its remaining budget, since its output no longer supports the strategy",
+          "Pause all three components until the delayed one catches up",
+          "Move the third component into Tranche 2 without further review"
+        ],
+        a:1,
+        why:"Gates exist to re-validate components against current strategy. A component whose output no longer serves the strategy should be recommended for closure and reallocation, not carried forward unreviewed.",
+        refs:["standard"]
+      },
+      {
+        type:"case",
+        stem:"A program has finished Delivery for its final tranche. Two components produced outputs; only one has been formally transitioned to operations. The second is functioning but still supported by its project team.",
+        scenario:"Two components complete Delivery. Component A: formally transitioned to operations with a named owner. Component B: functioning in production but still staffed by the project team, with no transition plan executed.",
+        subs:[
+          {
+            stem:"Before the program can proceed to Closure, what must happen with Component B?",
+            options:[
+              "Nothing — the project team can support it indefinitely",
+              "Formal transition to operations with confirmed ownership of ongoing support and benefit sustainment",
+              "Immediate shutdown of the output since the program is closing",
+              "Re-authorize it as a new tranche"
+            ],
+            a:1
+          },
+          {
+            stem:"Who is typically accountable for sustaining a benefit after the program closes?",
+            options:[
+              "The program manager, kept on standby",
+              "The original project team, indefinitely",
+              "A designated benefit/operational owner within the business",
+              "The PMO"
+            ],
+            a:2
+          }
+        ],
+        why:"Closure requires every component to be formally transitioned with clear ongoing ownership. Sustainment accountability moves to a business-side benefit owner — the program manager and project team disband at closure.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Which statement best describes the purpose of a decision gate at the end of a tranche?",
+        options:[
+          "To check that every task in the tranche's projects finished on schedule",
+          "To re-validate the business case and component set against current strategy before authorizing the next tranche",
+          "To formally close out the program",
+          "To reassign staff between components"
+        ],
+        a:1,
+        why:"Gates are governance checkpoints for the program-level business case and component mix, not a project-level schedule audit.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"BN1", domain:"benefits", name:"Benefits Register & Realization",
+    refs:["benefitsreg"],
+    material:[
+      "The benefits register tracks each expected benefit, its owner, baseline/target measures, and realization status.",
+      "Realization often continues after component — even program — closure, so sustainment must be planned and handed to an accountable owner.",
+      "Benefit measures should be baselined early, ideally at business-case stage, so realization can be demonstrated later rather than assumed."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Six months after a component delivers a new customer self-service platform, finance asks the program manager to confirm the projected call-center cost reduction actually occurred. No baseline call volume or cost was captured before launch. What is the MOST direct consequence of this gap?",
+        options:[
+          "The component's schedule performance was inaccurate",
+          "The program cannot credibly demonstrate whether the benefit was realized, because there is no baseline to measure against",
+          "The program's governance structure was inadequate",
+          "The stakeholder register was incomplete"
+        ],
+        a:1,
+        why:"Without a pre-implementation baseline in the benefits register, realization can't be objectively demonstrated. This is a benefits-management gap, not a schedule, governance, or stakeholder issue.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO practices most directly reduce the risk of expected benefits failing to materialize or being lost after delivery?",
+        options:[
+          "Assigning a named benefit owner accountable for realization and sustainment",
+          "Adding more components to the program to increase delivered scope",
+          "Capturing a measurable baseline before the enabling change is delivered",
+          "Increasing the frequency of project status reports"
+        ],
+        a:[0,2],
+        why:"Ownership accountability and a real baseline are the core controls. More scope or more status reporting don't address whether a specific benefit is realized and sustained.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner reports that a targeted 15% reduction in processing time has only reached 6% three months post-launch, though the platform works as designed. Which response best reflects sound benefits management?",
+        options:[
+          "Close the benefit as delivered, since the platform shipped on scope and schedule",
+          "Investigate root cause with the benefit owner and adjust the realization plan or take corrective action, since delivery isn't the same as realization",
+          "Reopen the original project to re-scope the platform",
+          "Remove the benefit from the register since the target was missed"
+        ],
+        a:1,
+        why:"Delivering the output isn't realizing the benefit. Program-level benefits management tracks actual realization against target and works the gap with the owner, rather than declaring success or erasing the shortfall.",
+        refs:["benefitsreg"]
+      }
+    ]
+  },
+  {
+    id:"SH1", domain:"stakeholder", name:"Engagement Across Components",
+    refs:["stakeholder_","stakeholdermap"],
+    material:[
+      "Program stakeholder engagement sits above individual project stakeholder management — it reconciles interests that may conflict across multiple components.",
+      "Power/interest mapping guides a differentiated engagement approach; the engagement plan is revisited as the program moves through tranches.",
+      "A stakeholder positive toward one component and negative toward another needs a program-level response, not a component-level one."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Two components in the same program each have an executive sponsor. One sponsor is highly supportive and wants to accelerate their component. The other is resistant, believing their unit's component threatens their team's job security, and is delaying key approvals. The program manager should:",
+        options:[
+          "Ask the supportive sponsor to pressure the resistant one",
+          "Escalate the resistant sponsor's behavior to their manager immediately",
+          "Engage the resistant sponsor directly to understand and address the underlying concern, adapting the engagement approach at the program level",
+          "Proceed without the resistant sponsor's approval since the other component is on track"
+        ],
+        a:2,
+        why:"Program-level engagement means addressing the actual concern directly and adapting strategy. Peer pressure, premature escalation, and bypassing approval all avoid the root cause.",
+        refs:["stakeholder_","stakeholdermap"]
+      },
+      {
+        type:"matching",
+        stem:"Match each power/interest position to the engagement approach it typically calls for.",
+        prompts:["High power, high interest","High power, low interest","Low power, high interest","Low power, low interest"],
+        choices:[
+          "Keep satisfied — monitor proactively without overengagement",
+          "Manage closely — engage as key partners in decisions",
+          "Keep informed — share relevant updates to sustain support",
+          "Monitor with minimal effort — light-touch communication"
+        ],
+        a:[1,0,2,3],
+        why:"The classic power/interest grid: manage closely (high/high), keep satisfied (high power/low interest), keep informed (low power/high interest), monitor (low/low).",
+        refs:["stakeholdermap"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder register that is only updated at program kickoff is most likely to fail because:",
+        options:[
+          "It should never have included low-power stakeholders",
+          "Stakeholder influence and interest shift as tranches deliver benefit, and the register/engagement plan need to shift with them",
+          "Registers are a project-level artifact, not a program one",
+          "It should be replaced by the communications plan instead"
+        ],
+        a:1,
+        why:"Stakeholder positions change over the program's life — engagement planning is iterative across tranches, not a one-time kickoff exercise.",
+        refs:["stakeholder_"]
+      }
+    ]
+  },
+  {
+    id:"GV1", domain:"governance", name:"Decision Rights & Escalation",
+    refs:["governance"],
+    material:[
+      "Program governance defines decision rights, escalation paths, and the roles (sponsor, steering committee, program manager, PMO) that authorize progress at each gate.",
+      "A governance plan should specify what triggers an out-of-cycle escalation, not only scheduled gate reviews.",
+      "Governance decides and authorizes; the program manager executes within that authority — the two are distinct functions."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Midway through Tranche 2, a component's risk exposure suddenly increases due to a new regulatory ruling that could affect program compliance. The next scheduled steering committee gate is 10 weeks away. What should the program manager do?",
+        options:[
+          "Wait for the scheduled gate to raise the issue, to preserve governance cadence",
+          "Make the compliance decision independently, since the PM is closest to the work",
+          "Trigger the governance plan's out-of-cycle escalation path to bring the issue to the steering committee before the scheduled gate",
+          "Instruct the component project manager to pause work without informing governance"
+        ],
+        a:2,
+        why:"A material, time-sensitive risk should trigger the defined escalation path rather than wait for cadence — but decision authority still sits with governance, not with an unapproved unilateral call.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"Which statement best distinguishes program governance from program management?",
+        options:[
+          "Governance executes the work; management authorizes it",
+          "Governance authorizes and makes go/no-go decisions; management executes within that authorized scope",
+          "They are the same function performed by the same role",
+          "Governance applies only at program closure"
+        ],
+        a:1,
+        why:"Governance holds decision rights and authorization; management executes within the authority governance grants — conflating the two is a common exam trap.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO items belong in a program governance plan?",
+        options:[
+          "The detailed task list for every component project",
+          "The roles and decision rights of the sponsor and steering committee",
+          "Named triggers and a path for out-of-cycle escalation",
+          "Individual performance reviews for component project managers"
+        ],
+        a:[1,2],
+        why:"Governance plans define who decides what, and when an issue must be escalated outside the normal cadence — not project-level task detail or HR matters.",
+        refs:["governance"]
+      }
+    ]
+  }
+];
+
+var FLASHCARDS = [
+  {id:"f-st1", domain:"strategic", term:"Program Charter", definition:"Formally authorizes the program's existence and gives the program manager authority to apply organizational resources.", refs:["standard"]},
+  {id:"f-st2", domain:"strategic", term:"Program Business Case", definition:"Documents the justification for the program, linking expected benefits and costs to organizational strategy.", refs:["bizcase"]},
+  {id:"f-st3", domain:"strategic", term:"Program Roadmap", definition:"A high-level, strategic timeline of major milestones and component sequencing — not a detailed schedule.", refs:["standard"]},
+  {id:"f-st4", domain:"strategic", term:"Environmental Scanning", definition:"Ongoing assessment of internal capability and external factors that may affect the program's strategic alignment.", refs:["standard"]},
+
+  {id:"f-lc1", domain:"lifecycle", term:"Tranche", definition:"A grouping of program components that together deliver a distinct set of benefits, bounded by a decision gate.", refs:["standard"]},
+  {id:"f-lc2", domain:"lifecycle", term:"Program Definition Phase", definition:"Establishes the program's foundation: the charter, roadmap, and initial business case.", refs:["standard"]},
+  {id:"f-lc3", domain:"lifecycle", term:"Component Transition", definition:"The planned handover of a project's output into ongoing operations, overseen at the program level.", refs:["standard"]},
+  {id:"f-lc4", domain:"lifecycle", term:"Decision Gate", definition:"A formal governance checkpoint where the program's business case, components, and continuation are reviewed.", refs:["governance"]},
+
+  {id:"f-bn1", domain:"benefits", term:"Benefits Register", definition:"The log of expected benefits, their owners, baseline/target measures, and realization status.", refs:["benefitsreg"]},
+  {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Describes how and when each benefit will be measured and handed to sustainment.", refs:["benefitsreg"]},
+  {id:"f-bn3", domain:"benefits", term:"Benefit Owner", definition:"The individual accountable for realizing and sustaining a specific benefit, typically outside the program team.", refs:["benefitsreg"]},
+  {id:"f-bn4", domain:"benefits", term:"Benefits Sustainment", definition:"Ongoing management that keeps a benefit alive after the component or program closes.", refs:["benefitsreg"]},
+
+  {id:"f-sh1", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
+  {id:"f-sh2", domain:"stakeholder", term:"Stakeholder Register", definition:"The log of program stakeholders, their interests, influence, and planned engagement approach.", refs:["stakeholder_"]},
+  {id:"f-sh3", domain:"stakeholder", term:"Program-Level Engagement", definition:"Reconciling stakeholder interests that may conflict across multiple components, not just within one.", refs:["stakeholder_"]},
+  {id:"f-sh4", domain:"stakeholder", term:"Engagement Plan", definition:"Documents the tailored approach for each stakeholder or group, revisited as the program moves through tranches.", refs:["stakeholdermap"]},
+
+  {id:"f-gv1", domain:"governance", term:"Program Governance Plan", definition:"Defines decision rights, escalation paths, and the roles that authorize the program.", refs:["governance"]},
+  {id:"f-gv2", domain:"governance", term:"Steering Committee", definition:"The governance body that makes go/no-go and authorization decisions at gates.", refs:["governance"]},
+  {id:"f-gv3", domain:"governance", term:"Escalation Path", definition:"The defined route for raising a material issue outside the scheduled governance cadence.", refs:["governance"]},
+  {id:"f-gv4", domain:"governance", term:"Program Sponsor", definition:"The executive accountable for the program's business case and ultimate benefit realization.", refs:["governance"]}
+];
+
+/* flatten questions with block context */
+var ALLQ = [];
+BLOCKS.forEach(function(b){
+  b.qs.forEach(function(q, i){
+    var qq = Object.assign({}, q);
+    qq.id = b.id + "-" + (i+1);
+    qq.block = b.id;
+    qq.blockName = b.name;
+    qq.domain = b.domain;
+    ALLQ.push(qq);
+  });
+});
+
+/* ============================== STORAGE ============================== */
+
+var STORAGE_KEY = "pgmp:v1";
+function defaultProgress(){ return { mastered:[], tagStats:{}, examsTaken:0, flash:{} }; }
+
+function loadProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return defaultProgress();
+    var parsed = JSON.parse(raw);
+    var d = defaultProgress();
+    return {
+      mastered: Array.isArray(parsed.mastered) ? parsed.mastered.filter(function(id){ return BLOCKS.some(function(b){return b.id===id}); }) : d.mastered,
+      tagStats: (parsed.tagStats && typeof parsed.tagStats==="object") ? parsed.tagStats : d.tagStats,
+      examsTaken: Number.isFinite(parsed.examsTaken) ? parsed.examsTaken : 0,
+      flash: (parsed.flash && typeof parsed.flash==="object") ? parsed.flash : d.flash
+    };
+  }catch(e){ return defaultProgress(); }
+}
+function saveProgress(p){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }catch(e){} }
+
+/* ============================== HELPERS ============================== */
+
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function todayStr(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function addDays(str, n){ var d=new Date(str+"T00:00:00"); d.setDate(d.getDate()+n); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function shuffle(arr){ var a=arr.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function sample(arr, n){ return shuffle(arr).slice(0, Math.min(n, arr.length)); }
+function setsEqual(a,b){ if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length) return false; var sa=a.slice().sort(); var sb=b.slice().sort(); return sa.every(function(v,i){return v===sb[i];}); }
+
+function isAnswered(q, val){
+  if(q.type==="case") return Array.isArray(val) && val.length===q.subs.length && val.every(function(v){return v!=null;});
+  if(q.type==="matching") return Array.isArray(val) && val.length===q.prompts.length && val.every(function(v){return v!=null;});
+  if(q.type==="multi") return Array.isArray(val) && val.length>0;
+  return val!=null;
+}
+function isCorrect(q, val){
+  if(!isAnswered(q,val)) return false;
+  if(q.type==="case") return q.subs.every(function(s,i){ return val[i]===s.a; });
+  if(q.type==="matching") return q.a.every(function(correct,i){ return val[i]===correct; });
+  if(q.type==="multi") return setsEqual(val, q.a);
+  return val===q.a;
+}
+var TYPE_LABEL = {single:"Single answer", multi:"Multiple response", case:"Scenario", matching:"Matching"};
+
+function scoreSession(questions, answers){
+  var correct=0, missed=[];
+  questions.forEach(function(q){
+    if(isCorrect(q, answers[q.id])) correct++; else missed.push(q.id);
+  });
+  return { correct:correct, total:questions.length, missed:missed };
+}
+function band(acc){
+  if(acc>=0.85) return {label:"Above Target", color:"var(--good)"};
+  if(acc>=0.70) return {label:"Target", color:"var(--radar)"};
+  if(acc>=0.50) return {label:"Below Target", color:"var(--warn)"};
+  return {label:"Needs Improvement", color:"var(--bad)"};
+}
+function proficiencyByDomain(questions, answers){
+  var out = {};
+  DOMAIN_ORDER.forEach(function(d){ out[d] = {seen:0, correct:0}; });
+  questions.forEach(function(q){
+    out[q.domain].seen++;
+    if(isCorrect(q, answers[q.id])) out[q.domain].correct++;
+  });
+  Object.keys(out).forEach(function(d){
+    var o = out[d];
+    o.acc = o.seen ? o.correct/o.seen : null;
+    o.band = o.acc!=null ? band(o.acc) : null;
+  });
+  return out;
+}
+
+function updateTagStats(tagStats, questions, answers){
+  var next = Object.assign({}, tagStats);
+  questions.forEach(function(q){
+    var cur = next[q.id] || {seen:0, wrong:0};
+    cur = {seen: cur.seen+1, wrong: cur.wrong + (isCorrect(q, answers[q.id]) ? 0 : 1)};
+    next[q.id] = cur;
+  });
+  return next;
+}
+
+/* ============================== STATE ============================== */
+
+var state = {
+  view:"dash",          /* dash | quiz | flash */
+  progress: loadProgress(),
+  session: null,
+  flashSession: null,
+  confirmReset:false
+};
+
+function persist(){ saveProgress(state.progress); }
+
+/* ============================== SESSION BUILDERS ============================== */
+
+function buildBlockSession(blockId){
+  var block = BLOCKS.filter(function(b){return b.id===blockId;})[0];
+  var qs = ALLQ.filter(function(q){return q.block===blockId;});
+  return { kind:"block", blockId:blockId, title:block.name, timed:false, accent:DOMAINS[block.domain].token,
+    questions: shuffle(qs), answers:{}, missed:[], submitted:false };
+}
+function buildQuickSession(){
+  var n = Math.min(10, ALLQ.length);
+  return { kind:"quick", title:"Domain Check", timed:false, accent:"radar",
+    questions: sample(ALLQ, n), answers:{}, missed:[], submitted:false };
+}
+function buildMockSession(){
+  var n = Math.min(15, ALLQ.length);
+  return { kind:"mock", title:"Timed Mock", timed:true, secondsPerQ:100, accent:"violet",
+    questions: sample(ALLQ, n), answers:{}, missed:[], submitted:false };
+}
+function buildDrillSession(){
+  var pool = ALLQ.map(function(q){
+    var s = state.progress.tagStats[q.id];
+    var rate = s && s.seen ? s.wrong/s.seen : -1;
+    return {q:q, rate:rate, seen:s?s.seen:0};
+  }).filter(function(x){ return x.seen>=2 && x.rate>0; }).sort(function(a,b){return b.rate-a.rate;});
+  var n = Math.min(6, pool.length);
+  return { kind:"drill", title:"Focus Drill", timed:false, accent:"rose",
+    questions: pool.slice(0,n).map(function(x){return x.q;}), answers:{}, missed:[], submitted:false };
+}
+
+function canUnlockExams(){ return state.progress.mastered.length >= 2; }
+function canUnlockDrill(){
+  return Object.keys(state.progress.tagStats).some(function(k){ return state.progress.tagStats[k].seen>=2; });
+}
+
+function buildFlashSession(){
+  var today = todayStr();
+  var due=[], fresh=[], rest=[];
+  FLASHCARDS.forEach(function(c){
+    var f = state.progress.flash[c.id];
+    if(!f) fresh.push(c);
+    else if(f.due<=today) due.push(c);
+    else rest.push(c);
+  });
+  var pool = shuffle(due).concat(shuffle(fresh)).concat(shuffle(rest));
+  var cards = pool.slice(0, Math.min(10, pool.length));
+  return { cards:cards, index:0, showBack:false, promoted:0, reset:0 };
+}
+
+/* ============================== RENDER: SHARED ============================== */
+
+function ring(pct, size){
+  size = size || 64;
+  var r = (size/2) - 7, c = 2*Math.PI*r;
+  var off = c - (pct/100)*c;
+  return '<div class="ring-wrap" style="width:'+size+'px;height:'+size+'px">'+
+    '<svg width="'+size+'" height="'+size+'">'+
+      '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="var(--panel-2)" stroke-width="6" fill="none"/>'+
+      '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="var(--radar)" stroke-width="6" fill="none" '+
+        'stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" stroke-linecap="round" transform="rotate(-90 '+size/2+' '+size/2+')"/>'+
+    '</svg>'+
+    '<div class="ring-label">'+pct+'%</div>'+
+  '</div>';
+}
+function refLinks(keys, tokenVar){
+  var uniq = Array.from(new Set(keys||[])).filter(function(k){return REFS[k];});
+  if(!uniq.length) return "";
+  return '<div class="refs">'+uniq.map(function(k){
+    var r = REFS[k];
+    return '<a class="ref-link" href="'+esc(r.url)+'" target="_blank" rel="noopener noreferrer" style="color:var(--'+tokenVar+'-tx)">↗ '+esc(r.label)+'</a>';
+  }).join("")+'</div>';
+}
+
+/* ============================== RENDER: DASHBOARD ============================== */
+
+function renderDash(){
+  var p = state.progress;
+  var overallPct = Math.round(p.mastered.length / BLOCKS.length * 100);
+  var due = FLASHCARDS.filter(function(c){ var f=p.flash[c.id]; return !f || f.due<=todayStr(); }).length;
+
+  var strip = DOMAIN_ORDER.map(function(d){
+    var meta = DOMAINS[d];
+    var qs = ALLQ.filter(function(q){return q.domain===d;});
+    var seen=0, correct=0;
+    qs.forEach(function(q){ var s=p.tagStats[q.id]; if(s&&s.seen){ seen+=s.seen; correct += (s.seen-s.wrong); } });
+    var acc = seen ? Math.round(correct/seen*100) : null;
+    var blocks = BLOCKS.filter(function(b){return b.domain===d;});
+    var mastered = blocks.filter(function(b){return p.mastered.indexOf(b.id)>-1;}).length;
+    return '<div class="strip-item">'+
+      '<div class="strip-top"><span class="dot" style="background:var(--'+meta.token+')"></span><span class="strip-name">'+esc(meta.abbr)+'</span></div>'+
+      '<div class="bar"><span style="width:'+(acc==null?0:acc)+'%;background:var(--'+meta.token+')"></span></div>'+
+      '<div class="strip-meta"><span>'+mastered+'/'+blocks.length+' blocks</span><span>'+(acc==null?"—":acc+"%")+'</span></div>'+
+    '</div>';
+  }).join("");
+
+  var groups = DOMAIN_ORDER.map(function(d){
+    var meta = DOMAINS[d];
+    var blocks = BLOCKS.filter(function(b){return b.domain===d;});
+    var rows = blocks.map(function(b){
+      var qs = ALLQ.filter(function(q){return q.block===b.id;});
+      var seen=0, correct=0;
+      qs.forEach(function(q){ var s=p.tagStats[q.id]; if(s&&s.seen){ seen+=s.seen; correct+=(s.seen-s.wrong); } });
+      var acc = seen ? Math.round(correct/seen*100) : null;
+      var mastered = p.mastered.indexOf(b.id)>-1;
+      var pctColor = acc==null ? "var(--text-dim)" : acc>=80?"var(--good)":acc>=50?"var(--warn)":"var(--bad)";
+      return '<button class="block-row" data-act="openBlock" data-id="'+b.id+'">'+
+        '<span class="block-id">'+b.id+'</span>'+
+        '<span class="block-name">'+esc(b.name)+'</span>'+
+        (acc!=null ? '<span class="pct" style="color:'+pctColor+'">'+acc+'%</span>' : '')+
+        (mastered
+          ? '<span class="badge badge-solid" style="background:var(--'+meta.token+');color:var(--ink)">MASTERED</span>'
+          : '<span class="badge badge-outline" style="color:var(--'+meta.token+')">START →</span>')+
+      '</button>';
+    }).join("");
+    return '<section class="domain-group card">'+
+      '<div class="domain-group-head"><span class="dot" style="background:var(--'+meta.token+')"></span><h3>'+esc(meta.name)+'</h3></div>'+
+      rows+
+    '</section>';
+  }).join("");
+
+  var weak = ALLQ.map(function(q){
+    var s = p.tagStats[q.id];
+    var rate = s && s.seen ? s.wrong/s.seen : null;
+    return {id:q.id, name:q.blockName, domain:q.domain, rate:rate, seen:s?s.seen:0};
+  }).filter(function(x){return x.rate!=null && x.seen>=2;}).sort(function(a,b){return b.rate-a.rate;}).slice(0,5);
+
+  var diag = weak.length ? '<section class="card" style="margin-top:14px;padding:16px">'+
+    '<div class="eyebrow" style="margin-bottom:12px">Diagnostic · Weakest Tasks</div>'+
+    weak.map(function(w){
+      var acc = Math.round((1-w.rate)*100);
+      var c = acc>=80?"var(--good)":acc>=50?"var(--warn)":"var(--bad)";
+      return '<div class="diag-row"><span class="diag-id mono">'+w.id+'</span><span class="diag-name">'+esc(w.name)+'</span>'+
+        '<div class="bar" style="flex:1"><span style="width:'+acc+'%;background:'+c+'"></span></div>'+
+        '<span class="pct" style="width:38px;text-align:right;color:'+c+'">'+acc+'%</span></div>';
+    }).join("")+
+  '</section>' : '';
+
+  var canExam = canUnlockExams(), canDrill = canUnlockDrill();
+
+  return '<div class="deck-head">'+
+      '<div class="scanline"></div>'+
+      '<div class="deck-head-row">'+
+        '<div>'+
+          '<div class="eyebrow">PgMP · Program Management Professional</div>'+
+          '<h1 style="font-size:32px;margin-top:4px;letter-spacing:-.3px">Program Control Deck</h1>'+
+          '<p class="deck-sub">Domain quizzes, timed mocks, and spaced-repetition flashcards. Every miss links back to a source. Progress saves automatically to this browser.</p>'+
+          '<div class="chips">'+
+            '<span class="chip">'+ALLQ.length+' items · '+BLOCKS.length+' blocks (starter set)</span>'+
+            '<span class="chip">4 item types</span>'+
+            '<span class="chip">'+FLASHCARDS.length+' flashcards'+(due?(" · "+due+" due"):"")+'</span>'+
+          '</div>'+
+        '</div>'+
+        ring(overallPct)+
+      '</div>'+
+    '</div>'+
+    '<div class="strip">'+strip+'</div>'+
+    groups+
+    diag+
+    '<div class="launch-row">'+
+      '<button class="launch" data-act="startQuick" '+(canExam?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--radar)">Domain Check</div>'+
+        '<div class="launch-sub">'+(canExam? Math.min(10,ALLQ.length)+" questions · mixed domains · untimed" : "Master 2 blocks to unlock ("+state.progress.mastered.length+"/2)")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startMock" '+(canExam?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--violet)">Timed Mock</div>'+
+        '<div class="launch-sub">'+(canExam? Math.min(15,ALLQ.length)+" questions · ~100s each · exam pacing" : "Unlocks with Domain Check")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startDrill" '+(canDrill?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--rose)">Focus Drill</div>'+
+        '<div class="launch-sub">'+(canDrill? "Weakest tasks · short set" : "Answer more questions to calibrate")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startFlash">'+
+        '<div class="launch-title" style="color:var(--brass)">Flashcards</div>'+
+        '<div class="launch-sub">'+(due? due+" due now" : "All caught up — review anyway")+'</div>'+
+      '</button>'+
+    '</div>'+
+    '<div class="footer-row">'+
+      '<span class="mono">'+ALLQ.length+' items · '+BLOCKS.length+' blocks · exams taken: '+p.examsTaken+'</span>'+
+      (state.confirmReset
+        ? '<span style="display:inline-flex;gap:8px;align-items:center">'+
+            '<span style="color:var(--bad)">Reset all progress?</span>'+
+            '<button data-act="resetYes" style="background:var(--bad);color:#fff;border:none;border-radius:6px;padding:3px 10px;font-weight:700">Yes, reset</button>'+
+            '<button data-act="resetNo" style="background:none;border:1px solid var(--line);color:var(--text-dim);border-radius:6px;padding:3px 10px">Cancel</button>'+
+          '</span>'
+        : '<button class="link-btn" data-act="resetAsk">reset progress</button>')+
+    '</div>';
+}
+
+/* ============================== RENDER: QUIZ ============================== */
+
+function optionLetter(i){ return "ABCDEF"[i]; }
+
+function renderQuestionBody(q, session, idx){
+  var val = session.answers[q.id];
+  var accent = session.accent;
+
+  if(q.type==="case"){
+    return '<div class="scenario">'+esc(q.scenario)+'</div>'+
+      q.subs.map(function(sub, si){
+        var sv = Array.isArray(val)? val[si] : null;
+        return '<div style="margin-bottom:'+(si<q.subs.length-1?18:0)+'px">'+
+          '<div style="font-size:15px;font-weight:500;margin-bottom:10px"><span class="mono" style="color:var(--'+accent+');margin-right:8px">'+(si+1)+'.</span>'+esc(sub.stem)+'</div>'+
+          '<div class="options">'+sub.options.map(function(opt, oi){
+            var picked = sv===oi;
+            return '<button class="opt" data-act="answerCaseSub" data-si="'+si+'" data-oi="'+oi+'" style="'+(picked?('border-color:var(--'+accent+');background:color-mix(in srgb, var(--'+accent+') 12%, var(--panel-2))'):'')+'">'+
+              '<span class="opt-key" style="'+(picked?('color:var(--'+accent+')'):'')+'">'+optionLetter(oi)+'</span><span>'+esc(opt)+'</span></button>';
+          }).join("")+'</div>'+
+        '</div>';
+      }).join("");
+  }
+  if(q.type==="matching"){
+    return '<div style="display:grid;gap:9px">'+q.prompts.map(function(pr, pi){
+      var sv = Array.isArray(val) ? val[pi] : null;
+      return '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+
+        '<span style="font-size:14px;min-width:190px;flex:1 1 190px">'+esc(pr)+'</span>'+
+        '<select class="picker" style="flex:1 1 220px" data-act-change="matchSelect" data-pi="'+pi+'">'+
+          '<option value="">— choose —</option>'+
+          q.choices.map(function(c,ci){ return '<option value="'+ci+'" '+(sv===ci?"selected":"")+'>'+esc(c)+'</option>'; }).join("")+
+        '</select></div>';
+    }).join("")+'</div>';
+  }
+  /* single / multi */
+  var isMulti = q.type==="multi";
+  var picked = isMulti ? new Set(val||[]) : null;
+  return (isMulti? '<div class="eyebrow" style="margin-bottom:8px">Select all that apply</div>' : '')+
+    '<div class="options">'+q.options.map(function(opt, oi){
+      var isPicked = isMulti ? picked.has(oi) : val===oi;
+      return '<button class="opt" data-act="'+(isMulti?"toggleMulti":"answerSingle")+'" data-oi="'+oi+'" style="'+(isPicked?('border-color:var(--'+accent+');background:color-mix(in srgb, var(--'+accent+') 12%, var(--panel-2))'):'')+'">'+
+        '<span class="opt-key" style="'+(isPicked?('color:var(--'+accent+')'):'')+'">'+(isMulti?(isPicked?"✓":""):optionLetter(oi))+'</span>'+
+        '<span>'+esc(opt)+'</span></button>';
+    }).join("")+'</div>';
+}
+
+function renderQuiz(){
+  var s = state.session;
+  if(s.submitted) return renderResults();
+
+  var idx = s._idx || 0;
+  var q = s.questions[idx];
+  var answeredCount = s.questions.filter(function(qq){ return isAnswered(qq, s.answers[qq.id]); }).length;
+  var allAnswered = answeredCount === s.questions.length;
+
+  var dots = s.questions.map(function(qq, i){
+    var a = isAnswered(qq, s.answers[qq.id]);
+    return '<button class="qdot" data-act="jumpTo" data-i="'+i+'" style="background:'+(i===idx?('var(--'+s.accent+')'):(a?'var(--line)':'var(--panel-2)'))+';'+(i===idx?'':'border:1px solid var(--line)')+'"></button>';
+  }).join("");
+
+  var timerHtml = "";
+  if(s.timed) timerHtml = '<span class="timer" id="quizTimer" style="color:var(--violet)"></span>';
+
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitQuiz">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--'+s.accent+')">'+esc(s.title)+'</h2>'+
+      '<span class="spacer"></span>'+timerHtml+
+      '<span class="mono dim" style="font-size:12px">'+answeredCount+'/'+s.questions.length+'</span>'+
+    '</div>'+
+    (s.timed && idx===0 ? '<div class="card" style="padding:10px 13px;margin-bottom:14px;border-color:var(--violet);font-size:12.5px" class="dim">Real PgMP-style pacing: work steadily, flag and move on rather than stalling on one item.</div>' : '')+
+    '<div class="dotrow">'+dots+'</div>'+
+    '<div class="card qcard">'+
+      '<div class="qtag-row">'+
+        '<span class="tag">'+q.block+' · Q'+(idx+1)+'/'+s.questions.length+'</span>'+
+        '<span class="tag">'+TYPE_LABEL[q.type]+'</span>'+
+      '</div>'+
+      '<div class="stem">'+esc(q.stem)+'</div>'+
+      renderQuestionBody(q, s, idx)+
+    '</div>'+
+    '<div class="qnav">'+
+      '<button class="navbtn" data-act="prevQ" '+(idx===0?'disabled':'')+'>← Prev</button>'+
+      (idx < s.questions.length-1
+        ? '<button class="navbtn" data-act="nextQ">Next →</button>'
+        : '<button class="submitbtn" data-act="submitQuiz" '+(allAnswered?'':'disabled')+' style="background:'+(allAnswered?('var(--'+s.accent+')'):'var(--panel-2)')+';color:'+(allAnswered?'var(--ink)':'var(--text-dim)')+'">'+(allAnswered? "Submit for review" : (s.questions.length-answeredCount)+" left")+'</button>')+
+    '</div>';
+}
+
+/* ============================== RENDER: RESULTS ============================== */
+
+function renderAnswerReview(q, val){
+  if(q.type==="case"){
+    return '<div style="display:grid;gap:12px">'+
+      '<div style="font-size:12.5px;color:var(--text-dim);font-style:italic">'+esc(q.scenario)+'</div>'+
+      q.subs.map(function(sub, si){
+        var sv = Array.isArray(val)?val[si]:null;
+        return '<div><div style="font-size:13.5px;margin-bottom:4px"><b class="dim">'+(si+1)+'.</b> '+esc(sub.stem)+'</div>'+
+          sub.options.map(function(opt, oi){
+            var isRight = oi===sub.a, isMine = oi===sv;
+            var color = isRight?"var(--good)":isMine?"var(--bad)":"var(--text-dim)";
+            var tail = isRight?"  ← correct":(isMine?"  ← your answer":"");
+            return '<div style="font-size:13px;color:'+color+';margin-bottom:3px;display:flex;gap:8px;padding-left:10px"><span class="mono" style="font-weight:700">'+optionLetter(oi)+'</span><span>'+esc(opt)+tail+'</span></div>';
+          }).join("")+
+        '</div>';
+      }).join("")+
+    '</div>';
+  }
+  if(q.type==="matching"){
+    return '<div style="display:grid;gap:5px">'+q.prompts.map(function(pr, pi){
+      var sv = Array.isArray(val)?val[pi]:null, correct=q.a[pi], ok=sv===correct;
+      return '<div style="font-size:13.5px;display:flex;gap:8px;flex-wrap:wrap;color:'+(ok?'var(--good)':'var(--bad)')+'">'+
+        '<span class="dim" style="min-width:150px">'+esc(pr)+'</span><span>→ '+esc(q.choices[correct])+(!ok&&sv!=null?('  (you: '+esc(q.choices[sv])+')'):'')+(ok?'  ✓':'')+'</span></div>';
+    }).join("")+'</div>';
+  }
+  var isMulti = q.type==="multi";
+  var rightSet = isMulti ? new Set(q.a) : null;
+  var mySet = isMulti ? new Set(val||[]) : null;
+  return '<div>'+q.options.map(function(opt, oi){
+    var isRight = isMulti ? rightSet.has(oi) : oi===q.a;
+    var isMine = isMulti ? mySet.has(oi) : oi===val;
+    var color = isRight?"var(--good)":isMine?"var(--bad)":"var(--text-dim)";
+    var tail = isRight?"  ← correct":(isMine?"  ← your answer":"");
+    return '<div style="font-size:13.5px;color:'+color+';margin-bottom:5px;display:flex;gap:8px">'+
+      '<span class="mono" style="font-weight:700">'+(isMulti?(isRight?"✓":(isMine?"✕":"·")):optionLetter(oi))+'</span><span>'+esc(opt)+tail+'</span></div>';
+  }).join("")+'</div>';
+}
+
+var reviewOpen = {};
+
+function renderResults(){
+  var s = state.session;
+  var sc = scoreSession(s.questions, s.answers);
+  var pct = Math.round(sc.correct/sc.total*100);
+  var missedQs = s.questions.filter(function(q){ return sc.missed.indexOf(q.id)>-1; });
+  var clean = sc.missed.length===0;
+  var isFullExam = (s.kind==="quick" || s.kind==="mock");
+  var prof = proficiencyByDomain(s.questions, s.answers);
+  var b = band(sc.correct/sc.total);
+
+  var profHtml = isFullExam ? '<section class="card" style="margin-top:14px;padding:16px">'+
+    '<div class="eyebrow" style="margin-bottom:12px">Proficiency By Domain</div>'+
+    DOMAIN_ORDER.filter(function(d){return prof[d].seen>0;}).map(function(d){
+      var meta = DOMAINS[d], o = prof[d];
+      return '<div class="prof-row"><span class="dot" style="background:var(--'+meta.token+')"></span>'+
+        '<span class="prof-name">'+esc(meta.name)+'</span>'+
+        '<div class="bar" style="flex:1"><span style="width:'+Math.round(o.acc*100)+'%;background:'+o.band.color+'"></span></div>'+
+        '<span class="prof-band" style="color:'+o.band.color+'">'+o.band.label+'</span></div>';
+    }).join("")+
+    '<div class="dim" style="margin-top:8px;font-size:11px">Bands approximate PMI\'s Above Target → Needs Improvement scale; PMI does not publish exact cut scores.</div>'+
+  '</section>' : '';
+
+  var blocksMissed = Array.from(new Set(missedQs.map(function(q){return q.block;})));
+  var studyCards = blocksMissed.map(function(bid){
+    var blk = BLOCKS.filter(function(b){return b.id===bid;})[0];
+    var meta = DOMAINS[blk.domain];
+    var extraRefs = missedQs.filter(function(q){return q.block===bid;}).flatMap(function(q){return q.refs||[];});
+    var allRefs = (blk.refs||[]).concat(extraRefs);
+    return '<div class="card studycard">'+
+      '<div class="eyebrow" style="color:var(--'+meta.token+')">Study Card · '+bid+' '+esc(blk.name.toUpperCase())+'</div>'+
+      '<ul style="margin:8px 0 0;padding-left:18px;font-size:13.5px;line-height:1.55">'+blk.material.map(function(m){return '<li style="margin-bottom:4px">'+esc(m)+'</li>';}).join("")+'</ul>'+
+      refLinks(allRefs, meta.token)+
+    '</div>';
+  }).join("");
+
+  var reviewList = s.questions.map(function(q){
+    var ok = isCorrect(q, s.answers[q.id]);
+    var open = reviewOpen[q.id] === true || (!ok && reviewOpen[q.id]!==false);
+    return '<div class="card review-item">'+
+      '<button class="review-toggle" data-act="toggleReview" data-id="'+q.id+'">'+
+        '<span class="mono" style="font-weight:700;color:'+(ok?'var(--good)':'var(--bad)')+'">'+(ok?"✓":"✕")+'</span>'+
+        '<span style="flex:1;font-size:14.5px;font-weight:500">'+esc(q.stem)+'</span>'+
+        '<span class="dim" style="font-size:12px">'+(open?"▲":"▼")+'</span>'+
+      '</button>'+
+      (open ? '<div class="review-body">'+
+          renderAnswerReview(q, s.answers[q.id])+
+          '<div class="why-box"><b class="mono" style="color:var(--'+s.accent+');font-size:11px">WHY </b>'+esc(q.why)+'</div>'+
+          refLinks(q.refs, s.accent)+
+        '</div>' : '')+
+    '</div>';
+  }).join("");
+
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitQuiz">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--'+s.accent+')">'+esc(s.title)+' · Results</h2>'+
+      '<span class="spacer"></span><span class="mono dim" style="font-size:12px">'+sc.correct+'/'+sc.total+'</span>'+
+    '</div>'+
+    '<div class="card score-banner" style="border-color:'+(clean?'var(--good)':'var(--line)')+'">'+
+      ring(pct)+
+      '<div><div class="score-head">'+(clean?"Clean sweep.":sc.missed.length+" to review")+(isFullExam?'<span class="badge badge-outline" style="color:'+b.color+'">'+b.label+'</span>':'')+'</div>'+
+      '<div class="dim" style="font-size:13.5px;margin-top:3px">'+(clean ? (s.kind==="block"?"Block mastered and marked on the deck.":"Every item correct — solid.") : "Read each miss, open a source for depth, then retry only the missed items until the set is clean.")+'</div></div>'+
+    '</div>'+
+    profHtml+
+    studyCards+
+    '<div style="margin-top:16px">'+reviewList+'</div>'+
+    '<div class="final-row">'+
+      (!clean ? '<button class="primary" data-act="retryMissed" style="background:var(--'+s.accent+');color:var(--ink)">Retry '+sc.missed.length+' missed →</button>' : '')+
+      '<button data-act="exitQuiz" style="flex:'+(clean?'1':'0 0 auto')+'">'+(clean?"Back to deck":"Deck")+'</button>'+
+    '</div>';
+}
+
+/* ============================== RENDER: FLASHCARDS ============================== */
+
+function renderFlash(){
+  var f = state.flashSession;
+  if(!f.cards.length){
+    return '<div class="quiz-head"><button class="backbtn" data-act="exitFlash">← Deck</button><h2 style="font-size:18px;color:var(--brass)">Flashcards</h2></div>'+
+      '<div class="card empty-note">No flashcards available yet — add some to FLASHCARDS in the source.</div>';
+  }
+  if(f.index >= f.cards.length){
+    return '<div class="quiz-head"><button class="backbtn" data-act="exitFlash">← Deck</button><h2 style="font-size:18px;color:var(--brass)">Flashcards · Session done</h2></div>'+
+      '<div class="card" style="padding:20px;text-align:center">'+
+        '<div style="font-family:Sora;font-size:19px;font-weight:600;margin-bottom:6px">Reviewed '+f.cards.length+' cards</div>'+
+        '<div class="dim" style="font-size:13.5px">'+f.promoted+' moved up a box · '+f.reset+' reset for another pass.</div>'+
+        '<button data-act="exitFlash" style="margin-top:16px;padding:12px 20px;border-radius:11px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);font-weight:600">Back to deck</button>'+
+      '</div>';
+  }
+  var c = f.cards[f.index];
+  var meta = DOMAINS[c.domain];
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitFlash">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--brass)">Flashcards</h2>'+
+      '<span class="spacer"></span>'+
+    '</div>'+
+    '<div class="flash-progress"><span>'+esc(meta.name)+'</span><span>'+(f.index+1)+' / '+f.cards.length+'</span></div>'+
+    '<div class="card flash-stage" data-act="flipCard">'+
+      (f.showBack
+        ? '<div class="flash-face-label" style="color:var(--'+meta.token+')">Definition</div><div class="flash-def">'+esc(c.definition)+'</div>'+refLinks(c.refs, meta.token)
+        : '<div class="flash-face-label">Term</div><div class="flash-term">'+esc(c.term)+'</div><div class="flash-hint">Click to reveal</div>')+
+    '</div>'+
+    (f.showBack ? '<div class="flash-grade">'+
+        '<button data-act="gradeCard" data-grade="miss" style="color:var(--bad)">Missed it</button>'+
+        '<button data-act="gradeCard" data-grade="got" style="background:var(--good);color:#fff;border:none">Got it</button>'+
+      '</div>' : '');
+}
+
+/* ============================== RENDER + MOUNT ============================== */
+
+var app = document.getElementById("app");
+function render(){
+  if(state.view==="quiz") app.innerHTML = renderQuiz();
+  else if(state.view==="flash") app.innerHTML = renderFlash();
+  else app.innerHTML = renderDash();
+  if(state.view==="quiz" && state.session && state.session.timed && !state.session.submitted) startTimer();
+}
+
+/* timer for timed mock */
+var timerHandle = null;
+function stopTimer(){ if(timerHandle){ clearInterval(timerHandle); timerHandle=null; } }
+function startTimer(){
+  stopTimer();
+  var s = state.session;
+  if(s._deadline==null) s._deadline = Date.now() + s.secondsPerQ*1000*s.questions.length;
+  function tick(){
+    var el = document.getElementById("quizTimer");
+    var remaining = Math.max(0, Math.round((s._deadline - Date.now())/1000));
+    if(el){
+      var m = String(Math.floor(remaining/60)).padStart(2,"0"), sec = String(remaining%60).padStart(2,"0");
+      el.textContent = "⏱ " + m + ":" + sec;
+      el.style.color = remaining<=60 ? "var(--bad)" : "var(--violet)";
+    }
+    if(remaining<=0){ stopTimer(); submitQuiz(); }
+  }
+  tick();
+  timerHandle = setInterval(tick, 1000);
+}
+
+/* ============================== ACTIONS ============================== */
+
+function openBlock(id){ state.session = buildBlockSession(id); state.session._idx=0; state.view="quiz"; render(); }
+function startQuick(){ if(!canUnlockExams()) return; state.session = buildQuickSession(); state.session._idx=0; state.view="quiz"; render(); }
+function startMock(){ if(!canUnlockExams()) return; state.session = buildMockSession(); state.session._idx=0; state.view="quiz"; render(); }
+function startDrill(){ if(!canUnlockDrill()) return; state.session = buildDrillSession(); state.session._idx=0; state.view="quiz"; render(); }
+function exitQuiz(){ stopTimer(); state.session=null; reviewOpen={}; state.view="dash"; render(); }
+
+function startFlash(){ state.flashSession = buildFlashSession(); state.view="flash"; render(); }
+function exitFlash(){ state.flashSession=null; state.view="dash"; render(); }
+
+function submitQuiz(){
+  stopTimer();
+  var s = state.session;
+  s.submitted = true;
+  var p = state.progress;
+  p.tagStats = updateTagStats(p.tagStats, s.questions, s.answers);
+  if(s.kind==="block"){
+    var sc = scoreSession(s.questions, s.answers);
+    if(sc.missed.length===0 && p.mastered.indexOf(s.blockId)===-1) p.mastered = p.mastered.concat([s.blockId]);
+  }
+  if(s.kind==="quick" || s.kind==="mock") p.examsTaken++;
+  persist();
+  render();
+}
+
+document.getElementById("app").addEventListener("click", function(e){
+  var t = e.target.closest("[data-act]");
+  if(!t) return;
+  var act = t.getAttribute("data-act");
+  var s = state.session;
+
+  if(act==="openBlock") return openBlock(t.getAttribute("data-id"));
+  if(act==="startQuick") return startQuick();
+  if(act==="startMock") return startMock();
+  if(act==="startDrill") return startDrill();
+  if(act==="exitQuiz") return exitQuiz();
+  if(act==="startFlash") return startFlash();
+  if(act==="exitFlash") return exitFlash();
+  if(act==="resetAsk"){ state.confirmReset=true; return render(); }
+  if(act==="resetNo"){ state.confirmReset=false; return render(); }
+  if(act==="resetYes"){ state.progress=defaultProgress(); persist(); state.confirmReset=false; return render(); }
+
+  if(act==="flipCard"){ state.flashSession.showBack = !state.flashSession.showBack; return render(); }
+  if(act==="gradeCard"){
+    var f = state.flashSession;
+    var card = f.cards[f.index];
+    var p = state.progress;
+    var cur3 = p.flash[card.id] || {box:0, due:todayStr()};
+    var intervals = [0,1,3,7,16];
+    if(t.getAttribute("data-grade")==="got"){
+      cur3.box = Math.min(4, cur3.box+1);
+      f.promoted++;
+    } else {
+      cur3.box = 0;
+      f.reset++;
+    }
+    cur3.due = addDays(todayStr(), intervals[cur3.box]);
+    p.flash[card.id] = cur3;
+    persist();
+    f.index++;
+    f.showBack = false;
+    return render();
+  }
+
+  if(!s) return;
+  var idx = s._idx||0, q = s.questions[idx];
+
+  if(act==="jumpTo"){ s._idx = Number(t.getAttribute("data-i")); return render(); }
+  if(act==="prevQ"){ s._idx = Math.max(0, idx-1); return render(); }
+  if(act==="nextQ"){ s._idx = Math.min(s.questions.length-1, idx+1); return render(); }
+  if(act==="submitQuiz") return submitQuiz();
+  if(act==="retryMissed"){
+    var missedIds = scoreSession(s.questions, s.answers).missed;
+    state.session = {
+      kind:s.kind, title:s.title+" · Retry", timed:false, accent:s.accent,
+      questions: s.questions.filter(function(qq){return missedIds.indexOf(qq.id)>-1;}),
+      answers:{}, missed:[], submitted:false, _idx:0
+    };
+    return render();
+  }
+  if(act==="toggleReview"){ var id=t.getAttribute("data-id"); reviewOpen[id] = !(reviewOpen[id]===true || (reviewOpen[id]!==false && !isCorrect(s.questions.filter(function(qq){return qq.id===id})[0], s.answers[id]))); return render(); }
+
+  if(act==="answerSingle"){ s.answers[q.id] = Number(t.getAttribute("data-oi")); return render(); }
+  if(act==="toggleMulti"){
+    var oi = Number(t.getAttribute("data-oi"));
+    var cur = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : [];
+    var pos = cur.indexOf(oi);
+    if(pos>-1) cur.splice(pos,1); else cur.push(oi);
+    s.answers[q.id] = cur;
+    return render();
+  }
+  if(act==="answerCaseSub"){
+    var si = Number(t.getAttribute("data-si")), oi2 = Number(t.getAttribute("data-oi"));
+    var cur2 = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : new Array(q.subs.length).fill(null);
+    cur2[si] = oi2;
+    s.answers[q.id] = cur2;
+    return render();
+  }
+});
+
+document.getElementById("app").addEventListener("change", function(e){
+  var t = e.target.closest("[data-act-change='matchSelect']");
+  if(!t) return;
+  var s = state.session, q = s.questions[s._idx||0];
+  var pi = Number(t.getAttribute("data-pi"));
+  var cur = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : new Array(q.prompts.length).fill(null);
+  cur[pi] = t.value===""? null : Number(t.value);
+  s.answers[q.id] = cur;
+  render();
+});
+
+render();
+})();
+</script>
