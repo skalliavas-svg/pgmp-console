@@ -161,29 +161,39 @@
 
 /* ============================== DATA ============================== */
 
+/* Domain names + weights per PMI's PgMP Examination Content Outline, March 2024. */
 var DOMAINS = {
-  strategic:  { name:"Strategic Program Management", abbr:"Strategic",  token:"steel"  },
-  lifecycle:  { name:"Program Life Cycle",            abbr:"Life Cycle", token:"radar"  },
-  benefits:   { name:"Benefits Management",           abbr:"Benefits",  token:"brass"  },
-  stakeholder:{ name:"Stakeholder Engagement",        abbr:"Stakeholder",token:"rose"   },
-  governance: { name:"Governance",                    abbr:"Governance",token:"violet" }
+  strategic:  { name:"Strategic Program Alignment",      abbr:"Strategic",   token:"steel",  weight:15 },
+  lifecycle:  { name:"Program Life Cycle Management",    abbr:"Life Cycle",  token:"radar",  weight:44 },
+  benefits:   { name:"Benefits Management",              abbr:"Benefits",   token:"brass",  weight:11 },
+  stakeholder:{ name:"Stakeholder Engagement",           abbr:"Stakeholder",token:"rose",   weight:16 },
+  governance: { name:"Governance",                       abbr:"Governance", token:"violet", weight:14 }
 };
 var DOMAIN_ORDER = ["strategic","lifecycle","benefits","stakeholder","governance"];
 
 var REFS = {
-  pgmp:          { label:"PMI · PgMP credential overview",        url:"https://www.pmi.org/certifications/program-management-pgmp" },
-  standard:      { label:"Program management (overview)",         url:"https://en.wikipedia.org/wiki/Program_management" },
-  bizcase:       { label:"Business case",                         url:"https://en.wikipedia.org/wiki/Business_case" },
-  benefitsreg:   { label:"Benefits realisation management",       url:"https://en.wikipedia.org/wiki/Benefits_realisation_management" },
-  stakeholder_:  { label:"Stakeholder management",                url:"https://en.wikipedia.org/wiki/Stakeholder_management" },
-  stakeholdermap:{ label:"Stakeholder analysis (power/interest)", url:"https://en.wikipedia.org/wiki/Stakeholder_analysis" },
-  governance:    { label:"Governance",                            url:"https://en.wikipedia.org/wiki/Governance" }
+  pgmp:               { label:"PMI · PgMP credential overview",        url:"https://www.pmi.org/certifications/program-management-pgmp" },
+  ethics:             { label:"PMI Code of Ethics and Professional Conduct", url:"https://www.pmi.org/about/ethics/guidelines" },
+  standard:           { label:"Program management (overview)",         url:"https://en.wikipedia.org/wiki/Program_management" },
+  bizcase:            { label:"Business case",                         url:"https://en.wikipedia.org/wiki/Business_case" },
+  benefitsreg:        { label:"Benefits realisation management",       url:"https://en.wikipedia.org/wiki/Benefits_realisation_management" },
+  stakeholder_:       { label:"Stakeholder management",                url:"https://en.wikipedia.org/wiki/Stakeholder_management" },
+  stakeholdermap:     { label:"Stakeholder analysis (power/interest)", url:"https://en.wikipedia.org/wiki/Stakeholder_analysis" },
+  governance:         { label:"Governance",                            url:"https://en.wikipedia.org/wiki/Governance" },
+  raci:               { label:"Responsibility assignment matrix (RACI)", url:"https://en.wikipedia.org/wiki/Responsibility_assignment_matrix" },
+  changemgmt:         { label:"Change management",                     url:"https://en.wikipedia.org/wiki/Change_management" },
+  systemsthinking:    { label:"Systems thinking",                      url:"https://en.wikipedia.org/wiki/Systems_thinking" },
+  swot:               { label:"SWOT / environmental analysis",         url:"https://en.wikipedia.org/wiki/SWOT_analysis" },
+  decisiontree:       { label:"Decision tree analysis",                url:"https://en.wikipedia.org/wiki/Decision_tree" },
+  evm:                { label:"Earned value management",               url:"https://en.wikipedia.org/wiki/Earned_value_management" }
 };
 
-/* NOTE: this is a starter bank (1 block + 3 questions per domain) so the engine
-   can be exercised end to end. Swap BLOCKS / FLASHCARDS below for the real
-   PgMP-sourced content once it's ready — the id scheme (e.g. "ST1", "ST2")
-   leaves room to add more blocks per domain without touching the engine. */
+/* Content sourced from: PMI PgMP Examination Content Outline (March 2024),
+   PMI PgMP Handbook (11 March 2024), and "The PgMP Mindset" study guide
+   (synthesized from The Standard for Program Management 5e, PMBOK 8e, the
+   ECO, and the PMI Code of Ethics). Block/question counts are weighted
+   toward each domain's real exam proportion (Life Cycle Management alone
+   is 44% of the exam) rather than split evenly. */
 
 var BLOCKS = [
   {
