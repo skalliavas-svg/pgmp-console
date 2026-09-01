@@ -1,0 +1,1998 @@
+<title>PgMP Study Console</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#f5f7f8; --panel:#ffffff; --panel-2:#eef1f3; --line:#dbe2e8;
+    --text:#1b232c; --text-dim:#5c6b78;
+    --steel:#5b84ab; --radar:#3f8f7c; --brass:#b9863a; --rose:#b85f4f; --violet:#7566a0;
+    --steel-tx:#3c5f80; --radar-tx:#2c6e5c; --brass-tx:#8a6423; --rose-tx:#a14f3f; --violet-tx:#5f4f85;
+    --good:#2f8f5c; --warn:#b9863a; --bad:#b3453a;
+    --shadow: 0 1px 2px rgba(20,30,40,.06), 0 8px 24px rgba(20,30,40,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#0d1116; --panel:#161b22; --panel-2:#1c222b; --line:#2a323c;
+      --text:#e7ebef; --text-dim:#8a95a3;
+      --steel:#6f9cc4; --radar:#57b39c; --brass:#d3a35c; --rose:#d3897a; --violet:#a292c9;
+      --steel-tx:#9dc0e0; --radar-tx:#8ed6bf; --brass-tx:#eabf82; --rose-tx:#e8ac9f; --violet-tx:#c3b3e6;
+      --good:#57b384; --warn:#d3a35c; --bad:#d3776a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#0d1116; --panel:#161b22; --panel-2:#1c222b; --line:#2a323c;
+    --text:#e7ebef; --text-dim:#8a95a3;
+    --steel:#6f9cc4; --radar:#57b39c; --brass:#d3a35c; --rose:#d3897a; --violet:#a292c9;
+    --steel-tx:#9dc0e0; --radar-tx:#8ed6bf; --brass-tx:#eabf82; --rose-tx:#e8ac9f; --violet-tx:#c3b3e6;
+    --good:#57b384; --warn:#d3a35c; --bad:#d3776a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--ink); color:var(--text); margin:0}
+  #app{font-family:'Inter',ui-sans-serif,system-ui,sans-serif; max-width:880px; margin:0 auto; padding:20px 16px 72px; line-height:1.45}
+  h1,h2,h3{font-family:'Sora',ui-sans-serif,system-ui,sans-serif; margin:0; text-wrap:balance}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+  button{font-family:inherit; cursor:pointer}
+  button:focus-visible, select:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--radar); outline-offset:2px}
+  a{color:inherit}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow)}
+  .dim{color:var(--text-dim)}
+  .eyebrow{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.14em; color:var(--text-dim); text-transform:uppercase}
+
+  /* ---- header / instrument bar ---- */
+  .deck-head{position:relative; overflow:hidden; border-radius:16px; padding:20px 22px; margin-bottom:16px;
+    background:
+      radial-gradient(600px 200px at 85% -20%, color-mix(in srgb, var(--radar) 16%, transparent), transparent),
+      radial-gradient(500px 220px at -10% 120%, color-mix(in srgb, var(--steel) 14%, transparent), transparent),
+      var(--panel);
+    border:1px solid var(--line);
+  }
+  .scanline{position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--radar) 10%, transparent) 50%, transparent 100%);
+    background-size:100% 260%;
+    animation:sweep 7s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){ .scanline{animation:none} }
+  @keyframes sweep{ 0%{background-position:0 -160%} 100%{background-position:0 160%} }
+  .deck-head-row{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; position:relative}
+  .brand{display:flex; align-items:center; gap:10px}
+  .brand-mark{width:34px; height:34px; border-radius:9px; display:grid; place-items:center; background:color-mix(in srgb, var(--radar) 20%, var(--panel-2)); border:1px solid var(--line); flex:none}
+  .deck-sub{color:var(--text-dim); font-size:13.5px; margin-top:10px; max-width:60ch}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; position:relative}
+  .chip{font-family:'IBM Plex Mono'; font-size:10.5px; letter-spacing:.03em; padding:3px 9px; border-radius:20px; border:1px solid var(--line); color:var(--text-dim); background:var(--panel-2)}
+
+  /* ---- ring ---- */
+  .ring-wrap{position:relative; width:64px; height:64px; flex:none}
+  .ring-wrap svg{transform:rotate(-90deg)}
+  .ring-label{position:absolute; inset:0; display:grid; place-items:center; font-family:'IBM Plex Mono'; font-size:14px; font-weight:600}
+
+  /* ---- flight strip (domain rail) ---- */
+  .strip{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; margin-bottom:16px}
+  .strip-item{background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:10px 12px}
+  .strip-top{display:flex; align-items:center; gap:7px; margin-bottom:7px}
+  .dot{width:8px; height:8px; border-radius:3px; flex:none}
+  .strip-name{font-size:12.5px; font-weight:600}
+  .bar{height:6px; border-radius:4px; background:var(--panel-2); overflow:hidden}
+  .bar > span{display:block; height:100%; border-radius:4px}
+  .strip-meta{display:flex; justify-content:space-between; margin-top:6px; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--text-dim)}
+
+  /* ---- block list ---- */
+  section.domain-group{margin-bottom:12px; overflow:hidden}
+  .domain-group-head{display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--panel-2); border-bottom:1px solid var(--line)}
+  .domain-group-head h3{font-size:15px}
+  .block-row{width:100%; display:flex; align-items:center; gap:12px; padding:13px 16px; background:transparent; border:none; border-top:1px solid var(--line); text-align:left; color:var(--text)}
+  .block-row:hover{background:var(--panel-2)}
+  .block-id{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-dim); width:40px; flex:none}
+  .block-name{flex:1; font-size:14.5px; font-weight:500}
+  .pct{font-family:'IBM Plex Mono'; font-size:12px}
+  .badge{font-family:'IBM Plex Mono'; font-size:10.5px; padding:3px 9px; border-radius:20px; font-weight:600; flex:none}
+  .badge-solid{color:var(--ink)}
+  .badge-outline{border:1px solid currentColor}
+
+  /* ---- launch buttons ---- */
+  .launch-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+  .launch{flex:1 1 190px; text-align:left; padding:15px 16px; border-radius:12px; background:var(--panel); border:1px solid var(--line); color:var(--text)}
+  .launch[disabled]{opacity:.55; cursor:not-allowed}
+  .launch-title{font-family:'Sora'; font-weight:600; font-size:15.5px}
+  .launch-sub{font-size:12px; color:var(--text-dim); margin-top:3px}
+
+  /* ---- diagnostic ---- */
+  .diag-row{display:flex; align-items:center; gap:12px; margin-bottom:9px}
+  .diag-name{font-size:13px; width:190px; flex:none; color:var(--text)}
+  .diag-id{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-dim); width:36px; flex:none}
+
+  /* ---- quiz ---- */
+  .quiz-head{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+  .quiz-head .spacer{margin-left:auto}
+  .backbtn{background:none; border:1px solid var(--line); border-radius:8px; color:var(--text-dim); padding:6px 12px; font-size:13px}
+  .timer{font-family:'IBM Plex Mono'; font-size:13px; font-weight:600}
+  .dotrow{display:flex; gap:5px; flex-wrap:wrap; margin-bottom:16px}
+  .qdot{width:24px; height:6px; border-radius:4px; border:none; background:var(--panel-2)}
+  .qcard{padding:20px 20px 22px}
+  .qtag-row{display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap}
+  .tag{font-family:'IBM Plex Mono'; font-size:10.5px; padding:3px 9px; border-radius:20px; border:1px solid var(--line); color:var(--text-dim)}
+  .stem{font-size:16.5px; font-weight:500; line-height:1.5; margin-bottom:16px}
+  .options{display:grid; gap:8px}
+  .opt{display:flex; gap:11px; align-items:flex-start; text-align:left; padding:12px 13px; border-radius:10px; border:1px solid var(--line); background:var(--panel-2); color:var(--text); width:100%}
+  .opt-key{font-family:'IBM Plex Mono'; font-size:12px; font-weight:700; color:var(--text-dim); margin-top:1px; flex:none; width:18px; text-align:center}
+  .scenario{background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--radar); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:13.5px; line-height:1.55; color:var(--text-dim)}
+  select.picker{width:100%; background:var(--panel-2); color:var(--text); border:1px solid var(--line); border-radius:9px; padding:9px 10px; font-size:13.5px; font-family:inherit}
+  .qnav{display:flex; justify-content:space-between; align-items:center; margin-top:16px}
+  .navbtn{padding:11px 18px; border-radius:10px; border:1px solid var(--line); background:var(--panel-2); color:var(--text); font-size:14px}
+  .navbtn[disabled]{opacity:.55; cursor:not-allowed}
+  .submitbtn{padding:11px 18px; border-radius:10px; border:none; font-weight:700}
+
+  /* ---- results ---- */
+  .score-banner{display:flex; align-items:center; gap:18px; padding:18px 20px; margin-top:4px}
+  .score-head{font-family:'Sora'; font-size:19px; font-weight:600; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .prof-row{display:flex; align-items:center; gap:12px; margin-bottom:9px}
+  .prof-name{font-size:13px; width:150px; flex:none}
+  .prof-band{font-family:'IBM Plex Mono'; font-size:11px; width:120px; text-align:right; flex:none}
+  .studycard{margin-top:12px; padding:14px 16px}
+  .refs{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px}
+  .ref-link{font-size:12px; text-decoration:none; display:inline-flex; gap:5px; align-items:center; padding:4px 9px; border-radius:20px; border:1px solid var(--line); background:var(--panel-2)}
+  .review-item{margin-bottom:10px; overflow:hidden}
+  .review-toggle{width:100%; background:transparent; border:none; padding:13px 16px; display:flex; gap:10px; align-items:flex-start; text-align:left; color:var(--text)}
+  .review-body{padding:0 16px 16px 40px; font-size:13.5px}
+  .why-box{margin-top:10px; padding:10px 12px; background:var(--panel-2); border-left:3px solid var(--radar); border-radius:6px; font-size:13.5px; line-height:1.5}
+  .final-row{display:flex; gap:12px; margin-top:16px}
+  .final-row button{flex:1; padding:14px; border-radius:11px; font-size:15px; font-weight:600; border:1px solid var(--line); background:var(--panel-2); color:var(--text)}
+  .final-row button.primary{border:none; font-weight:700}
+
+  /* ---- flashcards ---- */
+  .flash-stage{padding:30px 22px; text-align:center; min-height:230px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; cursor:pointer}
+  .flash-face-label{font-family:'IBM Plex Mono'; font-size:10.5px; letter-spacing:.12em; color:var(--text-dim); text-transform:uppercase}
+  .flash-term{font-family:'Sora'; font-size:23px; font-weight:600}
+  .flash-def{font-size:15px; line-height:1.55; max-width:52ch}
+  .flash-hint{font-size:12px; color:var(--text-dim)}
+  .flash-grade{display:flex; gap:12px; margin-top:14px}
+  .flash-grade button{flex:1; padding:13px; border-radius:11px; font-size:14.5px; font-weight:600; border:1px solid var(--line)}
+  .flash-progress{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-family:'IBM Plex Mono'; font-size:12px; color:var(--text-dim)}
+
+  .footer-row{display:flex; justify-content:space-between; align-items:center; margin-top:26px; color:var(--text-dim); font-size:12px; gap:12px; flex-wrap:wrap}
+  .link-btn{background:none; border:none; color:var(--text-dim); text-decoration:underline; font-size:12px; padding:0}
+  .empty-note{padding:14px 16px; font-size:13px; color:var(--text-dim)}
+</style>
+<div id="app"></div>
+<script>
+(function(){
+"use strict";
+
+/* ============================== DATA ============================== */
+
+/* Domain names + weights per PMI's PgMP Examination Content Outline, March 2024. */
+var DOMAINS = {
+  strategic:  { name:"Strategic Program Alignment",      abbr:"Strategic",   token:"steel",  weight:15 },
+  lifecycle:  { name:"Program Life Cycle Management",    abbr:"Life Cycle",  token:"radar",  weight:44 },
+  benefits:   { name:"Benefits Management",              abbr:"Benefits",   token:"brass",  weight:11 },
+  stakeholder:{ name:"Stakeholder Engagement",           abbr:"Stakeholder",token:"rose",   weight:16 },
+  governance: { name:"Governance",                       abbr:"Governance", token:"violet", weight:14 }
+};
+var DOMAIN_ORDER = ["strategic","lifecycle","benefits","stakeholder","governance"];
+
+var REFS = {
+  pgmp:               { label:"PMI · PgMP credential overview",        url:"https://www.pmi.org/certifications/program-management-pgmp" },
+  ethics:             { label:"PMI Code of Ethics and Professional Conduct", url:"https://www.pmi.org/about/ethics/guidelines" },
+  standard:           { label:"Program management (overview)",         url:"https://en.wikipedia.org/wiki/Program_management" },
+  bizcase:            { label:"Business case",                         url:"https://en.wikipedia.org/wiki/Business_case" },
+  benefitsreg:        { label:"Benefits realisation management",       url:"https://en.wikipedia.org/wiki/Benefits_realisation_management" },
+  stakeholder_:       { label:"Stakeholder management",                url:"https://en.wikipedia.org/wiki/Stakeholder_management" },
+  stakeholdermap:     { label:"Stakeholder analysis (power/interest)", url:"https://en.wikipedia.org/wiki/Stakeholder_analysis" },
+  governance:         { label:"Governance",                            url:"https://en.wikipedia.org/wiki/Governance" },
+  raci:               { label:"Responsibility assignment matrix (RACI)", url:"https://en.wikipedia.org/wiki/Responsibility_assignment_matrix" },
+  changemgmt:         { label:"Change management",                     url:"https://en.wikipedia.org/wiki/Change_management" },
+  systemsthinking:    { label:"Systems thinking",                      url:"https://en.wikipedia.org/wiki/Systems_thinking" },
+  swot:               { label:"SWOT / environmental analysis",         url:"https://en.wikipedia.org/wiki/SWOT_analysis" },
+  decisiontree:       { label:"Decision tree analysis",                url:"https://en.wikipedia.org/wiki/Decision_tree" },
+  evm:                { label:"Earned value management",               url:"https://en.wikipedia.org/wiki/Earned_value_management" },
+  npv:                { label:"Net present value / IRR",                url:"https://en.wikipedia.org/wiki/Net_present_value" }
+};
+
+/* Content sourced from: PMI PgMP Examination Content Outline (March 2024),
+   PMI PgMP Handbook (11 March 2024), and "The PgMP Mindset" study guide
+   (synthesized from The Standard for Program Management 5e, PMBOK 8e, the
+   ECO, and the PMI Code of Ethics). Block/question counts are weighted
+   toward each domain's real exam proportion (Life Cycle Management alone
+   is 44% of the exam) rather than split evenly. */
+
+var BLOCKS = [
+  {
+    id:"ST1", domain:"strategic", name:"Strategic Alignment & the Business Case",
+    refs:["standard","bizcase","swot"],
+    material:[
+      "Program success means benefits realized and sustained — not on-time/on-budget delivery. A component can hit every baseline and still be a program failure if it doesn't move the benefit.",
+      "Strategic alignment is continuous, not a one-time charter event: environmental scanning (PESTLE/SWOT) runs throughout the life cycle, and misalignment triggers a realignment or an escalation to reassess strategy.",
+      "Think portfolio-up, not project-down: resource conflicts between components are resolved at the program level for overall benefit optimization, not split evenly or pushed to whichever component asks loudest.",
+      "If running components independently would produce the same value as running them as a program, there's no real synergy — and the case for treating them as one program is weak."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A component finishes exactly on time and on budget, and its deliverable performs to specification. Eight months later, adoption by the target business unit remains low and the intended process-efficiency gain has not materialized. From a program management perspective, this component should be considered:",
+        options:[
+          "Successful, because it met its scope, schedule, and cost baseline",
+          "Successful, because the program isn't accountable for adoption after handoff",
+          "Not yet successful, because program success is measured by benefits realized, not by on-time/on-budget delivery",
+          "A project management failure that should be escalated to replace the project manager"
+        ],
+        a:2,
+        why:"Program success is benefits realized and sustained. Hitting the schedule/cost/scope baseline is a project-level success measure — it says nothing about whether the intended benefit actually materialized.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Eighteen months into a program, an internal skills assessment shows the organization no longer has the technical capability the remaining components require, after a wave of attrition. This most directly triggers a revisit of which program artifact?",
+        options:[
+          "The stakeholder matrix",
+          "The program roadmap and business case, via ongoing environmental scanning",
+          "The communications management plan",
+          "The individual project schedules"
+        ],
+        a:1,
+        why:"Internal capability is an environmental factor. Strategic alignment is continuous — ongoing scanning feeds back into the roadmap and business case, not just execution-level plans.",
+        refs:["standard","swot"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are primary purposes of a program's strategic alignment activities?",
+        options:[
+          "Ensure each component individually meets its own project baseline",
+          "Confirm the program continues to support organizational strategy as conditions change",
+          "Produce the detailed work breakdown structure for each component",
+          "Identify when the business case or benefit assumptions no longer hold"
+        ],
+        a:[1,3],
+        why:"Alignment is about the ongoing strategy fit (confirming continued support) and catching invalidated assumptions. Component baselines and WBS detail are project-level concerns.",
+        refs:["standard","bizcase"]
+      },
+      {
+        type:"single",
+        stem:"A resource conflict arises between two components in the same program: both need the same senior data architect at the same time, and each component manager insists their need is more urgent for their own component's schedule. Who should resolve this, and on what basis?",
+        options:[
+          "The two component project managers should negotiate directly and split the architect's time evenly",
+          "The program manager should resolve it at the program level, based on which allocation optimizes overall program benefits",
+          "The PMO should resolve it based on which component was chartered first",
+          "It should be escalated to the portfolio governance board immediately, since it exceeds program authority"
+        ],
+        a:1,
+        why:"Think portfolio-up: resource conflicts between components are a program-level decision, resolved for overall benefit optimization — not split evenly, not decided by charter date, and not automatically outside the program manager's authority.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager notices that if each of the program's three components were run as independent, stand-alone projects rather than as a coordinated program, the organization would likely realize roughly the same total value with less coordination overhead. What does this most likely indicate?",
+        options:[
+          "The program is well-designed and should continue exactly as structured",
+          "The components may not actually need to be managed as a program, since no synergy is being captured",
+          "The program manager should add more components to justify the structure",
+          "The organization should simply increase the program's budget"
+        ],
+        a:1,
+        why:"A program should make the whole exceed the sum of its parts. If grouping components isn't producing more value than managing them independently would, the \"program\" isn't functioning as one — the coordination overhead isn't buying anything.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"ST2", domain:"strategic", name:"Financial Framework, Mission & Prioritization",
+    refs:["standard","bizcase","npv"],
+    material:[
+      "A program's high-level financial framework (funding model, NPV/IRR/payback, funding tranches tied to gates) is a strategic-stage artifact — distinct from, and prior to, a detailed project-level budget.",
+      "A program mission statement expresses why the program exists and the outcome it seeks, in stakeholder terms — not what will be built. \"Install X units\" is deliverable framing; PMI wants outcome framing.",
+      "Competing programs are ranked with weighted scoring against strategic fit, risk, and benefit value — not by sponsor seniority, submission order, or which stakeholder is loudest.",
+      "Identifying integration opportunities can mean looking beyond the program's own components to shared resources or systems elsewhere in the organization, to eliminate duplication and grow benefit realization."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's financial framework presents funding tranches over three years tied to governance decision gates, along with an NPV and IRR estimate for the investment. A sponsor asks the program manager to instead provide a detailed, itemized project budget for the first year. What should the program manager do?",
+        options:[
+          "Provide the detailed itemized budget instead, since it's more precise",
+          "Explain that a high-level financial framework — not a detailed budget — is what supports governance validation at this strategic stage; detailed budgets belong at the component level, later",
+          "Provide both documents and let the sponsor choose which to use",
+          "Decline to provide any financial information until the charter is signed"
+        ],
+        a:1,
+        why:"PMI distinguishes the strategic financial framework (funding architecture, NPV/IRR, tranches) from a detailed project-level budget. Conflating the two skips a step the alignment domain exists to protect.",
+        refs:["bizcase","npv"]
+      },
+      {
+        type:"single",
+        stem:"A working group drafts a program mission statement: \"Install rooftop solar arrays on 500 municipal buildings by 2027.\" A reviewer flags this as poorly framed. What is the issue?",
+        options:[
+          "The 2027 timeline is too aggressive",
+          "The statement describes a deliverable (installing arrays), not the strategic outcome or benefit the program exists to achieve",
+          "It should specify the exact solar panel vendor",
+          "Municipal buildings are not an appropriate scope for a mission statement"
+        ],
+        a:1,
+        why:"A mission statement expresses why the program exists and the outcome sought — such as emissions reduction or energy-cost savings — not a deliverable count. \"Install X units\" is output framing, a common exam trap.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"An organization must choose which of four proposed programs to fund this year. Which TWO factors should most heavily inform that decision, per PMI's strategic alignment logic?",
+        options:[
+          "Which program's sponsor is most senior in the organization",
+          "Each program's weighted score against strategic fit, risk, and expected benefit value",
+          "Which program was proposed first",
+          "Each program's alignment with organizational strategy, reassessed at major reviews rather than assumed"
+        ],
+        a:[1,3],
+        why:"Portfolio-level prioritization runs on weighted scoring against strategic criteria, and alignment is continuously reassessed — not decided by seniority or submission order.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A defense modernization program is evaluating whether to integrate its new cybersecurity platform with an existing, unrelated logistics system already used elsewhere in the organization. Integrating would take extra coordination effort but could eliminate duplicate infrastructure investment. What should guide the program manager's decision?",
+        options:[
+          "Avoid integration entirely, since it adds coordination complexity to the program's own components",
+          "Evaluate the integration opportunity for its potential to eliminate duplication and increase overall benefit realization, even though it lies outside the program's immediate components",
+          "Proceed with integration only if the logistics system's owning department requests it",
+          "Defer the decision to each component project manager independently"
+        ],
+        a:1,
+        why:"Identifying and evaluating integration opportunities — even across organizational boundaries — is an explicit strategic-alignment task aimed at maximizing benefit realization, not just managing the program's own component list.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"During a national broadband program, a new, lower-cost satellite technology emerges that could expand coverage well beyond the original plan. The program manager is confident this is a good opportunity. What is the appropriate next step?",
+        options:[
+          "Quietly redirect program resources toward the new technology, since time-sensitive opportunities shouldn't wait for approval",
+          "Evaluate and quantify the opportunity, then formally update the business case and seek governance approval before pivoting architecture",
+          "Wait until the current program closes, then propose a new program for the opportunity",
+          "Delegate the decision to the vendor providing the satellite technology"
+        ],
+        a:1,
+        why:"Strategic opportunities are exploited through evaluation and formal governance approval, not unilateral action — agility and governance discipline both matter here, and neither delaying until closure nor bypassing approval reflects that balance.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"LC1", domain:"lifecycle", name:"Program Definition, Roadmap & Integrated Planning",
+    refs:["standard","raci"],
+    material:[
+      "The program charter ties scope, assumptions, constraints, high-level risks, and high-level benefits to the business case and authorizes the program — it doesn't need every detail resolved to be approved.",
+      "Programs are progressively elaborated: the roadmap shows milestones now and gains detail as the program advances and visibility improves. Full detail at initiation isn't expected or realistic.",
+      "Integrated program planning tracks cross-component dependencies, shared resources, and collective benefits — it's a genuinely integrated view, not a binder of aggregated project plans.",
+      "A responsibility assignment matrix (RACI) clarifies where program authority ends and project authority begins, so the program manager coaches and removes obstacles rather than directing component-level execution.",
+      "Cross-component dependencies — schedule, resource, technical, and benefit — are where programs succeed or fail; a ripple effect between components is a program-level responsibility to track and manage, not a single project manager's problem to solve alone."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A delay in Component A's data-migration deliverable won't affect Component A's own schedule, but Component B — which depends on that data for its testing phase — will be delayed by six weeks if nothing changes. Component B's project manager hasn't yet raised this as a risk. What should the program manager do?",
+        options:[
+          "Wait for Component B's project manager to formally log the risk in their own project's risk register",
+          "Proactively identify and manage the cross-component dependency now, since ripple effects across components are a program-level responsibility",
+          "Instruct Component A's project manager to accelerate their own schedule to avoid impacting Component B",
+          "Take no action until the six-week delay actually materializes"
+        ],
+        a:1,
+        why:"Cross-component dependencies are managed relentlessly at the program level. Waiting on one project's risk register, or leaving it to a single PM to fix unilaterally, misses that the ripple effect across components is the program manager's job to track.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"At program initiation, the program manager cannot yet specify a detailed schedule for a component planned 18 months out, since the technology it depends on hasn't been selected. A stakeholder insists the full detailed roadmap be finalized before the program charter is approved. What is the most appropriate response?",
+        options:[
+          "Provide a fully detailed roadmap anyway, using best-guess assumptions",
+          "Explain that programs are progressively elaborated — the roadmap shows milestones now and gains detail as the program advances",
+          "Delay charter approval until every component's detailed schedule can be produced",
+          "Remove the far-out component from the roadmap until it can be fully detailed"
+        ],
+        a:1,
+        why:"Progressive elaboration is expected and healthy for programs. Roadmaps gain detail over time — insisting on full detail at initiation, or stalling the charter over it, misunderstands how program planning actually works.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager assembles the program management plan by collecting each component's individual project plan and combining them into a single binder. What is the flaw in this approach?",
+        options:[
+          "There is no flaw; program planning is the aggregation of project plans",
+          "Integrated program planning has to go beyond aggregation to track cross-component dependencies, shared resources, and collective benefits",
+          "The binder should be organized alphabetically by component name for governance approval",
+          "Program plans should never reference project-level content at all"
+        ],
+        a:1,
+        why:"Program-level planning is an integrated view, not a sum of the parts. Aggregating project plans misses exactly the cross-component dependencies and shared-resource picture that program planning exists to capture.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO practices reflect leading a \"team of teams\" at the program level, rather than micromanaging component projects?",
+        options:[
+          "Defining a RACI matrix that clarifies where program authority ends and project authority begins",
+          "Directly assigning daily tasks to individual project team members across all components",
+          "Coaching component project managers while leaving execution decisions to them",
+          "Requiring every project-level decision to be approved by the program manager before it proceeds"
+        ],
+        a:[0,2],
+        why:"Leading a team of teams means empowering component managers within clear boundaries (a RACI matrix) and coaching rather than directing — not taking over daily task assignment or gating every project-level decision.",
+        refs:["standard","raci"]
+      },
+      {
+        type:"case",
+        stem:"Three components in a program each independently purchased similar data-analytics licenses from different vendors, unaware of each other's procurement. The program manager discovers this during a routine cost review.",
+        scenario:"Three components, each with its own budget authority, separately signed annual contracts for functionally overlapping analytics tools within the same quarter. No component was aware of the others' purchase until the program-level cost review flagged the overlap.",
+        subs:[
+          {
+            stem:"What does this situation most directly indicate about the program's current state?",
+            options:[
+              "The program is performing well, since each component made a fast, independent decision",
+              "A missed opportunity for synergy — shared resourcing and procurement across components wasn't identified or leveraged",
+              "The vendor selection process was too slow",
+              "Each component's project manager should be reprimanded for acting independently"
+            ],
+            a:1
+          },
+          {
+            stem:"What should the program manager do now?",
+            options:[
+              "Leave each component on its own license, since contracts are already signed",
+              "Evaluate consolidating to a single vendor going forward and update the program's resource/procurement coordination so this is caught earlier next time",
+              "Escalate to the governance board to terminate all three components",
+              "Take no action, since procurement is a project-level function outside program scope"
+            ],
+            a:1
+          }
+        ],
+        why:"Programs exist to capture synergy across components. Discovering redundant procurement after the fact is a signal to strengthen program-level coordination going forward — not to ignore it, punish the project managers, or treat it as outside the program's remit.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC2", domain:"lifecycle", name:"Execution, Change & Closure",
+    refs:["standard","changemgmt","benefitsreg"],
+    material:[
+      "Programs embrace change to optimize benefits; projects control change to protect scope. A component that no longer serves the strategy is a candidate to modify or cancel, even if it's on schedule and budget — sunk cost and completion percentage aren't the deciding factors.",
+      "A program needs a monitoring and escalation mechanism that surfaces unresolved project-level issues before they threaten benefits realization — waiting for a project manager to escalate on their own isn't a substitute for that mechanism.",
+      "Program performance analysis means watching trends, not just point-in-time status: risk exposure trending upward for several periods in a row is worth investigating even while schedule and cost both still show green.",
+      "Closure means confirming transition of outputs, ongoing support, and benefit sustainment to operations — not just wrapping up contracts and disbanding the team the week the last deliverable ships.",
+      "Post-review meetings exist to capture lessons learned and best practices for future programs — not to assign blame for a component or program that fell short."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A market shift makes one of a program's five components — originally scoped to build a feature competitors have since made obsolete — unlikely to contribute meaningful benefit going forward. The component is 70% complete and on budget. What is the best course of action?",
+        options:[
+          "Complete the component as planned, since canceling work that is 70% complete wastes the investment already made",
+          "Evaluate canceling or significantly re-scoping the component, since programs embrace change to optimize benefits rather than protect sunk investment in work that no longer serves the strategy",
+          "Pause the component indefinitely without a decision, pending further market research",
+          "Let the component's project manager decide, since it is their project"
+        ],
+        a:1,
+        why:"Programs embrace change to optimize benefits, and benefits must justify investment continuously. Completion percentage and sunk cost don't justify continuing a component that no longer contributes to the program's benefit case — and that call sits at the program level.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A project-level issue within one component has been open for three weeks without resolution, and it is starting to threaten that component's contribution to program benefits. The component's project manager has not escalated it. What does this reveal, and what should happen now?",
+        options:[
+          "Nothing is missing — issues are solely the project manager's responsibility until formally escalated",
+          "The program should have a monitoring/escalation mechanism that surfaces unresolved issues before they threaten benefits realization; the program manager should now engage and select a course of action consistent with program objectives",
+          "The program manager should take over running the component project directly",
+          "The issue should go straight to the executive sponsor without further analysis"
+        ],
+        a:1,
+        why:"Programs need a monitoring and escalation mechanism precisely so unresolved project issues surface before they threaten benefits — the program manager then acts within program constraints, rather than taking over the project or skipping analysis entirely.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"At a quarterly review, program performance data shows the program on schedule and under budget overall, but risk exposure has been trending upward for three consecutive reporting periods on the same underlying issue. What should the program manager do?",
+        options:[
+          "Report only the schedule and cost performance to governance, since those are green",
+          "Investigate the trend and root cause of the recurring risk issue and update the program's response — analyzing trends, not just current status, is how corrective action gets identified early",
+          "Wait until the risk exposure actually causes a schedule or cost impact before acting",
+          "Delegate the trend analysis to whichever component is most affected"
+        ],
+        a:1,
+        why:"Analyzing variances and trends — not just point-in-time status — is how a program manager catches emerging problems before they hit cost or schedule. Green top-line metrics can mask a real, worsening pattern underneath.",
+        refs:["standard"]
+      },
+      {
+        type:"matching",
+        stem:"Match each program-level concept to the project-level concept it replaces in program thinking.",
+        prompts:["Benefits realization","Component optimization","Governance framework","Benefits transition to operations"],
+        choices:["Change control board","Handoff to operations","Deliverables completion","Task management"],
+        a:[2,3,0,1],
+        why:"The program-level term always reflects strategic/benefits framing; the project-level term reflects execution/deliverable framing. Recognizing this vocabulary shift is itself an exam skill.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A program's final component completes its output, and the program manager closes out program contracts and disbands the team that same week, considering the program successfully finished. What is missing from this closure?",
+        options:[
+          "Nothing — once the last component's output is delivered, the program is complete",
+          "Confirmed transition of the output, ongoing support, and sustainment of benefits to operations — closure isn't complete until benefits are handed off with clear ongoing ownership",
+          "A final executive celebration event",
+          "Reassignment of the program manager to a new program"
+        ],
+        a:1,
+        why:"Closure means transitioning benefits to sustained operations, not just wrapping up administrative and contract loose ends. Skipping this risks losing the benefit right after the program disbands.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component within a program fails to meet its objectives, causing a significant program delay. During the post-review meeting, the primary purpose should be to:",
+        options:[
+          "Determine which individual is responsible for the failure and document it in their performance record",
+          "Capture lessons learned and best practices to support future programs and organizational improvement, without a focus on blame",
+          "Avoid discussing the failure directly, to preserve team morale",
+          "Immediately reassign the underperforming component's project manager"
+        ],
+        a:1,
+        why:"Post-review meetings are for feedback and learning, not blame. Capturing and applying lessons learned is a continuous responsibility regardless of whether the outcome was a success or a shortfall.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC3", domain:"lifecycle", name:"Component Definition, Baselines & Resourcing",
+    refs:["standard","raci"],
+    material:[
+      "Components are selected for a program because they contribute directly to intended benefits — not because they're individually feasible. A Component Initiation Request formalizes that benefit linkage for governance approval.",
+      "Program scope and schedule baselines operate at the outcome/milestone level; work-package detail belongs to project-level planning, not the program baseline.",
+      "A budget baseline is approved, governance-endorsed funding; a forecast is only an estimate — recognizing which one is the formal control document is a recurring exam distinction.",
+      "Resource conflicts between components that affect strategic objectives, or that exceed the program manager's delegated authority, go to governance for a prioritization decision."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A newly chartered program has identified eight potentially feasible sub-projects that various departments would like included as program components. Only five of them clearly link to the program's intended benefits. How should the program manager proceed?",
+        options:[
+          "Include all eight, since more components mean more delivered value",
+          "Select the five components with clear benefit contribution as program components, and route the other three through separate channels if they have independent merit",
+          "Select components based on which departments have the most funding available",
+          "Delay chartering the program until all eight departments agree on scope"
+        ],
+        a:1,
+        why:"Programs select components based on direct contribution to intended benefits, not feasibility or departmental interest alone — a program isn't just \"everything that's plausible.\"",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Governance asks a program manager to explain how the program's schedule baseline differs from simply combining every component's detailed project schedule into one master file. What is the correct distinction?",
+        options:[
+          "There is no meaningful difference between the two",
+          "The program schedule baseline consolidates milestone synchronization and benefit-delivery checkpoints for governance monitoring, not day-to-day activity-level control",
+          "The master file should always take precedence over the baseline for reporting",
+          "Detailed component schedules should never be shared with governance"
+        ],
+        a:1,
+        why:"A program-level schedule baseline exists to synchronize milestones and pace benefit delivery for governance — a raw combination of detailed project schedules buries that signal in activity-level noise.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee is reviewing two figures for a program: an approved budget baseline of $150M released in phased gates, and a project team's internal forecast projecting $162M in likely spend. Which figure should govern funding-release decisions, and why?",
+        options:[
+          "The forecast, because it reflects the most current thinking",
+          "The budget baseline, because it represents formally approved funding — the forecast is only an estimate and isn't itself an authorization to spend more",
+          "Whichever number is lower, to be conservative",
+          "Both carry equal governance weight"
+        ],
+        a:1,
+        why:"A budget baseline is the approved control document; a forecast is an estimate. A rising forecast is a signal for governance review, not an automatic new baseline.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Two components are both behind schedule and each requests additional specialized engineers from the same limited internal pool. Fully resourcing both requests would exceed the program manager's delegated authority over that shared pool. What should the program manager do?",
+        options:[
+          "Split the available engineers evenly between the two components regardless of impact on benefits",
+          "Escalate the resourcing trade-off to governance for a prioritization decision, since it exceeds delegated authority and affects strategic objectives",
+          "Approve the full request for whichever component asked first",
+          "Deny both requests to avoid taking sides"
+        ],
+        a:1,
+        why:"When a resourcing trade-off exceeds delegated authority and touches strategic objectives, governance prioritization — not an even split, first-come basis, or blanket denial — is the correct path.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"case",
+        stem:"A \"Customer Digital Transformation Program\" is in Definition. Three candidate components have been proposed for it.",
+        scenario:"Candidate 1: a mobile app rebuild expected to drive customer retention. Candidate 2: a CRM integration expected to improve sales conversion. Candidate 3: an internal expense-reporting tool with no clear link to any program benefit, proposed because \"the finance team has wanted it for years.\"",
+        subs:[
+          {
+            stem:"Which candidates should proceed through a Component Initiation Request for this program?",
+            options:[
+              "All three, since resourcing is available",
+              "Only the mobile app rebuild and CRM integration, since they link directly to program benefits",
+              "Only the expense-reporting tool, since it's the smallest and easiest to deliver",
+              "None, until all three have identical business cases"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate treatment of the expense-reporting tool request?",
+            options:[
+              "Add it to the program anyway to keep finance satisfied",
+              "Redirect it outside the program, since it has no demonstrated link to the program's intended benefits",
+              "Cancel it permanently with no further consideration",
+              "Make it the program's top-priority component"
+            ],
+            a:1
+          }
+        ],
+        why:"Component selection is governed by benefit contribution, not stakeholder goodwill or ease of delivery. A request with no benefit linkage doesn't belong in the program even if it's otherwise reasonable work.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC4", domain:"lifecycle", name:"Execution Controls: EVM, Quality & Change Governance",
+    refs:["evm","changemgmt","governance"],
+    material:[
+      "Program-level EVM (aggregate CPI/SPI) measures cost/schedule performance trends across components and triggers realignment action — it's a monitoring signal, not a project-level task tracker.",
+      "Program quality management assures that cumulative results satisfy strategic requirements — distinct from project-level inspection/testing of individual deliverables.",
+      "Program-level changes to scope, cost, schedule, or benefits go through a Change Control Board using impact analysis before baselines are updated; informal agreement never substitutes for that step, however senior the people involved.",
+      "Full transparency in performance reporting is expected even when the news is bad; concealing negative variance is a governance and ethics violation, not a judgment call."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A quarterly program performance review shows an aggregate Cost Performance Index (CPI) of 0.88 across all components, down from 0.97 the prior quarter. Individually, no single component is flagged as critical. What should the program manager do?",
+        options:[
+          "Take no action, since no individual component has been flagged as critical",
+          "Investigate the aggregate cost trend across components and initiate corrective action to protect overall benefit realization, even though no single component looks alarming on its own",
+          "Wait for the next quarter to confirm whether the trend continues",
+          "Instruct each component to independently cut costs by 12% to compensate"
+        ],
+        a:1,
+        why:"Program-level EVM exists to catch aggregate trends that don't show up as a single component's crisis — a declining CPI trend is a signal to investigate and act, not wait out or push down as an arbitrary blanket cut.",
+        refs:["evm"]
+      },
+      {
+        type:"single",
+        stem:"A component project team reports that all its individual deliverables passed their acceptance tests. The program's quality lead is still concerned. What is the most likely reason?",
+        options:[
+          "Individual test results are irrelevant at the program level",
+          "Passing individual deliverable tests (conformance) doesn't confirm that the cumulative results across components actually satisfy the program's strategic quality requirements (assurance)",
+          "The quality lead should simply trust the component's test results without further review",
+          "Quality management is entirely a project-level responsibility with no program role"
+        ],
+        a:1,
+        why:"Program-level quality management is about assurance — whether cumulative outcomes meet strategic requirements — a different, higher-altitude concern than individual deliverable conformance testing.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component sponsor and the program manager verbally agree, in a hallway conversation, to expand a component's scope to include a feature both consider low-risk. No formal change request is filed. What is wrong with this approach?",
+        options:[
+          "Nothing, since both parties with relevant authority agreed",
+          "Program-level changes to scope, cost, schedule, or benefits require formal evaluation and approval through the Change Control Board before baselines are updated — informal agreement isn't a substitute, however low-risk it seems",
+          "The change should have gone directly to the executive sponsor instead",
+          "Verbal agreements are acceptable as long as they're documented afterward in an email"
+        ],
+        a:1,
+        why:"PMI consistently rewards formal change control over informal agreement, regardless of how low-risk the change seems or how senior the people involved are.",
+        refs:["changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A program is showing negative cost and schedule variance heading into a major governance review. The program manager considers presenting only the positive-trending metrics this quarter, planning to disclose the full picture next quarter once (hopefully) it improves. What is the correct action?",
+        options:[
+          "Present only the positive metrics this quarter, as planned, to avoid unnecessary alarm",
+          "Present complete, transparent variance data now, including the negative trends, since concealing performance information violates governance and ethical principles",
+          "Present the negative metrics only if directly asked by a board member",
+          "Delay the governance review until performance improves"
+        ],
+        a:1,
+        why:"Full transparency in performance reporting — including unfavorable variance — is a governance and ethics requirement, not a discretionary communication choice.",
+        refs:["governance","ethics"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO statements correctly describe program closure sequencing and requirements?",
+        options:[
+          "Individual components must be formally closed, with deliverables accepted and accounts reconciled, before overall program closure proceeds",
+          "The program can close as soon as the majority of components are finished, regardless of the rest",
+          "Program closure requires financial and contractual closure, resource release, and a governance sign-off — not just deliverable completion",
+          "Once all components are closed, no further governance review is needed before the program itself is formally closed"
+        ],
+        a:[0,2],
+        why:"Components close first, individually and formally, and program closure itself requires financial/contractual closure plus a governance sign-off — not simply a majority of components finishing, and not skipping the program-level review.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"LC5", domain:"lifecycle", name:"Collaboration & Program Balance",
+    refs:["standard","systemsthinking"],
+    material:[
+      "Program-level collaboration is more complex than project-level collaboration: it depends on generating the right synergy across a team-of-teams structure, not just coordinating one team's deliverables.",
+      "Seven factors drive successful program collaboration — engagement, alignment, complexity, transparency, consultation, culture, and empathy — and organizational culture is the single strongest of the seven.",
+      "The program manager balances individual component demands against the overall program's benefit-realization pace, even when a component's own optimization must give way to program-level re-pacing.",
+      "Program definition splits into formulation (business case, charter, sponsor assignment) and planning (the program management plan and subsidiary plans); planning formally begins only once the charter is approved."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A component team routinely withholds early warning signs of technical problems from the program manager, not out of dishonesty, but because their culture treats raising unresolved issues as a sign of weakness. What collaboration factor is most directly compromised here?",
+        options:[
+          "Alignment — the component's goals don't match the program's strategy",
+          "Transparency — a culture that discourages surfacing problems erodes the traceability and trust collaboration depends on, even without intentional concealment",
+          "Consultation — the program manager wasn't asked for input",
+          "Complexity — the technical problem itself is inherently unpredictable"
+        ],
+        a:1,
+        why:"Transparency in collaboration isn't only about intentional concealment — a culture that discourages raising issues early has the same corrosive effect on trust and traceability.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Two programs use identical governance structures, communication plans, and RACI matrices. One consistently collaborates well across components; the other struggles constantly with silos and turf protection. What is the most likely explanation?",
+        options:[
+          "The struggling program simply has worse project managers",
+          "Organizational culture — openness, trust, and a change-oriented environment — has a stronger effect on collaboration than process and structure alone",
+          "The struggling program should adopt a completely different governance framework",
+          "Identical structures should always produce identical collaboration outcomes"
+        ],
+        a:1,
+        why:"Culture is the single most important factor influencing collaboration effectiveness — process and structure matter, but a closed, low-trust culture undermines even well-designed frameworks.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component adopts an aggressive internal process change that improves its own delivery efficiency by 20%, but the change accelerates that component's output faster than the other components it depends on can absorb, creating a bottleneck elsewhere in the program. What should the program manager do?",
+        options:[
+          "Praise and replicate the efficiency change across all components immediately",
+          "Recognize that a component-level efficiency gain can still create a program-level imbalance, and work to re-pace the components so the overall benefit-realization schedule stays coordinated",
+          "Instruct the improved component to intentionally slow back down to its original pace",
+          "Leave the components to resolve the bottleneck between themselves without program involvement"
+        ],
+        a:1,
+        why:"The program manager balances the program's overall benefit-realization pace — even a genuine efficiency win can create imbalance elsewhere, which calls for program-level re-pacing, not blanket praise or an arbitrary slowdown.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A newly assigned program manager is asked by the sponsor to immediately begin developing the full program management plan with all subsidiary plans — risk, communications, procurement — before a program charter has been drafted or approved. What is the issue with this sequencing?",
+        options:[
+          "There is no issue; the plan and charter can be developed in either order",
+          "Program planning formally begins upon approval of the program charter — developing the full program management plan before the charter is authorized skips the formulation subphase that establishes the business case and sponsor's authorization",
+          "Subsidiary plans should always be developed before the business case",
+          "The program manager should refuse to work until a portfolio management body is established"
+        ],
+        a:1,
+        why:"Program definition splits into formulation (business case, charter, sponsor assignment) and planning (the program management plan and its subsidiary plans) — planning formally commences only after the charter is approved, not before.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are among the three subphases each program component progresses through during program delivery?",
+        options:[
+          "Component authorization and planning",
+          "Component marketing and promotion",
+          "Component transition and closure",
+          "Component staff performance reviews"
+        ],
+        a:[0,2],
+        why:"The three component delivery subphases are authorization and planning, oversight and integration, and transition and closure — marketing/promotion and staff performance reviews aren't part of this structure.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"BN1", domain:"benefits", name:"Benefits Realization & Sustainment",
+    refs:["benefitsreg","decisiontree"],
+    material:[
+      "Benefits must be unambiguously articulated, quantified, and agreed with stakeholders — even intangible benefits need an assigned measurable proxy. Without a baseline, realization can't be demonstrated, only assumed.",
+      "The benefits realization plan and register are baselined early (ideally at business-case stage) and updated throughout the life cycle as metrics are monitored via forecasting, variance analysis, and causal analysis.",
+      "Benefits must justify investment continuously, not just at initiation — a component that's on schedule and budget but no longer delivering meaningful benefit is a candidate to modify or terminate.",
+      "Delivering an output is not the same as realizing a benefit. A shortfall against a benefit target calls for root-cause investigation and a revised plan, not declaring victory on delivery or quietly dropping the target."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Six months after a component delivers a new customer self-service platform, finance asks the program manager to confirm the projected call-center cost reduction actually occurred. No baseline call volume or cost was captured before launch. What is the most direct consequence of this gap?",
+        options:[
+          "The component's schedule performance was inaccurate",
+          "The program cannot credibly demonstrate whether the benefit was realized, because there is no baseline to measure against",
+          "The program's governance structure was inadequate",
+          "The stakeholder matrix was incomplete"
+        ],
+        a:1,
+        why:"Without a pre-implementation baseline in the benefits register, realization can't be objectively demonstrated. This is a benefits-management gap specifically, not a schedule, governance, or stakeholder issue.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO practices most directly reduce the risk of expected benefits failing to materialize or being lost after delivery?",
+        options:[
+          "Assigning a named benefit owner accountable for realization and sustainment",
+          "Adding more components to the program to increase delivered scope",
+          "Capturing a measurable baseline before the enabling change is delivered",
+          "Increasing the frequency of project status reports"
+        ],
+        a:[0,2],
+        why:"Ownership accountability and a real baseline are the core controls. More scope or more status reporting don't address whether a specific benefit is actually realized and sustained.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner reports that a targeted 15% reduction in processing time has only reached 6% three months post-launch, though the platform works as designed. Which response best reflects sound benefits management?",
+        options:[
+          "Close the benefit as delivered, since the platform shipped on scope and schedule",
+          "Investigate root cause with the benefit owner and adjust the realization plan or take corrective action, since delivery isn't the same as realization",
+          "Reopen the original project to re-scope the platform",
+          "Remove the benefit from the register since the target was missed"
+        ],
+        a:1,
+        why:"Delivering the output isn't realizing the benefit. Program-level benefits management tracks actual realization against target and works the gap with the owner, rather than declaring success or erasing the shortfall.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Two years into a five-year program, a component originally expected to deliver 30% of total program benefit is now projected to deliver less than 5%, due to a shift in customer demand — even though it remains technically on track. What is the most appropriate program-level response?",
+        options:[
+          "Continue the component unchanged, since it remains on schedule and budget",
+          "Reassess whether the component still justifies its resource investment relative to the benefit it will now deliver, and modify or terminate it if it doesn't",
+          "Increase the component's budget to try to recover the lost benefit potential",
+          "Wait until the five-year program ends to evaluate the shortfall"
+        ],
+        a:1,
+        why:"Benefits must justify investment continuously, not just at initiation. Being on schedule and budget is irrelevant if the benefit case behind the component has collapsed.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner proposes an intangible benefit — \"improved employee morale\" — as a program outcome, with no proposed way to measure it. Per sound benefits management practice, what should the program manager do?",
+        options:[
+          "Accept the benefit as stated, since some benefits are inherently unmeasurable",
+          "Work with the benefit owner to assign a measurable proxy (for example, a survey score or retention rate) so the benefit has clear measurement criteria and a baseline",
+          "Remove the benefit from the program entirely, since it isn't a financial metric",
+          "Delegate the measurement question to HR without further program involvement"
+        ],
+        a:1,
+        why:"Even intangible benefits need assigned, measurable value. The fix is finding a workable proxy metric and a baseline — not accepting an unmeasurable claim at face value or discarding it outright.",
+        refs:["benefitsreg","decisiontree"]
+      }
+    ]
+  },
+  {
+    id:"BN2", domain:"benefits", name:"Quantification, Prioritization & Optimization",
+    refs:["benefitsreg","npv"],
+    material:[
+      "Benefits quantification blends financial methods (NPV, IRR, cost-benefit ratio) with non-financial value (compliance, reputation, ESG) — PMI expects both to inform funding decisions, not cost alone.",
+      "Benefits are prioritized by strategic value, risk, and total contribution — not by urgency or whichever stakeholder pushes hardest.",
+      "Dis-benefits (negative outcomes) and interdependencies between benefits must be identified alongside the benefits themselves, so realizing one doesn't silently undermine another.",
+      "Scaling or optimizing a realized benefit still requires governance analysis and approval — expanding it unilaterally isn't optimization, it's uncontrolled scope creep."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A proposed program component would generate a modest 4% ROI but is expected to meaningfully improve regulatory compliance posture and reduce legal exposure. A finance reviewer recommends rejecting it because the ROI is below the organization's typical hurdle rate. What is the most appropriate response?",
+        options:[
+          "Reject the component, since financial ROI is the only valid benefit metric",
+          "Evaluate the component using both financial and non-financial value — such as compliance and risk reduction — before deciding, since PMI treats these as legitimate strategic benefits",
+          "Approve the component automatically, since compliance benefits always override financial criteria",
+          "Defer the decision until the ROI improves"
+        ],
+        a:1,
+        why:"Benefits quantification explicitly includes non-financial value like compliance and risk reduction alongside financial metrics — neither dimension automatically overrides the other.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner argues that a particular benefit should be prioritized above others because a major client is loudly demanding it, even though it ranks lower on the program's weighted strategic-value criteria. How should this be resolved?",
+        options:[
+          "Prioritize it immediately, since client pressure should always come first",
+          "Evaluate it through the same weighted prioritization criteria as the other benefits — urgency or stakeholder pressure alone doesn't override strategic-value ranking",
+          "Ignore the client's request entirely, since only internal criteria matter",
+          "Let the benefit owner make the final call independently"
+        ],
+        a:1,
+        why:"Prioritization is meant to be criteria-driven — strategic fit, value, risk — rather than reactive to whichever stakeholder pushes hardest. Urgency is one input, not an automatic override.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's benefits register lists an expected 20% increase in production throughput from a new automated line. It does not mention that the same automation is expected to reduce headcount needs in a way that may affect a related workforce-development benefit elsewhere in the program. What is missing from the benefits management approach?",
+        options:[
+          "Nothing; each benefit can be tracked independently",
+          "Identification of dis-benefits and interdependencies between benefits, so that achieving one doesn't unexpectedly undermine another",
+          "A more detailed financial model for the automation line alone",
+          "Additional stakeholder interviews about the automation technology"
+        ],
+        a:1,
+        why:"Sound benefits management identifies both dis-benefits and interdependencies between benefits — treating benefits as fully independent misses exactly this kind of conflict.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component's new supplier-management software, built for one specific component, is working well. A team member suggests rolling it out across the entire enterprise immediately to capture more savings. What is the correct next step?",
+        options:[
+          "Roll it out enterprise-wide immediately, since more savings is always better",
+          "Evaluate the scaling opportunity and bring a recommendation to governance for analysis and approval before expanding beyond the program's original scope",
+          "Keep the software limited to its original component indefinitely, since scope should never change",
+          "Let each interested department decide independently whether to adopt it"
+        ],
+        a:1,
+        why:"Optimizing and scaling a realized benefit is a legitimate goal, but it still requires governance analysis and approval — uncontrolled expansion isn't optimization, it's scope creep without oversight.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"While recalculating a program's expected ROI, the program manager discovers that a key input — projected fuel-cost savings — was based on outdated pricing data. Correcting it lowers the projected ROI from 18% to 14%. A sponsor suggests keeping the original 18% figure in reports since the program is already approved. What should the program manager do?",
+        options:[
+          "Keep the original 18% figure, since the program is already approved and changing it now serves no purpose",
+          "Update the reported ROI to reflect the corrected assumption, since PMI prioritizes data credibility over optimistic figures, even after approval",
+          "Report a figure between the two to split the difference",
+          "Omit the ROI figure from future reports to avoid the discrepancy"
+        ],
+        a:1,
+        why:"Benefits management requires ongoing validation of assumptions and data credibility, not preserving a flattering number after approval — accuracy and governance trust outweigh a more attractive figure.",
+        refs:["benefitsreg"]
+      }
+    ]
+  },
+  {
+    id:"SH1", domain:"stakeholder", name:"Engagement, Harmony & Communication",
+    refs:["stakeholder_","stakeholdermap"],
+    material:[
+      "The goal of stakeholder engagement is harmony among three things: stakeholder expectations, program benefits, and organizational strategy. Misalignment among these is the problem to solve, at the program level.",
+      "Engagement is proactive, not reactive — absence of complaints from a stakeholder group is not the same as active support, and waiting for problems to surface is a common trap.",
+      "Communication is targeted, not broadcast: different stakeholder groups need different levels of detail and framing, from executive steering committees to component teams to end users.",
+      "Trust has multiple dimensions — personality-based (rapport), cognitive-based (competence and reliability), and institutional-based — and strong performance on one doesn't automatically build the others."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Two components in the same program each have an executive sponsor. One sponsor is highly supportive and wants to accelerate their component. The other is resistant, believing their unit's component threatens their team's job security, and is delaying key approvals. The program manager should:",
+        options:[
+          "Ask the supportive sponsor to pressure the resistant one",
+          "Escalate the resistant sponsor's behavior to their manager immediately",
+          "Engage the resistant sponsor directly to understand and address the underlying concern, adapting the engagement approach at the program level",
+          "Proceed without the resistant sponsor's approval since the other component is on track"
+        ],
+        a:2,
+        why:"Program-level engagement means bringing expectations, benefits, and strategy back into harmony by addressing the actual concern directly. Peer pressure, premature escalation, and bypassing approval all avoid the root cause.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"matching",
+        stem:"Match each power/interest position to the engagement approach it typically calls for.",
+        prompts:["High power, high interest","High power, low interest","Low power, high interest","Low power, low interest"],
+        choices:[
+          "Keep satisfied — monitor proactively without overengagement",
+          "Manage closely — engage as key partners in decisions",
+          "Keep informed — share relevant updates to sustain support",
+          "Monitor with minimal effort — light-touch communication"
+        ],
+        a:[1,0,2,3],
+        why:"The classic power/interest grid: manage closely (high/high), keep satisfied (high power/low interest), keep informed (low power/high interest), monitor (low/low).",
+        refs:["stakeholdermap"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder group has raised no concerns about the program in six months. The program manager takes this as a sign that everything is fine and does not proactively reach out. Three months later, that group escalates strong opposition to a component nearing completion. What does this scenario best illustrate?",
+        options:[
+          "The stakeholder group acted unreasonably by waiting so long to raise concerns",
+          "The program manager should have proactively engaged and monitored this group's attitude and influence throughout, rather than assuming silence meant support",
+          "The program should not have included this stakeholder group in planning",
+          "This is an unavoidable risk of stakeholder engagement"
+        ],
+        a:1,
+        why:"Engagement is proactive, not reactive. Absence of complaints isn't the same as active support — waiting for stakeholders to surface problems is exactly the trap this scenario shows.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager sends the same detailed technical status report — including component-level task lists — to the executive steering committee, the component project managers, and the end-user community. Steering committee members report the reports are unhelpful. What is the most likely issue?",
+        options:[
+          "The reports are too infrequent",
+          "Communication should be tailored to each stakeholder group's needs and level — an executive audience needs a different level of detail than project teams or end users",
+          "The reports should be sent less often to reduce noise",
+          "Steering committee members should be trained to read technical reports"
+        ],
+        a:1,
+        why:"Communication is targeted, not broadcast. One format for every audience fails the group that most needs a synthesized, strategic view — in this case, the steering committee.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager consistently delivers accurate status updates, follows through on commitments to component teams, and is seen as technically credible — yet a key stakeholder group still seems hesitant to fully collaborate. What dimension of trust is most likely still underdeveloped?",
+        options:[
+          "Personality-based trust — the interpersonal relationship and rapport with that stakeholder group",
+          "There is no such thing as partial trust; if reports are accurate, trust already exists",
+          "Institutional-based trust, which the program manager cannot influence",
+          "This indicates the stakeholder group should be replaced"
+        ],
+        a:0,
+        why:"Credibility and follow-through build cognitive-based trust (competence and reliability). Personality-based trust — rapport and relationship — is a separate dimension that may still need deliberate relationship-building.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder matrix that is only updated at program kickoff is most likely to fail because:",
+        options:[
+          "It should never have included low-power stakeholders",
+          "Stakeholder influence and interest shift as the program delivers benefit, and the matrix and engagement plan need to shift with them",
+          "Matrices are a project-level artifact, not a program one",
+          "It should be replaced by the communications plan instead"
+        ],
+        a:1,
+        why:"Stakeholder positions change over the program's life — engagement planning is iterative across the life cycle, not a one-time kickoff exercise.",
+        refs:["stakeholder_"]
+      }
+    ]
+  },
+  {
+    id:"SH2", domain:"stakeholder", name:"Influence, Readiness & Governance Integration",
+    refs:["stakeholder_","stakeholdermap","ethics"],
+    material:[
+      "Stakeholder identification must be broad and iterative, including external and indirect parties — regulators, communities, the public. Limiting it to \"those directly involved\" is a recurring exam trap.",
+      "Engagement readiness (unaware, resistant, neutral, supportive, leading) is a different dimension from communication frequency; shifting a stakeholder's readiness takes a targeted intervention, not just more frequent updates.",
+      "Engagement activities should integrate with governance touchpoints and decision pathways, not run as a separate, parallel process alongside governance.",
+      "Ethical, non-coercive influence — coalition-building, transparency, credible advocates — is the only acceptable form of influence management; trading favors for endorsement is manipulation, not engagement."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A regional infrastructure program's stakeholder identification effort focuses only on the funding agency, the contractor, and the internal project team, since those are seen as \"the people actually doing the work.\" What is the flaw in this approach?",
+        options:[
+          "There is no flaw; those are the only parties whose input matters for delivery",
+          "It excludes external and indirect stakeholders — such as regulators, affected communities, or the public — who can still affect or be affected by the program",
+          "The internal project team should be excluded, since they aren't external stakeholders",
+          "Stakeholder identification should only happen once, at program kickoff"
+        ],
+        a:1,
+        why:"PMI expects broad, inclusive stakeholder identification extending beyond those directly executing the work — external and indirect parties are exactly what a narrow approach like this misses.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder group has received frequent, detailed updates about a program for a year but remains actively resistant to it. The program manager proposes increasing the frequency of updates even further. What is the likely issue with this plan?",
+        options:[
+          "Increasing frequency should resolve resistance over time regardless of content",
+          "Communication frequency and stakeholder readiness are different things; resistance likely requires a targeted intervention addressing the underlying concern, not simply more frequent messaging",
+          "The stakeholder group should be removed from the communication plan entirely",
+          "The program manager should escalate the group's resistance to HR"
+        ],
+        a:1,
+        why:"Engagement readiness — unaware, resistant, neutral, supportive, leading — is a distinct dimension from communication cadence. More messages without addressing the root concern rarely shifts an actively resistant stakeholder.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager runs stakeholder engagement activities — briefings, surveys, working groups — entirely separately from the program's formal governance review cycle, believing this keeps engagement more agile and informal. What risk does this create?",
+        options:[
+          "None; keeping engagement separate from governance makes it more effective",
+          "Engagement activities that aren't integrated with governance touchpoints risk becoming disconnected from actual decision-making, undermining both transparency and traceability",
+          "Governance boards should never be involved in stakeholder engagement",
+          "This approach is correct as long as engagement activities are well-documented"
+        ],
+        a:1,
+        why:"Stakeholder engagement should reinforce and integrate with governance decision pathways, not run in parallel — disconnection between the two can make engagement feel like theater rather than real input.",
+        refs:["stakeholder_","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager identifies a well-respected, skeptical senior manager whose public support would significantly help win over a resistant stakeholder group. To secure that support, the program manager offers the senior manager a favorable assignment on an unrelated, desirable project in exchange for publicly endorsing the program. Is this an acceptable influence strategy?",
+        options:[
+          "Yes, since building coalitions with credible advocates is an encouraged influence technique",
+          "No — trading an unrelated favor for endorsement is coercion/manipulation and violates PMI's Code of Ethics, even though building coalitions with credible advocates is otherwise appropriate",
+          "Yes, as long as the arrangement isn't documented anywhere",
+          "No, because senior managers should never be engaged as stakeholders"
+        ],
+        a:1,
+        why:"Ethical influence management means genuine engagement and coalition-building — not transactional trades that amount to manipulation. The tactic (a credible advocate) is fine; the mechanism (a quid pro quo favor) is the ethics violation.",
+        refs:["stakeholder_","ethics"]
+      },
+      {
+        type:"matching",
+        stem:"Match each stakeholder engagement readiness level to the intervention most likely to move them toward support.",
+        prompts:["Unaware","Resistant","Neutral","Leading"],
+        choices:[
+          "Provide basic awareness communication introducing the program and its purpose",
+          "Investigate and address the specific underlying concern driving opposition",
+          "Recognize and equip them as a visible advocate to influence others",
+          "Share targeted information on relevant benefits to build interest"
+        ],
+        a:[0,1,3,2],
+        why:"Each readiness level calls for a different kind of intervention — treating them all the same, with generic status updates, is a common engagement-planning mistake.",
+        refs:["stakeholder_"]
+      }
+    ]
+  },
+  {
+    id:"GV1", domain:"governance", name:"Framework, Escalation & Enablement",
+    refs:["governance","ethics"],
+    material:[
+      "Governance should be right-sized to the program's actual size and complexity. Over-governing is as harmful as under-governing — a heavy process built for a large, high-risk program misapplied to a small one is a governance failure, not a discipline problem.",
+      "Escalate through governance, not around it: when an issue exceeds the program manager's authority, it goes through the defined escalation path, and stage/phase gate reviews are how the program obtains authorization to proceed.",
+      "Governance enables — it doesn't just oversee. A governance body that only checks compliance without providing decisions, resources, or removing blockers is only doing half its job.",
+      "Governance defines decision rights and authorizes; the program manager executes within that authority — conflating the two is a common exam trap.",
+      "The PMI Code of Ethics and Professional Conduct applies to every scenario: responsibility, respect, fairness, and honesty. The ethical answer wins even when it's the harder or costlier one."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Midway through the program, a component's risk exposure suddenly increases due to a new regulatory ruling that could affect program compliance. The next scheduled steering committee gate review is 10 weeks away. What should the program manager do?",
+        options:[
+          "Wait for the scheduled gate review to raise the issue, to preserve governance cadence",
+          "Make the compliance decision independently, since the program manager is closest to the work",
+          "Trigger the governance plan's out-of-cycle escalation path to bring the issue to the steering committee before the scheduled gate",
+          "Instruct the component project manager to pause work without informing governance"
+        ],
+        a:2,
+        why:"Escalate through governance, not around it. A material, time-sensitive risk should trigger the defined escalation path rather than wait for cadence — but decision authority still sits with governance, not an unapproved unilateral call.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"Which statement best distinguishes program governance from program management?",
+        options:[
+          "Governance executes the work; management authorizes it",
+          "Governance authorizes and makes go/no-go decisions; management executes within that authorized scope",
+          "They are the same function performed by the same role",
+          "Governance applies only at program closure"
+        ],
+        a:1,
+        why:"Governance holds decision rights and authorization; management executes within the authority governance grants — conflating the two is a common exam trap.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A small, low-complexity program with two closely related components is required by the PMO to use the same eleven-step governance review process mandated for the organization's largest, highest-risk programs. Component managers report the process consumes more time than the work it oversees. What does this best illustrate?",
+        options:[
+          "Governance should never be questioned once established",
+          "Governance that is not proportionate to the program's size and complexity — over-governing — can be as harmful as under-governing",
+          "The program should be canceled since it cannot meet governance requirements",
+          "The PMO's process is correct and the component managers are simply inefficient"
+        ],
+        a:1,
+        why:"Governance should be right-sized and tailored to a program's actual needs. A one-size-fits-all heavy process misapplied to a small program is a real governance failure mode, not a discipline problem.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance steering committee reviews a program monthly, primarily to check compliance with reporting templates, but rarely provides decisions, resource commitments, or removes blockers the program manager has raised. What is this governance body failing to do?",
+        options:[
+          "Nothing — oversight and compliance checking is governance's only function",
+          "Enable the program — governance should also provide decisions, resources, and support, not only monitor and control",
+          "The program manager should simply stop reporting to this committee",
+          "Increase the frequency of reviews to weekly"
+        ],
+        a:1,
+        why:"Good governance enables decision-making and resourcing, not just oversight. A board that only checks compliance without unblocking or deciding is only doing half its job.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are core responsibilities of a program governance structure?",
+        options:[
+          "Approving day-to-day task assignments within each component project",
+          "Authorizing progress through stage/phase gate reviews",
+          "Establishing escalation policies so risks are handled at the appropriate level",
+          "Writing the detailed test scripts for each component's deliverables"
+        ],
+        a:[1,2],
+        why:"Gate authorization and escalation policy are core governance functions. Day-to-day task assignment and test-script detail are project-execution activities far below governance's altitude.",
+        refs:["governance"]
+      }
+    ]
+  },
+  {
+    id:"GV2", domain:"governance", name:"Performance Metrics, Compliance & Enterprise Integration",
+    refs:["governance","benefitsreg"],
+    material:[
+      "Governance performance is measured with its own KPIs — decision timeliness, escalation resolution, compliance, stakeholder satisfaction with governance — distinct from the program's cost/schedule/benefit metrics.",
+      "Program governance must integrate with, not duplicate or run parallel to, enterprise governance and external oversight bodies; the program manager stays accountable even when oversight is shared.",
+      "Accountability (ultimate ownership, typically the sponsor) and responsibility (who executes, typically the program manager or component leads) are distinct — deep involvement doesn't transfer accountability.",
+      "Governance obligations continue past program closure — a named owner and a documented plan for post-closure oversight are required, not just an intention to keep monitoring."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A governance board wants to assess whether its own decision-making process is functioning well, separate from how the program itself is performing on cost and schedule. Which of the following would be the most appropriate metric to track?",
+        options:[
+          "The program's overall cost performance index (CPI)",
+          "The percentage of governance decisions implemented on time and the number of escalations resolved within the agreed service level",
+          "The number of components currently active in the program",
+          "Total headcount assigned to the program"
+        ],
+        a:1,
+        why:"Governance performance is measured on its own terms — decision timeliness, escalation resolution, compliance — separate from the program's cost/schedule/benefit metrics.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"In a program's governance structure, the sponsor holds ultimate accountability for a strategic scope decision, while the program manager is responsible for implementing it once approved. A team member is confused about why the program manager didn't just decide unilaterally, given their deep day-to-day involvement. What distinction resolves this confusion?",
+        options:[
+          "There is no meaningful distinction; whoever is more involved should decide",
+          "Accountability (ultimate ownership of the decision) and responsibility (executing it) are distinct — the program manager's deep involvement doesn't substitute for the sponsor's accountability for a strategic-level decision",
+          "The program manager should always have final authority regardless of decision type",
+          "Accountability and responsibility always sit with the same person"
+        ],
+        a:1,
+        why:"This accountability-vs-responsibility distinction is a classic PgMP exam trap — deep involvement or expertise doesn't transfer ultimate ownership of a decision to someone who isn't accountable for it.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A multinational program shares compliance oversight with an external regulatory body, which independently reviews and signs off on certain safety requirements. After the external body approves a component, the program manager considers that component fully compliant with no further internal tracking needed. Is this correct?",
+        options:[
+          "Yes — once an external body approves something, internal tracking is redundant",
+          "No — the program manager remains accountable for compliance even when oversight is shared with an external body, and should continue coordinated tracking rather than treating external approval as the end of the program's own responsibility",
+          "Yes, but only for components explicitly named in the regulatory agreement",
+          "No, because external bodies should never be involved in program oversight"
+        ],
+        a:1,
+        why:"Coordination with external governance bodies means shared oversight, not a full handoff of accountability — the program manager doesn't get to stop tracking compliance just because an external party also reviewed it.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"At program closure, the closure report states that \"benefits will continue to be monitored going forward\" but does not name a specific owner or a documented monitoring plan. A governance reviewer flags this as insufficient. Why?",
+        options:[
+          "It isn't insufficient; a general statement of intent is enough at closure",
+          "Post-closure benefit monitoring requires a named owner and a documented plan — a general intention without accountability or process isn't a real transition of governance obligation",
+          "Benefits monitoring should stop entirely once the program closes",
+          "The closure report should have been signed by the original program manager only"
+        ],
+        a:1,
+        why:"Governance obligations for benefit sustainment continue beyond program closure and require an explicit handover — a named owner and documented monitoring plan — not just a hopeful statement that monitoring will continue.",
+        refs:["governance","benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound ethical governance practice, per PMI's Code of Ethics?",
+        options:[
+          "Requiring board members to disclose vendor relationships before contract-award decisions",
+          "Allowing a governance decision to proceed faster by skipping the conflict-of-interest disclosure step when the deadline is tight",
+          "Prioritizing ethical and legal adherence over accelerated delivery, even when that delays benefits",
+          "Restricting information about a governance decision from stakeholders whenever it might generate difficult questions"
+        ],
+        a:[0,2],
+        why:"Conflict-of-interest disclosure and prioritizing ethics over speed reflect PMI's ethical governance principles; skipping disclosure under time pressure and withholding information to avoid scrutiny are exactly the shortcuts PMI's ethics standard prohibits.",
+        refs:["governance","ethics"]
+      }
+    ]
+  }
+];
+
+var FLASHCARDS = [
+  {id:"f-st1", domain:"strategic", term:"Program Business Case", definition:"Documents the justification for the program, linking expected benefits and costs to organizational strategy.", refs:["bizcase"]},
+  {id:"f-st2", domain:"strategic", term:"Program Charter", definition:"Ties scope, assumptions, constraints, high-level risks, and benefits to the business case and authorizes the program to begin.", refs:["standard"]},
+  {id:"f-st3", domain:"strategic", term:"Program Mission Statement", definition:"Defines program direction by evaluating stakeholder concerns and expectations against the organization's strategic plan.", refs:["standard"]},
+  {id:"f-st4", domain:"strategic", term:"Portfolio-Up Thinking", definition:"Resolving cross-component resource conflicts at the program level, for overall benefit — not project-down, one component at a time.", refs:["standard"]},
+  {id:"f-st5", domain:"strategic", term:"PESTLE / SWOT Scanning", definition:"Ongoing assessment of internal capability and external (political, economic, social, technological, legal, environmental) factors that feed continuous strategic alignment.", refs:["swot"]},
+  {id:"f-st6", domain:"strategic", term:"Synergy", definition:"The whole exceeding the sum of its parts — the test of whether components genuinely need to be managed together as a program.", refs:["standard"]},
+  {id:"f-st7", domain:"strategic", term:"Program Financial Framework", definition:"High-level funding architecture (NPV, IRR, payback, funding tranches) that precedes and supports governance validation — distinct from a detailed project budget.", refs:["npv"]},
+  {id:"f-st8", domain:"strategic", term:"Weighted Scoring Model", definition:"Ranks competing programs or benefits against weighted strategic criteria — fit, risk, value — rather than urgency or sponsor seniority.", refs:["standard"]},
+  {id:"f-st9", domain:"strategic", term:"Feasibility & Readiness Assessment", definition:"Evaluates technical, financial, and operational readiness to support a business case — distinct from confirming strategic fit alone.", refs:["bizcase"]},
+
+  {id:"f-lc1", domain:"lifecycle", term:"Program Roadmap", definition:"A high-level, strategic view of milestones and component sequencing that gains detail over time — not a fully detailed schedule from day one.", refs:["standard"]},
+  {id:"f-lc2", domain:"lifecycle", term:"Responsibility Assignment Matrix (RACI)", definition:"Clarifies program vs. project roles so the program manager coaches component managers rather than directing their execution.", refs:["raci"]},
+  {id:"f-lc3", domain:"lifecycle", term:"Program Work Breakdown Structure", definition:"Decomposes program tasks and deliverables to determine, plan, and assign work across components.", refs:["standard"]},
+  {id:"f-lc4", domain:"lifecycle", term:"Progressive Elaboration", definition:"Plans, benefits, and scope are refined throughout the life cycle as visibility improves — not fixed in full detail at initiation.", refs:["standard"]},
+  {id:"f-lc5", domain:"lifecycle", term:"Program Management Information System (PMIS)", definition:"The tools and processes that share knowledge, intellectual property, and documentation across components.", refs:["standard"]},
+  {id:"f-lc6", domain:"lifecycle", term:"Embrace Change", definition:"Programs proactively use change — including canceling or re-scoping components — to optimize benefits; projects control change to protect scope.", refs:["changemgmt"]},
+  {id:"f-lc7", domain:"lifecycle", term:"Team of Teams", definition:"A network of component teams connected for shared strategy and empowered execution, led through coaching rather than direction.", refs:["standard"]},
+  {id:"f-lc8", domain:"lifecycle", term:"Decision/Phase Gate", definition:"A formal governance checkpoint where the program's business case, components, and continuation are reviewed before proceeding.", refs:["governance"]},
+  {id:"f-lc9", domain:"lifecycle", term:"Component Initiation Request (CIR)", definition:"The governance-facing justification that links a proposed component directly to the program's intended benefits before it's chartered.", refs:["standard"]},
+  {id:"f-lc10", domain:"lifecycle", term:"Change Control Board (CCB)", definition:"The formal body that evaluates and approves program-level changes to scope, cost, schedule, or benefits — informal agreement is never a substitute.", refs:["changemgmt"]},
+  {id:"f-lc11", domain:"lifecycle", term:"Program-Level EVM (CPI/SPI)", definition:"Aggregate cost/schedule performance indices used to catch trends across components before any single one looks critical.", refs:["evm"]},
+  {id:"f-lc12", domain:"lifecycle", term:"Budget Baseline vs. Forecast", definition:"The baseline is approved, governance-endorsed funding; a forecast is only an estimate and isn't itself authorization to spend more.", refs:["standard"]},
+  {id:"f-lc13", domain:"lifecycle", term:"Collaboration Factors", definition:"Engagement, alignment, complexity, transparency, consultation, culture, and empathy — the seven factors that determine whether program-level collaboration succeeds. Culture is the strongest of the seven.", refs:["standard"]},
+  {id:"f-lc14", domain:"lifecycle", term:"Program Formulation vs. Planning", definition:"Formulation produces the business case, charter, and sponsor assignment; planning — which begins only after charter approval — produces the program management plan and its subsidiary plans.", refs:["standard"]},
+  {id:"f-lc15", domain:"lifecycle", term:"Component Delivery Subphases", definition:"Every component moves through authorization & planning, oversight & integration, and transition & closure during program delivery.", refs:["standard"]},
+
+  {id:"f-bn1", domain:"benefits", term:"Benefits Register", definition:"The log of expected benefits, their owners, baseline/target measures, and realization status.", refs:["benefitsreg"]},
+  {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Sets the measurement criteria and baseline for benefits, updated and communicated to stakeholders throughout the life cycle.", refs:["benefitsreg"]},
+  {id:"f-bn3", domain:"benefits", term:"Benefits Sustainment Plan", definition:"Identifies the processes, measures, and tools needed to keep a benefit alive beyond program completion.", refs:["benefitsreg"]},
+  {id:"f-bn4", domain:"benefits", term:"Transition Plan to Operations", definition:"Guarantees the sustainment of products and benefits delivered by the program after the team disbands.", refs:["benefitsreg"]},
+  {id:"f-bn5", domain:"benefits", term:"Decision Tree Analysis", definition:"A technique for evaluating benefit options and their probability-weighted outcomes before committing resources.", refs:["decisiontree"]},
+  {id:"f-bn6", domain:"benefits", term:"Benefits Justify Investment — Continuously", definition:"A component's resource investment must remain justified by its benefit contribution throughout the program, not only at initiation.", refs:["benefitsreg"]},
+  {id:"f-bn7", domain:"benefits", term:"Dis-Benefit", definition:"A negative outcome of the program that must be identified and managed alongside intended benefits, not overlooked.", refs:["benefitsreg"]},
+  {id:"f-bn8", domain:"benefits", term:"Benefit Dependency Network", definition:"Maps how benefits interact, overlap, or conflict, so pursuing one doesn't unexpectedly undermine another.", refs:["benefitsreg"]},
+  {id:"f-bn9", domain:"benefits", term:"NPV / IRR / Cost-Benefit Ratio", definition:"Financial quantification methods used alongside non-financial value to justify and prioritize benefits — neither dimension automatically wins.", refs:["npv"]},
+  {id:"f-bn10", domain:"benefits", term:"Program Added Value", definition:"The difference between realized benefits and a program's delivery costs — a combination of quantitative and qualitative factors, not cost alone.", refs:["benefitsreg"]},
+
+  {id:"f-sh1", domain:"stakeholder", term:"Stakeholder Matrix", definition:"Documents each stakeholder's position relative to the program, built from stakeholder analysis.", refs:["stakeholder_"]},
+  {id:"f-sh2", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
+  {id:"f-sh3", domain:"stakeholder", term:"Harmonization", definition:"Bringing stakeholder expectations, program benefits, and organizational strategy back into alignment when they diverge.", refs:["stakeholder_"]},
+  {id:"f-sh4", domain:"stakeholder", term:"Proactive Engagement", definition:"Identifying, analyzing, and engaging stakeholders before problems surface — silence is not the same as support.", refs:["stakeholder_"]},
+  {id:"f-sh5", domain:"stakeholder", term:"Targeted Communication", definition:"Tailoring message content and detail level to each stakeholder group, rather than broadcasting one report to everyone.", refs:["stakeholder_"]},
+  {id:"f-sh6", domain:"stakeholder", term:"Trust (three dimensions)", definition:"Personality-based (rapport), cognitive-based (competence/reliability), and institutional-based trust — strength in one doesn't guarantee the others.", refs:["stakeholder_"]},
+  {id:"f-sh7", domain:"stakeholder", term:"Engagement Readiness", definition:"A stakeholder's current disposition — unaware, resistant, neutral, supportive, leading — a different dimension from communication frequency.", refs:["stakeholder_"]},
+  {id:"f-sh8", domain:"stakeholder", term:"Engagement Strategy vs. Plan", definition:"The strategy defines how and why to engage; the plan defines what, when, and by whom — strategy precedes and informs the plan.", refs:["stakeholder_"]},
+  {id:"f-sh9", domain:"stakeholder", term:"Ethical Influence Management", definition:"Building genuine coalitions and credible advocacy — never coercion or transactional trades — to shift stakeholder support.", refs:["ethics"]},
+  {id:"f-sh10", domain:"stakeholder", term:"Program Leadership Skills", definition:"Empathy, respect, courage, political savvy, collaboration, facilitation, and influence — the seven interpersonal skills the Standard names for program leadership.", refs:["standard"]},
+
+  {id:"f-gv1", domain:"governance", term:"Program Governance Plan", definition:"Defines decision rights, escalation paths, and the roles that authorize the program.", refs:["governance"]},
+  {id:"f-gv2", domain:"governance", term:"Stage/Phase Gate Review", definition:"Where the program obtains authorization from governance to proceed to the next phase.", refs:["governance"]},
+  {id:"f-gv3", domain:"governance", term:"Escalate Through Governance", definition:"Issues exceeding the program manager's authority go through the defined escalation path — not around it, and not decided unilaterally.", refs:["governance"]},
+  {id:"f-gv4", domain:"governance", term:"Right-Sized Governance", definition:"Governance proportionate to a program's size and complexity; over-governing is as harmful as under-governing.", refs:["governance"]},
+  {id:"f-gv5", domain:"governance", term:"Governance Enables", definition:"Good governance provides decisions, resources, and support — not just compliance oversight.", refs:["governance"]},
+  {id:"f-gv6", domain:"governance", term:"PMI Code of Ethics", definition:"Responsibility, respect, fairness, and honesty — applies to every exam scenario; the ethical answer wins even when costly.", refs:["ethics"]},
+  {id:"f-gv7", domain:"governance", term:"Governance Performance Metrics", definition:"KPIs (decision timeliness, escalation resolution, compliance, stakeholder satisfaction) that measure the governance process itself, distinct from program cost/schedule metrics.", refs:["governance"]},
+  {id:"f-gv8", domain:"governance", term:"Accountability vs. Responsibility", definition:"Accountability is ultimate ownership (e.g., the sponsor); responsibility is who executes (e.g., the program manager) — deep involvement doesn't transfer accountability.", refs:["governance"]},
+  {id:"f-gv9", domain:"governance", term:"Governance Transition Plan", definition:"Names ongoing owners and processes so governance obligations, like benefit oversight, continue past program closure.", refs:["governance","benefitsreg"]},
+  {id:"f-gv10", domain:"governance", term:"Optimistic Bias", definition:"The tendency to forecast program outcomes overly favorably; countered by benchmarking against risks actually observed in prior programs.", refs:["governance"]}
+];
+
+/* flatten questions with block context */
+var ALLQ = [];
+BLOCKS.forEach(function(b){
+  b.qs.forEach(function(q, i){
+    var qq = Object.assign({}, q);
+    qq.id = b.id + "-" + (i+1);
+    qq.block = b.id;
+    qq.blockName = b.name;
+    qq.domain = b.domain;
+    ALLQ.push(qq);
+  });
+});
+
+/* ============================== STORAGE ============================== */
+
+var STORAGE_KEY = "pgmp:v2";
+function defaultProgress(){ return { mastered:[], tagStats:{}, examsTaken:0, flash:{} }; }
+
+function loadProgress(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return defaultProgress();
+    var parsed = JSON.parse(raw);
+    var d = defaultProgress();
+    return {
+      mastered: Array.isArray(parsed.mastered) ? parsed.mastered.filter(function(id){ return BLOCKS.some(function(b){return b.id===id}); }) : d.mastered,
+      tagStats: (parsed.tagStats && typeof parsed.tagStats==="object") ? parsed.tagStats : d.tagStats,
+      examsTaken: Number.isFinite(parsed.examsTaken) ? parsed.examsTaken : 0,
+      flash: (parsed.flash && typeof parsed.flash==="object") ? parsed.flash : d.flash
+    };
+  }catch(e){ return defaultProgress(); }
+}
+function saveProgress(p){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }catch(e){} }
+
+/* ============================== HELPERS ============================== */
+
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function todayStr(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function addDays(str, n){ var d=new Date(str+"T00:00:00"); d.setDate(d.getDate()+n); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function shuffle(arr){ var a=arr.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function sample(arr, n){ return shuffle(arr).slice(0, Math.min(n, arr.length)); }
+function setsEqual(a,b){ if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length) return false; var sa=a.slice().sort(); var sb=b.slice().sort(); return sa.every(function(v,i){return v===sb[i];}); }
+
+function isAnswered(q, val){
+  if(q.type==="case") return Array.isArray(val) && val.length===q.subs.length && val.every(function(v){return v!=null;});
+  if(q.type==="matching") return Array.isArray(val) && val.length===q.prompts.length && val.every(function(v){return v!=null;});
+  if(q.type==="multi") return Array.isArray(val) && val.length>0;
+  return val!=null;
+}
+function isCorrect(q, val){
+  if(!isAnswered(q,val)) return false;
+  if(q.type==="case") return q.subs.every(function(s,i){ return val[i]===s.a; });
+  if(q.type==="matching") return q.a.every(function(correct,i){ return val[i]===correct; });
+  if(q.type==="multi") return setsEqual(val, q.a);
+  return val===q.a;
+}
+var TYPE_LABEL = {single:"Single answer", multi:"Multiple response", case:"Scenario", matching:"Matching"};
+
+function scoreSession(questions, answers){
+  var correct=0, missed=[];
+  questions.forEach(function(q){
+    if(isCorrect(q, answers[q.id])) correct++; else missed.push(q.id);
+  });
+  return { correct:correct, total:questions.length, missed:missed };
+}
+function band(acc){
+  if(acc>=0.85) return {label:"Above Target", color:"var(--good)"};
+  if(acc>=0.70) return {label:"Target", color:"var(--radar)"};
+  if(acc>=0.50) return {label:"Below Target", color:"var(--warn)"};
+  return {label:"Needs Improvement", color:"var(--bad)"};
+}
+function proficiencyByDomain(questions, answers){
+  var out = {};
+  DOMAIN_ORDER.forEach(function(d){ out[d] = {seen:0, correct:0}; });
+  questions.forEach(function(q){
+    out[q.domain].seen++;
+    if(isCorrect(q, answers[q.id])) out[q.domain].correct++;
+  });
+  Object.keys(out).forEach(function(d){
+    var o = out[d];
+    o.acc = o.seen ? o.correct/o.seen : null;
+    o.band = o.acc!=null ? band(o.acc) : null;
+  });
+  return out;
+}
+
+function updateTagStats(tagStats, questions, answers){
+  var next = Object.assign({}, tagStats);
+  questions.forEach(function(q){
+    var cur = next[q.id] || {seen:0, wrong:0};
+    cur = {seen: cur.seen+1, wrong: cur.wrong + (isCorrect(q, answers[q.id]) ? 0 : 1)};
+    next[q.id] = cur;
+  });
+  return next;
+}
+
+/* ============================== STATE ============================== */
+
+var state = {
+  view:"dash",          /* dash | quiz | flash */
+  progress: loadProgress(),
+  session: null,
+  flashSession: null,
+  confirmReset:false
+};
+
+function persist(){ saveProgress(state.progress); }
+
+/* ============================== SESSION BUILDERS ============================== */
+
+function buildBlockSession(blockId){
+  var block = BLOCKS.filter(function(b){return b.id===blockId;})[0];
+  var qs = ALLQ.filter(function(q){return q.block===blockId;});
+  return { kind:"block", blockId:blockId, title:block.name, timed:false, accent:DOMAINS[block.domain].token,
+    questions: shuffle(qs), answers:{}, missed:[], submitted:false };
+}
+function buildQuickSession(){
+  var n = Math.min(10, ALLQ.length);
+  return { kind:"quick", title:"Domain Check", timed:false, accent:"radar",
+    questions: sample(ALLQ, n), answers:{}, missed:[], submitted:false };
+}
+function buildMockSession(){
+  var n = Math.min(15, ALLQ.length);
+  return { kind:"mock", title:"Timed Mock", timed:true, secondsPerQ:100, accent:"violet",
+    questions: sample(ALLQ, n), answers:{}, missed:[], submitted:false };
+}
+function buildDrillSession(){
+  var pool = ALLQ.map(function(q){
+    var s = state.progress.tagStats[q.id];
+    var rate = s && s.seen ? s.wrong/s.seen : -1;
+    return {q:q, rate:rate, seen:s?s.seen:0};
+  }).filter(function(x){ return x.seen>=2 && x.rate>0; }).sort(function(a,b){return b.rate-a.rate;});
+  var n = Math.min(6, pool.length);
+  return { kind:"drill", title:"Focus Drill", timed:false, accent:"rose",
+    questions: pool.slice(0,n).map(function(x){return x.q;}), answers:{}, missed:[], submitted:false };
+}
+
+function canUnlockExams(){ return state.progress.mastered.length >= 2; }
+function canUnlockDrill(){
+  return Object.keys(state.progress.tagStats).some(function(k){ return state.progress.tagStats[k].seen>=2; });
+}
+
+function buildFlashSession(){
+  var today = todayStr();
+  var due=[], fresh=[], rest=[];
+  FLASHCARDS.forEach(function(c){
+    var f = state.progress.flash[c.id];
+    if(!f) fresh.push(c);
+    else if(f.due<=today) due.push(c);
+    else rest.push(c);
+  });
+  var pool = shuffle(due).concat(shuffle(fresh)).concat(shuffle(rest));
+  var cards = pool.slice(0, Math.min(10, pool.length));
+  return { cards:cards, index:0, showBack:false, promoted:0, reset:0 };
+}
+
+/* ============================== RENDER: SHARED ============================== */
+
+function ring(pct, size){
+  size = size || 64;
+  var r = (size/2) - 7, c = 2*Math.PI*r;
+  var off = c - (pct/100)*c;
+  return '<div class="ring-wrap" style="width:'+size+'px;height:'+size+'px">'+
+    '<svg width="'+size+'" height="'+size+'">'+
+      '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="var(--panel-2)" stroke-width="6" fill="none"/>'+
+      '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="var(--radar)" stroke-width="6" fill="none" '+
+        'stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" stroke-linecap="round" transform="rotate(-90 '+size/2+' '+size/2+')"/>'+
+    '</svg>'+
+    '<div class="ring-label">'+pct+'%</div>'+
+  '</div>';
+}
+function refLinks(keys, tokenVar){
+  var uniq = Array.from(new Set(keys||[])).filter(function(k){return REFS[k];});
+  if(!uniq.length) return "";
+  return '<div class="refs">'+uniq.map(function(k){
+    var r = REFS[k];
+    return '<a class="ref-link" href="'+esc(r.url)+'" target="_blank" rel="noopener noreferrer" style="color:var(--'+tokenVar+'-tx)">↗ '+esc(r.label)+'</a>';
+  }).join("")+'</div>';
+}
+
+/* ============================== RENDER: DASHBOARD ============================== */
+
+function renderDash(){
+  var p = state.progress;
+  var overallPct = Math.round(p.mastered.length / BLOCKS.length * 100);
+  var due = FLASHCARDS.filter(function(c){ var f=p.flash[c.id]; return !f || f.due<=todayStr(); }).length;
+
+  var strip = DOMAIN_ORDER.map(function(d){
+    var meta = DOMAINS[d];
+    var qs = ALLQ.filter(function(q){return q.domain===d;});
+    var seen=0, correct=0;
+    qs.forEach(function(q){ var s=p.tagStats[q.id]; if(s&&s.seen){ seen+=s.seen; correct += (s.seen-s.wrong); } });
+    var acc = seen ? Math.round(correct/seen*100) : null;
+    var blocks = BLOCKS.filter(function(b){return b.domain===d;});
+    var mastered = blocks.filter(function(b){return p.mastered.indexOf(b.id)>-1;}).length;
+    return '<div class="strip-item">'+
+      '<div class="strip-top"><span class="dot" style="background:var(--'+meta.token+')"></span><span class="strip-name">'+esc(meta.abbr)+'</span>'+
+        '<span class="mono" style="margin-left:auto;font-size:10px;color:var(--text-dim)">'+meta.weight+'%</span></div>'+
+      '<div class="bar"><span style="width:'+(acc==null?0:acc)+'%;background:var(--'+meta.token+')"></span></div>'+
+      '<div class="strip-meta"><span>'+mastered+'/'+blocks.length+' blocks</span><span>'+(acc==null?"—":acc+"%")+'</span></div>'+
+    '</div>';
+  }).join("");
+
+  var groups = DOMAIN_ORDER.map(function(d){
+    var meta = DOMAINS[d];
+    var blocks = BLOCKS.filter(function(b){return b.domain===d;});
+    var rows = blocks.map(function(b){
+      var qs = ALLQ.filter(function(q){return q.block===b.id;});
+      var seen=0, correct=0;
+      qs.forEach(function(q){ var s=p.tagStats[q.id]; if(s&&s.seen){ seen+=s.seen; correct+=(s.seen-s.wrong); } });
+      var acc = seen ? Math.round(correct/seen*100) : null;
+      var mastered = p.mastered.indexOf(b.id)>-1;
+      var pctColor = acc==null ? "var(--text-dim)" : acc>=80?"var(--good)":acc>=50?"var(--warn)":"var(--bad)";
+      return '<button class="block-row" data-act="openBlock" data-id="'+b.id+'">'+
+        '<span class="block-id">'+b.id+'</span>'+
+        '<span class="block-name">'+esc(b.name)+'</span>'+
+        (acc!=null ? '<span class="pct" style="color:'+pctColor+'">'+acc+'%</span>' : '')+
+        (mastered
+          ? '<span class="badge badge-solid" style="background:var(--'+meta.token+');color:var(--ink)">MASTERED</span>'
+          : '<span class="badge badge-outline" style="color:var(--'+meta.token+')">START →</span>')+
+      '</button>';
+    }).join("");
+    return '<section class="domain-group card">'+
+      '<div class="domain-group-head"><span class="dot" style="background:var(--'+meta.token+')"></span><h3>'+esc(meta.name)+'</h3>'+
+        '<span class="mono" style="margin-left:auto;font-size:12px;color:var(--'+meta.token+')">'+meta.weight+'% of exam</span></div>'+
+      rows+
+    '</section>';
+  }).join("");
+
+  var weak = ALLQ.map(function(q){
+    var s = p.tagStats[q.id];
+    var rate = s && s.seen ? s.wrong/s.seen : null;
+    return {id:q.id, name:q.blockName, domain:q.domain, rate:rate, seen:s?s.seen:0};
+  }).filter(function(x){return x.rate!=null && x.seen>=2;}).sort(function(a,b){return b.rate-a.rate;}).slice(0,5);
+
+  var diag = weak.length ? '<section class="card" style="margin-top:14px;padding:16px">'+
+    '<div class="eyebrow" style="margin-bottom:12px">Diagnostic · Weakest Tasks</div>'+
+    weak.map(function(w){
+      var acc = Math.round((1-w.rate)*100);
+      var c = acc>=80?"var(--good)":acc>=50?"var(--warn)":"var(--bad)";
+      return '<div class="diag-row"><span class="diag-id mono">'+w.id+'</span><span class="diag-name">'+esc(w.name)+'</span>'+
+        '<div class="bar" style="flex:1"><span style="width:'+acc+'%;background:'+c+'"></span></div>'+
+        '<span class="pct" style="width:38px;text-align:right;color:'+c+'">'+acc+'%</span></div>';
+    }).join("")+
+  '</section>' : '';
+
+  var canExam = canUnlockExams(), canDrill = canUnlockDrill();
+
+  return '<div class="deck-head">'+
+      '<div class="scanline"></div>'+
+      '<div class="deck-head-row">'+
+        '<div>'+
+          '<div class="eyebrow">PgMP · Program Management Professional</div>'+
+          '<h1 style="font-size:32px;margin-top:4px;letter-spacing:-.3px">Program Control Deck</h1>'+
+          '<p class="deck-sub">Aligned to PMI\'s March 2024 PgMP Examination Content Outline — weighted toward Program Life Cycle Management (44% of the exam). Every miss links back to a source. Progress saves automatically to this browser.</p>'+
+          '<div class="chips">'+
+            '<span class="chip">'+ALLQ.length+' items · '+BLOCKS.length+' blocks</span>'+
+            '<span class="chip">4 item types</span>'+
+            '<span class="chip">'+FLASHCARDS.length+' flashcards'+(due?(" · "+due+" due"):"")+'</span>'+
+          '</div>'+
+        '</div>'+
+        ring(overallPct)+
+      '</div>'+
+    '</div>'+
+    '<div class="strip">'+strip+'</div>'+
+    groups+
+    diag+
+    '<div class="launch-row">'+
+      '<button class="launch" data-act="startQuick" '+(canExam?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--radar)">Domain Check</div>'+
+        '<div class="launch-sub">'+(canExam? Math.min(10,ALLQ.length)+" questions · mixed domains · untimed" : "Master 2 blocks to unlock ("+state.progress.mastered.length+"/2)")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startMock" '+(canExam?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--violet)">Timed Mock</div>'+
+        '<div class="launch-sub">'+(canExam? Math.min(15,ALLQ.length)+" questions · ~100s each · exam pacing" : "Unlocks with Domain Check")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startDrill" '+(canDrill?'':'disabled')+'>'+
+        '<div class="launch-title" style="color:var(--rose)">Focus Drill</div>'+
+        '<div class="launch-sub">'+(canDrill? "Weakest tasks · short set" : "Answer more questions to calibrate")+'</div>'+
+      '</button>'+
+      '<button class="launch" data-act="startFlash">'+
+        '<div class="launch-title" style="color:var(--brass)">Flashcards</div>'+
+        '<div class="launch-sub">'+(due? due+" due now" : "All caught up — review anyway")+'</div>'+
+      '</button>'+
+    '</div>'+
+    '<div class="footer-row">'+
+      '<span class="mono">'+ALLQ.length+' items · '+BLOCKS.length+' blocks · exams taken: '+p.examsTaken+'</span>'+
+      (state.confirmReset
+        ? '<span style="display:inline-flex;gap:8px;align-items:center">'+
+            '<span style="color:var(--bad)">Reset all progress?</span>'+
+            '<button data-act="resetYes" style="background:var(--bad);color:#fff;border:none;border-radius:6px;padding:3px 10px;font-weight:700">Yes, reset</button>'+
+            '<button data-act="resetNo" style="background:none;border:1px solid var(--line);color:var(--text-dim);border-radius:6px;padding:3px 10px">Cancel</button>'+
+          '</span>'
+        : '<button class="link-btn" data-act="resetAsk">reset progress</button>')+
+    '</div>';
+}
+
+/* ============================== RENDER: QUIZ ============================== */
+
+function optionLetter(i){ return "ABCDEF"[i]; }
+
+function renderQuestionBody(q, session, idx){
+  var val = session.answers[q.id];
+  var accent = session.accent;
+
+  if(q.type==="case"){
+    return '<div class="scenario">'+esc(q.scenario)+'</div>'+
+      q.subs.map(function(sub, si){
+        var sv = Array.isArray(val)? val[si] : null;
+        return '<div style="margin-bottom:'+(si<q.subs.length-1?18:0)+'px">'+
+          '<div style="font-size:15px;font-weight:500;margin-bottom:10px"><span class="mono" style="color:var(--'+accent+');margin-right:8px">'+(si+1)+'.</span>'+esc(sub.stem)+'</div>'+
+          '<div class="options">'+sub.options.map(function(opt, oi){
+            var picked = sv===oi;
+            return '<button class="opt" data-act="answerCaseSub" data-si="'+si+'" data-oi="'+oi+'" style="'+(picked?('border-color:var(--'+accent+');background:color-mix(in srgb, var(--'+accent+') 12%, var(--panel-2))'):'')+'">'+
+              '<span class="opt-key" style="'+(picked?('color:var(--'+accent+')'):'')+'">'+optionLetter(oi)+'</span><span>'+esc(opt)+'</span></button>';
+          }).join("")+'</div>'+
+        '</div>';
+      }).join("");
+  }
+  if(q.type==="matching"){
+    return '<div style="display:grid;gap:9px">'+q.prompts.map(function(pr, pi){
+      var sv = Array.isArray(val) ? val[pi] : null;
+      return '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+
+        '<span style="font-size:14px;min-width:190px;flex:1 1 190px">'+esc(pr)+'</span>'+
+        '<select class="picker" style="flex:1 1 220px" data-act-change="matchSelect" data-pi="'+pi+'">'+
+          '<option value="">— choose —</option>'+
+          q.choices.map(function(c,ci){ return '<option value="'+ci+'" '+(sv===ci?"selected":"")+'>'+esc(c)+'</option>'; }).join("")+
+        '</select></div>';
+    }).join("")+'</div>';
+  }
+  /* single / multi */
+  var isMulti = q.type==="multi";
+  var picked = isMulti ? new Set(val||[]) : null;
+  return (isMulti? '<div class="eyebrow" style="margin-bottom:8px">Select all that apply</div>' : '')+
+    '<div class="options">'+q.options.map(function(opt, oi){
+      var isPicked = isMulti ? picked.has(oi) : val===oi;
+      return '<button class="opt" data-act="'+(isMulti?"toggleMulti":"answerSingle")+'" data-oi="'+oi+'" style="'+(isPicked?('border-color:var(--'+accent+');background:color-mix(in srgb, var(--'+accent+') 12%, var(--panel-2))'):'')+'">'+
+        '<span class="opt-key" style="'+(isPicked?('color:var(--'+accent+')'):'')+'">'+(isMulti?(isPicked?"✓":""):optionLetter(oi))+'</span>'+
+        '<span>'+esc(opt)+'</span></button>';
+    }).join("")+'</div>';
+}
+
+function renderQuiz(){
+  var s = state.session;
+  if(s.submitted) return renderResults();
+
+  var idx = s._idx || 0;
+  var q = s.questions[idx];
+  var answeredCount = s.questions.filter(function(qq){ return isAnswered(qq, s.answers[qq.id]); }).length;
+  var allAnswered = answeredCount === s.questions.length;
+
+  var dots = s.questions.map(function(qq, i){
+    var a = isAnswered(qq, s.answers[qq.id]);
+    return '<button class="qdot" data-act="jumpTo" data-i="'+i+'" style="background:'+(i===idx?('var(--'+s.accent+')'):(a?'var(--line)':'var(--panel-2)'))+';'+(i===idx?'':'border:1px solid var(--line)')+'"></button>';
+  }).join("");
+
+  var timerHtml = "";
+  if(s.timed) timerHtml = '<span class="timer" id="quizTimer" style="color:var(--violet)"></span>';
+
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitQuiz">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--'+s.accent+')">'+esc(s.title)+'</h2>'+
+      '<span class="spacer"></span>'+timerHtml+
+      '<span class="mono dim" style="font-size:12px">'+answeredCount+'/'+s.questions.length+'</span>'+
+    '</div>'+
+    (s.timed && idx===0 ? '<div class="card" style="padding:10px 13px;margin-bottom:14px;border-color:var(--violet);font-size:12.5px" class="dim">Real PgMP-style pacing: work steadily, flag and move on rather than stalling on one item.</div>' : '')+
+    '<div class="dotrow">'+dots+'</div>'+
+    '<div class="card qcard">'+
+      '<div class="qtag-row">'+
+        '<span class="tag">'+q.block+' · Q'+(idx+1)+'/'+s.questions.length+'</span>'+
+        '<span class="tag">'+TYPE_LABEL[q.type]+'</span>'+
+      '</div>'+
+      '<div class="stem">'+esc(q.stem)+'</div>'+
+      renderQuestionBody(q, s, idx)+
+    '</div>'+
+    '<div class="qnav">'+
+      '<button class="navbtn" data-act="prevQ" '+(idx===0?'disabled':'')+'>← Prev</button>'+
+      (idx < s.questions.length-1
+        ? '<button class="navbtn" data-act="nextQ">Next →</button>'
+        : '<button class="submitbtn" data-act="submitQuiz" '+(allAnswered?'':'disabled')+' style="background:'+(allAnswered?('var(--'+s.accent+')'):'var(--panel-2)')+';color:'+(allAnswered?'var(--ink)':'var(--text-dim)')+'">'+(allAnswered? "Submit for review" : (s.questions.length-answeredCount)+" left")+'</button>')+
+    '</div>';
+}
+
+/* ============================== RENDER: RESULTS ============================== */
+
+function renderAnswerReview(q, val){
+  if(q.type==="case"){
+    return '<div style="display:grid;gap:12px">'+
+      '<div style="font-size:12.5px;color:var(--text-dim);font-style:italic">'+esc(q.scenario)+'</div>'+
+      q.subs.map(function(sub, si){
+        var sv = Array.isArray(val)?val[si]:null;
+        return '<div><div style="font-size:13.5px;margin-bottom:4px"><b class="dim">'+(si+1)+'.</b> '+esc(sub.stem)+'</div>'+
+          sub.options.map(function(opt, oi){
+            var isRight = oi===sub.a, isMine = oi===sv;
+            var color = isRight?"var(--good)":isMine?"var(--bad)":"var(--text-dim)";
+            var tail = isRight?"  ← correct":(isMine?"  ← your answer":"");
+            return '<div style="font-size:13px;color:'+color+';margin-bottom:3px;display:flex;gap:8px;padding-left:10px"><span class="mono" style="font-weight:700">'+optionLetter(oi)+'</span><span>'+esc(opt)+tail+'</span></div>';
+          }).join("")+
+        '</div>';
+      }).join("")+
+    '</div>';
+  }
+  if(q.type==="matching"){
+    return '<div style="display:grid;gap:5px">'+q.prompts.map(function(pr, pi){
+      var sv = Array.isArray(val)?val[pi]:null, correct=q.a[pi], ok=sv===correct;
+      return '<div style="font-size:13.5px;display:flex;gap:8px;flex-wrap:wrap;color:'+(ok?'var(--good)':'var(--bad)')+'">'+
+        '<span class="dim" style="min-width:150px">'+esc(pr)+'</span><span>→ '+esc(q.choices[correct])+(!ok&&sv!=null?('  (you: '+esc(q.choices[sv])+')'):'')+(ok?'  ✓':'')+'</span></div>';
+    }).join("")+'</div>';
+  }
+  var isMulti = q.type==="multi";
+  var rightSet = isMulti ? new Set(q.a) : null;
+  var mySet = isMulti ? new Set(val||[]) : null;
+  return '<div>'+q.options.map(function(opt, oi){
+    var isRight = isMulti ? rightSet.has(oi) : oi===q.a;
+    var isMine = isMulti ? mySet.has(oi) : oi===val;
+    var color = isRight?"var(--good)":isMine?"var(--bad)":"var(--text-dim)";
+    var tail = isRight?"  ← correct":(isMine?"  ← your answer":"");
+    return '<div style="font-size:13.5px;color:'+color+';margin-bottom:5px;display:flex;gap:8px">'+
+      '<span class="mono" style="font-weight:700">'+(isMulti?(isRight?"✓":(isMine?"✕":"·")):optionLetter(oi))+'</span><span>'+esc(opt)+tail+'</span></div>';
+  }).join("")+'</div>';
+}
+
+var reviewOpen = {};
+
+function renderResults(){
+  var s = state.session;
+  var sc = scoreSession(s.questions, s.answers);
+  var pct = Math.round(sc.correct/sc.total*100);
+  var missedQs = s.questions.filter(function(q){ return sc.missed.indexOf(q.id)>-1; });
+  var clean = sc.missed.length===0;
+  var isFullExam = (s.kind==="quick" || s.kind==="mock");
+  var prof = proficiencyByDomain(s.questions, s.answers);
+  var b = band(sc.correct/sc.total);
+
+  var profHtml = isFullExam ? '<section class="card" style="margin-top:14px;padding:16px">'+
+    '<div class="eyebrow" style="margin-bottom:12px">Proficiency By Domain</div>'+
+    DOMAIN_ORDER.filter(function(d){return prof[d].seen>0;}).map(function(d){
+      var meta = DOMAINS[d], o = prof[d];
+      return '<div class="prof-row"><span class="dot" style="background:var(--'+meta.token+')"></span>'+
+        '<span class="prof-name">'+esc(meta.name)+'</span>'+
+        '<div class="bar" style="flex:1"><span style="width:'+Math.round(o.acc*100)+'%;background:'+o.band.color+'"></span></div>'+
+        '<span class="prof-band" style="color:'+o.band.color+'">'+o.band.label+'</span></div>';
+    }).join("")+
+    '<div class="dim" style="margin-top:8px;font-size:11px">Bands approximate PMI\'s Above Target → Needs Improvement scale; PMI does not publish exact cut scores.</div>'+
+  '</section>' : '';
+
+  var blocksMissed = Array.from(new Set(missedQs.map(function(q){return q.block;})));
+  var studyCards = blocksMissed.map(function(bid){
+    var blk = BLOCKS.filter(function(b){return b.id===bid;})[0];
+    var meta = DOMAINS[blk.domain];
+    var extraRefs = missedQs.filter(function(q){return q.block===bid;}).flatMap(function(q){return q.refs||[];});
+    var allRefs = (blk.refs||[]).concat(extraRefs);
+    return '<div class="card studycard">'+
+      '<div class="eyebrow" style="color:var(--'+meta.token+')">Study Card · '+bid+' '+esc(blk.name.toUpperCase())+'</div>'+
+      '<ul style="margin:8px 0 0;padding-left:18px;font-size:13.5px;line-height:1.55">'+blk.material.map(function(m){return '<li style="margin-bottom:4px">'+esc(m)+'</li>';}).join("")+'</ul>'+
+      refLinks(allRefs, meta.token)+
+    '</div>';
+  }).join("");
+
+  var reviewList = s.questions.map(function(q){
+    var ok = isCorrect(q, s.answers[q.id]);
+    var open = reviewOpen[q.id] === true || (!ok && reviewOpen[q.id]!==false);
+    return '<div class="card review-item">'+
+      '<button class="review-toggle" data-act="toggleReview" data-id="'+q.id+'">'+
+        '<span class="mono" style="font-weight:700;color:'+(ok?'var(--good)':'var(--bad)')+'">'+(ok?"✓":"✕")+'</span>'+
+        '<span style="flex:1;font-size:14.5px;font-weight:500">'+esc(q.stem)+'</span>'+
+        '<span class="dim" style="font-size:12px">'+(open?"▲":"▼")+'</span>'+
+      '</button>'+
+      (open ? '<div class="review-body">'+
+          renderAnswerReview(q, s.answers[q.id])+
+          '<div class="why-box"><b class="mono" style="color:var(--'+s.accent+');font-size:11px">WHY </b>'+esc(q.why)+'</div>'+
+          refLinks(q.refs, s.accent)+
+        '</div>' : '')+
+    '</div>';
+  }).join("");
+
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitQuiz">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--'+s.accent+')">'+esc(s.title)+' · Results</h2>'+
+      '<span class="spacer"></span><span class="mono dim" style="font-size:12px">'+sc.correct+'/'+sc.total+'</span>'+
+    '</div>'+
+    '<div class="card score-banner" style="border-color:'+(clean?'var(--good)':'var(--line)')+'">'+
+      ring(pct)+
+      '<div><div class="score-head">'+(clean?"Clean sweep.":sc.missed.length+" to review")+(isFullExam?'<span class="badge badge-outline" style="color:'+b.color+'">'+b.label+'</span>':'')+'</div>'+
+      '<div class="dim" style="font-size:13.5px;margin-top:3px">'+(clean ? (s.kind==="block"?"Block mastered and marked on the deck.":"Every item correct — solid.") : "Read each miss, open a source for depth, then retry only the missed items until the set is clean.")+'</div></div>'+
+    '</div>'+
+    profHtml+
+    studyCards+
+    '<div style="margin-top:16px">'+reviewList+'</div>'+
+    '<div class="final-row">'+
+      (!clean ? '<button class="primary" data-act="retryMissed" style="background:var(--'+s.accent+');color:var(--ink)">Retry '+sc.missed.length+' missed →</button>' : '')+
+      '<button data-act="exitQuiz" style="flex:'+(clean?'1':'0 0 auto')+'">'+(clean?"Back to deck":"Deck")+'</button>'+
+    '</div>';
+}
+
+/* ============================== RENDER: FLASHCARDS ============================== */
+
+function renderFlash(){
+  var f = state.flashSession;
+  if(!f.cards.length){
+    return '<div class="quiz-head"><button class="backbtn" data-act="exitFlash">← Deck</button><h2 style="font-size:18px;color:var(--brass)">Flashcards</h2></div>'+
+      '<div class="card empty-note">No flashcards available yet — add some to FLASHCARDS in the source.</div>';
+  }
+  if(f.index >= f.cards.length){
+    return '<div class="quiz-head"><button class="backbtn" data-act="exitFlash">← Deck</button><h2 style="font-size:18px;color:var(--brass)">Flashcards · Session done</h2></div>'+
+      '<div class="card" style="padding:20px;text-align:center">'+
+        '<div style="font-family:Sora;font-size:19px;font-weight:600;margin-bottom:6px">Reviewed '+f.cards.length+' cards</div>'+
+        '<div class="dim" style="font-size:13.5px">'+f.promoted+' moved up a box · '+f.reset+' reset for another pass.</div>'+
+        '<button data-act="exitFlash" style="margin-top:16px;padding:12px 20px;border-radius:11px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);font-weight:600">Back to deck</button>'+
+      '</div>';
+  }
+  var c = f.cards[f.index];
+  var meta = DOMAINS[c.domain];
+  return '<div class="quiz-head">'+
+      '<button class="backbtn" data-act="exitFlash">← Deck</button>'+
+      '<h2 style="font-size:18px;color:var(--brass)">Flashcards</h2>'+
+      '<span class="spacer"></span>'+
+    '</div>'+
+    '<div class="flash-progress"><span>'+esc(meta.name)+'</span><span>'+(f.index+1)+' / '+f.cards.length+'</span></div>'+
+    '<div class="card flash-stage" data-act="flipCard">'+
+      (f.showBack
+        ? '<div class="flash-face-label" style="color:var(--'+meta.token+')">Definition</div><div class="flash-def">'+esc(c.definition)+'</div>'+refLinks(c.refs, meta.token)
+        : '<div class="flash-face-label">Term</div><div class="flash-term">'+esc(c.term)+'</div><div class="flash-hint">Click to reveal</div>')+
+    '</div>'+
+    (f.showBack ? '<div class="flash-grade">'+
+        '<button data-act="gradeCard" data-grade="miss" style="color:var(--bad)">Missed it</button>'+
+        '<button data-act="gradeCard" data-grade="got" style="background:var(--good);color:#fff;border:none">Got it</button>'+
+      '</div>' : '');
+}
+
+/* ============================== RENDER + MOUNT ============================== */
+
+var app = document.getElementById("app");
+function render(){
+  if(state.view==="quiz") app.innerHTML = renderQuiz();
+  else if(state.view==="flash") app.innerHTML = renderFlash();
+  else app.innerHTML = renderDash();
+  if(state.view==="quiz" && state.session && state.session.timed && !state.session.submitted) startTimer();
+}
+
+/* timer for timed mock */
+var timerHandle = null;
+function stopTimer(){ if(timerHandle){ clearInterval(timerHandle); timerHandle=null; } }
+function startTimer(){
+  stopTimer();
+  var s = state.session;
+  if(s._deadline==null) s._deadline = Date.now() + s.secondsPerQ*1000*s.questions.length;
+  function tick(){
+    var el = document.getElementById("quizTimer");
+    var remaining = Math.max(0, Math.round((s._deadline - Date.now())/1000));
+    if(el){
+      var m = String(Math.floor(remaining/60)).padStart(2,"0"), sec = String(remaining%60).padStart(2,"0");
+      el.textContent = "⏱ " + m + ":" + sec;
+      el.style.color = remaining<=60 ? "var(--bad)" : "var(--violet)";
+    }
+    if(remaining<=0){ stopTimer(); submitQuiz(); }
+  }
+  tick();
+  timerHandle = setInterval(tick, 1000);
+}
+
+/* ============================== ACTIONS ============================== */
+
+function openBlock(id){ state.session = buildBlockSession(id); state.session._idx=0; state.view="quiz"; render(); }
+function startQuick(){ if(!canUnlockExams()) return; state.session = buildQuickSession(); state.session._idx=0; state.view="quiz"; render(); }
+function startMock(){ if(!canUnlockExams()) return; state.session = buildMockSession(); state.session._idx=0; state.view="quiz"; render(); }
+function startDrill(){ if(!canUnlockDrill()) return; state.session = buildDrillSession(); state.session._idx=0; state.view="quiz"; render(); }
+function exitQuiz(){ stopTimer(); state.session=null; reviewOpen={}; state.view="dash"; render(); }
+
+function startFlash(){ state.flashSession = buildFlashSession(); state.view="flash"; render(); }
+function exitFlash(){ state.flashSession=null; state.view="dash"; render(); }
+
+function submitQuiz(){
+  stopTimer();
+  var s = state.session;
+  s.submitted = true;
+  var p = state.progress;
+  p.tagStats = updateTagStats(p.tagStats, s.questions, s.answers);
+  if(s.kind==="block"){
+    var sc = scoreSession(s.questions, s.answers);
+    if(sc.missed.length===0 && p.mastered.indexOf(s.blockId)===-1) p.mastered = p.mastered.concat([s.blockId]);
+  }
+  if(s.kind==="quick" || s.kind==="mock") p.examsTaken++;
+  persist();
+  render();
+}
+
+document.getElementById("app").addEventListener("click", function(e){
+  var t = e.target.closest("[data-act]");
+  if(!t) return;
+  var act = t.getAttribute("data-act");
+  var s = state.session;
+
+  if(act==="openBlock") return openBlock(t.getAttribute("data-id"));
+  if(act==="startQuick") return startQuick();
+  if(act==="startMock") return startMock();
+  if(act==="startDrill") return startDrill();
+  if(act==="exitQuiz") return exitQuiz();
+  if(act==="startFlash") return startFlash();
+  if(act==="exitFlash") return exitFlash();
+  if(act==="resetAsk"){ state.confirmReset=true; return render(); }
+  if(act==="resetNo"){ state.confirmReset=false; return render(); }
+  if(act==="resetYes"){ state.progress=defaultProgress(); persist(); state.confirmReset=false; return render(); }
+
+  if(act==="flipCard"){ state.flashSession.showBack = !state.flashSession.showBack; return render(); }
+  if(act==="gradeCard"){
+    var f = state.flashSession;
+    var card = f.cards[f.index];
+    var p = state.progress;
+    var cur3 = p.flash[card.id] || {box:0, due:todayStr()};
+    var intervals = [0,1,3,7,16];
+    if(t.getAttribute("data-grade")==="got"){
+      cur3.box = Math.min(4, cur3.box+1);
+      f.promoted++;
+    } else {
+      cur3.box = 0;
+      f.reset++;
+    }
+    cur3.due = addDays(todayStr(), intervals[cur3.box]);
+    p.flash[card.id] = cur3;
+    persist();
+    f.index++;
+    f.showBack = false;
+    return render();
+  }
+
+  if(!s) return;
+  var idx = s._idx||0, q = s.questions[idx];
+
+  if(act==="jumpTo"){ s._idx = Number(t.getAttribute("data-i")); return render(); }
+  if(act==="prevQ"){ s._idx = Math.max(0, idx-1); return render(); }
+  if(act==="nextQ"){ s._idx = Math.min(s.questions.length-1, idx+1); return render(); }
+  if(act==="submitQuiz") return submitQuiz();
+  if(act==="retryMissed"){
+    var missedIds = scoreSession(s.questions, s.answers).missed;
+    state.session = {
+      kind:s.kind, title:s.title+" · Retry", timed:false, accent:s.accent,
+      questions: s.questions.filter(function(qq){return missedIds.indexOf(qq.id)>-1;}),
+      answers:{}, missed:[], submitted:false, _idx:0
+    };
+    return render();
+  }
+  if(act==="toggleReview"){ var id=t.getAttribute("data-id"); reviewOpen[id] = !(reviewOpen[id]===true || (reviewOpen[id]!==false && !isCorrect(s.questions.filter(function(qq){return qq.id===id})[0], s.answers[id]))); return render(); }
+
+  if(act==="answerSingle"){ s.answers[q.id] = Number(t.getAttribute("data-oi")); return render(); }
+  if(act==="toggleMulti"){
+    var oi = Number(t.getAttribute("data-oi"));
+    var cur = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : [];
+    var pos = cur.indexOf(oi);
+    if(pos>-1) cur.splice(pos,1); else cur.push(oi);
+    s.answers[q.id] = cur;
+    return render();
+  }
+  if(act==="answerCaseSub"){
+    var si = Number(t.getAttribute("data-si")), oi2 = Number(t.getAttribute("data-oi"));
+    var cur2 = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : new Array(q.subs.length).fill(null);
+    cur2[si] = oi2;
+    s.answers[q.id] = cur2;
+    return render();
+  }
+});
+
+document.getElementById("app").addEventListener("change", function(e){
+  var t = e.target.closest("[data-act-change='matchSelect']");
+  if(!t) return;
+  var s = state.session, q = s.questions[s._idx||0];
+  var pi = Number(t.getAttribute("data-pi"));
+  var cur = Array.isArray(s.answers[q.id]) ? s.answers[q.id].slice() : new Array(q.prompts.length).fill(null);
+  cur[pi] = t.value===""? null : Number(t.value);
+  s.answers[q.id] = cur;
+  render();
+});
+
+render();
+})();
+</script>
