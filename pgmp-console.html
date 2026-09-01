@@ -3302,6 +3302,1372 @@ var BLOCKS = [
       }
     ]
   },
+    {
+    id:"BN3", domain:"benefits", name:"Benefits Register & Ownership",
+    refs:["benefitsreg"],
+    material:[
+      "A benefits register formally captures each expected benefit: its statement, owner, measurement method, baseline, target, target date, and current status — an informal list in someone's notes doesn't provide the traceability governance needs.",
+      "Each benefit needs a single named owner accountable for its realization, distinct from the component/project manager who delivers the enabling output — delivery and realization are different accountabilities.",
+      "Every benefit in the register should map explicitly back to a strategic objective the program was chartered to advance; an unmapped benefit is a sign the program's scope may be drifting from its original justification.",
+      "When a single benefit depends on outputs from multiple components, ownership still needs one accountable name — shared, undefined ownership is how cross-component benefits quietly fall through the cracks."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's benefits are tracked in an informal spreadsheet maintained by whichever component manager happens to think of it, with no consistent owner, baseline, or target date fields. A new governance reviewer asks to see the program's benefits register. What is the core problem with presenting this spreadsheet as the register?",
+        options:[
+          "There is no problem, since the information exists somewhere and can be found if needed",
+          "It lacks the structured, consistent fields (owner, baseline, target, status) a real benefits register requires, undermining the traceability governance depends on",
+          "Spreadsheets are never an acceptable format for a benefits register",
+          "The register should instead be maintained exclusively by the program sponsor"
+        ],
+        a:1,
+        why:"A benefits register isn't just a place information happens to live — it needs the structured fields that make realization traceable and auditable. An ad hoc list without consistent ownership and baselines doesn't serve that function.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component project manager who delivered a new inventory system is also listed as the accountable owner for the resulting \"reduced stockouts\" benefit. Governance later finds no one is actively tracking whether stockouts have actually decreased post-launch. What is the most likely root cause?",
+        options:[
+          "The component project manager should never have been involved in the benefit at all",
+          "Conflating delivery accountability with realization accountability — the component PM's role ended at delivery, and no one was assigned to own tracking the benefit afterward",
+          "The inventory system itself must have failed technically",
+          "Benefits should never be assigned to a named individual"
+        ],
+        a:1,
+        why:"Delivering the enabling output and owning the benefit's realization are different accountabilities. Assuming the delivery PM will naturally continue tracking realization, without an explicit assignment, is exactly how benefits go unmonitored.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefits register entry lists \"improved data quality\" as an expected benefit but does not indicate which of the program's chartered strategic objectives it advances. What should the program manager do?",
+        options:[
+          "Leave it as is, since not every benefit needs to trace back to a strategic objective",
+          "Work with the sponsor or benefit owner to map the benefit explicitly to the strategic objective it supports — an unmapped benefit may signal scope drifting from the program's original justification",
+          "Remove the benefit from the register immediately without further discussion",
+          "Reclassify it as a dis-benefit instead"
+        ],
+        a:1,
+        why:"Every benefit should trace back to why the program was chartered. A benefit with no clear strategic link deserves scrutiny — either the mapping was simply never documented, or the benefit doesn't actually belong in this program.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A specific benefit — faster claims processing — depends on outputs from three separate components. No single person has been assigned to own tracking this particular benefit; each component manager assumes another is watching it. Six months after all three components delivered, no one has verified whether claims processing actually got faster. What does this scenario illustrate?",
+        options:[
+          "Cross-component benefits should never be attempted, since they are too hard to track",
+          "Shared, undefined ownership is exactly how a benefit spanning multiple components falls through the cracks — it still needs one accountable named owner",
+          "Each component manager should be held equally accountable with no single owner",
+          "The benefit should have been assigned to the sponsor by default"
+        ],
+        a:1,
+        why:"A benefit depending on multiple components doesn't dissolve the need for a single accountable owner — if anything, it makes an explicit assignment more important, since diffuse responsibility is precisely what let this fall through.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A newly assigned benefit owner asks why they, rather than the program manager, are accountable for a specific benefit's realization. What is the most accurate explanation?",
+        options:[
+          "The program manager is always accountable for every benefit personally",
+          "A named benefit owner — often a functional or business leader positioned to influence post-delivery adoption and outcomes — provides focused accountability the program manager, spread across the whole program, can't provide for each individual benefit",
+          "Benefit ownership is purely a formality with no real accountability attached",
+          "Benefit owners are only needed for financial benefits, not operational ones"
+        ],
+        a:1,
+        why:"Distributing named ownership to people positioned to actually influence realization is the point — it doesn't relieve the program manager of overall benefits management responsibility, but it does provide focused accountability the PM alone can't scale to every benefit.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefits register lists a target date for a benefit but no baseline value captured before the enabling change was delivered. A team member argues this is fine since the target date is what matters for tracking. Is this correct?",
+        options:[
+          "Yes, the target date alone is sufficient to track a benefit",
+          "No — without a captured baseline, there is nothing to measure the change against, so realization can't be demonstrated even if the target date is met",
+          "No, but only because target dates are optional in a benefits register",
+          "Yes, as long as the benefit owner is confident about the improvement"
+        ],
+        a:1,
+        why:"A target date without a baseline gives you an endpoint with no defined starting point — you can't demonstrate a change occurred, let alone how much, without knowing where you started.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks how frequently the benefits register should be reviewed and updated. What is the most defensible answer?",
+        options:[
+          "Only once, at program initiation, since benefits are defined early and shouldn't change",
+          "On a regular, recurring cadence throughout the program's life cycle, since benefit status, assumptions, and even targets can shift as the program and its environment evolve",
+          "Only at program closure, to summarize what was ultimately achieved",
+          "Only when a stakeholder specifically requests an update"
+        ],
+        a:1,
+        why:"A benefits register is a living artifact — treating it as a one-time or closure-only document misses the ongoing monitoring, forecasting, and adjustment that benefits management requires throughout the life cycle.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component manager proposes adding a new benefit to the register — \"improved team morale on the delivery team\" — that reflects an internal delivery-team outcome rather than something the program's external stakeholders or strategic objectives call for. Should this be added to the program's benefits register?",
+        options:[
+          "Yes, any positive outcome should be tracked as a program benefit",
+          "It should be evaluated against whether it maps to the program's chartered strategic objectives — an internal delivery-team outcome, however positive, may not belong in the program's own benefits register if it doesn't trace back to why the program exists",
+          "No, only financial benefits belong in a benefits register",
+          "Yes, but only if the sponsor personally experiences the improved morale"
+        ],
+        a:1,
+        why:"Not every positive outcome is a program benefit in the register's sense — the test is whether it maps to the strategic objectives the program was chartered to advance, not simply whether something good happened along the way.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program manager transfers ownership of a benefit from one component manager to another mid-program, following a reorganization. What is the most important step to ensure this transfer doesn't create a tracking gap?",
+        options:[
+          "No special step is needed; ownership transfers are seamless by default",
+          "Explicitly document the transfer in the benefits register, including handoff of the current baseline, status, and any in-flight realization actions, so accountability doesn't quietly lapse during the transition",
+          "Remove the benefit from the register until a permanent owner is confirmed",
+          "Assign the benefit jointly to both the old and new owner indefinitely"
+        ],
+        a:1,
+        why:"An ownership change is exactly the kind of transition where a benefit can quietly stop being tracked — documenting the handoff explicitly, including current status, is what prevents that gap.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner for \"reduced customer churn\" reports the benefit as \"on track\" every quarter without providing updated figures, since the qualitative impression has stayed the same. What is missing from this status reporting?",
+        options:[
+          "Nothing; qualitative status is sufficient once established",
+          "A quantitative update against the register's baseline and target — a status label alone doesn't demonstrate whether measured progress is actually being made",
+          "The benefit owner should be replaced immediately",
+          "Quarterly reporting is too frequent and should be reduced"
+        ],
+        a:1,
+        why:"\"On track\" without current numbers against the baseline and target isn't really tracking — it's a repeated assertion. The register exists precisely to keep status grounded in measured data.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program has 40 benefits in its register, each with a different owner. A steering committee member asks how the program manager keeps this manageable rather than fragmented. What is the best answer?",
+        options:[
+          "It isn't manageable; large benefit registers should be avoided entirely",
+          "The register itself provides the consolidated structure — status, baseline, and target for every benefit visible in one place — even though ownership and day-to-day tracking are distributed across many individuals",
+          "Only the ten highest-value benefits should actually be tracked, and the rest ignored",
+          "Each owner should maintain a completely separate, disconnected tracking document"
+        ],
+        a:1,
+        why:"A well-structured register is exactly what keeps a large number of distributed owners from becoming fragmented — the consolidated artifact provides the single view even when accountability is spread across many people.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"During benefits register setup, a program manager negotiates specific, measurable acceptance criteria with the sponsor for each benefit — for example, defining exactly what \"improved efficiency\" means in numeric terms before the program proceeds. Why is this negotiation important early in the program?",
+        options:[
+          "It isn't important; acceptance criteria can be defined at closure once results are known",
+          "Agreeing on specific, measurable criteria upfront prevents later disputes over whether a benefit was actually realized, since \"improved efficiency\" left undefined can mean different things to different stakeholders",
+          "Acceptance criteria are the sponsor's sole responsibility and shouldn't involve the program manager",
+          "This negotiation is only needed for financial benefits"
+        ],
+        a:1,
+        why:"Vague benefit language invites disagreement later about whether it was achieved. Negotiating specific, measurable criteria upfront — while everyone is aligned — heads off exactly that dispute.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are essential fields that belong in a well-structured benefits register entry?",
+        options:[
+          "A named, accountable owner for the benefit's realization",
+          "The favorite reporting format preferred by the benefit owner",
+          "A measurable baseline captured before the enabling change is delivered",
+          "The org chart position of every stakeholder interested in the benefit"
+        ],
+        a:[0,2],
+        why:"A named owner and a real baseline are what make a register entry actionable and traceable — reporting-format preferences and stakeholder org-chart detail aren't structural requirements of the register itself.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A regional water utility is running a \"Smart Metering Modernization Program\" to replace analog meters across its service area.",
+        scenario:"The program's benefits register lists \"reduced water loss from leak detection\" as a benefit, owned jointly by the program manager and three separate regional operations directors, with no baseline leak-loss figure recorded before rollout began.",
+        subs:[
+          {
+            stem:"What is the most significant structural problem with how this benefit is currently set up in the register?",
+            options:[
+              "Nothing structural is wrong; joint ownership across regions reflects the benefit's genuinely shared nature",
+              "The lack of a single accountable owner and the missing pre-rollout baseline both undermine the ability to demonstrate realization later",
+              "The benefit should not have been included in the register at all",
+              "The program manager should be the sole owner of every benefit in the register"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate corrective step now, if rollout has already begun in one region?",
+            options:[
+              "Abandon tracking this benefit since the baseline opportunity has already been missed everywhere",
+              "Assign one accountable owner, capture the best available baseline data (including from regions where rollout hasn't started yet) immediately, and document the limitation for the region already underway",
+              "Wait until full rollout completes across all regions before addressing the ownership or baseline gap",
+              "Reassign the benefit to a different, unrelated department"
+            ],
+            a:1
+          }
+        ],
+        why:"A benefit with diffuse ownership and no baseline is a realization claim waiting to be undemonstrable — the fix is to assign clear accountability and salvage what baseline data is still available, not to abandon the benefit or wait indefinitely.",
+        refs:["benefitsreg"]
+      }
+    ]
+  },
+  {
+    id:"BN4", domain:"benefits", name:"Benefits Risk & Corrective Action",
+    refs:["benefitsreg","changemgmt"],
+    material:[
+      "Benefit realization carries its own risk category — the probability a targeted benefit won't materialize as expected — distinct from general program delivery risk, and it needs its own probability/impact assessment and response planning.",
+      "Leading indicators (early signals correlated with eventual benefit realization) let a program manager act before a lagging indicator (the benefit metric itself) confirms a shortfall has already happened.",
+      "When a benefit is at risk, the response should target the underlying driver of the shortfall — adoption barriers, external market shifts, a flawed assumption — not simply intensify monitoring of a metric that's already trending badly.",
+      "Because benefits can be interdependent, a risk to one benefit can cascade into others; benefit risk assessment should consider these ripple effects, not treat each benefit as fully isolated."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's risk register tracks delivery risks — schedule slippage, cost overrun, technical defects — but has no entries for the possibility that a delivered capability fails to produce its intended benefit. What gap does this reflect?",
+        options:[
+          "No gap; benefit realization isn't a legitimate risk category",
+          "Benefit realization risk — the chance a targeted benefit won't materialize even if delivery succeeds — is a distinct category that also needs identification, assessment, and response planning",
+          "This gap only matters for programs with financial benefits",
+          "Delivery risk registers should never include anything related to benefits"
+        ],
+        a:1,
+        why:"A program can deliver flawlessly and still fail to realize the benefit — that's a real, distinct risk category, and a risk register that only tracks delivery risk misses it entirely.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner tracking \"increased self-service adoption\" notices that early user sign-up rates for the new portal are running well below projections, even though the final adoption-rate benefit won't be measurable for another two quarters. What should the benefit owner do with this information?",
+        options:[
+          "Nothing, since the actual benefit metric hasn't been measured yet",
+          "Treat the low sign-up rate as a leading indicator of benefit risk and investigate/act now, rather than waiting for the lagging adoption-rate metric to confirm a shortfall two quarters from now",
+          "Wait for the full two quarters, since acting on early signals is premature",
+          "Immediately declare the benefit a failure and remove it from the register"
+        ],
+        a:1,
+        why:"Leading indicators exist precisely so a program manager or benefit owner doesn't have to wait for the lagging benefit metric to confirm what's already going wrong — early signals are for early action.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit tracking a targeted cost reduction is trending below target. In response, the benefit owner proposes reviewing the cost-reduction metric weekly instead of monthly, without changing anything else. What is the limitation of this response?",
+        options:[
+          "There is no limitation; more frequent monitoring always resolves a benefit shortfall",
+          "Increased monitoring frequency alone doesn't address the underlying driver of the shortfall — the response should investigate and target the actual cause, not just watch the same trend more often",
+          "Weekly reporting is inherently worse than monthly reporting for tracking benefits",
+          "The benefit should be removed from the register instead of monitored more closely"
+        ],
+        a:1,
+        why:"Watching a bad trend more closely doesn't change the trend — a real response investigates and addresses the root driver behind the shortfall, not just the reporting cadence.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program has two interdependent benefits: \"reduced processing time\" and \"improved customer satisfaction,\" where the second is expected to result partly from the first. A risk emerges that threatens the processing-time benefit. How should this be assessed?",
+        options:[
+          "Only assess the risk's impact on the processing-time benefit, since the two benefits are tracked separately in the register",
+          "Assess the risk's potential cascading impact on the customer-satisfaction benefit as well, since the two benefits are interdependent and a shortfall in one may ripple into the other",
+          "Assume the customer-satisfaction benefit is unaffected, since it has its own independent metric",
+          "Remove the interdependency link from the register to simplify tracking"
+        ],
+        a:1,
+        why:"Interdependent benefits don't fail in isolation — a sound risk assessment traces how a threat to one benefit could cascade into benefits that depend on it.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's realization plan assumed a specific adoption rate based on a pilot conducted with an enthusiastic early-adopter group. As rollout expands to the broader user base, adoption is running significantly lower. What is the most appropriate response?",
+        options:[
+          "Continue reporting the original projection, since it was based on legitimate pilot data",
+          "Reassess the benefit's realization plan and target, recognizing that the pilot's early-adopter sample may have produced an overly optimistic assumption not representative of the broader rollout",
+          "Blame the broader user base for underperforming relative to the pilot group",
+          "Discontinue tracking the benefit rather than revise the projection"
+        ],
+        a:1,
+        why:"A flawed underlying assumption — here, an unrepresentative pilot sample — is exactly the kind of driver a benefit-risk response should surface and correct, rather than defending a projection the new data no longer supports.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program manager wants to build a proactive practice of assessing benefit realization risk rather than only reacting after targets are missed. What is the most effective starting point?",
+        options:[
+          "Wait until a benefit metric first shows a shortfall before beginning any risk assessment",
+          "Identify plausible threats to each benefit's realization — adoption barriers, external market shifts, dependency risks — during realization planning, alongside the more familiar delivery risk assessment",
+          "Assume that if delivery risk is well managed, benefit risk doesn't need separate attention",
+          "Assign benefit risk assessment exclusively to the program's finance function"
+        ],
+        a:1,
+        why:"Proactive benefit risk management starts at planning, identifying realistic threats to each benefit before they materialize — treating benefit risk as automatically covered by delivery risk management misses threats specific to realization.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"An external market shift — a competitor's price cut — threatens to undercut a program's expected revenue-growth benefit, even though the program's delivery is fully on track. How should the program manager treat this?",
+        options:[
+          "As irrelevant to the program, since it's an external factor outside the program's control",
+          "As a legitimate benefit realization risk to assess and respond to, even though it originates externally and doesn't reflect any delivery problem",
+          "As a reason to immediately terminate the program",
+          "As something only the sponsor, not the program manager, needs to track"
+        ],
+        a:1,
+        why:"Benefit risk isn't limited to internal delivery problems — external shifts that threaten realization are still the program manager's concern to assess and respond to, even when the program itself is executing well.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit realization plan includes a documented contingency: if the primary channel for achieving a benefit underperforms, a secondary channel will be activated. Six months in, the primary channel is underperforming, but no one revisits the documented contingency. What does this most likely indicate?",
+        options:[
+          "The contingency plan was unnecessary and should be removed retroactively",
+          "A gap between having a documented contingency and actually monitoring for the trigger condition that should activate it — a plan that isn't actively watched provides little real protection",
+          "The secondary channel must not have been a real option in the first place",
+          "Contingency plans for benefits are not a legitimate practice"
+        ],
+        a:1,
+        why:"A contingency plan only protects the benefit if someone is actively watching for its trigger condition — an unmonitored contingency is really just an unused document.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee asks the program manager to quantify the probability and impact of a specific benefit not being realized, similar to how delivery risks are scored. The program manager is unsure how to apply probability/impact scoring to a benefit rather than a delivery risk. What is the appropriate approach?",
+        options:[
+          "Decline the request, since probability/impact scoring only applies to delivery risks",
+          "Apply the same probability/impact framework used for delivery risk to the benefit realization threat, assessing how likely the shortfall is and how significant its effect on the program's value case would be",
+          "Score the benefit at maximum severity automatically, since any benefit shortfall is unacceptable",
+          "Delegate the scoring entirely to the benefit owner with no program-level involvement"
+        ],
+        a:1,
+        why:"The same probability/impact logic applies to benefit realization risk as to delivery risk — the framework transfers even though the object being assessed (a benefit, not a task or milestone) is different.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program manager notices that three separate benefits in the register have all begun trending unfavorably around the same time, despite tracking seemingly unrelated outcomes. What is the most appropriate response?",
+        options:[
+          "Treat each shortfall as coincidental and address them entirely independently",
+          "Investigate whether a common underlying cause — a shared assumption, external factor, or dependency — is driving all three, since a simultaneous pattern across unrelated benefits is unlikely to be pure coincidence",
+          "Ignore the pattern unless a fourth benefit also begins trending unfavorably",
+          "Immediately remove all three benefits from the register"
+        ],
+        a:1,
+        why:"A simultaneous shift across multiple, seemingly unrelated benefits is a signal worth investigating for a shared root cause — treating each in isolation risks missing a common driver that a coordinated response could address.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit realization risk is assessed as low probability but high impact — if it occurs, it would eliminate the majority of the program's projected value. A team member argues it doesn't need active monitoring since it's \"probably not going to happen.\" Is this reasoning sound?",
+        options:[
+          "Yes, low-probability risks never warrant active monitoring regardless of impact",
+          "No — a risk with potentially severe impact to the program's value case warrants continued monitoring even at low probability, since impact severity matters as much as likelihood",
+          "Yes, but only if the benefit is a non-financial one",
+          "No, because all benefit risks should be treated as certain to occur"
+        ],
+        a:1,
+        why:"Impact severity is just as important as probability when deciding what deserves ongoing attention — a low-probability, high-impact threat to the program's value case is exactly the kind of risk that shouldn't be dismissed as unlikely and forgotten.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for managing benefit realization risk?",
+        options:[
+          "Identifying leading indicators that provide early warning before the lagging benefit metric confirms a shortfall",
+          "Waiting until a benefit metric officially misses its target before beginning any investigation",
+          "Assessing how a risk to one benefit could cascade into benefits that depend on it",
+          "Treating every benefit's risk profile as identical regardless of its assumptions or dependencies"
+        ],
+        a:[0,2],
+        why:"Leading indicators and cascade awareness are what make benefit risk management proactive — waiting for a confirmed miss, or assuming every benefit carries an identical risk profile, both defeat the purpose of assessing benefit risk at all.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A national freight rail operator is running a \"Predictive Maintenance Program\" intended to reduce unplanned equipment downtime across its fleet.",
+        scenario:"Early telemetry data shows sensor-flagged maintenance alerts are being resolved much more slowly than planned, though the downtime-reduction benefit itself won't be formally measurable for another year. A team member argues there's nothing to act on yet since the actual benefit metric hasn't shown a shortfall.",
+        subs:[
+          {
+            stem:"How should the program manager interpret the slow alert-resolution data?",
+            options:[
+              "As irrelevant, since it isn't the benefit metric itself",
+              "As a leading indicator suggesting the downtime-reduction benefit may be at risk, warranting investigation now rather than waiting a year for confirmation",
+              "As proof the program has already failed and should be terminated",
+              "As something only the maintenance department, not the program, should be concerned with"
+            ],
+            a:1
+          },
+          {
+            stem:"What would be the most appropriate next step?",
+            options:[
+              "Wait the full year for the lagging benefit metric to confirm the shortfall before taking any action",
+              "Investigate the root cause of slow alert resolution now — for example, staffing, process, or tooling issues — and address it before it compounds into the eventual benefit shortfall",
+              "Immediately terminate the maintenance alert system entirely",
+              "Report the benefit as fully on track since the formal metric hasn't shown a problem"
+            ],
+            a:1
+          }
+        ],
+        why:"A leading indicator's whole value is enabling action before the lagging metric confirms what's already happening — treating an early warning as \"nothing to act on yet\" defeats the purpose of tracking it.",
+        refs:["benefitsreg"]
+      }
+    ]
+  },
+  {
+    id:"BN5", domain:"benefits", name:"Benefits Reporting & Governance Communication",
+    refs:["benefitsreg","governance"],
+    material:[
+      "Benefit status reporting is tailored to its audience — a steering committee needs a synthesized value picture, while an operational benefit owner needs granular, actionable metrics — one undifferentiated report rarely serves both well.",
+      "Transparency about at-risk or underperforming benefits is expected, not optional; a benefits report that only surfaces favorable results isn't giving governance what it needs to make sound decisions.",
+      "Benefit status should be integrated into the program's overall performance reporting, not maintained as a disconnected, parallel artifact governance has to separately request.",
+      "When a benefit's measurement approach itself becomes unreliable (data source changes, definition drift), that limitation should be disclosed alongside the reported figure, not silently absorbed into the number."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program manager sends the steering committee the same granular, metric-by-metric benefits spreadsheet used internally by benefit owners, with dozens of rows of underlying data and no summary. Committee members report difficulty extracting the overall picture. What is the issue?",
+        options:[
+          "The spreadsheet should be simplified to remove all detail entirely",
+          "The report isn't tailored to its audience — a steering committee needs a synthesized value picture, while the granular detail is better suited to the benefit owners tracking day-to-day progress",
+          "Steering committees should not receive any benefits reporting at all",
+          "The spreadsheet should be sent even more frequently to compensate"
+        ],
+        a:1,
+        why:"The same raw data that helps a benefit owner track granular progress can overwhelm a governance audience that needs a synthesized view — tailoring the report to the audience, not just providing more or less data, is the fix.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A quarterly benefits report highlights the five benefits currently exceeding target and omits the two benefits that are significantly behind, on the reasoning that \"we'll address those once we have a fix.\" What is wrong with this reporting approach?",
+        options:[
+          "Nothing; reporting only favorable results keeps stakeholder morale high",
+          "Omitting underperforming benefits denies governance the transparency needed to make informed decisions — at-risk benefits should be disclosed even before a fix is in hand",
+          "The report should have included even more favorable benefits to strengthen the positive picture",
+          "Underperforming benefits should only be reported at program closure"
+        ],
+        a:1,
+        why:"Governance needs visibility into what's struggling, not just what's succeeding, to make sound decisions — withholding at-risk benefits until a fix exists defeats the purpose of ongoing reporting.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's overall performance report to governance covers cost, schedule, and quality in detail but includes benefits status only as a passing mention at the bottom. What risk does this create?",
+        options:[
+          "No risk, since cost/schedule/quality are the metrics governance cares about most",
+          "Benefits status, treated as an afterthought rather than integrated into the core performance report, risks leaving governance without adequate visibility into whether the program is actually delivering the value it was chartered for",
+          "This is appropriate, since benefits should be tracked in an entirely separate report",
+          "Benefits reporting should be removed from governance reporting altogether"
+        ],
+        a:1,
+        why:"Cost, schedule, and quality describe delivery — benefits describe whether the program is doing what it exists to do. Treating benefit status as an afterthought leaves governance blind to the thing that actually justifies the program.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's reported figure this quarter looks strong, but the underlying data source changed mid-quarter due to a system migration, making the number not directly comparable to prior quarters. The report presents the figure without noting this. What should have been disclosed?",
+        options:[
+          "Nothing; the figure itself is what matters, regardless of how it was produced",
+          "The change in data source or measurement method should be disclosed alongside the figure, since presenting it as directly comparable to prior quarters without that context could mislead governance",
+          "The benefit should have been removed from the report entirely rather than disclosed with caveats",
+          "Only the benefit owner needs to know about the data source change, not governance"
+        ],
+        a:1,
+        why:"A number produced by a changed measurement method isn't apples-to-apples with prior figures — presenting it without that context risks governance drawing conclusions the data doesn't actually support.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner asks how much detail to include when reporting a benefit's status to the program manager for consolidation into the governance report. What is the most appropriate guidance?",
+        options:[
+          "Provide only a green/yellow/red status with no supporting context",
+          "Provide the current figure against baseline and target, a brief explanation of any notable variance, and flag anything governance would need to know to make a decision — enough substance to be meaningful without burying the reader",
+          "Provide the complete raw dataset behind the metric with no summary",
+          "Provide whatever level of detail is easiest to compile that quarter"
+        ],
+        a:1,
+        why:"Useful benefit reporting sits between a bare status color (too little context) and a raw data dump (too much) — figures against baseline/target plus a brief explanation of variance is what actually informs a decision.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee member asks why the benefits report this quarter reads almost identically to last quarter's, with the same commentary reused for several benefits. What does this most likely suggest?",
+        options:[
+          "Nothing unusual; consistent language across quarters is a sign of program stability",
+          "The reporting process may not be capturing genuine, current status — reused commentary across quarters often signals the report isn't being freshly grounded in current data",
+          "The benefits themselves have stopped changing and no longer need active tracking",
+          "The committee member's concern is unfounded and should be dismissed"
+        ],
+        a:1,
+        why:"Reused, generic commentary quarter over quarter is a common tell that a report has become a formality rather than a genuine current assessment — worth a closer look at whether the underlying data is actually being refreshed.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program manager wants to report benefit status to two different audiences: the executive steering committee and the operational teams responsible for day-to-day benefit tracking. What is the most appropriate approach?",
+        options:[
+          "Produce a single identical report for both audiences to ensure consistency",
+          "Produce reports tailored to each audience's needs — a synthesized value summary for the steering committee, and more granular, actionable detail for the operational teams — while keeping the underlying figures consistent between them",
+          "Report to the steering committee only, since operational teams already know the details",
+          "Report to operational teams only, since the steering committee doesn't need benefit updates between formal gate reviews"
+        ],
+        a:1,
+        why:"Different audiences need different altitudes of detail, but the underlying numbers should still agree — tailoring presentation isn't the same as reporting inconsistent figures to different groups.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A benefits report to governance includes a benefit tracking \"customer satisfaction\" that has been flat for three consecutive quarters, with no commentary explaining why. What should the program manager do before the next reporting cycle?",
+        options:[
+          "Nothing; a flat trend requires no explanation as long as it isn't declining",
+          "Investigate why the benefit has plateaued and include that context in the next report, since a flat trend without explanation leaves governance unable to judge whether it's a stable success or a stalled effort",
+          "Remove the benefit from future reports since it is no longer changing",
+          "Report the flat trend as a success without further comment"
+        ],
+        a:1,
+        why:"A flat metric could mean stable achievement or stalled progress — those look identical on a chart but mean very different things. Reporting without context leaves governance unable to tell which one it's looking at.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A governance reviewer notices that the program's benefits report and its overall program performance report are prepared by different teams on different schedules, occasionally showing inconsistent figures for the same benefit. What does this indicate?",
+        options:[
+          "This is an acceptable byproduct of having separate reporting teams",
+          "Benefits reporting isn't properly integrated with the program's overall performance reporting, which can produce inconsistent, confusing figures rather than one coherent picture",
+          "The performance report should stop including any benefits information",
+          "The benefits report should be discontinued in favor of the performance report alone"
+        ],
+        a:1,
+        why:"Benefit status should be a coordinated part of the program's overall performance narrative, not a separately produced artifact that can drift out of sync with it — inconsistent figures erode governance's trust in both reports.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner privately tells the program manager that a reported figure was \"rounded up generously\" to look better for the upcoming steering committee meeting. What is the most appropriate response?",
+        options:[
+          "Allow the figure to stand as reported, since it's only a minor rounding adjustment",
+          "Correct the figure to reflect the accurate value before it reaches governance, since even minor deliberate distortion undermines the credibility benefits reporting depends on",
+          "Report an even more favorable figure to further support the benefit owner's efforts",
+          "Ignore the disclosure since the benefit owner raised it informally rather than in writing"
+        ],
+        a:1,
+        why:"Deliberately distorting a figure, however small, compromises the integrity governance relies on when making decisions — the response is to correct it, not let a \"generous rounding\" pass because it's minor.",
+        refs:["benefitsreg","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is preparing the benefits section of a governance report and has to decide how to present a benefit whose target was recently revised downward due to a documented, valid change in market conditions. What is the best approach?",
+        options:[
+          "Present only the new, lower target as if it had always been the target, without mentioning the revision",
+          "Present the revision transparently — showing both the original and revised target along with the documented rationale — so governance understands the change and its basis",
+          "Omit the benefit from the report entirely to avoid drawing attention to the revision",
+          "Report against the original target only, ignoring the approved revision"
+        ],
+        a:1,
+        why:"A legitimate, documented target revision is normal benefits management — but presenting it transparently, with rationale, is what keeps governance's picture of program value honest and traceable.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for benefits reporting to governance?",
+        options:[
+          "Tailoring the level of detail to the audience while keeping the underlying figures consistent",
+          "Reporting only benefits currently exceeding target to keep the narrative positive",
+          "Disclosing measurement or data-source changes that affect the comparability of a reported figure",
+          "Reusing the prior quarter's commentary whenever the figures look similar"
+        ],
+        a:[0,2],
+        why:"Audience-appropriate detail with consistent underlying numbers, plus transparency about measurement changes, are what make benefits reporting trustworthy — cherry-picking favorable results or recycling stale commentary both undermine that trust.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A national health system is running a \"Patient Portal Expansion Program\" intended to improve patient engagement and reduce missed appointments.",
+        scenario:"The quarterly benefits report to the governance board shows the patient-engagement benefit exceeding target, but omits that the missed-appointment-reduction benefit has been trending unfavorably for two consecutive quarters, on the reasoning that the team is \"still working on a plan\" for it.",
+        subs:[
+          {
+            stem:"What is the most significant issue with this reporting approach?",
+            options:[
+              "There is no issue, since a plan is already being developed for the underperforming benefit",
+              "Omitting the underperforming benefit denies the governance board the transparency needed to make informed decisions, regardless of whether a fix is already in progress",
+              "The engagement benefit should also have been omitted to keep the report balanced",
+              "Quarterly reporting is too frequent and should be reduced to reduce this pressure"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate way to handle the missed-appointment-reduction benefit in the next report?",
+            options:[
+              "Continue omitting it until the plan is finalized and results improve",
+              "Report its current status transparently, including the unfavorable trend, root-cause findings so far, and the plan being developed to address it",
+              "Report it as on track to avoid raising concern before the plan is ready",
+              "Remove it from the register since it is currently underperforming"
+            ],
+            a:1
+          }
+        ],
+        why:"Transparency about an at-risk benefit — even before a fix is finalized — is what governance reporting is for; withholding it until the story looks better defeats the purpose of ongoing reporting.",
+        refs:["benefitsreg","governance"]
+      }
+    ]
+  },
+  {
+    id:"BN6", domain:"benefits", name:"Benefits Categorization & Value Types",
+    refs:["benefitsreg","npv"],
+    material:[
+      "Benefits are commonly categorized across value types — financial, strategic, operational, compliance/risk, and reputational/ESG — and each category may call for a different measurement approach; forcing every benefit into a single financial lens misses real value.",
+      "A value breakdown structure (VBS) organizes expected benefits hierarchically by category and weight, giving governance a structured way to compare very different kinds of value on a common basis.",
+      "Assigning a proxy metric to an intangible benefit is legitimate, but the proxy needs to be genuinely correlated with the underlying benefit — a poorly chosen proxy can create the appearance of measurement without real validity.",
+      "Different stakeholders can reasonably value the same benefit differently (e.g., a compliance benefit mattering far more to legal than to operations); benefits management should surface these differing valuations rather than assume one shared view."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program manager is asked to categorize the program's benefits for a governance review. One benefit — avoiding a significant regulatory penalty — has no direct revenue impact but substantial risk-reduction value. How should this benefit be categorized?",
+        options:[
+          "It should be excluded from the benefits register since it has no revenue impact",
+          "It should be categorized as a compliance/risk-reduction benefit, using a measurement approach appropriate to that category rather than forcing it into a purely financial-revenue lens",
+          "It should be recorded as a financial benefit equal to the maximum possible penalty amount",
+          "It should be merged with an unrelated financial benefit to simplify reporting"
+        ],
+        a:1,
+        why:"Not every legitimate benefit fits a revenue-based financial lens — compliance and risk-reduction value is real value, and it deserves its own category and appropriate measurement rather than being forced or discarded.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's value breakdown structure organizes benefits into financial, operational, and compliance categories, each with an assigned weight reflecting the organization's strategic priorities this year. A stakeholder asks why compliance is weighted more heavily than in past programs. What is the most accurate explanation of what a VBS is doing here?",
+        options:[
+          "Weights are arbitrary and have no real function in a VBS",
+          "The VBS structures benefits hierarchically by category and applies weights reflecting current strategic priorities, giving governance a structured way to compare very different kinds of value on a common basis",
+          "Compliance benefits should always be weighted highest regardless of context",
+          "A VBS should never assign different weights to different categories"
+        ],
+        a:1,
+        why:"A VBS's value is exactly this: making genuinely different kinds of value (financial, operational, compliance) comparable through structured categorization and weighting reflecting current priorities.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner assigns \"number of internal emails mentioning the new system positively\" as the proxy metric for an intangible benefit described as \"improved employee confidence in the new process.\" What is the concern with this specific proxy?",
+        options:[
+          "There is no concern; any measurable proxy is equally valid for an intangible benefit",
+          "The proxy may not be genuinely correlated with actual employee confidence — a poorly chosen proxy can create the appearance of measurement without real validity",
+          "Intangible benefits should never be assigned any proxy metric at all",
+          "The proxy is invalid simply because it involves counting emails"
+        ],
+        a:1,
+        why:"A proxy is only useful if it's genuinely correlated with the real underlying benefit — an easy-to-count but weakly related metric like email mentions can look like rigor while actually measuring something else.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Legal considers a data-privacy compliance benefit the program's most important outcome, while operations views it as a minor byproduct compared to the program's efficiency gains. How should the program manager handle this difference in valuation?",
+        options:[
+          "Resolve it by simply averaging the two departments' valuations",
+          "Surface both valuations explicitly to governance rather than assuming one shared view, since different stakeholders can reasonably value the same benefit differently based on their own priorities",
+          "Adopt operations' lower valuation since efficiency benefits are typically easier to quantify",
+          "Ignore the disagreement since benefit valuation should be entirely objective"
+        ],
+        a:1,
+        why:"Stakeholders legitimately weigh the same benefit differently based on their own priorities — benefits management should make those differing views visible to governance, not paper over them with an artificial single number.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program's benefits are entirely financial — cost savings, revenue growth — with no strategic, operational, or compliance benefits included, even though the program was chartered partly to strengthen the organization's competitive position. What is the concern with this categorization?",
+        options:[
+          "There is no concern; financial benefits are always the most important category",
+          "Limiting benefits to purely financial categories may understate the program's real value and miss strategic outcomes the program was actually chartered to advance",
+          "Strategic benefits should never be included in a benefits register",
+          "The categorization is appropriate as long as the financial figures are accurate"
+        ],
+        a:1,
+        why:"A purely financial view can miss exactly the kind of strategic value the program was chartered to advance — comprehensive categorization is what keeps the benefits register aligned with the program's actual purpose.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner proposes \"organizational reputation improvement\" as a benefit category but struggles to define any measurable proxy for it. A colleague suggests dropping it from the register since it can't be measured. What is the better approach?",
+        options:[
+          "Drop it immediately, since any benefit without an obvious proxy should be excluded",
+          "Work to identify a workable proxy — such as a reputation survey score, media sentiment index, or stakeholder satisfaction rating — before concluding the benefit can't be tracked; reputational value is a legitimate category even when harder to quantify",
+          "Include it in the register with no proxy or measurement plan at all",
+          "Assign it an arbitrary numeric value without any underlying methodology"
+        ],
+        a:1,
+        why:"Reputational and ESG-type benefits are legitimate value categories — the difficulty of finding an obvious proxy is a reason to work harder at finding a workable one, not a reason to drop the benefit from tracking entirely.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A weighted value breakdown structure scores a proposed benefit highly on strategic fit but low on financial return. A finance-focused reviewer argues the benefit should be dropped since its financial score alone doesn't clear the organization's usual hurdle. What is the flaw in this argument?",
+        options:[
+          "There is no flaw; financial score alone should always determine whether a benefit is worth pursuing",
+          "It ignores the weighted, multi-category nature of the VBS — a benefit can be worth pursuing based on its overall weighted value across categories, not any single category's score in isolation",
+          "The VBS itself is flawed and should be abandoned in favor of financial-only scoring",
+          "Strategic fit should never be a factor in evaluating a benefit"
+        ],
+        a:1,
+        why:"The whole point of a weighted, multi-category structure is that no single category's score determines the outcome alone — judging the benefit purely on its financial score defeats the purpose of building the VBS in the first place.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Two proposed benefits have identical projected financial value, but one also carries a meaningful strategic and reputational upside the other lacks. A stakeholder argues they should be treated as equally valuable since the financial figures match. Is this reasoning sound?",
+        options:[
+          "Yes, financial value is the only dimension that should determine a benefit's worth",
+          "Not necessarily — a full, multi-category valuation could reasonably rank the benefit with additional strategic and reputational upside higher, even with identical financial figures",
+          "No, because strategic and reputational value should never factor into benefit comparisons",
+          "Yes, but only if both benefits belong to the same program component"
+        ],
+        a:1,
+        why:"Identical financial figures don't make two benefits equally valuable once other legitimate categories of value are considered — a full valuation captures more of the real picture than financial figures alone.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's proxy metric — customer survey scores as a stand-in for \"improved customer trust\" — shows consistent improvement, but a separate independent data source (complaint volume) shows no change over the same period. What should the program manager do?",
+        options:[
+          "Report the survey score as conclusive proof of improved trust and ignore the complaint data",
+          "Investigate the discrepancy between the two data sources before concluding the proxy accurately reflects the underlying benefit — a disagreement between independent signals is worth understanding, not dismissing",
+          "Average the two figures together and report the blended result without explanation",
+          "Discontinue tracking customer trust as a benefit entirely"
+        ],
+        a:1,
+        why:"When a proxy and an independent signal disagree, that's exactly the situation that should prompt a closer look at whether the proxy is actually valid — not a reason to pick whichever number tells the better story.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for categorizing and valuing program benefits?",
+        options:[
+          "Using a category-appropriate measurement approach rather than forcing every benefit into a financial lens",
+          "Assuming every stakeholder values a given benefit identically",
+          "Selecting proxy metrics that are genuinely correlated with the underlying intangible benefit",
+          "Excluding any benefit that cannot be expressed as a dollar figure"
+        ],
+        a:[0,2],
+        why:"Category-appropriate measurement and genuinely valid proxies are what make multi-category benefit valuation meaningful — assuming uniform stakeholder valuation or discarding anything non-financial both undercut real value.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A national retail chain is running a \"Sustainable Packaging Transition Program\" to replace plastic packaging across its supply chain.",
+        scenario:"The program's benefits register includes a financial cost-savings benefit and an ESG/reputational benefit tied to sustainability commitments. Governance asks the program manager to justify continuing the program even though the financial cost-savings benefit alone shows a modest, below-hurdle return.",
+        subs:[
+          {
+            stem:"What is the most appropriate way to respond to governance's question?",
+            options:[
+              "Recommend terminating the program, since the financial benefit alone doesn't clear the hurdle rate",
+              "Present the full multi-category value picture, including the ESG/reputational benefit's weight and strategic significance, rather than justifying the program on financial return alone",
+              "Inflate the financial projection to clear the hurdle rate artificially",
+              "Remove the ESG benefit from the register since it isn't primarily financial"
+            ],
+            a:1
+          },
+          {
+            stem:"If the reputational benefit currently has only a weak, loosely correlated proxy metric, what should the program manager do?",
+            options:[
+              "Continue using the weak proxy without comment, since some measurement is better than none",
+              "Work to strengthen the proxy — for example, using a validated sustainability perception survey — so the reported figure more genuinely reflects the underlying reputational benefit",
+              "Remove the reputational benefit from the register since it lacks a strong existing proxy",
+              "Replace the reputational benefit with a second, unrelated financial benefit instead"
+            ],
+            a:1
+          }
+        ],
+        why:"A program's real value case often spans multiple categories — presenting the full weighted picture, and continuing to strengthen weak proxies rather than abandoning legitimate but harder-to-measure benefits, is what sound multi-category benefits management looks like.",
+        refs:["benefitsreg"]
+      }
+    ]
+  },
+  {
+    id:"BN7", domain:"benefits", name:"Benefits Sustainment & Transition to Operations",
+    refs:["benefitsreg","governance"],
+    material:[
+      "A benefit's realization doesn't end when the program closes — sustainment requires a documented plan naming who in the operational organization owns ongoing monitoring after the program team disbands.",
+      "Transitioning benefit ownership to operations requires deliberate handoff — training, documented processes, and a clear understanding of the metric and target — not an informal assumption that operations will naturally pick it up.",
+      "Without continued monitoring post-transition, realized benefits can erode over time as the organizational attention and discipline that achieved them fades — sustainment is an active practice, not a one-time achievement.",
+      "Governance sign-off is typically required to formally close out a benefit's transition to operational ownership, confirming the receiving function has accepted accountability and has what it needs to sustain it."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program is closing, and its final report states that all benefits have been \"successfully realized\" based on the most recent measurements. No plan is documented for who continues monitoring these benefits after the program team disbands. What is the concern with declaring the program complete on this basis?",
+        options:[
+          "There is no concern; once a benefit is realized, no further monitoring is needed",
+          "Realization at closure isn't the same as sustained realization — without a documented post-closure monitoring plan and owner, there's no assurance the benefit will be sustained after the program team is gone",
+          "The final report should have used a different word than \"successfully\"",
+          "Post-closure monitoring is solely the sponsor's individual responsibility with no documentation needed"
+        ],
+        a:1,
+        why:"A benefit measured as realized at the moment of closure can still erode afterward without continued attention — sustainment requires an explicit plan and owner, not just a favorable snapshot at the end.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"As a program winds down, the program manager assumes the operations team will naturally continue tracking a realized cost-reduction benefit, since they now own the process that produces it. No formal handoff meeting, documentation, or training occurs. Six months later, no one in operations is tracking the metric. What does this scenario illustrate?",
+        options:[
+          "Operations teams are inherently unreliable and shouldn't be trusted with benefit ownership",
+          "An assumed, informal handoff isn't a real transition — sustainment requires deliberate transfer of ownership, including training and documentation, not just proximity to the process",
+          "The benefit should have remained owned by the program manager indefinitely",
+          "This outcome was unavoidable regardless of how the handoff was conducted"
+        ],
+        a:1,
+        why:"Owning the process that produces a benefit doesn't automatically mean someone will track the benefit itself — an explicit, documented handoff is what actually transfers that responsibility.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A realized benefit — reduced customer complaint volume — was tracked closely during the program and met its target at closure. Eighteen months after the program disbanded, complaint volume has crept back up to near pre-program levels, with no one noticing until a customer survey flagged it. What does this most directly illustrate?",
+        options:[
+          "The original benefit was never actually realized in the first place",
+          "Without continued monitoring after transition, a realized benefit can erode over time as the organizational attention that achieved it fades — sustainment is an ongoing practice, not a one-time achievement",
+          "Customer complaint volume is not a valid benefit metric",
+          "The program should have run indefinitely to prevent any erosion"
+        ],
+        a:1,
+        why:"Realizing a benefit and sustaining it are different things — without active post-transition monitoring, the discipline that produced the improvement can quietly fade, and the benefit along with it.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A governance board is asked to formally sign off on the transition of a realized benefit to operational ownership. What should this sign-off primarily confirm?",
+        options:[
+          "That the benefit's original target was set correctly",
+          "That the receiving operational function has accepted accountability for ongoing monitoring and has what it needs (documentation, training, a named owner) to sustain the benefit",
+          "That the program's overall budget was not exceeded",
+          "That the program manager is no longer responsible for anything related to the program"
+        ],
+        a:1,
+        why:"Governance sign-off on a benefit transition is about confirming the receiving function is genuinely equipped and accountable to sustain it — not a general budget or program-closure checkbox.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is developing a sustainment plan for a benefit ahead of program closure. Which of the following should the plan most centrally include?",
+        options:[
+          "A restatement of the original business case with no forward-looking content",
+          "A named post-closure owner, the ongoing measurement method and cadence, and the process by which the receiving function will respond if the metric starts trending unfavorably",
+          "A commitment to re-open the program if the benefit ever declines",
+          "A list of all program team members who worked on the benefit during delivery"
+        ],
+        a:1,
+        why:"A real sustainment plan answers who owns it, how it keeps getting measured, and what happens if it slips — a plan that only looks backward at the original business case doesn't actually sustain anything.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks whether benefit sustainment planning should begin at program closure or earlier. What is the most defensible answer?",
+        options:[
+          "Sustainment planning should begin only after closure, once all benefits are confirmed realized",
+          "Sustainment planning should begin well before closure, so the receiving operational function is identified, prepared, and ready to accept ownership rather than facing a rushed handoff at the very end",
+          "Sustainment planning is unnecessary if the program met all its targets",
+          "Sustainment planning should be handled entirely by the operational function with no program involvement at any stage"
+        ],
+        a:1,
+        why:"A rushed, closure-only handoff is a common way sustainment plans fail — starting the transition conversation earlier gives the receiving function real time to prepare rather than inheriting an unfamiliar responsibility overnight.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"An operations manager receiving ownership of a sustained benefit asks why they need training on a metric that seems straightforward to understand. What is the best justification for including training as part of the transition?",
+        options:[
+          "Training is a formality with no real value once the metric's definition is written down somewhere",
+          "Training ensures the receiving owner understands not just the metric's definition, but also its measurement method, data sources, and what response is expected if it starts trending unfavorably — details a written definition alone often doesn't fully convey",
+          "Training is only necessary for financial benefits, not operational ones",
+          "Training should be skipped whenever the receiving owner has relevant prior experience"
+        ],
+        a:1,
+        why:"A metric's name and target can look simple on paper while its actual measurement method and response protocol carry real nuance — training is what closes that gap, not a redundant formality.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Two years after a program closed, a benefit that was successfully sustained is now under threat from a new, unrelated organizational initiative that could inadvertently undo the underlying process change. The original program manager is no longer involved. Whose responsibility is it to respond?",
+        options:[
+          "No one's; sustainment responsibility ends once the program formally closes",
+          "The operational owner who accepted accountability for the benefit at transition, since sustainment responsibility was formally transferred to them, not left with the disbanded program team",
+          "The original program manager should be recalled specifically to handle this",
+          "The organization's most senior executive personally, regardless of role"
+        ],
+        a:1,
+        why:"This is exactly why formal transition matters — accountability for sustaining the benefit sits with whoever accepted it at handoff, not with a program team that no longer exists.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program is closing with one benefit still short of its target, despite ongoing corrective action. What is the most appropriate way to handle this benefit in the closure and transition process?",
+        options:[
+          "Quietly drop it from the register since it didn't fully succeed",
+          "Transition it to operations with clear documentation of its current status, the gap to target, and the corrective actions still in progress, rather than treating transition as only appropriate for fully realized benefits",
+          "Extend the program indefinitely until the benefit is fully realized before considering closure",
+          "Report it as realized regardless of the actual shortfall to simplify closure"
+        ],
+        a:1,
+        why:"Transition doesn't require every benefit to be fully realized first — an honestly documented, still-in-progress benefit can still be handed off with a clear picture of where it stands and what's already underway.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are essential elements of a sound benefit sustainment and transition plan?",
+        options:[
+          "A named post-closure owner within the operational organization",
+          "A guarantee that the benefit will never decline once the program closes",
+          "Documented measurement method and cadence the receiving owner will continue to use",
+          "Keeping the original program manager formally accountable indefinitely after closure"
+        ],
+        a:[0,2],
+        why:"A real transition needs a named receiving owner and a documented way to keep measuring — no plan can guarantee a benefit never declines, and leaving the disbanded program manager formally accountable forever defeats the purpose of transitioning ownership.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"case",
+        stem:"A national telecom provider is closing out a \"Network Reliability Improvement Program\" that reduced average outage duration across its service regions.",
+        scenario:"As closure approaches, the program manager proposes transitioning the outage-duration benefit to the regional network operations teams, but the operations director says her teams are \"too busy\" to take on formal ownership right now and suggests just letting the metric continue being tracked informally by whoever notices it.",
+        subs:[
+          {
+            stem:"What is the risk of accepting the operations director's suggestion?",
+            options:[
+              "There is no real risk; informal tracking by whoever notices is just as reliable as formal ownership",
+              "Without a named owner and documented handoff, the realized benefit is at real risk of eroding unnoticed after the program team disbands, since no one is formally accountable for sustaining it",
+              "The risk only matters if outage duration was already trending unfavorably at closure",
+              "This is solely a staffing problem outside the program manager's scope of concern"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate next step for the program manager?",
+            options:[
+              "Accept the informal arrangement to avoid conflict with the operations director",
+              "Escalate through governance to ensure a named owner and adequate capacity are secured before closure, since sustainment requires deliberate ownership, not an informal, undefined arrangement",
+              "Extend the program indefinitely until operations has spare capacity",
+              "Transition the benefit to the program sponsor personally instead of operations"
+            ],
+            a:1
+          }
+        ],
+        why:"\"Too busy for formal ownership\" is a real capacity concern worth addressing — but the answer is escalating to secure a genuine owner, not accepting an informal arrangement that all but guarantees the benefit goes untracked.",
+        refs:["benefitsreg","governance"]
+      }
+    ]
+  },
+  {
+    id:"BN8", domain:"benefits", name:"Cost-Benefit Trade-offs, Assumptions & Sensitivity",
+    refs:["benefitsreg","npv"],
+    material:[
+      "A benefit-cost ratio and similar financial comparisons are only as reliable as the assumptions feeding them; those assumptions should be documented explicitly so anyone reviewing the case can see what the projection depends on.",
+      "Sensitivity analysis — testing how the projected benefit case holds up if key assumptions turn out to be optimistic or pessimistic — reveals which benefits are robust and which are fragile bets riding on a single favorable assumption.",
+      "When a documented assumption underlying a benefit case is invalidated mid-program (a cost input changes, a market condition shifts), the benefit case should be formally reassessed, not left standing on a foundation everyone knows has changed.",
+      "A benefit-cost trade-off decision should weigh the full value picture, not just the ratio's headline number — a marginally lower ratio with a far more resilient (less assumption-dependent) case can be the sounder investment."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's benefit-cost ratio of 2.1 was calculated using several key inputs, but the underlying assumptions behind those inputs were never written down anywhere — only the final ratio was presented to governance. A new reviewer asks what the ratio actually depends on. What is the problem with the current documentation?",
+        options:[
+          "There is no problem; the final ratio is the only figure governance needs",
+          "Without documented assumptions, no one can assess how reliable the ratio actually is or what would change it — the headline number alone provides false confidence",
+          "Benefit-cost ratios should never be presented to governance in the first place",
+          "The ratio should have been rounded to a whole number for simplicity"
+        ],
+        a:1,
+        why:"A ratio without visible assumptions is a number nobody can actually evaluate — documenting what it depends on is what lets a reviewer judge whether the projection is solid or fragile.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A proposed benefit's projected value depends heavily on a single assumption: that a competitor won't respond to the program's new offering for at least two years. No sensitivity analysis has been performed to see how the projection changes if that assumption is wrong. What is missing from this analysis?",
+        options:[
+          "Nothing; single-assumption projections are standard practice and don't need testing",
+          "A sensitivity analysis showing how the benefit case holds up under a less favorable assumption — for example, a faster competitive response — so decision-makers understand how fragile the projection actually is",
+          "A second, unrelated benefit to offset the risk of this one",
+          "A guarantee from the competitor that they won't respond"
+        ],
+        a:1,
+        why:"A benefit case riding entirely on one optimistic assumption is exactly what sensitivity analysis is meant to stress-test — without it, decision-makers don't know how much of the projected value evaporates if that one assumption doesn't hold.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"Midway through a program, a key assumption behind a benefit's financial case — a specific commodity input price — changes significantly due to a market shift. The program manager continues reporting the original projected benefit figure, reasoning that \"the case was already approved.\" Is this appropriate?",
+        options:[
+          "Yes, once a benefit case is approved, its figures shouldn't be revisited regardless of changed assumptions",
+          "No — a documented assumption invalidated mid-program should trigger a formal reassessment of the benefit case, since continuing to report a figure built on an outdated assumption misleads governance",
+          "Yes, but only if the price change is temporary",
+          "No, because the benefit should be removed from the register entirely rather than reassessed"
+        ],
+        a:1,
+        why:"Approval doesn't freeze a benefit case's assumptions in time — when a documented assumption is invalidated, the honest response is reassessment, not continuing to report a figure everyone knows no longer holds.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"Two proposed benefits are being compared: Benefit A has a benefit-cost ratio of 3.0 but depends entirely on one optimistic adoption assumption; Benefit B has a ratio of 2.4 but remains solidly positive across a wide range of tested assumptions. A reviewer argues Benefit A is clearly the better investment based on the higher ratio alone. What is the flaw in this reasoning?",
+        options:[
+          "There is no flaw; the higher headline ratio should always be preferred",
+          "It ignores sensitivity — Benefit A's higher ratio depends on a single favorable assumption holding, making it a far more fragile bet than Benefit B's lower but more resilient case",
+          "Benefit-cost ratios should never be used to compare two benefits",
+          "Benefit B should automatically be preferred simply because it has a lower ratio"
+        ],
+        a:1,
+        why:"A higher ratio riding on one fragile assumption isn't automatically the better bet — a full comparison weighs how robust each projection is under a range of conditions, not just which headline number is bigger.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A benefit case includes a documented assumption that a new regulation, expected to pass within the year, will create favorable conditions for the projected benefit. The regulation stalls indefinitely in the legislative process. What should the program manager do?",
+        options:[
+          "Continue reporting the benefit projection unchanged, since regulatory delays are outside the program's control",
+          "Formally reassess the benefit case now that a documented assumption underlying it has been invalidated, and revise the projection or realization plan accordingly",
+          "Wait until program closure to address the stalled assumption",
+          "Remove the benefit from the register immediately without further analysis"
+        ],
+        a:1,
+        why:"An assumption failing to materialize is exactly the trigger for reassessment — regardless of whether the cause is within the program's control, the benefit case needs to reflect current reality, not a stalled expectation.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is asked to identify which of the program's ten benefits carry the most \"assumption risk\" — the greatest exposure to a single assumption not holding. What is the most appropriate method to answer this?",
+        options:[
+          "Rank the benefits purely by their projected dollar value, since larger benefits automatically carry more risk",
+          "Perform sensitivity analysis on each benefit's key assumptions to see how much the projected value changes under less favorable conditions, then rank by how fragile each case proves to be",
+          "Assume every benefit carries equal assumption risk by default",
+          "Ask each benefit owner for a subjective confidence rating with no supporting analysis"
+        ],
+        a:1,
+        why:"Assumption risk isn't the same as dollar size — a small benefit can be rock-solid and a large one can be a fragile bet on one favorable assumption. Sensitivity analysis is what actually surfaces which is which.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks why a benefit case needs a documented list of assumptions rather than just a final projected figure. What is the best answer?",
+        options:[
+          "Documented assumptions have no real purpose beyond satisfying a formatting requirement",
+          "Documented assumptions let anyone reviewing the case understand what the projection actually depends on, enabling both sensitivity analysis now and a clear trigger for reassessment if any assumption later changes",
+          "Assumptions should be kept private from governance to avoid inviting unnecessary scrutiny",
+          "A projected figure is inherently more reliable without any assumptions attached to it"
+        ],
+        a:1,
+        why:"The assumptions are what make a projection legible and testable — without them, no one can judge the projection's reliability or know what to watch for that would mean it needs revisiting.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A benefit case's sensitivity analysis shows that under a worst-case set of assumptions, the benefit-cost ratio drops below 1.0 — meaning the investment would no longer be worthwhile. Under the base-case assumptions, the ratio is a comfortable 2.5. What should the program manager do with this finding?",
+        options:[
+          "Discard the worst-case scenario since the base case is more likely and looks favorable",
+          "Present both the base-case and worst-case results to governance, along with what conditions would need to occur to approach the worst case, so the decision reflects the full range of plausible outcomes",
+          "Report only the worst-case figure to be maximally conservative",
+          "Recommend immediate cancellation based solely on the worst-case number"
+        ],
+        a:1,
+        why:"A sensitivity range is most useful when the full picture — base case, worst case, and what would actually trigger the worst case — reaches the decision-maker, rather than either extreme being presented alone.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's financial case assumes a specific currency exchange rate will remain stable over the program's three-year duration. A finance reviewer flags this as a significant undocumented risk. What is the appropriate response?",
+        options:[
+          "Dismiss the concern, since exchange rates are outside the program's control and therefore not worth documenting",
+          "Document the exchange-rate assumption explicitly and run sensitivity analysis showing how the benefit case performs under plausible currency fluctuation, rather than leaving it as an implicit, unstated risk",
+          "Convert all financial figures to a single currency and consider the issue resolved",
+          "Remove the financial benefit from the register since currency risk can't be managed"
+        ],
+        a:1,
+        why:"An assumption being outside the program's control doesn't make it safe to leave undocumented — a factor with real potential impact on the case still deserves explicit documentation and sensitivity testing.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice when a benefit case depends on significant financial or market assumptions?",
+        options:[
+          "Documenting the key assumptions explicitly so the projection's reliability can be assessed",
+          "Reporting only the most favorable scenario to keep the case looking strong",
+          "Running sensitivity analysis to see how the projection holds up under less favorable conditions",
+          "Treating an approved benefit case's assumptions as permanently fixed regardless of later changes"
+        ],
+        a:[0,2],
+        why:"Documented assumptions and real sensitivity testing are what make a benefit case trustworthy — cherry-picking the favorable scenario or freezing assumptions after approval both undermine that.",
+        refs:["benefitsreg","npv"]
+      },
+      {
+        type:"case",
+        stem:"A national agricultural cooperative is running a \"Precision Irrigation Program\" projecting significant water-cost savings across member farms.",
+        scenario:"The benefit case shows a benefit-cost ratio of 2.8, built on an assumption that regional water prices will rise 5% annually as they have for the past decade. A board member asks what happens to the case if that trend doesn't continue, and no sensitivity analysis has been performed to answer the question.",
+        subs:[
+          {
+            stem:"What is the most appropriate response to the board member's question?",
+            options:[
+              "Assure the board the 5% trend is certain to continue since it has held for a decade",
+              "Perform sensitivity analysis testing the benefit case under lower or flat water-price growth, so the board can see how much the projected 2.8 ratio depends on that specific assumption holding",
+              "Decline to answer, since historical trends are the best available predictor and no further analysis is needed",
+              "Remove the water-cost savings benefit from the case entirely to avoid the question"
+            ],
+            a:1
+          },
+          {
+            stem:"If the sensitivity analysis shows the ratio drops to 1.3 under flat water prices — still positive, but much less compelling — what should the program manager do with this finding?",
+            options:[
+              "Suppress the finding and continue presenting only the 2.8 base-case figure",
+              "Present both figures transparently to the board, along with the assumption each depends on, so the investment decision reflects the case's actual sensitivity to that assumption",
+              "Cancel the program immediately based on the lower figure alone",
+              "Average the two figures into a single blended number without further explanation"
+            ],
+            a:1
+          }
+        ],
+        why:"A sensitivity finding — even one that tells a less flattering story than the headline ratio — belongs in front of the decision-makers who are relying on the case, not buried in favor of the more attractive base-case number.",
+        refs:["benefitsreg","npv"]
+      }
+    ]
+  },
+  {
+    id:"BN9", domain:"benefits", name:"Target Renegotiation, Sign-off & Cross-Component Trade-offs",
+    refs:["benefitsreg","decisiontree","governance"],
+    material:[
+      "A benefit target set at business-case stage may need formal renegotiation as conditions change — quietly redefining success after the fact is different from a transparent, governance-approved target revision.",
+      "Formal sponsor/governance sign-off on benefit acceptance criteria, and later on realization, gives the benefit's \"done\" state real authority — an informal understanding between the program manager and benefit owner doesn't carry the same weight.",
+      "Maximizing one benefit can sometimes come at the expense of another, especially across components sharing constrained resources — these trade-offs should be surfaced and decided deliberately, not resolved by default toward whichever benefit gets more attention.",
+      "Structured decision techniques (e.g., decision trees) can help evaluate benefit-related choices with real uncertainty and multiple paths, making the trade-offs and expected values explicit rather than resolving them on intuition alone."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A benefit target set at business-case stage is proving unreachable due to a since-changed market condition. The program manager quietly revises the reported target downward in the next status update without flagging the change to governance. What is the concern with this approach?",
+        options:[
+          "There is no concern, since the original target was simply unrealistic",
+          "Quietly redefining the target changes what \"success\" means without governance's knowledge or approval — a legitimate target revision should be transparent and formally endorsed, not silently substituted",
+          "Targets should never be revised under any circumstances once set",
+          "The benefit owner, not the program manager, should have sole authority over this decision"
+        ],
+        a:1,
+        why:"A target revision can be entirely legitimate — but doing it quietly, without governance's visibility or approval, changes the definition of success without anyone signing off on the change.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager and a benefit owner privately agree that a benefit has been \"close enough\" to target to consider it realized, without bringing this determination to the sponsor or governance for formal sign-off. What is the risk of this informal approach?",
+        options:[
+          "None; the program manager and benefit owner are the right people to make this call",
+          "An informal, unratified determination of \"realized\" doesn't carry the same authority as a formal sign-off, and could later be disputed or overturned by governance without a documented basis",
+          "Formal sign-off is only required for benefits that failed to meet target",
+          "The determination should instead be made unilaterally by the program manager alone, without the benefit owner"
+        ],
+        a:1,
+        why:"A benefit's \"done\" status needs the authority that comes from formal sponsor/governance sign-off — an informal handshake between two people closest to the work doesn't provide that same accountable basis.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"Two components share a constrained pool of specialized analysts. Fully resourcing Component A's benefit-realization activities would leave Component B's related benefit under-resourced and likely to fall short. The program manager has been allowing this trade-off to happen by default, based on whichever component's benefit owner asks most persistently. What is the problem with this approach?",
+        options:[
+          "There is no problem; resource allocation should always favor whichever benefit owner is most persistent",
+          "The trade-off between the two benefits should be surfaced and decided deliberately, based on relative value and priority, rather than resolved by default toward whichever benefit owner pushes hardest",
+          "Both components should always receive identical resourcing regardless of relative benefit value",
+          "Cross-component benefit trade-offs should never occur and indicate a program design flaw"
+        ],
+        a:1,
+        why:"Letting persistence decide a real trade-off between two benefits' resourcing is exactly the kind of decision that should instead be made deliberately, based on relative program-level value.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is deciding between two possible paths to realize a benefit, each with different costs, timelines, and probabilities of success. A colleague suggests just picking the path with the lower stated cost. What would be a more rigorous approach?",
+        options:[
+          "The lower-cost path should always be chosen regardless of probability of success",
+          "Use a structured technique such as a decision tree to make each path's expected value explicit — factoring in cost, probability of success, and potential outcomes — rather than comparing costs alone",
+          "Flip a coin, since both paths carry genuine uncertainty",
+          "Choose whichever path the benefit owner personally prefers, without further analysis"
+        ],
+        a:1,
+        why:"Comparing costs alone ignores probability of success and potential outcomes — a structured technique like a decision tree makes the real expected value of each path explicit instead of comparing only one dimension.",
+        refs:["decisiontree","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's acceptance criteria were agreed informally in a hallway conversation between the program manager and the sponsor early in the program, with no written record. At closure, the sponsor recalls a different threshold than what the program manager understood. What does this scenario illustrate?",
+        options:[
+          "Sponsors should never be involved in setting acceptance criteria",
+          "The value of formally documenting and signing off on benefit acceptance criteria early, rather than relying on an informal, undocumented understanding that can diverge over time",
+          "Acceptance criteria don't need to be agreed upon in advance at all",
+          "The program manager's recollection should automatically be treated as authoritative"
+        ],
+        a:1,
+        why:"An undocumented, informal understanding is exactly how two people can walk away from the same conversation with different expectations — formal, written sign-off is what prevents this kind of dispute.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit's target is being formally renegotiated with governance following a documented, valid change in scope. A board member asks what should happen to the original target once the new one is approved. What is the best practice?",
+        options:[
+          "Delete all record of the original target once the new one is approved",
+          "Retain a record of both the original and revised targets, along with the approved rationale for the change, so the benefit's full history remains traceable",
+          "Keep reporting against the original target in parallel indefinitely, causing two competing figures",
+          "Discard the concept of a target entirely going forward"
+        ],
+        a:1,
+        why:"A traceable history — original target, revised target, and the approved reason for the change — is what keeps a legitimate renegotiation from looking like an unexplained, arbitrary shift later.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is evaluating whether to pursue an aggressive path to accelerate one benefit's realization, which carries meaningful risk of also delaying a second, unrelated benefit if it goes poorly. What is the most appropriate way to approach this decision?",
+        options:[
+          "Proceed with the aggressive path without further analysis, since faster realization is always preferable",
+          "Model the trade-off explicitly — the accelerated benefit's upside against the realistic risk to the second benefit — and bring the analysis to the appropriate decision authority rather than deciding unilaterally",
+          "Avoid any accelerated path under any circumstances to eliminate all risk to other benefits",
+          "Let the two benefit owners resolve the trade-off between themselves with no program-level involvement"
+        ],
+        a:1,
+        why:"A trade-off with real risk to a second benefit deserves an explicit, modeled analysis brought to the right decision authority — not an automatic yes because speed sounds appealing, and not automatic avoidance either.",
+        refs:["benefitsreg","decisiontree"]
+      },
+      {
+        type:"single",
+        stem:"A benefit target renegotiation request comes from a benefit owner who simply wants an easier target to hit, with no underlying change in conditions to justify it. How should the program manager respond?",
+        options:[
+          "Approve the renegotiation, since benefit owners should have full control over their own targets",
+          "Decline to bring this forward as a legitimate renegotiation, since a target revision should be grounded in a real, documented change in conditions — not simply a desire for an easier target",
+          "Automatically raise the target instead, to compensate for the request",
+          "Remove the benefit from the register rather than address the request"
+        ],
+        a:1,
+        why:"Legitimate target renegotiation responds to real, documented changes in conditions — a target lowered just to make it easier to hit undermines exactly the credibility formal renegotiation is meant to protect.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee is asked to formally sign off on a benefit's realization at program closure. One member asks why this formal step matters if the program manager has already reported the benefit as achieved. What is the best answer?",
+        options:[
+          "It doesn't matter; the program manager's report alone should be sufficient",
+          "Formal sign-off gives the determination governance-level authority and accountability, distinct from a status report — it's the difference between an assertion and an accepted, ratified outcome",
+          "Sign-off is purely ceremonial and has no functional purpose",
+          "Sign-off should be required only for benefits that failed to meet target, not successful ones"
+        ],
+        a:1,
+        why:"A status report is one person's assertion; formal sign-off is governance accepting and ratifying that determination — the distinction matters because it's what gives the \"realized\" label real weight.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A decision tree analysis of two possible approaches to realizing a benefit shows Approach A has a higher expected value overall, but Approach B has a much narrower range of possible outcomes (less downside risk, but also less upside). A risk-averse sponsor asks which to choose. What is the appropriate way to frame this decision?",
+        options:[
+          "Approach A should automatically be chosen since it has the higher expected value in all cases",
+          "Present both the expected value and the range of outcomes for each approach, since a sponsor's risk tolerance is a legitimate factor in choosing between a higher-expected-value option and a more predictable one",
+          "Approach B should automatically be chosen since it carries less risk regardless of expected value",
+          "Expected value calculations should be discarded in favor of pure intuition"
+        ],
+        a:1,
+        why:"Expected value is one input, not the whole answer — a decision-maker's risk tolerance is a legitimate factor, and presenting both the expected value and the outcome range lets that tolerance genuinely inform the choice.",
+        refs:["decisiontree"]
+      },
+      {
+        type:"single",
+        stem:"A program manager renegotiates a benefit target downward with governance approval, but neglects to update the benefit owner's own tracking documents, which still show the original, now-outdated target. What problem does this create?",
+        options:[
+          "No problem, since governance has already approved the new target",
+          "The benefit owner will continue measuring progress against an outdated target, creating a disconnect between what governance approved and what's actually being tracked day to day",
+          "This is acceptable as long as the discrepancy is corrected at program closure",
+          "Benefit owners should not be informed of approved target changes"
+        ],
+        a:1,
+        why:"An approved change that never reaches the person actually tracking the metric leaves two different \"official\" targets in circulation — the renegotiation isn't complete until the people using the target day to day are updated too.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is asked to justify why a specific benefit's acceptance criteria required three rounds of negotiation with the sponsor before being finalized, rather than being set quickly. What is the most defensible explanation?",
+        options:[
+          "The negotiation process was inefficient and should have been resolved faster regardless of outcome",
+          "Getting specific, measurable acceptance criteria genuinely right is worth the iteration, since a poorly defined criterion agreed upon quickly can create disputes later about whether the benefit was actually achieved",
+          "Acceptance criteria should never require negotiation with the sponsor",
+          "Three rounds indicates the benefit itself should be removed from the register"
+        ],
+        a:1,
+        why:"Time spent getting acceptance criteria specific and measurable is time that prevents a much costlier dispute later — speed isn't the goal here, getting it right is.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner requests governance sign-off on a benefit's realization, but the supporting data presented is several months old and doesn't reflect the metric's more recent, less favorable trend. What should the program manager do before bringing this to governance?",
+        options:[
+          "Proceed with the sign-off request as prepared, since the data was accurate when it was collected",
+          "Ensure the sign-off request reflects current data before proceeding, since presenting outdated figures — even if not deliberately manipulated — risks governance approving a determination that no longer matches reality",
+          "Bring the request to governance but omit any mention of when the data was collected",
+          "Cancel the sign-off request permanently rather than update the data"
+        ],
+        a:1,
+        why:"Sign-off should be based on the current picture, not a stale snapshot that happens to look better — bringing outdated data to governance risks a formal ratification of something that's no longer true.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A cross-component benefit trade-off decision is escalated to the steering committee, which approves accelerating Component A's benefit at the acknowledged cost of delaying Component B's benefit by two quarters. Component B's benefit owner is unhappy with the outcome. What is the program manager's most appropriate role at this point?",
+        options:[
+          "Reverse the steering committee's decision unilaterally to satisfy the benefit owner",
+          "Communicate the approved decision and its rationale clearly to the benefit owner, and help manage the practical impact of the two-quarter delay on Component B's realization plan",
+          "Avoid discussing the decision with the benefit owner to prevent further conflict",
+          "Tell the benefit owner the decision is final with no further explanation or support"
+        ],
+        a:1,
+        why:"Once the right authority has decided a trade-off, the program manager's job shifts to clear communication and helping manage the consequences — not re-litigating the decision or leaving the affected owner without support.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"single",
+        stem:"A decision tree analysis comparing two paths to benefit realization assumes fixed probability estimates for each outcome, but a team member points out these probabilities were essentially guessed with no supporting data. What is the appropriate response?",
+        options:[
+          "Disregard the concern, since decision trees always require some subjective probability estimates",
+          "Acknowledge the estimates' uncertainty explicitly, seek better supporting data where feasible, and present the analysis with that uncertainty clearly flagged rather than as if the probabilities were precisely known",
+          "Abandon the decision tree approach entirely since any subjectivity invalidates it",
+          "Assign equal probability to every outcome to avoid the appearance of guessing"
+        ],
+        a:1,
+        why:"A decision tree built on rough estimates can still be useful — but only if that uncertainty is acknowledged rather than presented as if the probabilities were precisely known, which would overstate the analysis's real precision.",
+        refs:["decisiontree"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for renegotiating a benefit target or formalizing its realization?",
+        options:[
+          "Grounding a target revision in a documented, real change in conditions rather than a simple preference for an easier target",
+          "Obtaining formal sponsor or governance sign-off rather than relying on an informal understanding",
+          "Quietly updating the reported target without informing governance of the change",
+          "Treating any two people's private agreement as sufficient to declare a benefit formally realized"
+        ],
+        a:[0,1],
+        why:"Legitimate renegotiation is grounded in real conditions and formally ratified — quietly changing figures or relying on an informal private agreement both undermine the accountability formal sign-off is meant to provide.",
+        refs:["benefitsreg","governance"]
+      },
+      {
+        type:"case",
+        stem:"A multinational consumer goods company is running a \"Regional Distribution Optimization Program\" spanning several manufacturing components.",
+        scenario:"Accelerating Component A's automation rollout would significantly improve its cost-reduction benefit but would require reassigning specialized engineers currently supporting Component B's quality-improvement benefit, likely delaying it by two quarters. The program manager has informally been favoring Component A's requests because its benefit owner raises the issue more frequently.",
+        subs:[
+          {
+            stem:"What is the most significant issue with how this trade-off has been handled so far?",
+            options:[
+              "There is no issue; resourcing should naturally favor whichever benefit owner is more engaged",
+              "The trade-off between the two benefits has been resolved by default based on persistence rather than a deliberate evaluation of relative program-level value",
+              "Component B's quality-improvement benefit should always take priority over cost-reduction benefits",
+              "The engineers should be split exactly evenly regardless of the actual impact on either benefit"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate next step for the program manager?",
+            options:[
+              "Continue the current informal pattern since it has been working so far",
+              "Explicitly model the trade-off — expected value and impact to both benefits — and bring a clear recommendation to the appropriate decision authority rather than letting persistence keep deciding it",
+              "Immediately halt Component A's automation rollout entirely",
+              "Let each component manager decide independently without program-level coordination"
+            ],
+            a:1
+          }
+        ],
+        why:"A real cross-component benefit trade-off deserves a deliberate, modeled evaluation brought to the right decision authority — not a default outcome shaped by whichever benefit owner is more persistent.",
+        refs:["benefitsreg","decisiontree"]
+      }
+    ]
+  },
   {
     id:"SH1", domain:"stakeholder", name:"Engagement, Harmony & Communication",
     refs:["stakeholder_","stakeholdermap"],
