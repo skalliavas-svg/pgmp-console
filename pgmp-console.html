@@ -198,39 +198,39 @@ var REFS = {
 var BLOCKS = [
   {
     id:"ST1", domain:"strategic", name:"Strategic Alignment & the Business Case",
-    refs:["standard","bizcase"],
+    refs:["standard","bizcase","swot"],
     material:[
-      "A program is chartered to deliver strategic benefits its component projects cannot achieve individually.",
-      "The program business case links the mandate to organizational strategy and justifies the investment in benefit/cost terms.",
-      "Environmental scanning — internal capability plus external market/regulatory factors — feeds strategic alignment on an ongoing basis, not just at kickoff.",
-      "A program roadmap is a high-level strategic view of milestones and component sequencing, not a detailed schedule."
+      "Program success means benefits realized and sustained — not on-time/on-budget delivery. A component can hit every baseline and still be a program failure if it doesn't move the benefit.",
+      "Strategic alignment is continuous, not a one-time charter event: environmental scanning (PESTLE/SWOT) runs throughout the life cycle, and misalignment triggers a realignment or an escalation to reassess strategy.",
+      "Think portfolio-up, not project-down: resource conflicts between components are resolved at the program level for overall benefit optimization, not split evenly or pushed to whichever component asks loudest.",
+      "If running components independently would produce the same value as running them as a program, there's no real synergy — and the case for treating them as one program is weak."
     ],
     qs:[
       {
         type:"single",
-        stem:"A program sponsor asks the program manager to add an unplanned component because a competitor just launched a similar capability. The component could improve market position, but it hasn't been checked against the benefits realization plan or business case. What should the program manager do FIRST?",
+        stem:"A component finishes exactly on time and on budget, and its deliverable performs to specification. Eight months later, adoption by the target business unit remains low and the intended process-efficiency gain has not materialized. From a program management perspective, this component should be considered:",
         options:[
-          "Reject the request since it wasn't in the original roadmap",
-          "Add the component now and update the business case retroactively at the next gate",
-          "Assess the component's strategic fit and benefit contribution against the current business case before committing resources",
-          "Escalate to the PMO to decide without further analysis"
+          "Successful, because it met its scope, schedule, and cost baseline",
+          "Successful, because the program isn't accountable for adoption after handoff",
+          "Not yet successful, because program success is measured by benefits realized, not by on-time/on-budget delivery",
+          "A project management failure that should be escalated to replace the project manager"
         ],
         a:2,
-        why:"Strategic-fit analysis happens before commitment, not after. Rejecting outright and committing first both skip the assessment step that alignment work exists to do.",
-        refs:["standard","bizcase"]
+        why:"Program success is benefits realized and sustained. Hitting the schedule/cost/scope baseline is a project-level success measure — it says nothing about whether the intended benefit actually materialized.",
+        refs:["standard","benefitsreg"]
       },
       {
         type:"single",
         stem:"Eighteen months into a program, an internal skills assessment shows the organization no longer has the technical capability the remaining components require, after a wave of attrition. This most directly triggers a revisit of which program artifact?",
         options:[
-          "The stakeholder register",
-          "The program roadmap and business case, via environmental scanning",
+          "The stakeholder matrix",
+          "The program roadmap and business case, via ongoing environmental scanning",
           "The communications management plan",
           "The individual project schedules"
         ],
         a:1,
-        why:"Internal capability is an environmental factor. Ongoing scanning feeds back into strategic alignment — the roadmap and business case need re-evaluating, not just execution-level plans.",
-        refs:["standard"]
+        why:"Internal capability is an environmental factor. Strategic alignment is continuous — ongoing scanning feeds back into the roadmap and business case, not just execution-level plans.",
+        refs:["standard","swot"]
       },
       {
         type:"multi",
@@ -244,95 +244,237 @@ var BLOCKS = [
         a:[1,3],
         why:"Alignment is about the ongoing strategy fit (confirming continued support) and catching invalidated assumptions. Component baselines and WBS detail are project-level concerns.",
         refs:["standard","bizcase"]
+      },
+      {
+        type:"single",
+        stem:"A resource conflict arises between two components in the same program: both need the same senior data architect at the same time, and each component manager insists their need is more urgent for their own component's schedule. Who should resolve this, and on what basis?",
+        options:[
+          "The two component project managers should negotiate directly and split the architect's time evenly",
+          "The program manager should resolve it at the program level, based on which allocation optimizes overall program benefits",
+          "The PMO should resolve it based on which component was chartered first",
+          "It should be escalated to the portfolio governance board immediately, since it exceeds program authority"
+        ],
+        a:1,
+        why:"Think portfolio-up: resource conflicts between components are a program-level decision, resolved for overall benefit optimization — not split evenly, not decided by charter date, and not automatically outside the program manager's authority.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager notices that if each of the program's three components were run as independent, stand-alone projects rather than as a coordinated program, the organization would likely realize roughly the same total value with less coordination overhead. What does this most likely indicate?",
+        options:[
+          "The program is well-designed and should continue exactly as structured",
+          "The components may not actually need to be managed as a program, since no synergy is being captured",
+          "The program manager should add more components to justify the structure",
+          "The organization should simply increase the program's budget"
+        ],
+        a:1,
+        why:"A program should make the whole exceed the sum of its parts. If grouping components isn't producing more value than managing them independently would, the \"program\" isn't functioning as one — the coordination overhead isn't buying anything.",
+        refs:["standard"]
       }
     ]
   },
   {
-    id:"LC1", domain:"lifecycle", name:"Tranches & Program Phases",
-    refs:["standard"],
+    id:"LC1", domain:"lifecycle", name:"Program Definition, Roadmap & Integrated Planning",
+    refs:["standard","raci"],
     material:[
-      "Program Definition produces the charter, roadmap, and initial business case; Delivery authorizes and integrates components in tranches; Closure formally transitions benefits and disbands the program.",
-      "A tranche groups components that together deliver a distinct set of benefits, ending in a decision gate before the next tranche is authorized.",
-      "Component transition — moving a project's output into ongoing operations — is planned and overseen by the program even though execution sits at the project level."
+      "The program charter ties scope, assumptions, constraints, high-level risks, and high-level benefits to the business case and authorizes the program — it doesn't need every detail resolved to be approved.",
+      "Programs are progressively elaborated: the roadmap shows milestones now and gains detail as the program advances and visibility improves. Full detail at initiation isn't expected or realistic.",
+      "Integrated program planning tracks cross-component dependencies, shared resources, and collective benefits — it's a genuinely integrated view, not a binder of aggregated project plans.",
+      "A responsibility assignment matrix (RACI) clarifies where program authority ends and project authority begins, so the program manager coaches and removes obstacles rather than directing component-level execution.",
+      "Cross-component dependencies — schedule, resource, technical, and benefit — are where programs succeed or fail; a ripple effect between components is a program-level responsibility to track and manage, not a single project manager's problem to solve alone."
     ],
     qs:[
       {
         type:"single",
-        stem:"A program is structured into three tranches. At the Tranche 1 gate, two of three planned components are complete and delivering benefit, but the third is nine months behind and its output is no longer required after a strategy shift. What is the MOST appropriate recommendation for the gate review?",
+        stem:"A delay in Component A's data-migration deliverable won't affect Component A's own schedule, but Component B — which depends on that data for its testing phase — will be delayed by six weeks if nothing changes. Component B's project manager hasn't yet raised this as a risk. What should the program manager do?",
         options:[
-          "Continue the third component unchanged since it is already funded",
-          "Recommend closing the third component and reallocating its remaining budget, since its output no longer supports the strategy",
-          "Pause all three components until the delayed one catches up",
-          "Move the third component into Tranche 2 without further review"
+          "Wait for Component B's project manager to formally log the risk in their own project's risk register",
+          "Proactively identify and manage the cross-component dependency now, since ripple effects across components are a program-level responsibility",
+          "Instruct Component A's project manager to accelerate their own schedule to avoid impacting Component B",
+          "Take no action until the six-week delay actually materializes"
         ],
         a:1,
-        why:"Gates exist to re-validate components against current strategy. A component whose output no longer serves the strategy should be recommended for closure and reallocation, not carried forward unreviewed.",
+        why:"Cross-component dependencies are managed relentlessly at the program level. Waiting on one project's risk register, or leaving it to a single PM to fix unilaterally, misses that the ripple effect across components is the program manager's job to track.",
         refs:["standard"]
       },
       {
+        type:"single",
+        stem:"At program initiation, the program manager cannot yet specify a detailed schedule for a component planned 18 months out, since the technology it depends on hasn't been selected. A stakeholder insists the full detailed roadmap be finalized before the program charter is approved. What is the most appropriate response?",
+        options:[
+          "Provide a fully detailed roadmap anyway, using best-guess assumptions",
+          "Explain that programs are progressively elaborated — the roadmap shows milestones now and gains detail as the program advances",
+          "Delay charter approval until every component's detailed schedule can be produced",
+          "Remove the far-out component from the roadmap until it can be fully detailed"
+        ],
+        a:1,
+        why:"Progressive elaboration is expected and healthy for programs. Roadmaps gain detail over time — insisting on full detail at initiation, or stalling the charter over it, misunderstands how program planning actually works.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager assembles the program management plan by collecting each component's individual project plan and combining them into a single binder. What is the flaw in this approach?",
+        options:[
+          "There is no flaw; program planning is the aggregation of project plans",
+          "Integrated program planning has to go beyond aggregation to track cross-component dependencies, shared resources, and collective benefits",
+          "The binder should be organized alphabetically by component name for governance approval",
+          "Program plans should never reference project-level content at all"
+        ],
+        a:1,
+        why:"Program-level planning is an integrated view, not a sum of the parts. Aggregating project plans misses exactly the cross-component dependencies and shared-resource picture that program planning exists to capture.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO practices reflect leading a \"team of teams\" at the program level, rather than micromanaging component projects?",
+        options:[
+          "Defining a RACI matrix that clarifies where program authority ends and project authority begins",
+          "Directly assigning daily tasks to individual project team members across all components",
+          "Coaching component project managers while leaving execution decisions to them",
+          "Requiring every project-level decision to be approved by the program manager before it proceeds"
+        ],
+        a:[0,2],
+        why:"Leading a team of teams means empowering component managers within clear boundaries (a RACI matrix) and coaching rather than directing — not taking over daily task assignment or gating every project-level decision.",
+        refs:["standard","raci"]
+      },
+      {
         type:"case",
-        stem:"A program has finished Delivery for its final tranche. Two components produced outputs; only one has been formally transitioned to operations. The second is functioning but still supported by its project team.",
-        scenario:"Two components complete Delivery. Component A: formally transitioned to operations with a named owner. Component B: functioning in production but still staffed by the project team, with no transition plan executed.",
+        stem:"Three components in a program each independently purchased similar data-analytics licenses from different vendors, unaware of each other's procurement. The program manager discovers this during a routine cost review.",
+        scenario:"Three components, each with its own budget authority, separately signed annual contracts for functionally overlapping analytics tools within the same quarter. No component was aware of the others' purchase until the program-level cost review flagged the overlap.",
         subs:[
           {
-            stem:"Before the program can proceed to Closure, what must happen with Component B?",
+            stem:"What does this situation most directly indicate about the program's current state?",
             options:[
-              "Nothing — the project team can support it indefinitely",
-              "Formal transition to operations with confirmed ownership of ongoing support and benefit sustainment",
-              "Immediate shutdown of the output since the program is closing",
-              "Re-authorize it as a new tranche"
+              "The program is performing well, since each component made a fast, independent decision",
+              "A missed opportunity for synergy — shared resourcing and procurement across components wasn't identified or leveraged",
+              "The vendor selection process was too slow",
+              "Each component's project manager should be reprimanded for acting independently"
             ],
             a:1
           },
           {
-            stem:"Who is typically accountable for sustaining a benefit after the program closes?",
+            stem:"What should the program manager do now?",
             options:[
-              "The program manager, kept on standby",
-              "The original project team, indefinitely",
-              "A designated benefit/operational owner within the business",
-              "The PMO"
+              "Leave each component on its own license, since contracts are already signed",
+              "Evaluate consolidating to a single vendor going forward and update the program's resource/procurement coordination so this is caught earlier next time",
+              "Escalate to the governance board to terminate all three components",
+              "Take no action, since procurement is a project-level function outside program scope"
             ],
-            a:2
+            a:1
           }
         ],
-        why:"Closure requires every component to be formally transitioned with clear ongoing ownership. Sustainment accountability moves to a business-side benefit owner — the program manager and project team disband at closure.",
-        refs:["standard","benefitsreg"]
-      },
-      {
-        type:"single",
-        stem:"Which statement best describes the purpose of a decision gate at the end of a tranche?",
-        options:[
-          "To check that every task in the tranche's projects finished on schedule",
-          "To re-validate the business case and component set against current strategy before authorizing the next tranche",
-          "To formally close out the program",
-          "To reassign staff between components"
-        ],
-        a:1,
-        why:"Gates are governance checkpoints for the program-level business case and component mix, not a project-level schedule audit.",
-        refs:["standard","governance"]
+        why:"Programs exist to capture synergy across components. Discovering redundant procurement after the fact is a signal to strengthen program-level coordination going forward — not to ignore it, punish the project managers, or treat it as outside the program's remit.",
+        refs:["standard"]
       }
     ]
   },
   {
-    id:"BN1", domain:"benefits", name:"Benefits Register & Realization",
-    refs:["benefitsreg"],
+    id:"LC2", domain:"lifecycle", name:"Execution, Change & Closure",
+    refs:["standard","changemgmt","benefitsreg"],
     material:[
-      "The benefits register tracks each expected benefit, its owner, baseline/target measures, and realization status.",
-      "Realization often continues after component — even program — closure, so sustainment must be planned and handed to an accountable owner.",
-      "Benefit measures should be baselined early, ideally at business-case stage, so realization can be demonstrated later rather than assumed."
+      "Programs embrace change to optimize benefits; projects control change to protect scope. A component that no longer serves the strategy is a candidate to modify or cancel, even if it's on schedule and budget — sunk cost and completion percentage aren't the deciding factors.",
+      "A program needs a monitoring and escalation mechanism that surfaces unresolved project-level issues before they threaten benefits realization — waiting for a project manager to escalate on their own isn't a substitute for that mechanism.",
+      "Program performance analysis means watching trends, not just point-in-time status: risk exposure trending upward for several periods in a row is worth investigating even while schedule and cost both still show green.",
+      "Closure means confirming transition of outputs, ongoing support, and benefit sustainment to operations — not just wrapping up contracts and disbanding the team the week the last deliverable ships.",
+      "Post-review meetings exist to capture lessons learned and best practices for future programs — not to assign blame for a component or program that fell short."
     ],
     qs:[
       {
         type:"single",
-        stem:"Six months after a component delivers a new customer self-service platform, finance asks the program manager to confirm the projected call-center cost reduction actually occurred. No baseline call volume or cost was captured before launch. What is the MOST direct consequence of this gap?",
+        stem:"A market shift makes one of a program's five components — originally scoped to build a feature competitors have since made obsolete — unlikely to contribute meaningful benefit going forward. The component is 70% complete and on budget. What is the best course of action?",
+        options:[
+          "Complete the component as planned, since canceling work that is 70% complete wastes the investment already made",
+          "Evaluate canceling or significantly re-scoping the component, since programs embrace change to optimize benefits rather than protect sunk investment in work that no longer serves the strategy",
+          "Pause the component indefinitely without a decision, pending further market research",
+          "Let the component's project manager decide, since it is their project"
+        ],
+        a:1,
+        why:"Programs embrace change to optimize benefits, and benefits must justify investment continuously. Completion percentage and sunk cost don't justify continuing a component that no longer contributes to the program's benefit case — and that call sits at the program level.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A project-level issue within one component has been open for three weeks without resolution, and it is starting to threaten that component's contribution to program benefits. The component's project manager has not escalated it. What does this reveal, and what should happen now?",
+        options:[
+          "Nothing is missing — issues are solely the project manager's responsibility until formally escalated",
+          "The program should have a monitoring/escalation mechanism that surfaces unresolved issues before they threaten benefits realization; the program manager should now engage and select a course of action consistent with program objectives",
+          "The program manager should take over running the component project directly",
+          "The issue should go straight to the executive sponsor without further analysis"
+        ],
+        a:1,
+        why:"Programs need a monitoring and escalation mechanism precisely so unresolved project issues surface before they threaten benefits — the program manager then acts within program constraints, rather than taking over the project or skipping analysis entirely.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"At a quarterly review, program performance data shows the program on schedule and under budget overall, but risk exposure has been trending upward for three consecutive reporting periods on the same underlying issue. What should the program manager do?",
+        options:[
+          "Report only the schedule and cost performance to governance, since those are green",
+          "Investigate the trend and root cause of the recurring risk issue and update the program's response — analyzing trends, not just current status, is how corrective action gets identified early",
+          "Wait until the risk exposure actually causes a schedule or cost impact before acting",
+          "Delegate the trend analysis to whichever component is most affected"
+        ],
+        a:1,
+        why:"Analyzing variances and trends — not just point-in-time status — is how a program manager catches emerging problems before they hit cost or schedule. Green top-line metrics can mask a real, worsening pattern underneath.",
+        refs:["standard"]
+      },
+      {
+        type:"matching",
+        stem:"Match each program-level concept to the project-level concept it replaces in program thinking.",
+        prompts:["Benefits realization","Component optimization","Governance framework","Benefits transition to operations"],
+        choices:["Change control board","Handoff to operations","Deliverables completion","Task management"],
+        a:[2,3,0,1],
+        why:"The program-level term always reflects strategic/benefits framing; the project-level term reflects execution/deliverable framing. Recognizing this vocabulary shift is itself an exam skill.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A program's final component completes its output, and the program manager closes out program contracts and disbands the team that same week, considering the program successfully finished. What is missing from this closure?",
+        options:[
+          "Nothing — once the last component's output is delivered, the program is complete",
+          "Confirmed transition of the output, ongoing support, and sustainment of benefits to operations — closure isn't complete until benefits are handed off with clear ongoing ownership",
+          "A final executive celebration event",
+          "Reassignment of the program manager to a new program"
+        ],
+        a:1,
+        why:"Closure means transitioning benefits to sustained operations, not just wrapping up administrative and contract loose ends. Skipping this risks losing the benefit right after the program disbands.",
+        refs:["standard","benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A component within a program fails to meet its objectives, causing a significant program delay. During the post-review meeting, the primary purpose should be to:",
+        options:[
+          "Determine which individual is responsible for the failure and document it in their performance record",
+          "Capture lessons learned and best practices to support future programs and organizational improvement, without a focus on blame",
+          "Avoid discussing the failure directly, to preserve team morale",
+          "Immediately reassign the underperforming component's project manager"
+        ],
+        a:1,
+        why:"Post-review meetings are for feedback and learning, not blame. Capturing and applying lessons learned is a continuous responsibility regardless of whether the outcome was a success or a shortfall.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"BN1", domain:"benefits", name:"Benefits Realization & Sustainment",
+    refs:["benefitsreg","decisiontree"],
+    material:[
+      "Benefits must be unambiguously articulated, quantified, and agreed with stakeholders — even intangible benefits need an assigned measurable proxy. Without a baseline, realization can't be demonstrated, only assumed.",
+      "The benefits realization plan and register are baselined early (ideally at business-case stage) and updated throughout the life cycle as metrics are monitored via forecasting, variance analysis, and causal analysis.",
+      "Benefits must justify investment continuously, not just at initiation — a component that's on schedule and budget but no longer delivering meaningful benefit is a candidate to modify or terminate.",
+      "Delivering an output is not the same as realizing a benefit. A shortfall against a benefit target calls for root-cause investigation and a revised plan, not declaring victory on delivery or quietly dropping the target."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Six months after a component delivers a new customer self-service platform, finance asks the program manager to confirm the projected call-center cost reduction actually occurred. No baseline call volume or cost was captured before launch. What is the most direct consequence of this gap?",
         options:[
           "The component's schedule performance was inaccurate",
           "The program cannot credibly demonstrate whether the benefit was realized, because there is no baseline to measure against",
           "The program's governance structure was inadequate",
-          "The stakeholder register was incomplete"
+          "The stakeholder matrix was incomplete"
         ],
         a:1,
-        why:"Without a pre-implementation baseline in the benefits register, realization can't be objectively demonstrated. This is a benefits-management gap, not a schedule, governance, or stakeholder issue.",
+        why:"Without a pre-implementation baseline in the benefits register, realization can't be objectively demonstrated. This is a benefits-management gap specifically, not a schedule, governance, or stakeholder issue.",
         refs:["benefitsreg"]
       },
       {
@@ -345,7 +487,7 @@ var BLOCKS = [
           "Increasing the frequency of project status reports"
         ],
         a:[0,2],
-        why:"Ownership accountability and a real baseline are the core controls. More scope or more status reporting don't address whether a specific benefit is realized and sustained.",
+        why:"Ownership accountability and a real baseline are the core controls. More scope or more status reporting don't address whether a specific benefit is actually realized and sustained.",
         refs:["benefitsreg"]
       },
       {
@@ -360,16 +502,43 @@ var BLOCKS = [
         a:1,
         why:"Delivering the output isn't realizing the benefit. Program-level benefits management tracks actual realization against target and works the gap with the owner, rather than declaring success or erasing the shortfall.",
         refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"Two years into a five-year program, a component originally expected to deliver 30% of total program benefit is now projected to deliver less than 5%, due to a shift in customer demand — even though it remains technically on track. What is the most appropriate program-level response?",
+        options:[
+          "Continue the component unchanged, since it remains on schedule and budget",
+          "Reassess whether the component still justifies its resource investment relative to the benefit it will now deliver, and modify or terminate it if it doesn't",
+          "Increase the component's budget to try to recover the lost benefit potential",
+          "Wait until the five-year program ends to evaluate the shortfall"
+        ],
+        a:1,
+        why:"Benefits must justify investment continuously, not just at initiation. Being on schedule and budget is irrelevant if the benefit case behind the component has collapsed.",
+        refs:["benefitsreg"]
+      },
+      {
+        type:"single",
+        stem:"A benefit owner proposes an intangible benefit — \"improved employee morale\" — as a program outcome, with no proposed way to measure it. Per sound benefits management practice, what should the program manager do?",
+        options:[
+          "Accept the benefit as stated, since some benefits are inherently unmeasurable",
+          "Work with the benefit owner to assign a measurable proxy (for example, a survey score or retention rate) so the benefit has clear measurement criteria and a baseline",
+          "Remove the benefit from the program entirely, since it isn't a financial metric",
+          "Delegate the measurement question to HR without further program involvement"
+        ],
+        a:1,
+        why:"Even intangible benefits need assigned, measurable value. The fix is finding a workable proxy metric and a baseline — not accepting an unmeasurable claim at face value or discarding it outright.",
+        refs:["benefitsreg","decisiontree"]
       }
     ]
   },
   {
-    id:"SH1", domain:"stakeholder", name:"Engagement Across Components",
+    id:"SH1", domain:"stakeholder", name:"Engagement, Harmony & Communication",
     refs:["stakeholder_","stakeholdermap"],
     material:[
-      "Program stakeholder engagement sits above individual project stakeholder management — it reconciles interests that may conflict across multiple components.",
-      "Power/interest mapping guides a differentiated engagement approach; the engagement plan is revisited as the program moves through tranches.",
-      "A stakeholder positive toward one component and negative toward another needs a program-level response, not a component-level one."
+      "The goal of stakeholder engagement is harmony among three things: stakeholder expectations, program benefits, and organizational strategy. Misalignment among these is the problem to solve, at the program level.",
+      "Engagement is proactive, not reactive — absence of complaints from a stakeholder group is not the same as active support, and waiting for problems to surface is a common trap.",
+      "Communication is targeted, not broadcast: different stakeholder groups need different levels of detail and framing, from executive steering committees to component teams to end users.",
+      "Trust has multiple dimensions — personality-based (rapport), cognitive-based (competence and reliability), and institutional-based — and strong performance on one doesn't automatically build the others."
     ],
     qs:[
       {
@@ -382,8 +551,8 @@ var BLOCKS = [
           "Proceed without the resistant sponsor's approval since the other component is on track"
         ],
         a:2,
-        why:"Program-level engagement means addressing the actual concern directly and adapting strategy. Peer pressure, premature escalation, and bypassing approval all avoid the root cause.",
-        refs:["stakeholder_","stakeholdermap"]
+        why:"Program-level engagement means bringing expectations, benefits, and strategy back into harmony by addressing the actual concern directly. Peer pressure, premature escalation, and bypassing approval all avoid the root cause.",
+        refs:["stakeholder_"]
       },
       {
         type:"matching",
@@ -401,39 +570,80 @@ var BLOCKS = [
       },
       {
         type:"single",
-        stem:"A stakeholder register that is only updated at program kickoff is most likely to fail because:",
+        stem:"A stakeholder group has raised no concerns about the program in six months. The program manager takes this as a sign that everything is fine and does not proactively reach out. Three months later, that group escalates strong opposition to a component nearing completion. What does this scenario best illustrate?",
+        options:[
+          "The stakeholder group acted unreasonably by waiting so long to raise concerns",
+          "The program manager should have proactively engaged and monitored this group's attitude and influence throughout, rather than assuming silence meant support",
+          "The program should not have included this stakeholder group in planning",
+          "This is an unavoidable risk of stakeholder engagement"
+        ],
+        a:1,
+        why:"Engagement is proactive, not reactive. Absence of complaints isn't the same as active support — waiting for stakeholders to surface problems is exactly the trap this scenario shows.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager sends the same detailed technical status report — including component-level task lists — to the executive steering committee, the component project managers, and the end-user community. Steering committee members report the reports are unhelpful. What is the most likely issue?",
+        options:[
+          "The reports are too infrequent",
+          "Communication should be tailored to each stakeholder group's needs and level — an executive audience needs a different level of detail than project teams or end users",
+          "The reports should be sent less often to reduce noise",
+          "Steering committee members should be trained to read technical reports"
+        ],
+        a:1,
+        why:"Communication is targeted, not broadcast. One format for every audience fails the group that most needs a synthesized, strategic view — in this case, the steering committee.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program manager consistently delivers accurate status updates, follows through on commitments to component teams, and is seen as technically credible — yet a key stakeholder group still seems hesitant to fully collaborate. What dimension of trust is most likely still underdeveloped?",
+        options:[
+          "Personality-based trust — the interpersonal relationship and rapport with that stakeholder group",
+          "There is no such thing as partial trust; if reports are accurate, trust already exists",
+          "Institutional-based trust, which the program manager cannot influence",
+          "This indicates the stakeholder group should be replaced"
+        ],
+        a:0,
+        why:"Credibility and follow-through build cognitive-based trust (competence and reliability). Personality-based trust — rapport and relationship — is a separate dimension that may still need deliberate relationship-building.",
+        refs:["stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A stakeholder matrix that is only updated at program kickoff is most likely to fail because:",
         options:[
           "It should never have included low-power stakeholders",
-          "Stakeholder influence and interest shift as tranches deliver benefit, and the register/engagement plan need to shift with them",
-          "Registers are a project-level artifact, not a program one",
+          "Stakeholder influence and interest shift as the program delivers benefit, and the matrix and engagement plan need to shift with them",
+          "Matrices are a project-level artifact, not a program one",
           "It should be replaced by the communications plan instead"
         ],
         a:1,
-        why:"Stakeholder positions change over the program's life — engagement planning is iterative across tranches, not a one-time kickoff exercise.",
+        why:"Stakeholder positions change over the program's life — engagement planning is iterative across the life cycle, not a one-time kickoff exercise.",
         refs:["stakeholder_"]
       }
     ]
   },
   {
-    id:"GV1", domain:"governance", name:"Decision Rights & Escalation",
-    refs:["governance"],
+    id:"GV1", domain:"governance", name:"Framework, Escalation & Enablement",
+    refs:["governance","ethics"],
     material:[
-      "Program governance defines decision rights, escalation paths, and the roles (sponsor, steering committee, program manager, PMO) that authorize progress at each gate.",
-      "A governance plan should specify what triggers an out-of-cycle escalation, not only scheduled gate reviews.",
-      "Governance decides and authorizes; the program manager executes within that authority — the two are distinct functions."
+      "Governance should be right-sized to the program's actual size and complexity. Over-governing is as harmful as under-governing — a heavy process built for a large, high-risk program misapplied to a small one is a governance failure, not a discipline problem.",
+      "Escalate through governance, not around it: when an issue exceeds the program manager's authority, it goes through the defined escalation path, and stage/phase gate reviews are how the program obtains authorization to proceed.",
+      "Governance enables — it doesn't just oversee. A governance body that only checks compliance without providing decisions, resources, or removing blockers is only doing half its job.",
+      "Governance defines decision rights and authorizes; the program manager executes within that authority — conflating the two is a common exam trap.",
+      "The PMI Code of Ethics and Professional Conduct applies to every scenario: responsibility, respect, fairness, and honesty. The ethical answer wins even when it's the harder or costlier one."
     ],
     qs:[
       {
         type:"single",
-        stem:"Midway through Tranche 2, a component's risk exposure suddenly increases due to a new regulatory ruling that could affect program compliance. The next scheduled steering committee gate is 10 weeks away. What should the program manager do?",
+        stem:"Midway through the program, a component's risk exposure suddenly increases due to a new regulatory ruling that could affect program compliance. The next scheduled steering committee gate review is 10 weeks away. What should the program manager do?",
         options:[
-          "Wait for the scheduled gate to raise the issue, to preserve governance cadence",
-          "Make the compliance decision independently, since the PM is closest to the work",
+          "Wait for the scheduled gate review to raise the issue, to preserve governance cadence",
+          "Make the compliance decision independently, since the program manager is closest to the work",
           "Trigger the governance plan's out-of-cycle escalation path to bring the issue to the steering committee before the scheduled gate",
           "Instruct the component project manager to pause work without informing governance"
         ],
         a:2,
-        why:"A material, time-sensitive risk should trigger the defined escalation path rather than wait for cadence — but decision authority still sits with governance, not with an unapproved unilateral call.",
+        why:"Escalate through governance, not around it. A material, time-sensitive risk should trigger the defined escalation path rather than wait for cadence — but decision authority still sits with governance, not an unapproved unilateral call.",
         refs:["governance"]
       },
       {
@@ -450,16 +660,42 @@ var BLOCKS = [
         refs:["governance"]
       },
       {
-        type:"multi",
-        stem:"Which TWO items belong in a program governance plan?",
+        type:"single",
+        stem:"A small, low-complexity program with two closely related components is required by the PMO to use the same eleven-step governance review process mandated for the organization's largest, highest-risk programs. Component managers report the process consumes more time than the work it oversees. What does this best illustrate?",
         options:[
-          "The detailed task list for every component project",
-          "The roles and decision rights of the sponsor and steering committee",
-          "Named triggers and a path for out-of-cycle escalation",
-          "Individual performance reviews for component project managers"
+          "Governance should never be questioned once established",
+          "Governance that is not proportionate to the program's size and complexity — over-governing — can be as harmful as under-governing",
+          "The program should be canceled since it cannot meet governance requirements",
+          "The PMO's process is correct and the component managers are simply inefficient"
+        ],
+        a:1,
+        why:"Governance should be right-sized and tailored to a program's actual needs. A one-size-fits-all heavy process misapplied to a small program is a real governance failure mode, not a discipline problem.",
+        refs:["governance"]
+      },
+      {
+        type:"single",
+        stem:"A governance steering committee reviews a program monthly, primarily to check compliance with reporting templates, but rarely provides decisions, resource commitments, or removes blockers the program manager has raised. What is this governance body failing to do?",
+        options:[
+          "Nothing — oversight and compliance checking is governance's only function",
+          "Enable the program — governance should also provide decisions, resources, and support, not only monitor and control",
+          "The program manager should simply stop reporting to this committee",
+          "Increase the frequency of reviews to weekly"
+        ],
+        a:1,
+        why:"Good governance enables decision-making and resourcing, not just oversight. A board that only checks compliance without unblocking or deciding is only doing half its job.",
+        refs:["governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are core responsibilities of a program governance structure?",
+        options:[
+          "Approving day-to-day task assignments within each component project",
+          "Authorizing progress through stage/phase gate reviews",
+          "Establishing escalation policies so risks are handled at the appropriate level",
+          "Writing the detailed test scripts for each component's deliverables"
         ],
         a:[1,2],
-        why:"Governance plans define who decides what, and when an issue must be escalated outside the normal cadence — not project-level task detail or HR matters.",
+        why:"Gate authorization and escalation policy are core governance functions. Day-to-day task assignment and test-script detail are project-execution activities far below governance's altitude.",
         refs:["governance"]
       }
     ]
@@ -467,30 +703,42 @@ var BLOCKS = [
 ];
 
 var FLASHCARDS = [
-  {id:"f-st1", domain:"strategic", term:"Program Charter", definition:"Formally authorizes the program's existence and gives the program manager authority to apply organizational resources.", refs:["standard"]},
-  {id:"f-st2", domain:"strategic", term:"Program Business Case", definition:"Documents the justification for the program, linking expected benefits and costs to organizational strategy.", refs:["bizcase"]},
-  {id:"f-st3", domain:"strategic", term:"Program Roadmap", definition:"A high-level, strategic timeline of major milestones and component sequencing — not a detailed schedule.", refs:["standard"]},
-  {id:"f-st4", domain:"strategic", term:"Environmental Scanning", definition:"Ongoing assessment of internal capability and external factors that may affect the program's strategic alignment.", refs:["standard"]},
+  {id:"f-st1", domain:"strategic", term:"Program Business Case", definition:"Documents the justification for the program, linking expected benefits and costs to organizational strategy.", refs:["bizcase"]},
+  {id:"f-st2", domain:"strategic", term:"Program Charter", definition:"Ties scope, assumptions, constraints, high-level risks, and benefits to the business case and authorizes the program to begin.", refs:["standard"]},
+  {id:"f-st3", domain:"strategic", term:"Program Mission Statement", definition:"Defines program direction by evaluating stakeholder concerns and expectations against the organization's strategic plan.", refs:["standard"]},
+  {id:"f-st4", domain:"strategic", term:"Portfolio-Up Thinking", definition:"Resolving cross-component resource conflicts at the program level, for overall benefit — not project-down, one component at a time.", refs:["standard"]},
+  {id:"f-st5", domain:"strategic", term:"PESTLE / SWOT Scanning", definition:"Ongoing assessment of internal capability and external (political, economic, social, technological, legal, environmental) factors that feed continuous strategic alignment.", refs:["swot"]},
+  {id:"f-st6", domain:"strategic", term:"Synergy", definition:"The whole exceeding the sum of its parts — the test of whether components genuinely need to be managed together as a program.", refs:["standard"]},
 
-  {id:"f-lc1", domain:"lifecycle", term:"Tranche", definition:"A grouping of program components that together deliver a distinct set of benefits, bounded by a decision gate.", refs:["standard"]},
-  {id:"f-lc2", domain:"lifecycle", term:"Program Definition Phase", definition:"Establishes the program's foundation: the charter, roadmap, and initial business case.", refs:["standard"]},
-  {id:"f-lc3", domain:"lifecycle", term:"Component Transition", definition:"The planned handover of a project's output into ongoing operations, overseen at the program level.", refs:["standard"]},
-  {id:"f-lc4", domain:"lifecycle", term:"Decision Gate", definition:"A formal governance checkpoint where the program's business case, components, and continuation are reviewed.", refs:["governance"]},
+  {id:"f-lc1", domain:"lifecycle", term:"Program Roadmap", definition:"A high-level, strategic view of milestones and component sequencing that gains detail over time — not a fully detailed schedule from day one.", refs:["standard"]},
+  {id:"f-lc2", domain:"lifecycle", term:"Responsibility Assignment Matrix (RACI)", definition:"Clarifies program vs. project roles so the program manager coaches component managers rather than directing their execution.", refs:["raci"]},
+  {id:"f-lc3", domain:"lifecycle", term:"Program Work Breakdown Structure", definition:"Decomposes program tasks and deliverables to determine, plan, and assign work across components.", refs:["standard"]},
+  {id:"f-lc4", domain:"lifecycle", term:"Progressive Elaboration", definition:"Plans, benefits, and scope are refined throughout the life cycle as visibility improves — not fixed in full detail at initiation.", refs:["standard"]},
+  {id:"f-lc5", domain:"lifecycle", term:"Program Management Information System (PMIS)", definition:"The tools and processes that share knowledge, intellectual property, and documentation across components.", refs:["standard"]},
+  {id:"f-lc6", domain:"lifecycle", term:"Embrace Change", definition:"Programs proactively use change — including canceling or re-scoping components — to optimize benefits; projects control change to protect scope.", refs:["changemgmt"]},
+  {id:"f-lc7", domain:"lifecycle", term:"Team of Teams", definition:"A network of component teams connected for shared strategy and empowered execution, led through coaching rather than direction.", refs:["standard"]},
+  {id:"f-lc8", domain:"lifecycle", term:"Decision/Phase Gate", definition:"A formal governance checkpoint where the program's business case, components, and continuation are reviewed before proceeding.", refs:["governance"]},
 
   {id:"f-bn1", domain:"benefits", term:"Benefits Register", definition:"The log of expected benefits, their owners, baseline/target measures, and realization status.", refs:["benefitsreg"]},
-  {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Describes how and when each benefit will be measured and handed to sustainment.", refs:["benefitsreg"]},
-  {id:"f-bn3", domain:"benefits", term:"Benefit Owner", definition:"The individual accountable for realizing and sustaining a specific benefit, typically outside the program team.", refs:["benefitsreg"]},
-  {id:"f-bn4", domain:"benefits", term:"Benefits Sustainment", definition:"Ongoing management that keeps a benefit alive after the component or program closes.", refs:["benefitsreg"]},
+  {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Sets the measurement criteria and baseline for benefits, updated and communicated to stakeholders throughout the life cycle.", refs:["benefitsreg"]},
+  {id:"f-bn3", domain:"benefits", term:"Benefits Sustainment Plan", definition:"Identifies the processes, measures, and tools needed to keep a benefit alive beyond program completion.", refs:["benefitsreg"]},
+  {id:"f-bn4", domain:"benefits", term:"Transition Plan to Operations", definition:"Guarantees the sustainment of products and benefits delivered by the program after the team disbands.", refs:["benefitsreg"]},
+  {id:"f-bn5", domain:"benefits", term:"Decision Tree Analysis", definition:"A technique for evaluating benefit options and their probability-weighted outcomes before committing resources.", refs:["decisiontree"]},
+  {id:"f-bn6", domain:"benefits", term:"Benefits Justify Investment — Continuously", definition:"A component's resource investment must remain justified by its benefit contribution throughout the program, not only at initiation.", refs:["benefitsreg"]},
 
-  {id:"f-sh1", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
-  {id:"f-sh2", domain:"stakeholder", term:"Stakeholder Register", definition:"The log of program stakeholders, their interests, influence, and planned engagement approach.", refs:["stakeholder_"]},
-  {id:"f-sh3", domain:"stakeholder", term:"Program-Level Engagement", definition:"Reconciling stakeholder interests that may conflict across multiple components, not just within one.", refs:["stakeholder_"]},
-  {id:"f-sh4", domain:"stakeholder", term:"Engagement Plan", definition:"Documents the tailored approach for each stakeholder or group, revisited as the program moves through tranches.", refs:["stakeholdermap"]},
+  {id:"f-sh1", domain:"stakeholder", term:"Stakeholder Matrix", definition:"Documents each stakeholder's position relative to the program, built from stakeholder analysis.", refs:["stakeholder_"]},
+  {id:"f-sh2", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
+  {id:"f-sh3", domain:"stakeholder", term:"Harmonization", definition:"Bringing stakeholder expectations, program benefits, and organizational strategy back into alignment when they diverge.", refs:["stakeholder_"]},
+  {id:"f-sh4", domain:"stakeholder", term:"Proactive Engagement", definition:"Identifying, analyzing, and engaging stakeholders before problems surface — silence is not the same as support.", refs:["stakeholder_"]},
+  {id:"f-sh5", domain:"stakeholder", term:"Targeted Communication", definition:"Tailoring message content and detail level to each stakeholder group, rather than broadcasting one report to everyone.", refs:["stakeholder_"]},
+  {id:"f-sh6", domain:"stakeholder", term:"Trust (three dimensions)", definition:"Personality-based (rapport), cognitive-based (competence/reliability), and institutional-based trust — strength in one doesn't guarantee the others.", refs:["stakeholder_"]},
 
   {id:"f-gv1", domain:"governance", term:"Program Governance Plan", definition:"Defines decision rights, escalation paths, and the roles that authorize the program.", refs:["governance"]},
-  {id:"f-gv2", domain:"governance", term:"Steering Committee", definition:"The governance body that makes go/no-go and authorization decisions at gates.", refs:["governance"]},
-  {id:"f-gv3", domain:"governance", term:"Escalation Path", definition:"The defined route for raising a material issue outside the scheduled governance cadence.", refs:["governance"]},
-  {id:"f-gv4", domain:"governance", term:"Program Sponsor", definition:"The executive accountable for the program's business case and ultimate benefit realization.", refs:["governance"]}
+  {id:"f-gv2", domain:"governance", term:"Stage/Phase Gate Review", definition:"Where the program obtains authorization from governance to proceed to the next phase.", refs:["governance"]},
+  {id:"f-gv3", domain:"governance", term:"Escalate Through Governance", definition:"Issues exceeding the program manager's authority go through the defined escalation path — not around it, and not decided unilaterally.", refs:["governance"]},
+  {id:"f-gv4", domain:"governance", term:"Right-Sized Governance", definition:"Governance proportionate to a program's size and complexity; over-governing is as harmful as under-governing.", refs:["governance"]},
+  {id:"f-gv5", domain:"governance", term:"Governance Enables", definition:"Good governance provides decisions, resources, and support — not just compliance oversight.", refs:["governance"]},
+  {id:"f-gv6", domain:"governance", term:"PMI Code of Ethics", definition:"Responsibility, respect, fairness, and honesty — applies to every exam scenario; the ethical answer wins even when costly.", refs:["ethics"]}
 ];
 
 /* flatten questions with block context */
@@ -508,7 +756,7 @@ BLOCKS.forEach(function(b){
 
 /* ============================== STORAGE ============================== */
 
-var STORAGE_KEY = "pgmp:v1";
+var STORAGE_KEY = "pgmp:v2";
 function defaultProgress(){ return { mastered:[], tagStats:{}, examsTaken:0, flash:{} }; }
 
 function loadProgress(){
@@ -689,7 +937,8 @@ function renderDash(){
     var blocks = BLOCKS.filter(function(b){return b.domain===d;});
     var mastered = blocks.filter(function(b){return p.mastered.indexOf(b.id)>-1;}).length;
     return '<div class="strip-item">'+
-      '<div class="strip-top"><span class="dot" style="background:var(--'+meta.token+')"></span><span class="strip-name">'+esc(meta.abbr)+'</span></div>'+
+      '<div class="strip-top"><span class="dot" style="background:var(--'+meta.token+')"></span><span class="strip-name">'+esc(meta.abbr)+'</span>'+
+        '<span class="mono" style="margin-left:auto;font-size:10px;color:var(--text-dim)">'+meta.weight+'%</span></div>'+
       '<div class="bar"><span style="width:'+(acc==null?0:acc)+'%;background:var(--'+meta.token+')"></span></div>'+
       '<div class="strip-meta"><span>'+mastered+'/'+blocks.length+' blocks</span><span>'+(acc==null?"—":acc+"%")+'</span></div>'+
     '</div>';
@@ -715,7 +964,8 @@ function renderDash(){
       '</button>';
     }).join("");
     return '<section class="domain-group card">'+
-      '<div class="domain-group-head"><span class="dot" style="background:var(--'+meta.token+')"></span><h3>'+esc(meta.name)+'</h3></div>'+
+      '<div class="domain-group-head"><span class="dot" style="background:var(--'+meta.token+')"></span><h3>'+esc(meta.name)+'</h3>'+
+        '<span class="mono" style="margin-left:auto;font-size:12px;color:var(--'+meta.token+')">'+meta.weight+'% of exam</span></div>'+
       rows+
     '</section>';
   }).join("");
@@ -745,9 +995,9 @@ function renderDash(){
         '<div>'+
           '<div class="eyebrow">PgMP · Program Management Professional</div>'+
           '<h1 style="font-size:32px;margin-top:4px;letter-spacing:-.3px">Program Control Deck</h1>'+
-          '<p class="deck-sub">Domain quizzes, timed mocks, and spaced-repetition flashcards. Every miss links back to a source. Progress saves automatically to this browser.</p>'+
+          '<p class="deck-sub">Aligned to PMI\'s March 2024 PgMP Examination Content Outline — weighted toward Program Life Cycle Management (44% of the exam). Every miss links back to a source. Progress saves automatically to this browser.</p>'+
           '<div class="chips">'+
-            '<span class="chip">'+ALLQ.length+' items · '+BLOCKS.length+' blocks (starter set)</span>'+
+            '<span class="chip">'+ALLQ.length+' items · '+BLOCKS.length+' blocks</span>'+
             '<span class="chip">4 item types</span>'+
             '<span class="chip">'+FLASHCARDS.length+' flashcards'+(due?(" · "+due+" due"):"")+'</span>'+
           '</div>'+
