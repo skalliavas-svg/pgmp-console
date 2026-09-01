@@ -703,6 +703,83 @@ var BLOCKS = [
     ]
   },
   {
+    id:"LC5", domain:"lifecycle", name:"Collaboration & Program Balance",
+    refs:["standard","systemsthinking"],
+    material:[
+      "Program-level collaboration is more complex than project-level collaboration: it depends on generating the right synergy across a team-of-teams structure, not just coordinating one team's deliverables.",
+      "Seven factors drive successful program collaboration — engagement, alignment, complexity, transparency, consultation, culture, and empathy — and organizational culture is the single strongest of the seven.",
+      "The program manager balances individual component demands against the overall program's benefit-realization pace, even when a component's own optimization must give way to program-level re-pacing.",
+      "Program definition splits into formulation (business case, charter, sponsor assignment) and planning (the program management plan and subsidiary plans); planning formally begins only once the charter is approved."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A component team routinely withholds early warning signs of technical problems from the program manager, not out of dishonesty, but because their culture treats raising unresolved issues as a sign of weakness. What collaboration factor is most directly compromised here?",
+        options:[
+          "Alignment — the component's goals don't match the program's strategy",
+          "Transparency — a culture that discourages surfacing problems erodes the traceability and trust collaboration depends on, even without intentional concealment",
+          "Consultation — the program manager wasn't asked for input",
+          "Complexity — the technical problem itself is inherently unpredictable"
+        ],
+        a:1,
+        why:"Transparency in collaboration isn't only about intentional concealment — a culture that discourages raising issues early has the same corrosive effect on trust and traceability.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Two programs use identical governance structures, communication plans, and RACI matrices. One consistently collaborates well across components; the other struggles constantly with silos and turf protection. What is the most likely explanation?",
+        options:[
+          "The struggling program simply has worse project managers",
+          "Organizational culture — openness, trust, and a change-oriented environment — has a stronger effect on collaboration than process and structure alone",
+          "The struggling program should adopt a completely different governance framework",
+          "Identical structures should always produce identical collaboration outcomes"
+        ],
+        a:1,
+        why:"Culture is the single most important factor influencing collaboration effectiveness — process and structure matter, but a closed, low-trust culture undermines even well-designed frameworks.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component adopts an aggressive internal process change that improves its own delivery efficiency by 20%, but the change accelerates that component's output faster than the other components it depends on can absorb, creating a bottleneck elsewhere in the program. What should the program manager do?",
+        options:[
+          "Praise and replicate the efficiency change across all components immediately",
+          "Recognize that a component-level efficiency gain can still create a program-level imbalance, and work to re-pace the components so the overall benefit-realization schedule stays coordinated",
+          "Instruct the improved component to intentionally slow back down to its original pace",
+          "Leave the components to resolve the bottleneck between themselves without program involvement"
+        ],
+        a:1,
+        why:"The program manager balances the program's overall benefit-realization pace — even a genuine efficiency win can create imbalance elsewhere, which calls for program-level re-pacing, not blanket praise or an arbitrary slowdown.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A newly assigned program manager is asked by the sponsor to immediately begin developing the full program management plan with all subsidiary plans — risk, communications, procurement — before a program charter has been drafted or approved. What is the issue with this sequencing?",
+        options:[
+          "There is no issue; the plan and charter can be developed in either order",
+          "Program planning formally begins upon approval of the program charter — developing the full program management plan before the charter is authorized skips the formulation subphase that establishes the business case and sponsor's authorization",
+          "Subsidiary plans should always be developed before the business case",
+          "The program manager should refuse to work until a portfolio management body is established"
+        ],
+        a:1,
+        why:"Program definition splits into formulation (business case, charter, sponsor assignment) and planning (the program management plan and its subsidiary plans) — planning formally commences only after the charter is approved, not before.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are among the three subphases each program component progresses through during program delivery?",
+        options:[
+          "Component authorization and planning",
+          "Component marketing and promotion",
+          "Component transition and closure",
+          "Component staff performance reviews"
+        ],
+        a:[0,2],
+        why:"The three component delivery subphases are authorization and planning, oversight and integration, and transition and closure — marketing/promotion and staff performance reviews aren't part of this structure.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
     id:"BN1", domain:"benefits", name:"Benefits Realization & Sustainment",
     refs:["benefitsreg","decisiontree"],
     material:[
@@ -1205,6 +1282,9 @@ var FLASHCARDS = [
   {id:"f-lc10", domain:"lifecycle", term:"Change Control Board (CCB)", definition:"The formal body that evaluates and approves program-level changes to scope, cost, schedule, or benefits — informal agreement is never a substitute.", refs:["changemgmt"]},
   {id:"f-lc11", domain:"lifecycle", term:"Program-Level EVM (CPI/SPI)", definition:"Aggregate cost/schedule performance indices used to catch trends across components before any single one looks critical.", refs:["evm"]},
   {id:"f-lc12", domain:"lifecycle", term:"Budget Baseline vs. Forecast", definition:"The baseline is approved, governance-endorsed funding; a forecast is only an estimate and isn't itself authorization to spend more.", refs:["standard"]},
+  {id:"f-lc13", domain:"lifecycle", term:"Collaboration Factors", definition:"Engagement, alignment, complexity, transparency, consultation, culture, and empathy — the seven factors that determine whether program-level collaboration succeeds. Culture is the strongest of the seven.", refs:["standard"]},
+  {id:"f-lc14", domain:"lifecycle", term:"Program Formulation vs. Planning", definition:"Formulation produces the business case, charter, and sponsor assignment; planning — which begins only after charter approval — produces the program management plan and its subsidiary plans.", refs:["standard"]},
+  {id:"f-lc15", domain:"lifecycle", term:"Component Delivery Subphases", definition:"Every component moves through authorization & planning, oversight & integration, and transition & closure during program delivery.", refs:["standard"]},
 
   {id:"f-bn1", domain:"benefits", term:"Benefits Register", definition:"The log of expected benefits, their owners, baseline/target measures, and realization status.", refs:["benefitsreg"]},
   {id:"f-bn2", domain:"benefits", term:"Benefits Realization Plan", definition:"Sets the measurement criteria and baseline for benefits, updated and communicated to stakeholders throughout the life cycle.", refs:["benefitsreg"]},
@@ -1215,6 +1295,7 @@ var FLASHCARDS = [
   {id:"f-bn7", domain:"benefits", term:"Dis-Benefit", definition:"A negative outcome of the program that must be identified and managed alongside intended benefits, not overlooked.", refs:["benefitsreg"]},
   {id:"f-bn8", domain:"benefits", term:"Benefit Dependency Network", definition:"Maps how benefits interact, overlap, or conflict, so pursuing one doesn't unexpectedly undermine another.", refs:["benefitsreg"]},
   {id:"f-bn9", domain:"benefits", term:"NPV / IRR / Cost-Benefit Ratio", definition:"Financial quantification methods used alongside non-financial value to justify and prioritize benefits — neither dimension automatically wins.", refs:["npv"]},
+  {id:"f-bn10", domain:"benefits", term:"Program Added Value", definition:"The difference between realized benefits and a program's delivery costs — a combination of quantitative and qualitative factors, not cost alone.", refs:["benefitsreg"]},
 
   {id:"f-sh1", domain:"stakeholder", term:"Stakeholder Matrix", definition:"Documents each stakeholder's position relative to the program, built from stakeholder analysis.", refs:["stakeholder_"]},
   {id:"f-sh2", domain:"stakeholder", term:"Power/Interest Grid", definition:"A mapping tool used to tailor stakeholder engagement by influence level and level of interest.", refs:["stakeholdermap"]},
@@ -1225,6 +1306,7 @@ var FLASHCARDS = [
   {id:"f-sh7", domain:"stakeholder", term:"Engagement Readiness", definition:"A stakeholder's current disposition — unaware, resistant, neutral, supportive, leading — a different dimension from communication frequency.", refs:["stakeholder_"]},
   {id:"f-sh8", domain:"stakeholder", term:"Engagement Strategy vs. Plan", definition:"The strategy defines how and why to engage; the plan defines what, when, and by whom — strategy precedes and informs the plan.", refs:["stakeholder_"]},
   {id:"f-sh9", domain:"stakeholder", term:"Ethical Influence Management", definition:"Building genuine coalitions and credible advocacy — never coercion or transactional trades — to shift stakeholder support.", refs:["ethics"]},
+  {id:"f-sh10", domain:"stakeholder", term:"Program Leadership Skills", definition:"Empathy, respect, courage, political savvy, collaboration, facilitation, and influence — the seven interpersonal skills the Standard names for program leadership.", refs:["standard"]},
 
   {id:"f-gv1", domain:"governance", term:"Program Governance Plan", definition:"Defines decision rights, escalation paths, and the roles that authorize the program.", refs:["governance"]},
   {id:"f-gv2", domain:"governance", term:"Stage/Phase Gate Review", definition:"Where the program obtains authorization from governance to proceed to the next phase.", refs:["governance"]},
@@ -1234,7 +1316,8 @@ var FLASHCARDS = [
   {id:"f-gv6", domain:"governance", term:"PMI Code of Ethics", definition:"Responsibility, respect, fairness, and honesty — applies to every exam scenario; the ethical answer wins even when costly.", refs:["ethics"]},
   {id:"f-gv7", domain:"governance", term:"Governance Performance Metrics", definition:"KPIs (decision timeliness, escalation resolution, compliance, stakeholder satisfaction) that measure the governance process itself, distinct from program cost/schedule metrics.", refs:["governance"]},
   {id:"f-gv8", domain:"governance", term:"Accountability vs. Responsibility", definition:"Accountability is ultimate ownership (e.g., the sponsor); responsibility is who executes (e.g., the program manager) — deep involvement doesn't transfer accountability.", refs:["governance"]},
-  {id:"f-gv9", domain:"governance", term:"Governance Transition Plan", definition:"Names ongoing owners and processes so governance obligations, like benefit oversight, continue past program closure.", refs:["governance","benefitsreg"]}
+  {id:"f-gv9", domain:"governance", term:"Governance Transition Plan", definition:"Names ongoing owners and processes so governance obligations, like benefit oversight, continue past program closure.", refs:["governance","benefitsreg"]},
+  {id:"f-gv10", domain:"governance", term:"Optimistic Bias", definition:"The tendency to forecast program outcomes overly favorably; countered by benchmarking against risks actually observed in prior programs.", refs:["governance"]}
 ];
 
 /* flatten questions with block context */
