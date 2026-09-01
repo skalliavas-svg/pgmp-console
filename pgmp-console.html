@@ -2069,6 +2069,1085 @@ var BLOCKS = [
       }
     ]
   },
+    {
+    id:"LC6", domain:"lifecycle", name:"Scope, WBS & Program Kick-off",
+    refs:["standard"],
+    material:[
+      "Translating strategic objectives into a program scope statement means negotiating with stakeholders (including sponsors/steering committee) to define what the program will deliver — a program-level activity that frames, but doesn't dictate, each component's own scope.",
+      "Program kick-off familiarizes the organization with the program and builds stakeholder buy-in — it's a communication and alignment event, not merely an administrative formality of distributing the charter.",
+      "The detailed program scope statement incorporates the program vision plus internal and external objectives, goals, and influences to facilitate overall planning — it synthesizes context rather than simply aggregating component goals unchanged.",
+      "The program WBS determines, plans, and assigns program-level tasks and deliverables — it decomposes the program's scope for planning and assignment purposes at a higher altitude than any single project's own WBS."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program's initial scope framing from Domain I stated broad strategic intent. During Domain II planning, the program manager negotiates with the sponsor and steering committee to translate that intent into a specific program scope statement describing what will and won't be delivered. Why is this negotiation necessary rather than the program manager simply writing the scope statement independently?",
+        options:[
+          "Program managers are not permitted to draft scope statements",
+          "Scope statements require sponsor and steering committee buy-in because they define authoritative boundaries the program will be held to — negotiating ensures those boundaries reflect a shared, governance-endorsed understanding, not just the program manager's own interpretation",
+          "Negotiation is only required for programs above a certain budget",
+          "The scope statement should be written entirely by the components, not the program"
+        ],
+        a:1,
+        why:"A program scope statement's authority comes from being negotiated and endorsed by governance, not drafted unilaterally — that's what makes it a real boundary the program is actually held to.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager organizes a formal kick-off event, inviting executive sponsors, component leads, and key stakeholders, to introduce the program's purpose, roadmap, and governance structure. A team member suggests skipping the event to save time, since \"everyone already got the charter document.\" What is the flaw in this suggestion?",
+        options:[
+          "There is no flaw; a distributed document is functionally equivalent to a kick-off event",
+          "A kick-off event does more than distribute information — it builds shared understanding and stakeholder buy-in through direct engagement, which a passively-read document doesn't reliably achieve",
+          "Kick-off events are optional formalities with no real function",
+          "Kick-off events should only include the program management team, not stakeholders"
+        ],
+        a:1,
+        why:"A document distributed and read is not the same as shared understanding actively built through direct engagement — kick-off exists specifically for the latter.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A detailed program scope statement is being developed. It incorporates the program's vision along with internal and external objectives, goals, and influencing variables. A stakeholder asks why external influences (like market conditions) belong in a scope statement rather than a separate risk document. What is the best answer?",
+        options:[
+          "External influences don't actually belong in a scope statement and should be removed",
+          "The detailed scope statement is meant to facilitate overall planning by capturing the full context shaping what the program needs to deliver — external influences that shape scope decisions are relevant here even though related risks may also appear elsewhere",
+          "Scope statements should only ever contain internal organizational information",
+          "External influences should replace internal objectives in the scope statement"
+        ],
+        a:1,
+        why:"The scope statement's job is to capture what shapes program planning holistically — external influences and internal objectives both belong, and their presence here doesn't preclude related risks appearing elsewhere too.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's WBS decomposes program-level work into major deliverable categories, with each category mapped to specific components. A new team member argues the program WBS should instead list every individual task each project team will perform, similar to a project WBS. What is the issue with this suggestion?",
+        options:[
+          "There is no issue; program and project WBS should always be identical in granularity",
+          "A program WBS operates at a higher level, decomposing the program's own deliverables and assigning them across components — task-level detail belongs in each component's own project WBS, not the program's",
+          "Programs should never have their own WBS since components already have one",
+          "Task-level detail should replace deliverable-level categories entirely in the program WBS"
+        ],
+        a:1,
+        why:"Program and project WBS operate at different altitudes — collapsing them into one task-level document loses the higher-level planning and assignment view a program WBS is meant to provide.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program scope statement explicitly lists exclusions (\"this program will not address legacy system Y\") alongside inclusions. A sponsor asks why exclusions matter as much as inclusions. What is the best explanation?",
+        options:[
+          "Exclusions are unnecessary; only inclusions define scope",
+          "Explicitly stated exclusions prevent uncontrolled scope expansion by giving governance and stakeholders a clear, documented boundary — without them, ambiguity about what's \"in scope\" invites scope creep",
+          "Exclusions should only be listed if a stakeholder specifically requests them",
+          "Exclusions belong in the risk register, not the scope statement"
+        ],
+        a:1,
+        why:"A boundary only works if both sides are stated — exclusions close the door on ambiguous expansion the same way inclusions open it on committed delivery.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"During program kick-off, a component project manager publicly raises a concern that the roadmap timeline seems unrealistic given the resources presented. How should the program manager most appropriately respond in the moment?",
+        options:[
+          "Dismiss the concern immediately to maintain a positive tone for the kick-off",
+          "Acknowledge the concern as legitimate input, note it for follow-up analysis, and avoid either dismissing it publicly or making an uncommitted promise on the spot — kick-off is a forum for surfacing exactly this kind of early signal",
+          "End the kick-off event immediately to address the concern privately",
+          "Promise on the spot that the timeline will be extended, without further analysis"
+        ],
+        a:1,
+        why:"Kick-off is meant to surface real signals like this — the right response neither buries it nor over-commits on the spot without analysis.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is developing the detailed program scope statement and includes a section on \"internal objectives\" that lists each component's individual project goals verbatim, without synthesis. What is the issue with this approach?",
+        options:[
+          "There is no issue; component goals should be copied directly into the program scope statement",
+          "The program scope statement should synthesize how internal objectives connect to the overall program vision and goals, not simply aggregate each component's goals unchanged — otherwise it's not adding the integrative view a program-level document is meant to provide",
+          "Component goals should never appear anywhere in a program scope statement",
+          "The program scope statement should be written before any components are known"
+        ],
+        a:1,
+        why:"A program-level document earns its place by synthesizing and connecting, not by copy-pasting component-level content unchanged — that's the same aggregation-versus-integration trap seen in program planning generally.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee member asks whether the program WBS should be created before or after the responsibility assignment matrix (RAM). What is the most defensible sequencing logic?",
+        options:[
+          "It doesn't matter; sequencing between these artifacts is irrelevant",
+          "Establishing the WBS (what work exists, decomposed into deliverables) provides the structure needed to meaningfully assign responsibility for that work in a RAM — sequencing the WBS first supports a more grounded RAM",
+          "The RAM should always be created first, with the WBS built around whoever is already assigned",
+          "Both artifacts should be created by completely separate teams with no coordination"
+        ],
+        a:1,
+        why:"You can't meaningfully assign responsibility for work that hasn't been decomposed yet — the WBS gives the RAM something concrete to attach to.",
+        refs:["standard","raci"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate purposes of a formal program kick-off event?",
+        options:[
+          "Familiarizing the organization with the program and obtaining stakeholder buy-in",
+          "Finalizing every component's detailed project schedule",
+          "Building shared understanding of the program's purpose, roadmap, and governance structure among stakeholders",
+          "Replacing the need for an approved program charter"
+        ],
+        a:[0,2],
+        why:"Kick-off is about shared understanding and buy-in — it isn't a scheduling session, and it doesn't substitute for the charter that authorized the program in the first place.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program scope statement is drafted before the roadmap is finalized. A colleague argues this sequencing is backward since \"you can't know scope without knowing the roadmap first.\" Is this critique accurate?",
+        options:[
+          "Yes, the roadmap must always be finalized before any scope statement work begins",
+          "Not necessarily — scope and roadmap development often iterate together, informed by the same underlying business case and benefits plan; a rigid one-before-the-other sequencing isn't required as long as both remain aligned as they're refined",
+          "No, because scope statements and roadmaps are entirely unrelated documents",
+          "Yes, but only for programs with more than three components"
+        ],
+        a:1,
+        why:"Scope and roadmap draw from the same underlying business case and benefits plan and typically develop together — insisting on strict one-before-the-other sequencing misreads how these artifacts actually co-evolve.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's detailed scope statement is finalized and approved by governance. Three months later, a new regulatory requirement emerges that affects what the program needs to deliver. What is the appropriate response?",
+        options:[
+          "Ignore the new requirement since the scope statement is already approved",
+          "Formally evaluate the new requirement's impact and update the scope statement through the program's change management process, since an approved scope statement isn't meant to be static in the face of a material external change",
+          "Quietly adjust component-level scope without updating the program scope statement",
+          "Cancel the program entirely due to the regulatory change"
+        ],
+        a:1,
+        why:"An approved scope statement is a governance artifact, not a permanently frozen one — a material external change routes through formal change management, not silence or quiet component-level workarounds.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A program manager building the program WBS decomposes the program into deliverable categories such as \"Platform Infrastructure,\" \"Data Migration,\" and \"User Training,\" each assigned to different components. A stakeholder asks how this differs from simply listing the program's components. What is the best answer?",
+        options:[
+          "There is no real difference; a WBS is just a list of components",
+          "The WBS decomposes and organizes the program's actual deliverables and work, which then informs how components are structured and assigned — it's a planning and assignment tool, not merely a restatement of the component list",
+          "A WBS should list individual staff members instead of deliverables",
+          "The program WBS is identical to the program's org chart"
+        ],
+        a:1,
+        why:"The WBS's value is in decomposing actual deliverables to inform structure and assignment — a component list is an output of that thinking, not a substitute for it.",
+        refs:["standard"]
+      },
+      {
+        type:"case",
+        stem:"A national insurance company is developing a \"Digital Claims Transformation Program.\"",
+        scenario:"During Domain II planning, the team drafts a detailed program scope statement and a program WBS. A regional VP, who was not part of the original steering committee negotiation, later objects that a major regional claims process wasn't accounted for in the scope statement.",
+        subs:[
+          {
+            stem:"What does this situation most directly suggest went wrong earlier in the process?",
+            options:[
+              "Nothing went wrong; regional VPs don't need to be consulted on program scope",
+              "The scope statement negotiation may not have engaged all the relevant stakeholders whose areas would be affected, allowing a real gap to go unnoticed until later",
+              "The program WBS should have been created before the scope statement",
+              "The regional VP is raising an invalid concern that should be dismissed"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate next step now that the gap has been identified?",
+            options:[
+              "Ignore the objection since the scope statement is already documented",
+              "Evaluate the regional VP's concern, and if valid, formally update the scope statement and WBS through the program's change process rather than informally patching the gap",
+              "Immediately expand the scope to include every request from every stakeholder going forward without evaluation",
+              "Remove the regional VP from future program communications to avoid further objections"
+            ],
+            a:1
+          }
+        ],
+        why:"A scope gap discovered after negotiation, even if it points to an earlier process shortcoming, should be evaluated and formally addressed — not dismissed, informally patched, or over-corrected into unlimited scope expansion.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC7", domain:"lifecycle", name:"KPIs, Measurement & Program Reporting",
+    refs:["standard","evm"],
+    material:[
+      "Standard measurement criteria (including KPIs) are defined for review points across all constituent projects/components by analyzing stakeholder expectations and requirements — they let the program monitor and control consistently, not each component doing its own thing.",
+      "KPIs at the program level are developed through decomposition/mapping — breaking strategic objectives down into measurable indicators — to manage scope and quality within the program, not simply borrowed from a generic template.",
+      "Consolidating project and program data into predefined reporting tools lets the program communicate consistent, aggregated status to stakeholders — ad hoc, inconsistent reporting formats across components undermine this.",
+      "A program performance analysis report compares actual values to planned values across scope, quality, cost, schedule, and resources to determine overall program performance — a narrower report (e.g., cost-only) misses the full picture."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A program defines standard measurement criteria — including specific KPIs — that every constituent component must report against at each review point. A component project manager argues their component should use its own custom metrics instead, since \"our work is different from the others.\" What is the appropriate response?",
+        options:[
+          "Allow every component to define its own unique metrics with no program-level standardization",
+          "Maintain standard, program-defined measurement criteria across all components, since consistent metrics are what let the program actually monitor and control performance in a comparable way — components can supplement with their own metrics, but shouldn't replace the standard ones",
+          "Eliminate measurement criteria entirely since components disagree",
+          "Let the most senior component's metrics become the standard for all others"
+        ],
+        a:1,
+        why:"Comparable, program-wide monitoring depends on a shared baseline of metrics — supplementing is fine, but replacing the standard undermines exactly what standardization is for.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager develops program-level KPIs by starting from the organization's stated strategic objectives and decomposing them into specific, measurable indicators (e.g., \"reduce processing time\" becomes \"average claim processing time in days, measured monthly\"). What does this decomposition process accomplish that adopting a generic industry KPI template would not?",
+        options:[
+          "Nothing meaningful; generic templates and decomposed KPIs are functionally identical",
+          "Decomposition ties each KPI directly to this program's actual strategic objectives, ensuring what's measured is what actually matters for this program's benefits — a generic template risks measuring things unrelated to the program's real goals",
+          "Generic templates are always more accurate than decomposed KPIs",
+          "KPI decomposition is only relevant during program closure"
+        ],
+        a:1,
+        why:"A KPI's value comes from its traceability back to this program's actual objectives — a generic template can look rigorous while measuring the wrong things entirely.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Each of a program's five components submits monthly status reports in a different format — one as a spreadsheet, one as a slide deck, one as a narrative email, and so on. The program manager struggles to produce a coherent program-level status report. What is the root issue?",
+        options:[
+          "The program manager should simply choose one component's format and require the others to match it informally",
+          "The absence of a predefined, program-level reporting tool and format for consolidating project and program data — without one, aggregating inconsistent inputs into coherent program-level reporting becomes unreliable and labor-intensive",
+          "Reporting inconsistency across components is unavoidable and not worth solving",
+          "Only the highest-budget component's report should be used for program-level reporting"
+        ],
+        a:1,
+        why:"Consolidation depends on a predefined, shared reporting structure — without one, the program manager is stuck manually reconciling apples and oranges every cycle.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program performance analysis report focuses exclusively on cost performance (budget vs. actual spend), omitting schedule, quality, scope, and resource performance. A board member relies on this report to conclude the program is \"on track.\" What is the risk in this conclusion?",
+        options:[
+          "There is no risk; cost performance is the only metric that matters for determining program health",
+          "A program could be within budget while significantly behind schedule, over scope, or facing quality issues — a cost-only report gives an incomplete and potentially misleading picture of overall program performance",
+          "Schedule, quality, scope, and resource data are never relevant to governance",
+          "The report should be replaced entirely with a schedule-only report instead"
+        ],
+        a:1,
+        why:"On-budget doesn't mean on-track — a performance report has to cover scope, quality, cost, schedule, and resources together, or it can actively mislead the people relying on it.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager notices that data reported by two components use different definitions for a shared KPI (one counts \"processing time\" from submission, the other from assignment to a caseworker). What should this prompt?",
+        options:[
+          "No action; minor definitional differences don't matter for program-level reporting",
+          "Standardizing the KPI's definition and measurement methodology across components, since inconsistent definitions make consolidated program-level metrics unreliable or actively misleading",
+          "Removing the shared KPI from program tracking entirely",
+          "Allowing each component to keep its own definition, as long as both report a number"
+        ],
+        a:1,
+        why:"A shared KPI is only genuinely comparable if it's genuinely defined the same way everywhere — otherwise the consolidated number is measuring two different things and calling them one.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A steering committee asks the program manager to evaluate the program's current status ahead of a governance review. What should this evaluation draw from, per sound Domain II practice?",
+        options:[
+          "The program manager's general impression, without reference to specific data",
+          "Consolidated, current program information — aggregated performance data, KPI results, and status from across components — maintained specifically to support this kind of evaluation",
+          "Only the most recently completed component's individual status report",
+          "A brand-new assessment methodology invented specifically for this one review"
+        ],
+        a:1,
+        why:"Status evaluation should draw on the program's own maintained, consolidated information — not impression, a single component's slice, or an improvised one-off method.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for defining program-level measurement criteria and KPIs?",
+        options:[
+          "Deriving KPIs from stakeholder expectations and requirements analyzed across constituent components",
+          "Allowing every component to define entirely separate, incompatible metrics",
+          "Applying the same standard criteria consistently at defined review points across all components",
+          "Finalizing KPIs once and never revisiting them regardless of how the program evolves"
+        ],
+        a:[0,2],
+        why:"Grounding KPIs in real stakeholder requirements and applying them consistently across components is sound practice — incompatible metrics and permanently frozen KPIs both work against effective monitoring.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's performance analysis report shows scope and quality metrics trending well, but schedule performance is significantly behind plan due to a recurring bottleneck in one component. What should the program manager's response emphasize?",
+        options:[
+          "Reporting only the favorable scope and quality trends to governance",
+          "Investigating and addressing the specific schedule bottleneck, and reporting the full picture — including the schedule shortfall — to governance, since a program performance report exists to surface exactly this kind of imbalance",
+          "Averaging all metrics together into a single composite score to smooth out the schedule issue",
+          "Waiting for the next reporting cycle before mentioning the schedule issue"
+        ],
+        a:1,
+        why:"A performance report's value is in surfacing exactly this kind of imbalance — averaging it away or reporting only the good news defeats the purpose of having a multi-dimensional report at all.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager is deciding how frequently to collect and consolidate data from components for program-level reporting. Which consideration should most directly drive this decision?",
+        options:[
+          "Whatever frequency is easiest for the program management office to administer",
+          "A cadence that balances timely visibility into program performance (so issues can be caught and addressed) against the reporting burden placed on components — aligned with governance's review cadence and the program's actual pace of change",
+          "Reporting should always occur daily regardless of program size or pace",
+          "Reporting frequency is irrelevant as long as data is eventually collected"
+        ],
+        a:1,
+        why:"Cadence is a genuine trade-off between timely visibility and reporting burden — it should track the program's actual pace and governance's review rhythm, not administrative convenience or an arbitrary fixed rule.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component reports a KPI result that looks unusually favorable compared to historical trends and other components' results. What is the most appropriate response from the program manager before including it in a consolidated report to governance?",
+        options:[
+          "Include the number as reported without further review, since components are trusted to report accurately",
+          "Verify the anomalous result — checking data sources, definitions, or calculation methods — before consolidating it into program-level reporting, since an unverified outlier risks distorting the program's overall reported performance",
+          "Automatically exclude any favorable-looking result as presumptively inaccurate",
+          "Adjust the number downward to align with other components without investigation"
+        ],
+        a:1,
+        why:"An outlier deserves verification, not automatic acceptance or automatic suspicion — the goal is an accurate consolidated picture, not a reflexive reaction in either direction.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's KPI dashboard shows all metrics in green for three consecutive quarters. A new steering committee member asks whether this consistent all-green result might warrant a closer look. What is the most defensible response?",
+        options:[
+          "No; consistently green metrics should always be taken at face value",
+          "Yes — sustained all-green results across every metric can sometimes indicate overly conservative targets, incomplete measurement, or optimistic reporting rather than genuinely flawless performance, and warrant a periodic sanity check on how the metrics are defined and measured",
+          "Green metrics should never be questioned once reported",
+          "This pattern is only worth investigating if a stakeholder files a formal complaint"
+        ],
+        a:1,
+        why:"An unbroken streak of green across every metric is exactly the kind of pattern optimistic bias or soft targets can produce — a periodic sanity check is proportionate, not paranoid.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program consolidates data from its components into a single performance report but does not explain the methodology or definitions behind each metric. A governance reviewer, unfamiliar with the program's specifics, has difficulty interpreting whether a given result is good or concerning. What is the fix?",
+        options:[
+          "Assume governance reviewers should already understand the program's internal metric definitions without explanation",
+          "Include enough context — metric definitions, targets, and thresholds — in the report so that someone without deep program familiarity can meaningfully interpret whether a result reflects good or concerning performance",
+          "Remove all numerical detail from the report and use qualitative descriptions only",
+          "Only present the report verbally, with no written documentation"
+        ],
+        a:1,
+        why:"A report that only makes sense to people who already know the program isn't actually informing governance — context is what makes the numbers interpretable.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's standard measurement criteria include a component-satisfaction KPI collected via a quarterly survey. Response rates have been declining each quarter, and the latest quarter's KPI result is based on only 20% of intended respondents. How should this affect how the result is used?",
+        options:[
+          "The result should be treated with the same confidence as previous quarters' higher-response results, since it's still a number",
+          "The declining response rate should be flagged alongside the KPI result, since a result based on a much smaller, potentially unrepresentative sample carries meaningfully less confidence than earlier, more complete data",
+          "The KPI should be silently dropped from reporting without explanation",
+          "Response rate has no bearing on how a KPI result should be interpreted"
+        ],
+        a:1,
+        why:"A number's reliability depends on how it was collected — a sharply declining response rate is exactly the kind of context that should travel with the KPI, not get silently smoothed over.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC8", domain:"lifecycle", name:"Resource Optimization & Team Leadership",
+    refs:["standard","governance"],
+    material:[
+      "Resource optimization/leveling happens across components, not by approving each component's request in isolation — shared or specialized resources create program-level trade-offs a single-component view can't see.",
+      "Monitoring HR-related factors (compensation, incentives, career alignment, motivation) across the program is a program-level responsibility distinct from each component's own HR administration.",
+      "The program manager leads HR functions such as coaching, mentoring, and recognition across components — this is different from directing the daily task execution that belongs to component/project managers.",
+      "Reviewing project managers' performance is meant to maximize their contribution to program goals (recognition, further optimization, targeted support) without undermining the PM's own authority over their component."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"Three components are each requesting additional allocation from the same specialized engineering pool, and there isn't enough capacity to fully satisfy all three requests simultaneously. What is the most appropriate program-level approach?",
+        options:[
+          "Approve each component's request independently and let them compete informally for actual staff time",
+          "Perform resource leveling across the affected components — evaluating relative priority, timing, and program-wide impact — rather than approving each request in isolation",
+          "Deny all three requests to avoid the appearance of favoritism",
+          "Instruct each component to hire its own separate specialized staff to avoid the conflict"
+        ],
+        a:1,
+        why:"When components draw on a shared pool, decisions have to be made with visibility across all of them — approving each in isolation just pushes the real conflict down into informal competition.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager arranges for a single specialized data architect to split time across two components that each need similar expertise but neither has enough work to justify a full-time hire. What does this decision most directly reflect?",
+        options:[
+          "A cost-cutting measure with no relationship to program strategy",
+          "A genuine synergy the program-level view makes visible — a shared specialized resource serving needs neither component could efficiently justify on its own",
+          "A violation of each component's autonomy over its own staffing",
+          "An HR policy unrelated to resource optimization"
+        ],
+        a:1,
+        why:"This is exactly the kind of efficiency a program-level vantage point can surface — a resource sharing arrangement that benefits both components in a way neither could arrange alone.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Turnover has risen noticeably across several components over the past two quarters, not just one. What is the most appropriate program-level response?",
+        options:[
+          "Leave it to each component manager to address independently, since turnover is a local staffing issue",
+          "Investigate at the program level — examining compensation, incentive structures, and career-path alignment across components — since a pattern spanning multiple components may point to a shared, program-level cause",
+          "Assume the trend is coincidental and take no action until it affects a majority of components",
+          "Replace the affected component managers"
+        ],
+        a:1,
+        why:"A pattern that spans multiple components is a signal worth investigating at the level where the shared cause would actually be visible — the program level, not component-by-component.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager regularly coaches and mentors component project managers but does not direct their teams' day-to-day task assignments. A new steering committee member asks why the program manager isn't more directly involved in daily execution. What is the best explanation?",
+        options:[
+          "The program manager should in fact take over daily task direction to ensure consistency",
+          "Leading HR-related functions like coaching, mentoring, and recognition across components is a program-level responsibility, while directing daily task execution belongs to the project managers — conflating the two would undermine PM authority over their own components",
+          "Coaching and mentoring are not part of a program manager's role at all",
+          "The program manager should delegate all component leadership entirely and have no HR-related involvement"
+        ],
+        a:1,
+        why:"The program level's leadership responsibility runs through coaching, mentoring, and recognition — not through taking over daily task direction that belongs to the PMs.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager schedules a formal review of a project manager who has been consistently strong-performing. A colleague asks why review a PM who isn't having problems. What is the most accurate purpose of this review?",
+        options:[
+          "To search for hidden faults that justify replacing the PM",
+          "To recognize strong performance and identify further opportunities to optimize the PM's contribution to program goals, not merely to find fault",
+          "Performance reviews should only happen for underperforming PMs",
+          "To transfer the PM to a different component regardless of their preference"
+        ],
+        a:1,
+        why:"Reviewing a strong performer is about recognition and further optimization, not just fault-finding — treating review as purely corrective misses half its purpose.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Program-level resource optimization requires one component to operate with fewer resources than its manager had planned for, and that manager pushes back, citing delivery risk. What is the most appropriate way for the program manager to handle this?",
+        options:[
+          "Override the objection immediately since program-level decisions take precedence over component preferences",
+          "Explain the rationale behind the program-level decision, genuinely listen to the manager's concerns, and work to find an approach that addresses legitimate delivery risks where possible",
+          "Reverse the resource optimization decision entirely to avoid conflict with the component manager",
+          "Ignore the pushback since component managers aren't expected to have visibility into program-level trade-offs"
+        ],
+        a:1,
+        why:"Program-level authority doesn't mean dismissing a component manager's legitimate risk concerns — explaining rationale and genuinely engaging with the pushback is how optimization decisions stay sound in practice, not just on paper.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following are legitimate program-level HR-related activities for a program manager?",
+        options:[
+          "Monitoring motivation and engagement factors (compensation, incentives, career alignment) across components",
+          "Personally assigning each team member's daily tasks within every component",
+          "Leading HR functions such as coaching, mentoring, and recognition across components",
+          "Removing a project manager's authority over their own component whenever the program manager disagrees with a decision"
+        ],
+        a:[0,2],
+        why:"Program-level HR responsibility runs through monitoring motivation factors and leading coaching/mentoring/recognition — not through taking over daily task direction or overriding PM authority whenever there's disagreement.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Is program-level resource optimization/leveling the same thing as applying an across-the-board percentage cost cut to every component's resources?",
+        options:[
+          "Yes, resource leveling is essentially a uniform cost-reduction exercise",
+          "No — resource optimization is about adjusting resource allocation across components for efficiency and synergy (shared specialists, better-timed handoffs, reduced duplication), not a uniform cut applied regardless of actual need",
+          "Yes, but only for programs over a certain budget size",
+          "No, because resource optimization only applies to financial resources, never staff"
+        ],
+        a:1,
+        why:"Leveling is about smarter allocation across the program, not an indiscriminate uniform cut — conflating the two would ignore real differences in what each component actually needs.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A project manager's underperformance is starting to contribute measurably to program-level delivery risk. What is the most appropriate first step for the program manager?",
+        options:[
+          "Terminate the project manager immediately to protect the program's timeline",
+          "Review the root causes of the underperformance with the PM, and determine whether coaching, additional resources, or a plan adjustment would address it before considering more severe steps",
+          "Ignore the underperformance since it is the PM's individual responsibility",
+          "Publicly reassign the PM's responsibilities without a private conversation first"
+        ],
+        a:1,
+        why:"Understanding root cause and offering support is the appropriate first step when performance is affecting program risk — jumping straight to termination or public reassignment skips a step that often resolves the issue.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program's incentive structure rewards project managers exclusively on their own component's individual metrics, with no incentive tied to cross-component collaboration or program-level outcomes. What risk does this create?",
+        options:[
+          "No risk; component-level incentives are always sufcient on their own",
+          "It risks discouraging project managers from pursuing cross-component synergies or program-level trade-offs that don't directly benefit their own component's metrics",
+          "It guarantees better program-level performance than a blended incentive structure would",
+          "This only matters for programs with fewer than three components"
+        ],
+        a:1,
+        why:"If a PM is only rewarded for their own component's numbers, there's little incentive to spend effort on program-level synergies that don't show up in those numbers — an incentive structure shapes behavior, even unintentionally.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A program manager wants to improve team motivation across components with a wide range of roles, tenures, and local conditions. What is the most appropriate approach?",
+        options:[
+          "Apply one uniform motivation strategy identically across every component regardless of context",
+          "Assess compensation, incentive, and career-path factors relevant to each context, since what drives motivation can differ meaningfully across components",
+          "Assume motivation is entirely outside the program manager's scope of responsibility",
+          "Focus exclusively on financial compensation and ignore career-path or recognition factors"
+        ],
+        a:1,
+        why:"Motivation drivers vary by context — a program-level view should assess relevant factors per component rather than assuming one uniform approach fits every team.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Stakeholders have begun informally treating project managers who proactively surface risks as \"problem PMs,\" while quietly favoring those who report fewer issues. What is the most appropriate program manager response?",
+        options:[
+          "Accept the dynamic, since stakeholder perceptions are outside the program manager's control",
+          "Actively counter this dynamic — reinforcing to stakeholders and PMs alike that proactive risk reporting is valued and should not be penalized, since the informal incentive otherwise pushes PMs toward under-reporting",
+          "Instruct PMs to reduce how often they report risks to avoid the perception problem",
+          "Replace the PMs perceived as reporting too many issues"
+        ],
+        a:1,
+        why:"Left unaddressed, this dynamic quietly trains PMs to under-report — exactly the opposite of what the program needs. Correcting the perception protects the program's actual visibility into risk.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"LC9", domain:"lifecycle", name:"Governance Consistency, Communication & Constituent Project Initiation",
+    refs:["standard","governance"],
+    material:[
+      "Chartering and initiating constituent projects means deliberately assigning a project manager and resources through formal authorization — not an informal handoff that skips a program-level alignment check.",
+      "Establishing consistency across a program means applying a shared governance framework, standards, infrastructure, tools, and processes across components — proportionately, not necessarily identically in every detail.",
+      "A communication feedback plan captures lessons learned and team experiences continuously throughout the program, not only at closure, so insights stay actionable while they're still fresh."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A department head wants to bypass the program's formal chartering process for a new constituent project, citing urgency. What risk does this create?",
+        options:[
+          "None; urgency is sufficient justification to skip formal chartering",
+          "Skipping formal chartering risks losing the program-level authorization and alignment check that ensures the new project is properly resourced and consistent with program goals before work begins",
+          "Formal chartering is only relevant for the program's largest constituent projects",
+          "Bypassing chartering only matters if the project later runs over budget"
+        ],
+        a:1,
+        why:"Urgency is a reason to expedite the process, not skip the alignment check chartering exists to provide — an unchartered project risks starting without proper authorization, resourcing, or program-level fit.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A small constituent component argues that the program's standardized governance framework is excessive overhead given its limited scale. What is the most appropriate response?",
+        options:[
+          "Apply the framework identically regardless of the component's scale, with no adjustment",
+          "Consider a proportionate, right-sized application of the framework for the smaller component while preserving the essential governance elements that keep it consistent with the rest of the program",
+          "Exempt the component from governance entirely given its limited scale",
+          "Dissolve the component into a larger one to avoid the governance question altogether"
+        ],
+        a:1,
+        why:"Consistency doesn't require identical weight everywhere — a proportionate application that keeps the essentials intact respects both the component's scale and the program's need for coherence.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A component manager maintains a parallel informal spreadsheet for tracking status alongside the program's shared PMIS, because they find it more convenient. What risk does this create?",
+        options:[
+          "No risk, as long as the spreadsheet is accurate",
+          "Risk of inconsistent or conflicting data undermining the shared PMIS as a single source of truth for program-level decision-making",
+          "This practice actually improves data quality by providing a backup",
+          "This is only a concern if the spreadsheet is shared with other components"
+        ],
+        a:1,
+        why:"A parallel, informal system — however well-intentioned — creates two versions of the truth, which is exactly what a shared PMIS exists to prevent.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"Why does a program's communication feedback plan typically call for capturing lessons learned continuously throughout the program rather than only at closure?",
+        options:[
+          "Continuous capture is simply a documentation formality with no practical benefit",
+          "Capturing insights while they're still fresh keeps them specific and actionable, whereas waiting until closure risks losing detail or having lessons arrive too late to be applied",
+          "Closure-only capture is actually preferable because it produces a more complete picture",
+          "Continuous capture is only relevant for programs longer than two years"
+        ],
+        a:1,
+        why:"Details fade and context gets lost the longer capture is deferred — continuous capture keeps lessons specific enough to actually be useful, including to the program itself while it's still running.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A newly assigned project manager for a constituent project has no visibility into the program's overall benefits realization plan or governance context. What risk does this create?",
+        options:[
+          "No risk; project managers only need visibility into their own project's scope",
+          "The PM risks making decisions that are locally reasonable but misaligned with program-level goals — chartering and initiation should include enough program-level context to prevent this",
+          "This is a risk only if the project is behind schedule",
+          "Program-level context is the sponsor's responsibility to communicate, not something chartering needs to address"
+        ],
+        a:1,
+        why:"A PM operating without program-level context can make choices that look sound locally but work against the program's actual goals — chartering is where that context should be established.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A component operating in a heavily regulated industry needs to deviate from one of the program's shared standards to remain compliant with local regulation. What is the most appropriate governance response?",
+        options:[
+          "Force strict uniformity and require the component to violate the regulation to match the shared standard",
+          "Accommodate a documented, justified deviation for that specific standard while maintaining consistency with the rest of the shared governance framework elsewhere",
+          "Exempt the component from all shared governance elements, not just the conflicting standard",
+          "Dissolve the shared governance framework program-wide to avoid the conflict"
+        ],
+        a:1,
+        why:"A narrowly scoped, documented deviation resolves the actual conflict without abandoning consistency everywhere else — an all-or-nothing response overreacts in either direction.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for establishing consistency across a program's components?",
+        options:[
+          "Applying a shared governance framework and standards across components",
+          "Requiring every component to have identical staffing levels regardless of scope or scale",
+          "Using shared infrastructure, tools, and processes where appropriate across components",
+          "Refusing any adaptation of shared standards under any circumstances, regardless of local constraints"
+        ],
+        a:[0,2],
+        why:"Consistency is built through shared frameworks, standards, and infrastructure applied sensibly — not through mechanical uniformity in staffing or a rigid refusal to ever accommodate a justified local constraint.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"Reports submitted through the program's lessons-learned process are consistently brief and generic, offering little specific insight. What does this most likely indicate?",
+        options:[
+          "The components genuinely have nothing meaningful to report",
+          "The reporting process likely isn't structured to draw out specific, actionable input — the format or prompts may need to be revisited",
+          "Brief reports are actually the ideal outcome of a mature lessons-learned process",
+          "This pattern is unrelated to how the process is structured"
+        ],
+        a:1,
+        why:"Consistently generic input across many reporters is usually a process signal, not a coincidence — the prompts or format are probably not drawing out what people actually observed.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"Resources are allocated to a new constituent project during chartering without first consulting the functional department that owns those resources. What problem does this most likely create?",
+        options:[
+          "No problem, since program-level chartering authority overrides functional department input entirely",
+          "Chartering and resourcing decisions should be coordinated with the resource-owning department beforehand, since allocating resources without that coordination risks conflicts with the department's own commitments",
+          "This is only a concern for resources that are financial rather than human",
+          "Functional departments have no legitimate interest in how their resources are allocated to programs"
+        ],
+        a:1,
+        why:"Resources don't exist in a vacuum — allocating them without coordinating with the department that owns them risks conflicts that surface later, when they're much harder to resolve.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A new steering committee member calls the program's shared PMIS \"excessive administrative overhead\" and questions why it's necessary. What is the best response?",
+        options:[
+          "Agree and recommend components return to independent, disconnected tracking methods",
+          "Explain that the shared PMIS enables consistent, program-wide visibility that supports informed decision-making — without it, information stays fragmented across components in ways that undermine governance",
+          "Avoid the question since PMIS value is self-evident and doesn't need explaining",
+          "Suggest the PMIS be simplified to track only financial data"
+        ],
+        a:1,
+        why:"A shared PMIS earns its overhead by preventing fragmentation — the explanation should connect it to what governance actually needs: a consistent, program-wide picture.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"When deciding the cadence of the program's communication feedback plan, what is the key trade-off the program manager should weigh?",
+        options:[
+          "There is no real trade-off; more frequent feedback collection is always strictly better",
+          "Balancing how quickly fresh, actionable input is captured against the reporting burden placed on components and stakeholders",
+          "The only consideration is matching whatever cadence the largest component prefers",
+          "Feedback cadence should be set once at program initiation and never revisited"
+        ],
+        a:1,
+        why:"More frequent collection captures fresher input but adds burden — the right cadence balances that trade-off rather than treating either side as free.",
+        refs:["standard"]
+      },
+      {
+        type:"case",
+        stem:"A national logistics company is running a \"Warehouse Robotics Program\" spanning six regional distribution centers.",
+        scenario:"A regional director requests that their component use different reporting templates and a different change-decision process than the rest of the program, stating only a personal preference for their team's existing tools — with no cited regulatory or operational necessity.",
+        subs:[
+          {
+            stem:"How should the program manager initially evaluate this request?",
+            options:[
+              "Automatically grant it, since regional directors should have full discretion over their component's processes",
+              "Evaluate the request for a substantive justification — regulatory, operational, or otherwise — rather than automatically granting or denying it",
+              "Automatically deny it without discussion, since no request for deviation should ever be considered",
+              "Escalate it directly to the sponsor without first discussing it with the regional director"
+            ],
+            a:1
+          },
+          {
+            stem:"If the request turns out to be based purely on personal preference with no substantive justification, what is the most appropriate response?",
+            options:[
+              "Grant it anyway to preserve the relationship with the regional director",
+              "Decline the request and maintain the shared reporting templates and change-decision process, explaining the consistency rationale to the regional director",
+              "Grant it but only for one reporting cycle, then never mention it again",
+              "Apply the regional director's preferred process to the entire program instead"
+            ],
+            a:1
+          }
+        ],
+        why:"A deviation request deserves a real evaluation, not a reflexive yes or no — but absent substantive justification, maintaining the shared framework is what actually protects program-wide consistency.",
+        refs:["standard","governance"]
+      }
+    ]
+  },
+  {
+    id:"LC10", domain:"lifecycle", name:"Risk Management & Corrective Action",
+    refs:["standard","changemgmt"],
+    material:[
+      "Updating program plans with corrective actions means targeting the root cause identified through variance analysis, not simply relaxing the target to make the variance disappear on paper.",
+      "Impact assessments for proposed changes should evaluate multi-dimensional effects — cost, schedule, dependencies, and benefits — before a change is approved, not a single dimension in isolation.",
+      "Program-level risk management balances risk across the program for overall benefit realization — it does not require uniformly minimizing risk in every component regardless of context."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A component is missing milestones due to a resource shortage. A colleague suggests simply extending the deadlines rather than addressing the resource issue. What is the more appropriate corrective action?",
+        options:[
+          "Extend the deadlines, since that directly resolves the reported variance",
+          "Investigate the root cause identified through variance analysis — the resource shortage — and address that directly, rather than merely relaxing the target so the variance stops appearing",
+          "Take no action, since milestone variance is expected on any program",
+          "Cancel the affected component entirely"
+        ],
+        a:1,
+        why:"Relaxing the target makes the variance disappear on paper without fixing what actually caused it — real corrective action targets the root cause, here the resource shortage itself.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A proposed change is evaluated only for its effect on cost, with no assessment of its impact on schedule, dependencies, or benefits. What is the risk of approving the change based on this assessment alone?",
+        options:[
+          "There is no risk, since cost is the most important dimension in any impact assessment",
+          "The change could have significant negative effects on schedule, dependent components, or benefits realization that go completely unassessed before approval",
+          "Cost-only assessment is the standard, complete practice for all program-level changes",
+          "This concern only applies to changes proposed by external stakeholders"
+        ],
+        a:1,
+        why:"A single-dimension assessment can miss exactly the kind of ripple effects — schedule slippage, broken dependencies, eroded benefits — that a multi-dimensional impact assessment exists to catch.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"Component A operates with a higher risk tolerance given its high potential upside, while Component B, tied to a critical dependency, is managed to minimize risk as much as possible. Is applying different risk thresholds to these two components appropriate?",
+        options:[
+          "No, every component in a program must apply an identical risk threshold",
+          "Yes — program-level risk management balances risk across the program for overall benefit, which can appropriately mean different thresholds for components with different risk-and-reward profiles",
+          "No, because risk thresholds should only ever be set at the project level, never the program level",
+          "Yes, but only if both components explicitly agree to the disparity in writing"
+        ],
+        a:1,
+        why:"Program-level risk management is about balancing risk across the whole portfolio of components for overall benefit — different profiles can legitimately warrant different thresholds.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A quality issue traced to insufficient testing time is corrected at the component level, but the correction is never reflected in the program-level plan, tracking, or dependency mapping. What problem does this create?",
+        options:[
+          "No problem, since the issue has already been fixed at the component level",
+          "The fix stays invisible at the program level, risking inconsistent tracking, missed downstream dependency impacts, and inaccurate program-wide reporting",
+          "This is only a concern if the same issue recurs in a different component",
+          "Program-level plans should never reflect component-level corrective actions"
+        ],
+        a:1,
+        why:"A fix that never surfaces in the program-level plan leaves dependencies and reporting built on stale information — the program level needs to know a correction happened, not just that it did.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"An impact assessment shows a proposed change would improve one component's performance but delay a component that depends on it. What is the most appropriate next step?",
+        options:[
+          "Approve the change automatically, since an improvement in any component is a net positive",
+          "Present the full trade-off — the improvement and the dependent delay — to the appropriate decision authority, rather than approving or rejecting the change unilaterally",
+          "Reject the change automatically, since any negative downstream effect disqualifies a proposed change",
+          "Hide the downstream delay from the decision authority to avoid complicating the approval"
+        ],
+        a:1,
+        why:"A trade-off like this belongs in front of the decision authority in full — neither an automatic yes nor an automatic no reflects the actual complexity, and hiding part of it defeats the purpose of the assessment.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A risk with low probability but catastrophic potential impact is flagged by the team as low priority since it \"probably won't happen.\" What is the appropriate response?",
+        options:[
+          "Agree and remove the risk from active tracking, since low probability outweighs severity",
+          "Continue tracking the risk — impact severity matters as much as probability, and a catastrophic-impact risk deserves continued attention even at low probability",
+          "Escalate the risk to certain occurrence regardless of the actual probability estimate",
+          "Track the risk only if it has already occurred once before"
+        ],
+        a:1,
+        why:"A low-probability, high-severity risk isn't safe to drop just because it's unlikely — severity is exactly why it still warrants active monitoring.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound practice for conducting an impact assessment on a proposed program-level change?",
+        options:[
+          "Evaluating effects across multiple dimensions — cost, schedule, dependencies, and benefits",
+          "Approving the change before the assessment is complete if the requester is a senior stakeholder",
+          "Presenting the full assessment and trade-offs to the appropriate decision authority",
+          "Skipping impact assessment entirely for changes proposed by senior stakeholders"
+        ],
+        a:[0,2],
+        why:"A sound impact assessment is multi-dimensional and gets presented in full to the decision authority — a requester's seniority is not a legitimate reason to shortcut or skip the assessment.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"Over the course of a year, corrective actions on a program have consistently addressed symptoms rather than root causes. What risk does this pattern create?",
+        options:[
+          "No risk, as long as each individual symptom is resolved when it appears",
+          "A risk of recurring issues that require repeated, escalating intervention, since the underlying root causes are never actually addressed",
+          "This pattern actually reduces long-term program risk by resolving issues quickly",
+          "This is a concern only if a single symptom recurs more than five times"
+        ],
+        a:1,
+        why:"Symptom-only fixes tend to keep producing the same underlying problem in new forms — a pattern like this predicts recurring, escalating issues rather than a program getting healthier over time.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A project manager new to the program, with a project-management background, argues that all risk everywhere in the program should be minimized as much as possible, and views the program's differentiated, risk-balancing approach as a mistake to correct. How should this be addressed?",
+        options:[
+          "Agree and shift the program to uniformly minimize risk in every component",
+          "Explain the program-level shift from controlling risk within a single project to balancing risk across a portfolio of components for overall benefit — this is a deliberate program-level approach, not an error to correct",
+          "Dismiss the PM's concern without any explanation",
+          "Reassign the PM to a role with no risk-related responsibilities"
+        ],
+        a:1,
+        why:"This reflects a real shift in mindset from project-level risk control to program-level risk balancing — it's worth explaining explicitly rather than either overriding it silently or dismissing the PM's concern.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"An impact assessment for a proposed change only evaluates effects from the requesting component's own perspective, with no assessment of effects on other components or the program overall. What is missing?",
+        options:[
+          "Nothing; a component's own perspective is sufficient for assessing its own proposed change",
+          "A program-level view of the change's effects elsewhere in the program — cross-component and program-wide impacts that a single-component perspective can't capture",
+          "The assessment should instead exclude the requesting component's own perspective entirely",
+          "Impact assessments should never involve the requesting component in any capacity"
+        ],
+        a:1,
+        why:"A change proposed by one component can still ripple elsewhere — an assessment confined to the requester's own view misses exactly the cross-component effects a program-level assessment exists to catch.",
+        refs:["standard","changemgmt"]
+      },
+      {
+        type:"single",
+        stem:"A sponsor asks whether a proposed update to the program plan requires formal governance approval or can simply be implemented directly by the program manager. What does the answer depend on?",
+        options:[
+          "It never requires formal approval, since the program manager has full authority over the plan",
+          "It depends on materiality — updates that affect the approved baseline typically require formal review through the change management process, while minor, non-baseline adjustments may not",
+          "It always requires formal approval regardless of scope",
+          "It depends solely on which component raised the need for the update"
+        ],
+        a:1,
+        why:"Not every plan adjustment rises to the level of a baseline change — the deciding factor is materiality, which is what determines whether formal governance review is actually needed.",
+        refs:["standard","governance"]
+      },
+      {
+        type:"single",
+        stem:"A program's risk strategy requires certain risks to be transferred to the broader organization's risk register, even when they are specific to this program. A project manager questions why, since the program already tracks its own risks. What is the best explanation?",
+        options:[
+          "There is no good reason; program-specific risks should never appear on an organizational risk register",
+          "Some risks' potential impact or the appropriate oversight for them may extend beyond the program's own implementation, and organizational-level tracking helps ensure continuity of oversight beyond the program itself",
+          "This is purely an administrative formality with no practical benefit",
+          "Organizational risk registers exist only for risks that have already materialized"
+        ],
+        a:1,
+        why:"Some risks matter — or need continuity of oversight — beyond the life of the program itself, which is exactly why they belong on the organization's own register in addition to the program's.",
+        refs:["standard"]
+      }
+    ]
+  },
+  {
+    id:"LC11", domain:"lifecycle", name:"Post-Review & Organizational Learning",
+    refs:["standard"],
+    material:[
+      "Post-review meetings present performance reports to obtain feedback and capture lessons learned — they are a substantive input to organizational learning, not just a final formality before closing.",
+      "Lessons learned and best practices are reported to a knowledge repository that supports future programs — sharing them only informally or verbally doesn't transfer reliably.",
+      "Post-review findings should feed back into organizational process assets and future program planning — findings that nobody acts on have limited real value."
+    ],
+    qs:[
+      {
+        type:"single",
+        stem:"A new program manager starting a similar initiative is completely unaware that a relevant post-review was ever conducted for a comparable past program. What does this most likely indicate?",
+        options:[
+          "The past post-review simply wasn't relevant enough to matter",
+          "A gap in the knowledge-transfer process — post-review findings need to live in a repository that is genuinely accessible and discoverable by future program managers, not just filed away",
+          "New program managers aren't expected to review past programs' findings",
+          "Post-reviews are only useful to the program that conducted them"
+        ],
+        a:1,
+        why:"A finding that never reaches the people who could use it has failed at the transfer step, however well the review itself was conducted — accessibility is what makes a repository actually useful.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"During a post-review, a program manager considers softening or omitting a candid finding about a vendor's underperformance in order to protect the relationship with that vendor. What is the appropriate approach?",
+        options:[
+          "Omit the finding to preserve the vendor relationship",
+          "Include the finding accurately — honest, candid documentation of what actually happened is the point of a post-review, even when a finding is uncomfortable",
+          "Include the finding only if the vendor pre-approves the wording",
+          "Replace the specific finding with a vague, non-specific summary"
+        ],
+        a:1,
+        why:"A post-review that omits uncomfortable truths to protect relationships defeats its own purpose — organizational learning depends on candor, not diplomatic editing.",
+        refs:["standard","ethics"]
+      },
+      {
+        type:"single",
+        stem:"A program's lessons-learned repository has accumulated dozens of entries over several years, but almost none are ever referenced by subsequent programs. What does this suggest?",
+        options:[
+          "The repository is functioning exactly as intended",
+          "Capturing lessons isn't valuable on its own if they're never applied — the program may need an active mechanism, such as a required repository review during initiation, to ensure captured lessons actually get used",
+          "The entries themselves must be low quality, and no other explanation is worth considering",
+          "This pattern is unrelated to how the repository is structured or used"
+        ],
+        a:1,
+        why:"A repository nobody consults isn't delivering organizational learning, whatever the quality of its entries — the fix is usually a mechanism that pulls people to it, not just accumulating more content.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A post-review is scheduled immediately after a contentious program closure, and a team member suggests postponing it until emotions settle. What is the most appropriate approach?",
+        options:[
+          "Postpone the post-review indefinitely until all involved parties feel completely at ease",
+          "Proceed with the post-review but facilitate it deliberately toward factual analysis and constructive learning rather than blame, rather than indefinitely postponing it",
+          "Cancel the post-review entirely given the contentious closure",
+          "Proceed with the post-review but exclude anyone who was involved in the contentious issues"
+        ],
+        a:1,
+        why:"Deferring indefinitely risks losing detail and momentum — deliberate, blame-aware facilitation lets the review still happen and still be useful, even in a difficult context.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A recurring stakeholder-conflict pattern is identified across multiple components during a post-review. How should this finding be captured?",
+        options:[
+          "Mention it briefly once in the closure report and consider it addressed",
+          "Capture it as a discoverable, categorized entry in the knowledge repository, since a recurring cross-component pattern is exactly the kind of finding future programs would benefit from finding easily",
+          "Omit it from formal documentation since it wasn't unique to any single component",
+          "Report it only verbally to the sponsor"
+        ],
+        a:1,
+        why:"A pattern that recurs across components is a high-value finding precisely because it's likely to recur again on future programs — it deserves a discoverable, categorized home, not a passing mention.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A post-review report on a program where three of five components met their targets spends nearly all its time celebrating the successes and very little analyzing the two shortfalls. What is the concern with this report?",
+        options:[
+          "There is no concern; celebrating success is the primary purpose of a post-review",
+          "Under-emphasizing the shortfalls limits organizational learning, even though celebrating genuine successes is also a reasonable part of the report",
+          "The report should have excluded the successful components entirely",
+          "Shortfalls should never be discussed in a post-review report"
+        ],
+        a:1,
+        why:"Learning comes disproportionately from what didn't go well — a report that mostly celebrates leaves the more instructive material underexplored.",
+        refs:["standard"]
+      },
+      {
+        type:"multi",
+        stem:"Which TWO of the following reflect sound lessons-learned practice?",
+        options:[
+          "Honest documentation of uncomfortable or unflattering findings",
+          "Limiting captured lessons to successes only, to keep the repository positive",
+          "Storing lessons in a repository that is actively consulted by future programs, not just archived",
+          "Treating the lessons-learned report as complete and finished the moment it is written, with no further follow-up"
+        ],
+        a:[0,2],
+        why:"Sound practice means candid documentation and a repository people actually use — restricting content to successes or treating the report as done the moment it's written both undercut real organizational learning.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A post-review meeting invites only the internal program team and excludes external partners and vendors who were significantly involved in the program. What risk does this create?",
+        options:[
+          "No risk; external parties have nothing meaningful to contribute to a post-review",
+          "Excluding significantly involved external partners risks missing perspectives or root causes that only they observed, weakening the completeness of the review",
+          "Including external partners would only be appropriate if the program failed outright",
+          "External partners should always be excluded from internal post-review discussions as a matter of policy"
+        ],
+        a:1,
+        why:"A significantly involved external partner may have visibility into causes or effects the internal team simply didn't observe — excluding them leaves a real gap in the review's completeness.",
+        refs:["standard","stakeholder_"]
+      },
+      {
+        type:"single",
+        stem:"A program's knowledge repository organizes entries by theme (e.g., \"vendor management,\" \"stakeholder conflict,\" \"scope changes\") rather than chronologically by program. What is the main benefit of this structure?",
+        options:[
+          "There is no meaningful benefit; chronological organization would be equally effective",
+          "It makes it easier for a future program manager facing a specific type of challenge to quickly find relevant past lessons, rather than having to search through unrelated programs chronologically",
+          "Thematic organization is required by the Standard for Program Management and has no other justification",
+          "It primarily benefits the program that generated the entries, not future programs"
+        ],
+        a:1,
+        why:"A future PM usually starts from a specific problem, not a specific past program — thematic organization matches how the repository is actually going to be searched.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A new program's charter development process explicitly requires reviewing the knowledge repository for similar past programs before finalizing the roadmap and risk strategy. What is the benefit of this requirement?",
+        options:[
+          "It adds unnecessary delay to charter development with no real benefit",
+          "It proactively applies past organizational experience to avoid repeating known mistakes, rather than leaving that knowledge undiscovered until problems recur",
+          "It is only useful for programs in the exact same industry as a past program",
+          "It replaces the need for a risk management plan"
+        ],
+        a:1,
+        why:"Building repository review directly into chartering is what actually closes the loop on organizational learning — otherwise past lessons stay available in principle but unused in practice.",
+        refs:["standard"]
+      },
+      {
+        type:"single",
+        stem:"A team member proposes a specific, actionable process improvement during a post-review meeting. The program manager thanks them, but the idea is never formally captured or assigned to anyone afterward. What is the concern?",
+        options:[
+          "There is no concern, since verbal acknowledgment is sufficient recognition for the idea",
+          "A valuable idea risks being lost if it's only verbally acknowledged — it should be documented and assigned to someone for follow-up to actually result in improvement",
+          "Formally capturing team members' ideas from post-reviews is inappropriate",
+          "The idea should have been implemented immediately during the meeting itself"
+        ],
+        a:1,
+        why:"Good ideas raised in the moment need a path to action — without documentation and assignment, even a strong suggestion tends to quietly disappear.",
+        refs:["standard"]
+      },
+      {
+        type:"case",
+        stem:"A national developer is completing a \"Sustainable Housing Development Program\" spanning multiple regional construction components.",
+        scenario:"During post-review, the team notes that permitting delays occurred in four of the program's six components, but each delay had previously been discussed only as an isolated, component-specific issue in its own closure notes.",
+        subs:[
+          {
+            stem:"What does the pattern noticed during post-review most likely suggest?",
+            options:[
+              "Nothing meaningful; permitting delays are simply an unavoidable, unrelated cost of doing business in each region",
+              "A program-level pattern that was invisible when each delay was viewed only at the component level — worth examining as a shared root cause",
+              "The four affected components should be shut down immediately",
+              "The delays were entirely the fault of the four component project managers individually"
+            ],
+            a:1
+          },
+          {
+            stem:"What is the most appropriate way to handle this finding going forward?",
+            options:[
+              "Mention it briefly in the final closure summary and take no further action",
+              "Document it in the knowledge repository, categorized so future programs facing similar permitting contexts can find it, and consider recommending a process improvement for how permitting risk is identified going forward",
+              "Take no action, since the program is already closing and the finding no longer matters",
+              "Keep the finding confidential to avoid drawing attention to the delays"
+            ],
+            a:1
+          }
+        ],
+        why:"A pattern invisible at the component level but real at the program level is exactly what a post-review should surface — and a finding like this earns a discoverable repository entry and a real process-improvement recommendation, not a passing mention.",
+        refs:["standard"]
+      }
+    ]
+  },
   {
     id:"BN1", domain:"benefits", name:"Benefits Realization & Sustainment",
     refs:["benefitsreg","decisiontree"],
